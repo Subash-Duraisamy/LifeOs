@@ -125,6 +125,16 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
           </NavLink>
 
+<NavLink
+  to="/finance"
+  onClick={closeMenu}
+>
+
+  <Wallet size={20} />
+
+  Finance
+
+</NavLink>
           <NavLink
             to="/notes"
             onClick={closeMenu}

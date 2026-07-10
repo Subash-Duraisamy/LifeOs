@@ -14,7 +14,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Tasks from "./pages/Tasks/Tasks";
 import CreateTask from "./pages/Tasks/CreateTask";
 import EditTask from "./pages/Tasks/EditTask";
-
+import Finance from "./pages/Finance/Finance";
 
 import Journal from "./pages/Journal/Journal";
 import Notes from "./pages/Notes/Notes";
@@ -154,6 +154,10 @@ function App() {
           path="expenses"
           element={<Expenses />}
         />
+        <Route
+  path="finance"
+  element={<Finance />}
+/>
 
         <Route
           path="goals"
