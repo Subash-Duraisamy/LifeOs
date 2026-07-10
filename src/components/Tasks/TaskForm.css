@@ -1,0 +1,273 @@
+.task-form-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* Heading */
+
+.task-form-card h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Form Group */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Inputs */
+
+.task-form-card input,
+.task-form-card select,
+.task-form-card textarea {
+
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 16px 18px;
+
+  background: #1b2436;
+
+  color: white;
+
+  border: 1px solid transparent;
+
+  border-radius: 14px;
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition: .25s;
+
+}
+
+/* Placeholder */
+
+.task-form-card input::placeholder,
+.task-form-card textarea::placeholder{
+
+  color:#8d97ad;
+
+}
+
+/* Focus */
+
+.task-form-card input:focus,
+.task-form-card select:focus,
+.task-form-card textarea:focus{
+
+  border-color:#7c5cff;
+
+  box-shadow:0 0 0 4px rgba(124,92,255,.15);
+
+}
+
+/* Textarea */
+
+.task-form-card textarea{
+
+  min-height:140px;
+
+  resize:vertical;
+
+  overflow:auto;
+
+  white-space:pre-wrap;
+
+  word-break:break-word;
+
+  line-height:1.7;
+
+}
+
+/* Two Column Layout */
+
+.task-row{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  gap:20px;
+
+}
+
+/* Buttons */
+
+.button-row{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:16px;
+
+  margin-top:10px;
+
+}
+
+.cancel-btn,
+.add-btn{
+
+  border:none;
+
+  border-radius:14px;
+
+  padding:15px 30px;
+
+  font-size:16px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+}
+
+.cancel-btn{
+
+  background:#323c52;
+
+  color:white;
+
+}
+
+.cancel-btn:hover{
+
+  background:#414d66;
+
+}
+
+.add-btn{
+
+  background:#7c5cff;
+
+  color:white;
+
+}
+
+.add-btn:hover{
+
+  background:#6845ff;
+
+  transform:translateY(-2px);
+
+}
+
+/* Scrollbar */
+
+.task-form-card textarea::-webkit-scrollbar{
+
+  width:8px;
+
+}
+
+.task-form-card textarea::-webkit-scrollbar-thumb{
+
+  background:#4b5877;
+
+  border-radius:20px;
+
+}
+
+/* ========================= */
+/* Laptop */
+/* ========================= */
+
+@media (min-width:992px){
+
+.task-form-card{
+
+  width:100%;
+
+  max-width:none;
+
+}
+
+}
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media (max-width:991px){
+
+.task-form-card{
+
+  padding:28px;
+
+}
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+.task-form-card{
+
+  padding:20px;
+
+  border-radius:16px;
+
+  gap:18px;
+
+}
+
+.task-form-card h2{
+
+  font-size:24px;
+
+}
+
+.task-row{
+
+  grid-template-columns:1fr;
+
+  gap:16px;
+
+}
+
+.button-row{
+
+  flex-direction:column;
+
+}
+
+.cancel-btn,
+.add-btn{
+
+  width:100%;
+
+}
+
+.task-form-card input,
+.task-form-card select,
+.task-form-card textarea{
+
+  font-size:16px;
+
+}
+
+}

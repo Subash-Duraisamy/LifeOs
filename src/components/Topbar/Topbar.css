@@ -1,0 +1,251 @@
+/* ==========================================
+   TOPBAR
+========================================== */
+
+.topbar{
+
+    height:72px;
+
+    width:100%;
+
+    padding:0 28px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#101826;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:200;
+
+}
+
+/* ==========================================
+   LEFT
+========================================== */
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.page-title{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    letter-spacing:.3px;
+
+}
+
+/* ==========================================
+   MOBILE MENU
+========================================== */
+
+.mobile-menu{
+
+    display:none;
+
+    width:44px;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#1d2738;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.mobile-menu:hover{
+
+    background:#29364b;
+
+}
+
+/* ==========================================
+   RIGHT
+========================================== */
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* ==========================================
+   PROFILE BUTTON
+========================================== */
+
+.profile-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #7c5cff,
+        #5f44ff
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.25s;
+
+    box-shadow:
+        0 6px 18px rgba(124,92,255,.28);
+
+}
+
+.profile-btn:hover{
+
+    transform:translateY(-2px) scale(1.05);
+
+    box-shadow:
+        0 12px 26px rgba(124,92,255,.45);
+
+}
+
+.profile-btn img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.profile-btn span{
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:768px){
+
+.topbar{
+
+padding:0 18px;
+
+height:68px;
+
+}
+
+.mobile-menu{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.page-title{
+
+font-size:22px;
+
+}
+
+.profile-btn{
+
+width:42px;
+
+height:42px;
+
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:480px){
+
+.page-title{
+
+font-size:20px;
+
+}
+
+.topbar{
+
+padding:0 14px;
+
+}
+
+.mobile-menu{
+
+width:40px;
+
+height:40px;
+
+font-size:22px;
+
+}
+
+.profile-btn{
+
+width:40px;
+
+height:40px;
+
+}
+
+}

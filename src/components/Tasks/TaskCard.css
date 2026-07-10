@@ -1,0 +1,323 @@
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 24px;
+
+    padding: 18px 20px;
+
+    background: #1b2235;
+
+    border: 1px solid #2d3652;
+
+    border-radius: 16px;
+
+    transition: all .25s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    border-color: #4f7cff;
+    box-shadow: 0 12px 30px rgba(79,124,255,.18);
+}
+
+/* LEFT */
+
+.task-left {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.task-card h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.task-description {
+    margin: 0;
+
+    color: #9aa6c4;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+/* INFO */
+
+.task-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.task-info span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 10px;
+
+    background: rgba(255,255,255,.04);
+
+    border-radius: 8px;
+
+    color: #aeb8cf;
+
+    font-size: 13px;
+}
+
+/* RIGHT */
+
+.task-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 14px;
+}
+
+/* STATUS */
+
+.completed,
+.pending {
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 14px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.completed {
+
+    color: #22c55e;
+
+    background: rgba(34,197,94,.15);
+}
+
+.pending {
+
+    color: #fbbf24;
+
+    background: rgba(251,191,36,.15);
+}
+
+/* PRIORITY */
+
+.priority {
+
+    padding: 5px 12px;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    color: white;
+
+    text-transform: uppercase;
+}
+
+.priority.high {
+    background: #ef4444;
+}
+
+.priority.medium {
+    background: #f59e0b;
+}
+
+.priority.low {
+    background: #22c55e;
+}
+
+/* ACTIONS */
+
+.task-actions {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.icon-btn {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.icon-btn svg {
+
+    width: 18px;
+    height: 18px;
+}
+
+.edit-btn {
+
+    background: rgba(79,124,255,.15);
+
+    color: #5f8cff;
+}
+
+.edit-btn:hover {
+
+    background: #4f7cff;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+
+    background: rgba(239,68,68,.15);
+
+    color: #ef4444;
+}
+
+.delete-btn:hover {
+
+    background: #ef4444;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+/* MOBILE */
+
+@media (max-width:768px) {
+
+    .task-card {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 18px;
+
+        padding: 16px;
+    }
+
+    .task-title-row {
+
+        justify-content: space-between;
+    }
+
+    .task-card h3 {
+
+        font-size: 18px;
+
+        max-width: 70%;
+    }
+
+    .task-info {
+
+        gap: 8px;
+    }
+
+    .task-info span {
+
+        font-size: 12px;
+
+        padding: 5px 8px;
+    }
+
+    .task-right {
+
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .task-actions {
+
+        gap: 8px;
+    }
+
+    .icon-btn {
+
+        width: 36px;
+        height: 36px;
+    }
+}
+.task-link{
+
+    margin-top:6px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    width:fit-content;
+
+    color:#60a5fa;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.task-link:hover{
+
+    color:#93c5fd;
+
+    text-decoration:underline;
+
+}
