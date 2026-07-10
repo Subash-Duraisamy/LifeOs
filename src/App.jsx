@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { useAuth } from "./hooks/useAuth";
-
+import MySpace from "./pages/MySpace/MySpace";
 import MainLayout from "./layouts/MainLayout";
 
 import Login from "./pages/Login/Login";
@@ -163,6 +163,10 @@ function App() {
           path="ai"
           element={<AI />}
         />
+        <Route
+  path="profile"
+  element={<MySpace />}
+/>
 
         <Route
           path="settings"

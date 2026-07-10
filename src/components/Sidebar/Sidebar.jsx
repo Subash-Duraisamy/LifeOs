@@ -121,6 +121,14 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </NavLink>
 
           <NavLink
+  to="/profile"
+  onClick={closeMenu}
+>
+  <span>👤</span>
+ My Space
+</NavLink>
+
+          <NavLink
             to="/settings"
             onClick={closeMenu}
           >

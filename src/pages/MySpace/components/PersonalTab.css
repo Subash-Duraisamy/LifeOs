@@ -1,0 +1,61 @@
+.space-card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.05);
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    margin-bottom:8px;
+    font-weight:600;
+    color:#555;
+}
+
+.input-group input,
+.input-group select{
+    padding:12px 14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.input-group input:disabled,
+.input-group select:disabled{
+    background:#f7f7f7;
+}
+
+.edit-btn{
+    border:none;
+    padding:10px 22px;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+.save-btn{
+    border:none;
+    padding:10px 22px;
+    border-radius:10px;
+    background:#16a34a;
+    color:white;
+    cursor:pointer;
+}

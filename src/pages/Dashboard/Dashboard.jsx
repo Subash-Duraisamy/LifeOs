@@ -1,139 +1,84 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { getUser } from "../../services/authService";
+import { getTasks } from "../../services/taskService";
 
 import "./Dashboard.css";
 
 function Dashboard() {
-
   const { user } = useAuth();
 
   const [profile, setProfile] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-
-    async function loadUser() {
-
+    async function loadData() {
       if (!user) return;
 
-      const data = await getUser(user.uid);
+      const userData = await getUser(user.uid);
+      setProfile(userData);
 
-      setProfile(data);
-
+      const taskData = await getTasks(user.uid);
+      setTasks(taskData);
     }
 
-    loadUser();
-
+    loadData();
   }, [user]);
 
+  function getGreeting() {
+    const hour = new Date().getHours();
+
+    if (hour >= 5 && hour < 12) return "Good Morning ☀️";
+    if (hour >= 12 && hour < 17) return "Good Afternoon 🌤️";
+    if (hour >= 17 && hour < 21) return "Good Evening 🌇";
+
+    return "Good Night 🌙";
+  }
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const todaysTasks = tasks.filter(
+    (task) => task.startDate === today
+  );
+
   return (
-
     <div className="dashboard">
-
       <section className="welcome-card">
-
         <div>
+          <h1>{getGreeting()}</h1>
 
-          <h1>Good Evening 👋</h1>
-
-          <h2>
-
-            {profile?.fullName || "Loading..."}
-
-          </h2>
+          <h2>{profile?.fullName || "Loading..."}</h2>
 
           <p>
-
             Welcome back to LifeOS.
-
+            <br />
             Let's make today productive.
-
           </p>
-
         </div>
-
-      </section>
-
-      <section className="quick-actions">
-
-        <button>➕ Add Task</button>
-
-        <button>📝 Journal</button>
-
-        <button>💰 Expense</button>
-
-        <button>🎯 Goal</button>
-
-      </section>
-
-      <section className="stats">
-
-        <div className="stat-card">
-
-          <h3>🔥 Streak</h3>
-
-          <span>25 Days</span>
-
-        </div>
-
-        <div className="stat-card">
-
-          <h3>✅ Tasks</h3>
-
-          <span>8</span>
-
-        </div>
-
-        <div className="stat-card">
-
-          <h3>💰 Expense</h3>
-
-          <span>₹350</span>
-
-        </div>
-
-        <div className="stat-card">
-
-          <h3>📅 Events</h3>
-
-          <span>3</span>
-
-        </div>
-
       </section>
 
       <section className="dashboard-grid">
-
         <div className="card">
           <h2>Today's Tasks</h2>
-        </div>
 
-        <div className="card">
-          <h2>Calendar</h2>
+          {todaysTasks.length === 0 ? (
+            <p className="no-task">No tasks for today.</p>
+          ) : (
+            <div className="task-list">
+              {todaysTasks.map((task) => (
+                <div
+                  key={task.id}
+                  className={`task-chip ${task.priority.toLowerCase()}`}
+                >
+                  {task.title}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-
-        <div className="card">
-          <h2>Habits</h2>
-        </div>
-
-        <div className="card">
-          <h2>Journal</h2>
-        </div>
-
-        <div className="card">
-          <h2>Expenses</h2>
-        </div>
-
-        <div className="card">
-          <h2>AI Assistant</h2>
-        </div>
-
       </section>
-
     </div>
-
   );
-
 }
 
 export default Dashboard;

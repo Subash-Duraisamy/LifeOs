@@ -1,0 +1,295 @@
+/* ===========================
+   MY SPACE
+=========================== */
+
+.my-space{
+
+    width:100%;
+
+    padding:35px;
+
+    animation:fadeIn .35s ease;
+
+}
+
+
+/* ===========================
+   HEADER
+=========================== */
+
+.my-space-header{
+
+    margin-bottom:32px;
+
+}
+
+.my-space-header h1{
+
+    margin:0;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#f8fafc;
+
+    letter-spacing:.4px;
+
+}
+
+.my-space-header h1::before{
+
+    content:"👤";
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+    font-size:30px;
+
+}
+
+.my-space-header p{
+
+    margin-top:16px;
+
+    margin-left:82px;
+
+    font-size:18px;
+
+    color:#94a3b8;
+
+    line-height:1.7;
+
+    max-width:700px;
+
+}
+
+
+/* ===========================
+   TOP TABS
+=========================== */
+
+.my-space-tabs{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:16px;
+
+    margin-bottom:34px;
+
+}
+
+.my-space-tabs button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#1e293b;
+
+    color:#e2e8f0;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    border:1px solid #334155;
+
+}
+
+.my-space-tabs button:hover{
+
+    transform:translateY(-3px);
+
+    background:#334155;
+
+    color:#ffffff;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.25);
+
+}
+
+.my-space-tabs button.active{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:#ffffff;
+
+    border-color:#2563eb;
+
+    box-shadow:0 12px 28px rgba(37,99,235,.35);
+
+}
+
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.my-space-content{
+
+    width:100%;
+
+}
+
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media(max-width:992px){
+
+    .my-space{
+
+        padding:25px;
+
+    }
+
+    .my-space-header h1{
+
+        font-size:34px;
+
+    }
+
+    .my-space-header h1::before{
+
+        width:56px;
+
+        height:56px;
+
+        font-size:26px;
+
+    }
+
+    .my-space-header p{
+
+        margin-left:72px;
+
+        font-size:16px;
+
+    }
+
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+    .my-space{
+
+        padding:18px;
+
+    }
+
+    .my-space-header h1{
+
+        font-size:28px;
+
+        gap:12px;
+
+    }
+
+    .my-space-header h1::before{
+
+        width:48px;
+
+        height:48px;
+
+        font-size:22px;
+
+        border-radius:14px;
+
+    }
+
+    .my-space-header p{
+
+        margin-left:0;
+
+        margin-top:14px;
+
+        font-size:15px;
+
+    }
+
+    .my-space-tabs{
+
+        gap:10px;
+
+    }
+
+    .my-space-tabs button{
+
+        flex:1;
+
+        min-width:140px;
+
+        padding:12px;
+
+        font-size:15px;
+
+    }
+
+}
