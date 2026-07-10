@@ -26,6 +26,7 @@ import Settings from "./pages/Settings/Settings";
 
 import MySpace from "./pages/MySpace/MySpace";
 import Vault from "./pages/Vault/Vault";
+import MyLibrary from "./pages/MyLibrary/MyLibrary";
 
 function App() {
 
@@ -134,10 +135,10 @@ function App() {
 
         {/* ================= OTHER PAGES ================= */}
 
-        <Route
-          path="habits"
-          element={<Habits />}
-        />
+<Route
+    path="library"
+    element={<MyLibrary />}
+/>
 
         <Route
           path="journal"

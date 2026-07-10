@@ -1,50 +1,95 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+import {
+  LayoutDashboard,
+  CheckSquare,
+  Library,
+  FileText,
+  
+  Shield,
+  Target,
+  Wallet,
+  CalendarDays,
+  Bot,
+  User,
+  Settings,
+  LogOut,
+  X,
+} from "lucide-react";
+
 import "./Sidebar.css";
 
 import { logout } from "../../services/authService";
 import ConfirmModal from "../../Modal/ConfirmModal";
 
 function Sidebar({ menuOpen, setMenuOpen }) {
+
   const navigate = useNavigate();
 
   const [showLogoutModal, setShowLogoutModal] =
     useState(false);
 
   const closeMenu = () => {
+
     if (window.innerWidth <= 768) {
+
       setMenuOpen(false);
+
     }
+
   };
 
   async function handleLogout() {
+
     try {
+
       await logout();
 
       setShowLogoutModal(false);
 
       navigate("/login");
-    } catch (error) {
-      alert(error.message);
+
     }
+
+    catch (error) {
+
+      alert(error.message);
+
+    }
+
   }
 
   return (
+
     <>
+
       <aside
         className={`sidebar ${menuOpen ? "open" : ""}`}
       >
+
+        {/* ================= HEADER ================= */}
+
         <div className="sidebar-header">
-          <h2 className="logo">LifeOS</h2>
+
+          <h2 className="logo">
+
+            LifeOS
+
+          </h2>
 
           <button
             className="close-btn"
             onClick={() => setMenuOpen(false)}
           >
-            ✕
+
+            <X size={22} />
+
           </button>
+
         </div>
+
+        {/* ================= MENU ================= */}
 
         <nav className="sidebar-menu">
 
@@ -52,99 +97,137 @@ function Sidebar({ menuOpen, setMenuOpen }) {
             to="/dashboard"
             onClick={closeMenu}
           >
-            <span>🏠</span>
+
+            <LayoutDashboard size={20} />
+
             Dashboard
+
           </NavLink>
 
           <NavLink
             to="/tasks"
             onClick={closeMenu}
           >
-            <span>✅</span>
+
+            <CheckSquare size={20} />
+
             Tasks
+
           </NavLink>
 
           <NavLink
-            to="/habits"
+            to="/library"
             onClick={closeMenu}
           >
-            <span>🔥</span>
-            Habits
+
+            <Library size={20} />
+
+            My Library
+
           </NavLink>
 
           <NavLink
             to="/notes"
             onClick={closeMenu}
           >
-            <span>📝</span>
+
+            <FileText size={20} />
+
             Notes
+
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/journal"
             onClick={closeMenu}
           >
-            <span>📖</span>
+
+            <BookOpen size={20} />
+
             Journal
-          </NavLink>
+
+          </NavLink> */}
 
           <NavLink
-    to="/vault"
-    onClick={closeMenu}
->
-    <span>🔐</span>
-    Secure Vault
-</NavLink>
+            to="/vault"
+            onClick={closeMenu}
+          >
+
+            <Shield size={20} />
+
+            Secure Vault
+
+          </NavLink>
 
           <NavLink
             to="/goals"
             onClick={closeMenu}
           >
-            <span>🎯</span>
+
+            <Target size={20} />
+
             Goals
+
           </NavLink>
 
           <NavLink
             to="/expenses"
             onClick={closeMenu}
           >
-            <span>💰</span>
+
+            <Wallet size={20} />
+
             Expenses
+
           </NavLink>
 
           <NavLink
             to="/calendar"
             onClick={closeMenu}
           >
-            <span>📅</span>
+
+            <CalendarDays size={20} />
+
             Calendar
+
           </NavLink>
 
           <NavLink
             to="/ai"
             onClick={closeMenu}
           >
-            <span>🤖</span>
+
+            <Bot size={20} />
+
             AI Assistant
+
           </NavLink>
 
           <NavLink
-  to="/profile"
-  onClick={closeMenu}
->
-  <span>👤</span>
- My Space
-</NavLink>
+            to="/profile"
+            onClick={closeMenu}
+          >
+
+            <User size={20} />
+
+            My Space
+
+          </NavLink>
 
           <NavLink
             to="/settings"
             onClick={closeMenu}
           >
-            <span>⚙️</span>
+
+            <Settings size={20} />
+
             Settings
+
           </NavLink>
 
         </nav>
+
+        {/* ================= FOOTER ================= */}
 
         <div className="sidebar-footer">
 
@@ -154,13 +237,18 @@ function Sidebar({ menuOpen, setMenuOpen }) {
               setShowLogoutModal(true)
             }
           >
-            <span>↩</span>
+
+            <LogOut size={20} />
+
             Logout
+
           </button>
 
         </div>
 
       </aside>
+
+      {/* ================= LOGOUT MODAL ================= */}
 
       <ConfirmModal
         open={showLogoutModal}
@@ -173,8 +261,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
         }
         onConfirm={handleLogout}
       />
+
     </>
+
   );
+
 }
 
 export default Sidebar;
