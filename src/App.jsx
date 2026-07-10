@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { useAuth } from "./hooks/useAuth";
-import MySpace from "./pages/MySpace/MySpace";
+
 import MainLayout from "./layouts/MainLayout";
 
 import Login from "./pages/Login/Login";
@@ -23,6 +23,9 @@ import Goals from "./pages/Goals/Goals";
 import Calendar from "./pages/Calendar/Calendar";
 import AI from "./pages/AI/AI";
 import Settings from "./pages/Settings/Settings";
+
+import MySpace from "./pages/MySpace/MySpace";
+import Vault from "./pages/Vault/Vault";
 
 function App() {
 
@@ -105,6 +108,8 @@ function App() {
           element={<Navigate to="/dashboard" replace />}
         />
 
+        {/* ================= DASHBOARD ================= */}
+
         <Route
           path="dashboard"
           element={<Dashboard />}
@@ -163,10 +168,16 @@ function App() {
           path="ai"
           element={<AI />}
         />
+
         <Route
-  path="profile"
-  element={<MySpace />}
-/>
+          path="profile"
+          element={<MySpace />}
+        />
+
+        <Route
+          path="vault"
+          element={<Vault />}
+        />
 
         <Route
           path="settings"

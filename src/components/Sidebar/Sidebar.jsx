@@ -89,6 +89,14 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </NavLink>
 
           <NavLink
+    to="/vault"
+    onClick={closeMenu}
+>
+    <span>🔐</span>
+    Secure Vault
+</NavLink>
+
+          <NavLink
             to="/goals"
             onClick={closeMenu}
           >
