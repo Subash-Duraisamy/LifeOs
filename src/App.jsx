@@ -15,7 +15,7 @@ import Tasks from "./pages/Tasks/Tasks";
 import CreateTask from "./pages/Tasks/CreateTask";
 import EditTask from "./pages/Tasks/EditTask";
 
-import Habits from "./pages/Habits/Habits";
+
 import Journal from "./pages/Journal/Journal";
 import Notes from "./pages/Notes/Notes";
 import Expenses from "./pages/Expenses/Expenses";

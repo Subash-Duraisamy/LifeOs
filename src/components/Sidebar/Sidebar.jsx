@@ -8,10 +8,9 @@ import {
   FileText,
   
   Shield,
-  Target,
+
   Wallet,
   CalendarDays,
-  Bot,
   User,
   Settings,
   LogOut,
@@ -159,16 +158,6 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
           </NavLink>
 
-          <NavLink
-            to="/goals"
-            onClick={closeMenu}
-          >
-
-            <Target size={20} />
-
-            Goals
-
-          </NavLink>
 
           <NavLink
             to="/expenses"
@@ -192,16 +181,7 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
           </NavLink>
 
-          <NavLink
-            to="/ai"
-            onClick={closeMenu}
-          >
-
-            <Bot size={20} />
-
-            AI Assistant
-
-          </NavLink>
+        
 
           <NavLink
             to="/profile"

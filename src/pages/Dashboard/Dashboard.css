@@ -1,247 +1,303 @@
 .dashboard{
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
 
-gap:24px;
+    gap:20px;
 
 }
 
-/* ===================== */
+/* ==========================
+   Welcome Card
+========================== */
 
 .welcome-card{
 
-background:var(--surface);
+    background:var(--surface);
 
-padding:30px;
+    padding:28px;
 
-border-radius:20px;
+    border-radius:18px;
 
-border:1px solid var(--border);
+    border:1px solid var(--border);
 
 }
 
 .welcome-card h1{
 
-font-size:42px;
+    font-size:38px;
 
-margin-bottom:10px;
+    margin-bottom:8px;
 
 }
 
 .welcome-card h2{
 
-font-size:28px;
+    font-size:26px;
 
-margin-bottom:8px;
+    color:var(--primary);
 
-color:var(--primary);
+    margin-bottom:8px;
 
 }
 
 .welcome-card p{
 
-font-size:17px;
+    font-size:16px;
 
 }
 
-/* ===================== */
-
-.quick-actions{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:18px;
-
-}
-
-.quick-actions button{
-
-height:65px;
-
-border-radius:16px;
-
-background:var(--surface);
-
-color:white;
-
-font-size:16px;
-
-transition:.25s;
-
-}
-
-.quick-actions button:hover{
-
-background:var(--primary);
-
-}
-
-/* ===================== */
-
-.stats{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:18px;
-
-}
-
-.stat-card{
-
-background:var(--surface);
-
-padding:22px;
-
-border-radius:18px;
-
-border:1px solid var(--border);
-
-}
-
-.stat-card h3{
-
-margin-bottom:10px;
-
-font-size:18px;
-
-}
-
-.stat-card span{
-
-font-size:28px;
-
-font-weight:bold;
-
-}
-
-/* ===================== */
+/* ==========================
+   Dashboard Grid
+========================== */
 
 .dashboard-grid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 
-gap:20px;
+    gap:18px;
 
 }
+
+/* ==========================
+   Card
+========================== */
 
 .card{
 
-background:var(--surface);
+    background:var(--surface);
 
-border-radius:18px;
+    border:1px solid var(--border);
 
-padding:25px;
+    border-radius:18px;
 
-min-height:220px;
+    padding:20px;
 
-border:1px solid var(--border);
+    min-height:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    transition:.25s;
 
 }
 
-/* ===================== */
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+}
+
+.card h2{
+
+    font-size:24px;
+
+    margin-bottom:16px;
+
+}
+
+/* ==========================
+   Tasks
+========================== */
+
+.task-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.task-chip{
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.task-chip.low{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.task-chip.medium{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+}
+
+.task-chip.high{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+.no-task{
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   Library Widget
+========================== */
+
+.library-widget{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.library-widget img{
+
+    width:100%;
+
+    max-width:160px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.28);
+
+    transition:.3s;
+
+}
+
+.library-widget img:hover{
+
+    transform:scale(1.04);
+
+}
+
+.library-widget h3{
+
+    margin-top:14px;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    line-height:1.4;
+
+    overflow:hidden;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:2;
+
+    -webkit-box-orient:vertical;
+
+}
+
+/* ==========================
+   Tablet
+========================== */
 
 @media(max-width:992px){
 
-.quick-actions{
+.dashboard-grid{
 
-grid-template-columns:repeat(2,1fr);
-
-}
-
-.stats{
-
-grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
 
 }
 
 }
 
-/* ===================== */
+/* ==========================
+   Mobile
+========================== */
 
 @media(max-width:768px){
 
+.dashboard{
+
+    gap:16px;
+
+}
+
+.welcome-card{
+
+    padding:22px;
+
+}
+
 .welcome-card h1{
 
-font-size:30px;
+    font-size:30px;
 
 }
 
 .welcome-card h2{
 
-font-size:22px;
-
-}
-
-.quick-actions{
-
-grid-template-columns:1fr;
-
-}
-
-.stats{
-
-grid-template-columns:1fr;
+    font-size:22px;
 
 }
 
 .dashboard-grid{
 
-grid-template-columns:1fr;
+    grid-template-columns:1fr;
+
+    gap:16px;
 
 }
 
-}
-.task-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+.card{
+
+    padding:18px;
+
 }
 
-.task-chip {
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
+.card h2{
+
+    font-size:20px;
+
 }
 
-.task-chip:hover {
-  transform: translateY(-2px);
+.library-widget img{
+
+    max-width:130px;
+
+    height:185px;
+
 }
 
-/* Low Priority */
-.task-chip.low {
-  background: #dcfce7;
-  color: #166534;
-  border-color: #bbf7d0;
+.library-widget h3{
+
+    font-size:16px;
+
 }
 
-/* Medium Priority */
-.task-chip.medium {
-  background: #fef3c7;
-  color: #92400e;
-  border-color: #fde68a;
-}
-
-/* High Priority */
-.task-chip.high {
-  background: #fee2e2;
-  color: #991b1b;
-  border-color: #fecaca;
-}
-
-.no-task {
-  margin-top: 16px;
-  color: #6b7280;
-  font-size: 14px;
 }
