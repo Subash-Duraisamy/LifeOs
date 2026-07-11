@@ -76,8 +76,6 @@
 
     padding:20px;
 
-    min-height:auto;
-
     display:flex;
 
     flex-direction:column;
@@ -212,91 +210,238 @@
 
     line-height:1.4;
 
-    overflow:hidden;
-
-    display:-webkit-box;
-
-    -webkit-line-clamp:2;
-
-    -webkit-box-orient:vertical;
-
 }
+/* ======================================================
+   FRIENDS ACTIVITY
+====================================================== */
 
-/* ==========================
-   Tablet
-========================== */
+.friends-dashboard{
 
-@media(max-width:992px){
+    display:flex;
 
-.dashboard-grid{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-/* ==========================
-   Mobile
-========================== */
-
-@media(max-width:768px){
-
-.dashboard{
+    flex-direction:column;
 
     gap:16px;
 
-}
-
-.welcome-card{
-
-    padding:22px;
+    margin-top:20px;
 
 }
 
-.welcome-card h1{
+.friends-dashboard h2{
 
-    font-size:30px;
-
-}
-
-.welcome-card h2{
-
-    font-size:22px;
+    font-size:28px;
 
 }
 
-.dashboard-grid{
+/* ======================================================
+   Friend Card
+====================================================== */
 
-    grid-template-columns:1fr;
+.friend-card{
 
-    gap:16px;
+    background:var(--surface);
 
-}
+    border:1px solid var(--border);
 
-.card{
+    border-radius:16px;
 
     padding:18px;
 
 }
 
-.card h2{
+/* ======================================================
+   Header
+====================================================== */
 
-    font-size:20px;
+.friend-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:16px;
 
 }
 
-.library-widget img{
+.friend-header img{
 
-    max-width:130px;
+    width:50px;
 
-    height:185px;
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
 
 }
 
-.library-widget h3{
+.friend-header h3{
 
-    font-size:16px;
+    font-size:18px;
+
+    margin:0;
+
+}
+
+.friend-header p{
+
+    font-size:13px;
+
+    color:#94a3b8;
+
+    margin-top:3px;
+
+}
+
+/* ======================================================
+   Horizontal Layout
+====================================================== */
+
+.friend-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 140px 140px 140px;
+
+    gap:12px;
+
+    align-items:start;
+
+}
+
+/* ======================================================
+   Small Cards
+====================================================== */
+
+.friend-section{
+
+    background:#1f2937;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:10px;
+
+    min-height:150px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.friend-section h4{
+
+    width:100%;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+/* ======================================================
+   Tasks
+====================================================== */
+
+.friend-section .task-list{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.friend-section .task-chip{
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:11px;
+
+    padding:5px 8px;
+
+}
+
+/* ======================================================
+   Images
+====================================================== */
+
+.friend-media{
+
+    width:70px;
+
+    height:95px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    margin-bottom:8px;
+
+}
+
+.friend-section p{
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    line-height:1.2;
+
+}
+
+/* ======================================================
+   Tablet
+====================================================== */
+
+@media(max-width:1100px){
+
+.friend-content{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+/* ======================================================
+   Mobile
+====================================================== */
+
+@media(max-width:768px){
+
+.friend-header{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.friend-content{
+
+    grid-template-columns:1fr;
+
+}
+
+.friend-media{
+
+    width:90px;
+
+    height:120px;
 
 }
 

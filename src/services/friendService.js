@@ -8,9 +8,23 @@ import {
   updateDoc,
   doc,
   deleteDoc,
+  setDoc,
+  getDoc,
 } from "firebase/firestore";
 
 import { db } from "../firebase/firebase";
+
+/* ======================================
+   FRIENDSHIP DOCUMENT ID
+====================================== */
+
+function getFriendshipId(uid1, uid2) {
+
+  return [uid1, uid2]
+    .sort()
+    .join("_");
+
+}
 
 /* ======================================
    SEARCH USERS
@@ -18,29 +32,40 @@ import { db } from "../firebase/firebase";
 
 export async function searchUsers(search) {
 
-  const text = search.trim().toLowerCase();
+  const text = search
+    .trim()
+    .toLowerCase();
 
   if (!text) return [];
 
   const q = query(
+
     collection(db, "users"),
+
     where("username", ">=", text),
-    where("username", "<=", text + "\uf8ff")
+
+    where(
+      "username",
+      "<=",
+      text + "\uf8ff"
+    )
+
   );
 
-  const snapshot = await getDocs(q);
+  const snapshot =
+    await getDocs(q);
 
-  return snapshot.docs.map((document) => ({
-    uid: document.id,
-    ...document.data(),
-  }));
+  return snapshot.docs.map(
+    (document) => ({
+
+      uid: document.id,
+
+      ...document.data(),
+
+    })
+  );
 
 }
-
-/* ======================================
-   SEND FRIEND REQUEST
-====================================== */
-
 /* ======================================
    SEND FRIEND REQUEST
 ====================================== */
@@ -51,19 +76,38 @@ export async function sendFriendRequest(
 ) {
 
   if (fromUser.uid === toUser.uid) {
-    throw new Error("You cannot add yourself.");
+    throw new Error(
+      "You cannot add yourself."
+    );
   }
 
-  // Pending request from me...
-  // -----------------------------
-  // Already friends?
-  // -----------------------------
+  // =====================================
+  // Already Friends?
+  // =====================================
 
+  const friendshipId = getFriendshipId(
+    fromUser.uid,
+    toUser.uid
+  );
 
+  const friendshipRef = doc(
+    db,
+    "friends",
+    friendshipId
+  );
 
-  // -----------------------------
-  // Pending request from me
-  // -----------------------------
+  const friendshipSnapshot =
+    await getDoc(friendshipRef);
+
+  if (friendshipSnapshot.exists()) {
+    throw new Error(
+      "Already friends."
+    );
+  }
+
+  // =====================================
+  // Pending request from me?
+  // =====================================
 
   const sentQuery = query(
     collection(db, "friendRequests"),
@@ -76,12 +120,16 @@ export async function sendFriendRequest(
     await getDocs(sentQuery);
 
   if (!sentSnapshot.empty) {
-    throw new Error("Friend request already sent.");
+
+    throw new Error(
+      "Friend request already sent."
+    );
+
   }
 
-  // -----------------------------
-  // Pending request from them
-  // -----------------------------
+  // =====================================
+  // Pending request from them?
+  // =====================================
 
   const receivedQuery = query(
     collection(db, "friendRequests"),
@@ -94,14 +142,16 @@ export async function sendFriendRequest(
     await getDocs(receivedQuery);
 
   if (!receivedSnapshot.empty) {
+
     throw new Error(
       "This user has already sent you a friend request."
     );
+
   }
 
-  // -----------------------------
-  // Create Request
-  // -----------------------------
+  // =====================================
+  // Create Friend Request
+  // =====================================
 
   await addDoc(
     collection(db, "friendRequests"),
@@ -125,9 +175,8 @@ export async function sendFriendRequest(
   );
 
 }
-
 /* ======================================
-   CHECK REQUEST
+   CHECK FRIEND REQUEST
 ====================================== */
 
 export async function checkFriendRequest(
@@ -136,13 +185,19 @@ export async function checkFriendRequest(
 ) {
 
   const q = query(
+
     collection(db, "friendRequests"),
+
     where("fromUid", "==", currentUid),
+
     where("toUid", "==", targetUid),
+
     where("status", "==", "pending")
+
   );
 
-  const snapshot = await getDocs(q);
+  const snapshot =
+    await getDocs(q);
 
   return !snapshot.empty;
 
@@ -157,25 +212,26 @@ export async function checkFriend(
   targetUid
 ) {
 
-  const q = query(
-    collection(db, "friends"),
-    where("users", "array-contains", currentUid)
+  const friendshipId =
+    getFriendshipId(
+      currentUid,
+      targetUid
+    );
+
+  const friendshipRef = doc(
+    db,
+    "friends",
+    friendshipId
   );
 
-  const snapshot = await getDocs(q);
+  const snapshot =
+    await getDoc(friendshipRef);
 
-  return snapshot.docs.some((document) => {
-
-    const users = document.data().users;
-
-    return users.includes(targetUid);
-
-  });
+  return snapshot.exists();
 
 }
-
 /* ======================================
-   ACCEPT REQUEST
+   ACCEPT FRIEND REQUEST
 ====================================== */
 
 export async function acceptFriendRequest(
@@ -184,6 +240,10 @@ export async function acceptFriendRequest(
   currentUser
 ) {
 
+  // =====================================
+  // Mark request as accepted
+  // =====================================
+
   await updateDoc(
     doc(db, "friendRequests", requestId),
     {
@@ -191,8 +251,26 @@ export async function acceptFriendRequest(
     }
   );
 
-  await addDoc(
-    collection(db, "friends"),
+  // =====================================
+  // Create deterministic friendship ID
+  // =====================================
+
+  const friendshipId =
+    getFriendshipId(
+      currentUser.uid,
+      request.fromUid
+    );
+
+  // =====================================
+  // Save friendship document
+  // =====================================
+
+  await setDoc(
+    doc(
+      db,
+      "friends",
+      friendshipId
+    ),
     {
 
       users: [
@@ -204,9 +282,11 @@ export async function acceptFriendRequest(
 
         uid: currentUser.uid,
 
-        fullName: currentUser.fullName,
+        fullName:
+          currentUser.fullName,
 
-        username: currentUser.username,
+        username:
+          currentUser.username,
 
         photoURL:
           currentUser.photoURL || "",
@@ -217,9 +297,11 @@ export async function acceptFriendRequest(
 
         uid: request.fromUid,
 
-        fullName: request.fromName,
+        fullName:
+          request.fromName,
 
-        username: request.fromUsername,
+        username:
+          request.fromUsername,
 
         photoURL:
           request.fromPhoto || "",
@@ -230,12 +312,12 @@ export async function acceptFriendRequest(
         serverTimestamp(),
 
     }
+
   );
 
 }
-
 /* ======================================
-   REJECT REQUEST
+   REJECT FRIEND REQUEST
 ====================================== */
 
 export async function rejectFriendRequest(
@@ -243,7 +325,11 @@ export async function rejectFriendRequest(
 ) {
 
   await updateDoc(
-    doc(db, "friendRequests", requestId),
+    doc(
+      db,
+      "friendRequests",
+      requestId
+    ),
     {
       status: "rejected",
     }
@@ -260,32 +346,18 @@ export async function removeFriend(
   friendUid
 ) {
 
-  const q = query(
-    collection(db, "friends"),
-    where("users", "array-contains", currentUid)
+  const friendshipId =
+    getFriendshipId(
+      currentUid,
+      friendUid
+    );
+
+  await deleteDoc(
+    doc(
+      db,
+      "friends",
+      friendshipId
+    )
   );
-
-  const snapshot = await getDocs(q);
-
-  for (const document of snapshot.docs) {
-
-    const users =
-      document.data().users;
-
-    if (users.includes(friendUid)) {
-
-      await deleteDoc(
-        doc(
-          db,
-          "friends",
-          document.id
-        )
-      );
-
-      break;
-
-    }
-
-  }
 
 }

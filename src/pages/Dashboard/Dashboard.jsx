@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { getUser } from "../../services/authService";
 import { getTasks } from "../../services/taskService";
 import { getLibrary } from "../../services/libraryService";
+import { getFriendsDashboard } from "../../services/friendDashboardService";
 
 import "./Dashboard.css";
 
@@ -18,6 +19,8 @@ function Dashboard() {
 
   const [library, setLibrary] = useState([]);
 
+  const [friends, setFriends] = useState([]);
+
   useEffect(() => {
 
     async function loadData() {
@@ -26,14 +29,25 @@ function Dashboard() {
 
       try {
 
-        const userData = await getUser(user.uid);
+        const userData =
+          await getUser(user.uid);
+
         setProfile(userData);
 
-        const taskData = await getTasks(user.uid);
+        const taskData =
+          await getTasks(user.uid);
+
         setTasks(taskData);
 
-        const libraryData = await getLibrary(user.uid);
+        const libraryData =
+          await getLibrary(user.uid);
+
         setLibrary(libraryData);
+
+        const friendsData =
+          await getFriendsDashboard(user.uid);
+
+        setFriends(friendsData);
 
       }
 
@@ -94,8 +108,7 @@ function Dashboard() {
   return (
 
     <div className="dashboard">
-
-      {/* =======================================
+          {/* =======================================
           Welcome
       ======================================== */}
 
@@ -172,8 +185,11 @@ function Dashboard() {
                   todaysTasks.map(task => (
 
                     <div
+
                       key={task.id}
+
                       className={`task-chip ${task.priority.toLowerCase()}`}
+
                     >
 
                       {task.title}
@@ -211,8 +227,11 @@ function Dashboard() {
               <div className="library-widget">
 
                 <img
+
                   src={currentBook.image}
+
                   alt={currentBook.title}
+
                 />
 
                 <h3>
@@ -248,8 +267,11 @@ function Dashboard() {
               <div className="library-widget">
 
                 <img
+
                   src={currentMovie.image}
+
                   alt={currentMovie.title}
+
                 />
 
                 <h3>
@@ -285,8 +307,11 @@ function Dashboard() {
               <div className="library-widget">
 
                 <img
+
                   src={currentCourse.image}
+
                   alt={currentCourse.title}
+
                 />
 
                 <h3>
@@ -304,8 +329,281 @@ function Dashboard() {
         }
 
       </section>
+            {/* =======================================
+          Friends Activity
+      ======================================== */}
+
+      <section className="friends-dashboard">
+
+        <h2>
+
+          👥 Friends Activity
+
+        </h2>
+
+        {
+
+          friends.length === 0 && (
+
+            <p className="no-task">
+
+              No friends yet.
+
+            </p>
+
+          )
+
+        }
+
+        {
+
+          friends.map(friend => (
+
+<div
+  key={friend.uid}
+  className="friend-card"
+>
+
+  {/* ===========================
+      Friend Header
+  ============================ */}
+
+  <div className="friend-header">
+
+    <img
+      src={
+        friend.photoURL ||
+        `https://ui-avatars.com/api/?name=${friend.fullName}`
+      }
+      alt={friend.fullName}
+    />
+
+    <div>
+
+      <h3>
+        {friend.fullName}
+      </h3>
+
+      <p>
+        @{friend.username}
+      </p>
 
     </div>
+
+  </div>
+
+  {/* ===========================
+      Horizontal Content
+  ============================ */}
+
+  <div className="friend-content">
+
+    {/* Today's Tasks */}
+
+    <div className="friend-section">
+
+      <h4>📝 Tasks</h4>
+
+      {
+
+        friend.todaysTasks.length === 0
+
+        ?
+
+        (
+
+          <p>No Tasks</p>
+
+        )
+
+        :
+
+        (
+
+          <div className="task-list">
+
+            {
+
+              friend.todaysTasks.map(task => (
+
+                <div
+
+                  key={task.id}
+
+                  className={`task-chip ${task.priority.toLowerCase()}`}
+
+                >
+
+                  {task.title}
+
+                </div>
+
+              ))
+
+            }
+
+          </div>
+
+        )
+
+      }
+
+    </div>
+
+    {/* Current Book */}
+
+    <div className="friend-section">
+
+      <h4>📖 Book</h4>
+
+      {
+
+        friend.currentBook
+
+        ?
+
+        (
+
+          <>
+
+            <img
+
+              src={friend.currentBook.image}
+
+              alt={friend.currentBook.title}
+
+              className="friend-media"
+
+            />
+
+            <p>
+
+              {friend.currentBook.title}
+
+            </p>
+
+          </>
+
+        )
+
+        :
+
+        (
+
+          <p>None</p>
+
+        )
+
+      }
+
+    </div>
+
+    {/* Current Movie */}
+
+    <div className="friend-section">
+
+      <h4>🎬 Movie</h4>
+
+      {
+
+        friend.currentMovie
+
+        ?
+
+        (
+
+          <>
+
+            <img
+
+              src={friend.currentMovie.image}
+
+              alt={friend.currentMovie.title}
+
+              className="friend-media"
+
+            />
+
+            <p>
+
+              {friend.currentMovie.title}
+
+            </p>
+
+          </>
+
+        )
+
+        :
+
+        (
+
+          <p>None</p>
+
+        )
+
+      }
+
+    </div>
+
+    {/* Current Course */}
+
+    <div className="friend-section">
+
+      <h4>🎓 Course</h4>
+
+      {
+
+        friend.currentCourse
+
+        ?
+
+        (
+
+          <>
+
+            <img
+
+              src={friend.currentCourse.image}
+
+              alt={friend.currentCourse.title}
+
+              className="friend-media"
+
+            />
+
+            <p>
+
+              {friend.currentCourse.title}
+
+            </p>
+
+          </>
+
+        )
+
+        :
+
+        (
+
+          <p>None</p>
+
+        )
+
+      }
+
+    </div>
+
+  </div>
+
+</div>
+
+          ))
+
+        }
+
+      </section>
+          </div>
 
   );
 
