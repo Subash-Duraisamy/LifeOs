@@ -357,3 +357,57 @@ export async function removeFriend(
   );
 
 }
+
+// _________________________________________________________
+// __________________________________________________
+/* ======================================
+   GET MY FRIENDS
+====================================== */
+
+export async function getFriends(currentUser) {
+
+    try {
+
+        const q = query(
+
+            collection(db, "friends"),
+
+            where("users", "array-contains", currentUser.uid)
+
+        );
+
+        const snapshot = await getDocs(q);
+
+        const friends = [];
+
+        snapshot.forEach((document) => {
+
+            const data = document.data();
+
+            if (data.user1.uid === currentUser.uid) {
+
+                friends.push(data.user2);
+
+            }
+
+            else {
+
+                friends.push(data.user1);
+
+            }
+
+        });
+
+        return friends;
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        throw error;
+
+    }
+
+}

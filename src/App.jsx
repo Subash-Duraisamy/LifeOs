@@ -1,8 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import FriendsHub from "./pages/FriendsHub/FriendsHub";
-
+import Games from "./pages/Games/Games";
 import { useAuth } from "./hooks/useAuth";
-
+import Ludo from "./pages/Games/ludo/Ludo";
+import LudoRoom from "./pages/Games/ludo/LudoRoom";
+import LudoBoard from "./pages/Games/ludo/LudoBoard";
 import MainLayout from "./layouts/MainLayout";
 
 import Login from "./pages/Login/Login";
@@ -157,7 +159,25 @@ function App() {
   path="friends"
   element={<FriendsHub />}
 />
+<Route
+  path="games"
+  element={<Games />}
+/>
 
+<Route
+    path="games/ludo"
+    element={<Ludo />}
+/>
+
+<Route
+    path="games/ludo/:roomId"
+    element={<LudoRoom />}
+/>
+
+<Route
+    path="/games/ludo/play/:roomId"
+    element={<LudoBoard />}
+/>
         <Route
           path="notes"
           element={<Notes />}

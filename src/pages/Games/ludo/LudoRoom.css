@@ -1,0 +1,224 @@
+/* ===========================
+   PAGE
+=========================== */
+
+.room-page{
+    min-height:100%;
+    padding:40px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:var(--background);
+}
+
+.room-card{
+    width:100%;
+    max-width:900px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:40px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.room-card h1{
+    font-size:42px;
+    margin-bottom:8px;
+}
+
+.room-card h2{
+    font-size:18px;
+    color:var(--text-secondary);
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.room-card>p{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:3px;
+    color:var(--primary);
+    margin-bottom:35px;
+    word-break:break-all;
+}
+
+/* ===========================
+   PLAYER LIST
+=========================== */
+
+.players{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.player{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    padding:18px 22px;
+    border-radius:18px;
+    transition:.25s;
+}
+
+.player:hover{
+    transform:translateY(-2px);
+    border-color:var(--primary);
+}
+
+.player span:first-child{
+    font-size:18px;
+    font-weight:600;
+}
+
+.player span:last-child{
+    font-size:15px;
+    font-weight:600;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.room-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.room-buttons button{
+    flex:1;
+    min-width:180px;
+    border:none;
+    border-radius:16px;
+    padding:16px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:700;
+    transition:.25s;
+}
+
+/* Ready */
+
+.room-buttons button:first-child{
+    background:#2ecc71;
+    color:white;
+}
+
+.room-buttons button:first-child:hover{
+    background:#27ae60;
+    transform:translateY(-2px);
+}
+
+/* Cancel */
+
+.cancel-btn{
+    background:#ff4d4f;
+    color:white;
+}
+
+.cancel-btn:hover{
+    background:#d9363e;
+    transform:translateY(-2px);
+}
+
+/* Start */
+
+.start-btn{
+    background:#4da3ff;
+    color:white;
+}
+
+.start-btn:hover{
+    background:#2b7cff;
+    transform:translateY(-2px);
+}
+
+/* ===========================
+   READY BADGES
+=========================== */
+
+.player span:last-child{
+    padding:7px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.room-page{
+    padding:18px;
+}
+
+.room-card{
+    padding:25px;
+}
+
+.room-card h1{
+    font-size:30px;
+}
+
+.room-card>p{
+    font-size:22px;
+}
+
+.player{
+    flex-direction:column;
+    gap:12px;
+    text-align:center;
+}
+
+.room-buttons{
+    flex-direction:column;
+}
+
+.room-buttons button{
+    width:100%;
+}
+
+}
+
+@media(max-width:500px){
+
+.room-card{
+    padding:18px;
+}
+
+.room-card h1{
+    font-size:26px;
+}
+
+.room-card h2{
+    font-size:16px;
+}
+
+.room-card>p{
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+.player span:first-child{
+    font-size:16px;
+}
+
+.player span:last-child{
+    font-size:14px;
+}
+
+.room-buttons button{
+    font-size:15px;
+    padding:14px;
+}
+
+}

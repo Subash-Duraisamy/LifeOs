@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import { Gamepad2 } from "lucide-react";
 import {
   LayoutDashboard,
   CheckSquare,
@@ -193,11 +193,19 @@ function Sidebar({ menuOpen, setMenuOpen }) {
   to="/friends"
   onClick={closeMenu}
 >
+
   <Users size={20} />
   Friends Hub
 </NavLink>
 
         
+        <NavLink
+  to="/games"
+  onClick={closeMenu}
+>
+  <Gamepad2 size={20} />
+  Games
+</NavLink>
 
           <NavLink
             to="/profile"
