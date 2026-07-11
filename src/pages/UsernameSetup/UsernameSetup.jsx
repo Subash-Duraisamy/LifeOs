@@ -6,16 +6,24 @@ import {
   usernameExists,
 } from "../../services/authService";
 
+import { useAuth } from "../../hooks/useAuth";
+
+import toast from "react-hot-toast";
+
 import "./UsernameSetup.css";
 
 function UsernameSetup() {
+
   const navigate = useNavigate();
+
+  const { refreshUser } = useAuth();
 
   const [username, setUsername] = useState("");
 
   const [loading, setLoading] = useState(false);
 
   async function handleContinue(e) {
+
     e.preventDefault();
 
     const cleanUsername = username
@@ -23,52 +31,73 @@ function UsernameSetup() {
       .toLowerCase();
 
     if (!cleanUsername) {
-      alert("Please enter a username.");
+      toast.error("Please enter a username.");
       return;
     }
 
     if (cleanUsername.length < 4) {
-      alert("Username must be at least 4 characters.");
+      toast.error("Username must be at least 4 characters.");
       return;
     }
 
     if (cleanUsername.includes(" ")) {
-      alert("Username cannot contain spaces.");
+      toast.error("Username cannot contain spaces.");
       return;
     }
 
     try {
+
       setLoading(true);
 
       const exists = await usernameExists(cleanUsername);
 
       if (exists) {
-        alert("Username already exists.");
+        toast.error("Username already exists.");
         return;
       }
 
+      console.log("Creating Google profile...");
+
       await createGoogleUser(cleanUsername);
 
-      alert("🎉 Welcome to LifeOS!");
+      console.log("Refreshing Auth Context...");
 
-      navigate("/dashboard");
+      await refreshUser();
+
+      toast.success("🎉 Welcome to LifeOS!");
+
+      navigate("/dashboard", {
+        replace: true,
+      });
+
     } catch (error) {
-      alert(error.message);
+
+      console.error(error);
+
+      toast.error(error.message);
+
     } finally {
+
       setLoading(false);
+
     }
+
   }
 
   return (
+
     <div className="login-page">
+
       <div className="login-card">
 
         <div className="login-header">
+
           <h1>Welcome 👋</h1>
 
           <p>
             Choose a unique username to continue.
           </p>
+
         </div>
 
         <form
@@ -84,6 +113,7 @@ function UsernameSetup() {
               type="text"
               placeholder="@username"
               value={username}
+              disabled={loading}
               onChange={(e) =>
                 setUsername(e.target.value)
               }
@@ -96,16 +126,21 @@ function UsernameSetup() {
             className="login-btn"
             disabled={loading}
           >
+
             {loading
               ? "Creating Profile..."
               : "Continue"}
+
           </button>
 
         </form>
 
       </div>
+
     </div>
+
   );
+
 }
 
 export default UsernameSetup;

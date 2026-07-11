@@ -90,26 +90,22 @@ function Login() {
       Google Login
   =========================== */
 
-  async function handleGoogleLogin() {
-    try {
-      setLoading(true);
+async function handleGoogleLogin() {
+  try {
+    setLoading(true);
 
-      const result =
-        await googleLogin();
+    
+console.log("Attempting Google login...");
+await googleLogin();
+console.log("Google login successful.");
 
-      if (result.isNewUser) {
-        navigate("/setup-username");
-      } else {
-        navigate("/dashboard");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-      
-    } finally {
-      setLoading(false);
-    }
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="login-page">

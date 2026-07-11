@@ -1,0 +1,51 @@
+.friends-page{
+
+display:flex;
+
+flex-direction:column;
+
+gap:24px;
+
+}
+
+.friends-page h1{
+
+font-size:36px;
+
+font-weight:700;
+
+}
+
+.friends-tabs{
+
+display:flex;
+
+gap:14px;
+
+}
+
+.friends-tabs button{
+
+padding:12px 24px;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+background:#e9ecef;
+
+font-weight:600;
+
+transition:.25s;
+
+}
+
+.friends-tabs button.active{
+
+background:#2563eb;
+
+color:white;
+
+}

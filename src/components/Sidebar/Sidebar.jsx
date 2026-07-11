@@ -6,15 +6,14 @@ import {
   CheckSquare,
   Library,
   FileText,
-  
   Shield,
-
   Wallet,
   CalendarDays,
   User,
   Settings,
   LogOut,
   X,
+  Users,
 } from "lucide-react";
 
 import "./Sidebar.css";
@@ -190,6 +189,13 @@ function Sidebar({ menuOpen, setMenuOpen }) {
             Calendar
 
           </NavLink>
+          <NavLink
+  to="/friends"
+  onClick={closeMenu}
+>
+  <Users size={20} />
+  Friends Hub
+</NavLink>
 
         
 

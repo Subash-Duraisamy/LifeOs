@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import FriendsHub from "./pages/FriendsHub/FriendsHub";
 
 import { useAuth } from "./hooks/useAuth";
 
@@ -62,13 +63,17 @@ function App() {
       {/* ================= PUBLIC ROUTES ================= */}
 
       <Route
-        path="/login"
-        element={
-          user
-            ? <Navigate to="/dashboard" replace />
-            : <Login />
-        }
-      />
+  path="/login"
+  element={
+    !user ? (
+      <Login />
+    ) : !user.onboardingCompleted ? (
+      <Navigate to="/setup-username" replace />
+    ) : (
+      <Navigate to="/dashboard" replace />
+    )
+  }
+/>
 
       <Route
         path="/register"
@@ -95,14 +100,18 @@ function App() {
 
       {/* ================= PROTECTED ROUTES ================= */}
 
-      <Route
-        path="/"
-        element={
-          user
-            ? <MainLayout />
-            : <Navigate to="/login" replace />
-        }
-      >
+<Route
+  path="/"
+  element={
+    !user ? (
+      <Navigate to="/login" replace />
+    ) : !user.onboardingCompleted ? (
+      <Navigate to="/setup-username" replace />
+    ) : (
+      <MainLayout />
+    )
+  }
+>
 
         <Route
           index
@@ -144,6 +153,10 @@ function App() {
           path="journal"
           element={<Journal />}
         />
+        <Route
+  path="friends"
+  element={<FriendsHub />}
+/>
 
         <Route
           path="notes"

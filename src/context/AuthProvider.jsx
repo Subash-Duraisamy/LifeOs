@@ -111,24 +111,15 @@ function AuthProvider({ children }) {
 
         console.log("Firestore document not found.");
 
-        setUser({
-
-          uid: firebaseUser.uid,
-
-          email:
-            firebaseUser.email || "",
-
-          fullName:
-            firebaseUser.displayName || "",
-
-          username: "",
-
-          photoURL:
-            firebaseUser.photoURL || "",
-
-          bio: "",
-
-        });
+setUser({
+  uid: firebaseUser.uid,
+  email: firebaseUser.email || "",
+  fullName: firebaseUser.displayName || "",
+  username: "",
+  photoURL: firebaseUser.photoURL || "",
+  bio: "",
+  onboardingCompleted: false,
+});
 
       }
 

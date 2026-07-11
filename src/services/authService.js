@@ -32,6 +32,7 @@ export async function login(email, password) {
     password
   );
 }
+
 /* ===========================================
    EMAIL REGISTER
 =========================================== */
@@ -43,9 +44,6 @@ export async function register(
   password
 ) {
   try {
-
-    console.log("STEP 1 - Cleaning username");
-
     const cleanUsername = username
       .trim()
       .toLowerCase();
@@ -56,18 +54,11 @@ export async function register(
       cleanUsername
     );
 
-    console.log("STEP 2 - Checking username");
-
-    const usernameDoc =
-      await getDoc(usernameRef);
-
-    console.log("STEP 2 DONE");
+    const usernameDoc = await getDoc(usernameRef);
 
     if (usernameDoc.exists()) {
       throw new Error("Username already exists.");
     }
-
-    console.log("STEP 3 - Creating Auth User");
 
     const result =
       await createUserWithEmailAndPassword(
@@ -76,87 +67,62 @@ export async function register(
         password
       );
 
-    console.log("STEP 3 DONE");
-
     const user = result.user;
-
-    console.log("UID :", user.uid);
-
-    console.log("STEP 4 - Updating Auth Profile");
 
     await updateProfile(user, {
       displayName: fullName,
     });
 
-    console.log("STEP 4 DONE");
-
-    console.log("STEP 5 - Creating users document");
-
     await setDoc(
       doc(db, "users", user.uid),
       {
         uid: user.uid,
-
         fullName,
-
         username: cleanUsername,
-
         email,
-
         photoURL: user.photoURL || "",
-
         provider: "email",
-
         bio: "",
-
         theme: "dark",
-
         onboardingCompleted: true,
-
         createdAt: serverTimestamp(),
-
         updatedAt: serverTimestamp(),
       }
     );
 
-    console.log("STEP 5 DONE");
-
-    console.log("STEP 6 - Creating username document");
-
-    await setDoc(
-      usernameRef,
-      {
-        uid: user.uid,
-      }
-    );
-
-    console.log("STEP 6 DONE");
+    await setDoc(usernameRef, {
+      uid: user.uid,
+    });
 
     return result;
 
   } catch (error) {
 
-    console.error("================================");
     console.error("REGISTER FAILED");
     console.error(error);
-    console.error("CODE :", error.code);
-    console.error("MESSAGE :", error.message);
-    console.error("================================");
 
     throw error;
   }
 }
+
 /* ===========================================
    GOOGLE LOGIN
 =========================================== */
 
 export async function googleLogin() {
+
+  console.log("STEP 1 - Google Popup");
+
   const result = await signInWithPopup(
     auth,
     provider
   );
 
+  console.log("Google Sign-In Success");
+
   const user = result.user;
+
+  console.log(user);
 
   const userRef = doc(
     db,
@@ -164,7 +130,15 @@ export async function googleLogin() {
     user.uid
   );
 
-  const userSnapshot = await getDoc(userRef);
+  console.log("Checking users collection...");
+
+  const userSnapshot =
+    await getDoc(userRef);
+
+  console.log(
+    "User document exists:",
+    userSnapshot.exists()
+  );
 
   return {
     user,
@@ -173,13 +147,18 @@ export async function googleLogin() {
 }
 
 /* ===========================================
-   CREATE GOOGLE USER PROFILE
+   CREATE GOOGLE USER
 =========================================== */
 
 export async function createGoogleUser(
   username
 ) {
+
+  console.log("========== CREATE GOOGLE USER ==========");
+
   const user = auth.currentUser;
+
+  console.log("Current User:", user);
 
   if (!user) {
     throw new Error("User not found.");
@@ -189,18 +168,29 @@ export async function createGoogleUser(
     .trim()
     .toLowerCase();
 
+  console.log("Username:", cleanUsername);
+
   const usernameRef = doc(
     db,
     "usernames",
     cleanUsername
   );
 
+  console.log("Checking username...");
+
   const usernameSnapshot =
     await getDoc(usernameRef);
+
+  console.log(
+    "Username Exists:",
+    usernameSnapshot.exists()
+  );
 
   if (usernameSnapshot.exists()) {
     throw new Error("Username already exists.");
   }
+
+  console.log("Creating users document...");
 
   await setDoc(
     doc(db, "users", user.uid),
@@ -229,9 +219,20 @@ export async function createGoogleUser(
     }
   );
 
-  await setDoc(usernameRef, {
-    uid: user.uid,
-  });
+  console.log("Users document created.");
+
+  console.log("Creating username document...");
+
+  await setDoc(
+    usernameRef,
+    {
+      uid: user.uid,
+    }
+  );
+
+  console.log("Username document created.");
+
+  console.log("========== SUCCESS ==========");
 }
 
 /* ===========================================
@@ -259,7 +260,6 @@ export async function updateUserProfile(
     doc(db, "users", uid),
     {
       ...data,
-
       updatedAt: serverTimestamp(),
     }
   );
@@ -270,6 +270,7 @@ export async function updateUserProfile(
 =========================================== */
 
 export async function getUser(uid) {
+
   const snapshot = await getDoc(
     doc(db, "users", uid)
   );
@@ -292,7 +293,9 @@ export async function usernameExists(
     doc(
       db,
       "usernames",
-      username.trim().toLowerCase()
+      username
+        .trim()
+        .toLowerCase()
     )
   );
 
