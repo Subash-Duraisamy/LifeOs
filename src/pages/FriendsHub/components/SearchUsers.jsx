@@ -17,16 +17,20 @@ function SearchUsers() {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
 
-    async function loadUsers() {
+  async function loadUsers() {
 
-      const text = search.trim();
+    const text = search.trim();
 
-      if (!text) {
-        setUsers([]);
-        return;
-      }
+    if (!text) {
+
+      setUsers([]);
+      return;
+
+    }
+
+    try {
 
       const results = await searchUsers(text);
 
@@ -34,32 +38,65 @@ function SearchUsers() {
 
       for (const friend of results) {
 
-        // Don't show yourself
         if (friend.uid === user.uid) {
           continue;
         }
 
-        // Already friends?
-        const isFriend = await checkFriend(
-          user.uid,
-          friend.uid
-        );
+        console.log("================================");
+        console.log("Checking:", friend.username);
 
-        if (isFriend) {
-          continue;
+        let isFriend = false;
+        let pending = false;
+
+        // -------------------------
+        // CHECK FRIEND
+        // -------------------------
+
+        try {
+
+          isFriend = await checkFriend(
+            user.uid,
+            friend.uid
+          );
+
+          console.log("isFriend:", isFriend);
+
+        } catch (error) {
+
+          console.error(
+            "checkFriend FAILED",
+            error
+          );
+
         }
 
-        // Pending request?
-        const pending = await checkFriendRequest(
-          user.uid,
-          friend.uid
-        );
+        // -------------------------
+        // CHECK PENDING
+        // -------------------------
 
-        if (pending) {
-          continue;
+        try {
+
+          pending = await checkFriendRequest(
+            user.uid,
+            friend.uid
+          );
+
+          console.log("pending:", pending);
+
+        } catch (error) {
+
+          console.error(
+            "checkFriendRequest FAILED",
+            error
+          );
+
         }
 
-        filtered.push(friend);
+        if (!isFriend && !pending) {
+
+          filtered.push(friend);
+
+        }
 
       }
 
@@ -67,9 +104,20 @@ function SearchUsers() {
 
     }
 
-    loadUsers();
+    catch (error) {
 
-  }, [search, user.uid]);
+      console.error(
+        "loadUsers FAILED",
+        error
+      );
+
+    }
+
+  }
+
+  loadUsers();
+
+}, [search, user.uid]);
 
   async function handleAddFriend(friend) {
 
