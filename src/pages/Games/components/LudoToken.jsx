@@ -14,6 +14,8 @@ function LudoToken({
 
     onTokenClick,
 
+    disabled,
+
 }) {
 
     /* ===========================
@@ -36,39 +38,42 @@ function LudoToken({
             room.currentPlayer ?? 0
         ] === currentUid;
 
+
+        const canRelease =
+    !disabled &&
+    myTurn &&
+    room.diceValue === 6 &&
+    token.pos === -1;
+
+const canMove =
+    !disabled &&
+    myTurn &&
+    token.pos >= 0 &&
+    room.diceValue > 0;
+
+    const clickable =
+    canRelease || canMove;
     /* ===========================
        CAN RELEASE TOKEN
     =========================== */
 
-    const canRelease =
 
-        myTurn &&
-        room.diceValue === 6 &&
-        token.pos === -1;
 
     /* ===========================
        CLICK
     =========================== */
 
-    function handleClick() {
+function handleClick() {
 
-        if (!canRelease) return;
+    if (!clickable) return;
 
-        if (onTokenClick) {
+    onTokenClick(
+        colorName,
+        token.id,
+        token
+    );
 
-           onTokenClick(
-
-    colorName,
-
-    token.id,
-
-    token
-
-);
-
-        }
-
-    }
+}
 
     /* ===========================
        UI
@@ -78,7 +83,7 @@ function LudoToken({
 
         <div
 
-            className={`token ${color} ${canRelease ? "clickable" : ""}`}
+       className={`token ${color} ${clickable ? "clickable" : ""}`}
 
             onClick={handleClick}
 

@@ -5,7 +5,7 @@
 .ludo-board-page{
     width:100%;
     min-height:100vh;
-    padding:32px;
+    padding:24px;
     background:linear-gradient(135deg,#081221,#101c32,#132540);
     color:#fff;
     box-sizing:border-box;
@@ -19,41 +19,39 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    flex-wrap:wrap;
     gap:20px;
-    margin-bottom:25px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
 }
 
 .game-header h1{
-    font-size:46px;
-    font-weight:700;
-    color:#fff;
+    font-size:42px;
+    margin:0;
 }
 
 .room-id{
-    margin-top:10px;
+    margin-top:6px;
     color:#8fb9ff;
-    font-size:18px;
+    font-size:16px;
 }
 
 .status-box{
-    background:#182945;
-    border:1px solid #2e4d82;
-    padding:18px 25px;
-    border-radius:18px;
+    background:#172840;
+    border:1px solid #2d4d7a;
+    border-radius:16px;
+    padding:16px 22px;
+    min-width:160px;
     text-align:center;
-    min-width:170px;
 }
 
 .status-box span{
-    color:#90caf9;
-    font-size:14px;
+    color:#8fb9ff;
+    font-size:13px;
 }
 
 .status-box h3{
-    margin-top:8px;
-    color:#4ade80;
-    font-size:24px;
+    margin-top:6px;
+    color:#22c55e;
 }
 
 /* ==========================================================
@@ -61,54 +59,30 @@
 ========================================================== */
 
 .turn-card{
-    background:linear-gradient(135deg,#1f3a65,#284c82);
-    border-radius:20px;
-    padding:22px 30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:28px;
-    box-shadow:0 12px 35px rgba(0,0,0,.35);
+    background:#172840;
+    border-radius:18px;
+    padding:18px 24px;
+    margin-bottom:22px;
 }
 
 .turn-card small{
-    color:#9bc4ff;
-    font-size:15px;
+    color:#8fb9ff;
 }
 
 .turn-card h2{
-    margin-top:6px;
-    font-size:30px;
-    color:#fff;
+    margin-top:5px;
+    font-size:28px;
 }
 
 .your-turn{
     background:#22c55e;
-    color:white;
-    padding:10px 18px;
-    border-radius:30px;
-    font-size:14px;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:999px;
     font-weight:700;
-    letter-spacing:1px;
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1);
-        box-shadow:0 0 0 rgba(34,197,94,.5);
-    }
-
-    50%{
-        transform:scale(1.05);
-        box-shadow:0 0 18px rgba(34,197,94,.7);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
 }
 
 /* ==========================================================
@@ -117,9 +91,8 @@
 
 .ludo-layout{
     display:grid;
-    grid-template-columns:1fr 340px;
-    gap:30px;
-    align-items:start;
+    grid-template-columns:1fr 320px;
+    gap:24px;
 }
 
 /* ==========================================================
@@ -129,23 +102,12 @@
 .board-wrapper{
     background:#10203a;
     border:2px solid #2d4d7a;
-    border-radius:25px;
-    padding:25px;
+    border-radius:24px;
+    padding:14px;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:auto;
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
-}
-
-.board-wrapper::-webkit-scrollbar{
-    height:8px;
-    width:8px;
-}
-
-.board-wrapper::-webkit-scrollbar-thumb{
-    background:#3b82f6;
-    border-radius:20px;
 }
 
 /* ==========================================================
@@ -155,25 +117,19 @@
 .game-sidebar{
     display:flex;
     flex-direction:column;
-    gap:22px;
+    gap:18px;
 }
-
-/* ==========================================================
-   CARD
-========================================================== */
 
 .sidebar-card{
     background:#172840;
-    border:1px solid #304d7a;
-    border-radius:22px;
-    padding:22px;
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    border:1px solid #2d4d7a;
+    border-radius:20px;
+    padding:18px;
 }
 
 .sidebar-card h2{
-    font-size:24px;
-    margin-bottom:18px;
-    color:#ffffff;
+    margin-bottom:14px;
+    font-size:22px;
 }
 
 /* ==========================================================
@@ -183,38 +139,31 @@
 .players-list{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
 }
 
 .player-item{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:12px;
     background:#223756;
-    padding:15px;
-    border-radius:16px;
-    transition:.3s;
-}
-
-.player-item:hover{
-    transform:translateY(-3px);
-    background:#29466f;
+    border-radius:14px;
+    padding:12px;
 }
 
 .active-player{
     border:2px solid #22c55e;
-    background:#1c4d3d;
 }
 
 .player-avatar{
-    width:48px;
-    height:48px;
+    width:46px;
+    height:46px;
     border-radius:50%;
-    background:#3b82f6;
+    background:#2563eb;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:22px;
+    font-size:20px;
 }
 
 .player-details{
@@ -223,13 +172,12 @@
 
 .player-details h4{
     margin:0;
-    font-size:18px;
-    color:white;
+    font-size:17px;
 }
 
 .player-details span{
-    color:#9ec8ff;
-    font-size:14px;
+    color:#8fb9ff;
+    font-size:13px;
 }
 
 /* ==========================================================
@@ -237,25 +185,22 @@
 ========================================================== */
 
 .dice-box{
-    width:130px;
-    height:130px;
-    margin:20px auto;
-    border-radius:25px;
-    background:white;
+    width:120px;
+    height:120px;
+    margin:auto;
+    background:#fff;
     color:#2563eb;
+    border-radius:20px;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:70px;
-    font-weight:800;
-    box-shadow:
-    0 0 30px rgba(59,130,246,.35),
-    inset 0 0 10px rgba(0,0,0,.05);
+    font-size:64px;
+    font-weight:bold;
 }
 
 .dice-text{
+    margin-top:14px;
     text-align:center;
-    font-size:17px;
     color:#cbd5e1;
 }
 
@@ -265,33 +210,19 @@
 
 .roll-btn{
     width:100%;
+    height:70px;
     border:none;
-    border-radius:20px;
-    padding:20px;
+    border-radius:18px;
     background:linear-gradient(135deg,#2563eb,#38bdf8);
-    color:white;
+    color:#fff;
     font-size:22px;
     font-weight:700;
     cursor:pointer;
-    transition:.3s;
-    box-shadow:0 15px 35px rgba(37,99,235,.4);
-}
-
-.roll-btn:hover:not(:disabled){
-    transform:translateY(-4px);
-    box-shadow:0 20px 40px rgba(37,99,235,.5);
-}
-
-.roll-btn:active{
-    transform:scale(.97);
 }
 
 .roll-btn:disabled{
     background:#475569;
-    color:#d1d5db;
     cursor:not-allowed;
-    box-shadow:none;
-    opacity:.8;
 }
 
 /* ==========================================================
@@ -308,8 +239,7 @@
 }
 
 .ludo-board-loading h2{
-    font-size:38px;
-    color:white;
+    font-size:36px;
 }
 
 /* ==========================================================
@@ -318,69 +248,170 @@
 
 @media(max-width:1100px){
 
-    .ludo-layout{
-        grid-template-columns:1fr;
-    }
+.ludo-layout{
 
-    .game-sidebar{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:20px;
-    }
-
-    .roll-btn{
-        grid-column:1/-1;
-    }
+    grid-template-columns:1fr;
 
 }
 
+.game-sidebar{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.roll-btn{
+
+    grid-column:1/-1;
+
+}
+
+}
 /* ==========================================================
    MOBILE
 ========================================================== */
 
 @media(max-width:768px){
 
-    .ludo-board-page{
-        padding:18px;
-    }
+.ludo-board-page{
 
-    .game-header{
-        flex-direction:column;
-        align-items:flex-start;
-    }
+    padding:8px;
+    padding-bottom:70px;
 
-    .game-header h1{
-        font-size:34px;
-    }
+}
 
-    .status-box{
-        width:100%;
-    }
+.game-header{
 
-    .turn-card{
-        flex-direction:column;
-        gap:15px;
-        text-align:center;
-    }
+    display:none;
 
-    .turn-card h2{
-        font-size:24px;
-    }
+}
 
-    .game-sidebar{
-        display:flex;
-    }
+.turn-card{
 
-    .dice-box{
-        width:95px;
-        height:95px;
-        font-size:50px;
-    }
+    padding:6px 10px;
+    margin-bottom:8px;
 
-    .roll-btn{
-        font-size:18px;
-        padding:16px;
-    }
+}
+
+.turn-card h2{
+
+    font-size:15px;
+
+}
+
+.turn-card small{
+
+    font-size:10px;
+
+}
+
+.your-turn{
+
+    padding:4px 8px;
+    font-size:10px;
+
+}
+
+.board-wrapper{
+
+    padding:4px;
+    border-radius:14px;
+
+}
+
+/* ===========================
+   Sticky Bottom Controls
+=========================== */
+
+.game-sidebar{
+
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:999;
+
+    background:#10203a;
+
+    border-top:1px solid #2d4d7a;
+
+    padding:6px 8px;
+
+    display:grid;
+
+    grid-template-columns:48px 1fr;
+
+    gap:8px;
+
+    align-items:center;
+
+}
+
+/* Hide players */
+
+.sidebar-card:first-child{
+
+    display:none;
+
+}
+
+/* Dice card */
+
+.sidebar-card{
+
+    padding:0;
+    margin:0;
+    background:transparent;
+    border:none;
+    box-shadow:none;
+
+}
+
+.sidebar-card h2{
+
+    display:none;
+
+}
+
+.dice-box{
+
+    width:42px;
+    height:42px;
+
+    font-size:22px;
+
+    border-radius:10px;
+
+    margin:0;
+
+}
+
+.dice-text{
+
+    display:none;
+
+}
+
+/* Roll Button */
+
+.roll-btn{
+
+    height:42px;
+
+    font-size:15px;
+
+    border-radius:10px;
+
+    padding:0;
+
+    font-weight:600;
+
+}
 
 }
 
@@ -390,53 +421,62 @@
 
 @media(max-width:480px){
 
-    .ludo-board-page{
-        padding:12px;
-    }
+.ludo-board-page{
 
-    .game-header h1{
-        font-size:28px;
-    }
+    padding:6px;
+    padding-bottom:64px;
 
-    .room-id{
-        font-size:15px;
-    }
+}
 
-    .turn-card{
-        padding:18px;
-    }
+.turn-card{
 
-    .turn-card h2{
-        font-size:20px;
-    }
+    padding:5px 8px;
 
-    .sidebar-card{
-        padding:18px;
-    }
+}
 
-    .player-item{
-        padding:12px;
-    }
+.turn-card h2{
 
-    .player-avatar{
-        width:40px;
-        height:40px;
-        font-size:18px;
-    }
+    font-size:14px;
 
-    .player-details h4{
-        font-size:16px;
-    }
+}
 
-    .dice-box{
-        width:80px;
-        height:80px;
-        font-size:42px;
-    }
+.board-wrapper{
 
-    .roll-btn{
-        font-size:16px;
-        padding:15px;
-    }
+    padding:3px;
+
+}
+
+/* Bottom Bar */
+
+.game-sidebar{
+
+    grid-template-columns:40px 1fr;
+
+    gap:6px;
+
+    padding:5px 6px;
+
+}
+
+.dice-box{
+
+    width:36px;
+    height:36px;
+
+    font-size:18px;
+
+    border-radius:8px;
+
+}
+
+.roll-btn{
+
+    height:36px;
+
+    font-size:13px;
+
+    border-radius:8px;
+
+}
 
 }

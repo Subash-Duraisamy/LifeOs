@@ -72,6 +72,8 @@ function LudoGrid({
 
     currentUid,
 
+    myColor,
+
     onTokenClick,
 
 })  {
@@ -109,6 +111,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "red"}
 />
 
                         );
@@ -136,6 +139,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "red"}
 />
 
                     );
@@ -169,6 +173,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "green"}
 />
 
                         );
@@ -196,6 +201,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "green"}
 />
 
                     );
@@ -229,6 +235,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "blue"}
 />
 
                         );
@@ -256,6 +263,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "blue"}
 />
 
                     );
@@ -289,6 +297,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "yellow"}
 />
 
                         );
@@ -316,6 +325,7 @@ function LudoGrid({
     room={room}
     currentUid={currentUid}
     onTokenClick={onTokenClick}
+    disabled={myColor !== "yellow"}
 />
 
                     );

@@ -10,6 +10,8 @@ import {
     moveToken,
 } from "../../../services/gameService";
 
+import { getPlayerColor } from "../ludo/data/playerColors";
+
 import LudoGrid from "../components/LudoGrid";
 
 import "./LudoBoard.css";
@@ -39,60 +41,46 @@ function LudoBoard() {
 
     }, [roomId]);
 
+    /* ===========================
+       TOKEN CLICK
+    =========================== */
 
-async function handleTokenClick(
+    async function handleTokenClick(
+        color,
+        tokenId,
+        token
+    ) {
 
-    color,
+        try {
 
-    tokenId,
+            if (token.pos === -1) {
 
-    token
+                await releaseToken(
+                    room.roomId,
+                    color,
+                    tokenId
+                );
 
-) {
+            } else {
 
-    try {
+                await moveToken(
+                    room.roomId,
+                    color,
+                    tokenId
+                );
 
-        if (
-
-            token.pos === -1
-
-        ) {
-
-            await releaseToken(
-
-                room.roomId,
-
-                color,
-
-                tokenId
-
-            );
+            }
 
         }
 
-        else {
+        catch (error) {
 
-            await moveToken(
-
-                room.roomId,
-
-                color,
-
-                tokenId
-
-            );
+            console.log(error);
 
         }
 
     }
 
-    catch (error) {
-
-        console.log(error);
-
-    }
-
-}
     /* ===========================
        ROLL DICE
     =========================== */
@@ -131,14 +119,31 @@ async function handleTokenClick(
 
     }
 
-    const currentPlayer = room.players[
-        room.currentPlayer ?? 0
-    ];
+    /* ===========================
+       PLAYER INFO
+    =========================== */
+
+    const myColor = getPlayerColor(
+        room,
+        user.uid
+    );
+
+    const currentPlayer =
+        room.players[
+            room.currentPlayer ?? 0
+        ];
 
     const isMyTurn =
         room.playerIds[
             room.currentPlayer
         ] === user.uid;
+
+    const colors = [
+        "red",
+        "green",
+        "yellow",
+        "blue",
+    ];
 
     /* ===========================
        UI
@@ -188,13 +193,23 @@ async function handleTokenClick(
 
                 <div>
 
-                    <small>Current Turn</small>
+                    <small>
+
+                        Current Turn
+
+                    </small>
 
                     <h2>
 
                         {currentPlayer?.name}
 
                     </h2>
+
+                    <p className={`my-color ${myColor}`}>
+
+                        Your Color : {myColor?.toUpperCase()}
+
+                    </p>
 
                 </div>
 
@@ -220,17 +235,19 @@ async function handleTokenClick(
 
                 <div className="board-wrapper">
 
-             <LudoGrid
+                    <LudoGrid
 
-    board={room.board}
+                        board={room.board}
 
-    room={room}
+                        room={room}
 
-    currentUid={user.uid}
+                        currentUid={user.uid}
 
-    onTokenClick={handleTokenClick}
+                        myColor={myColor}
 
-/>
+                        onTokenClick={handleTokenClick}
+
+                    />
 
                 </div>
 
@@ -238,7 +255,7 @@ async function handleTokenClick(
 
                 <aside className="game-sidebar">
 
-                    {/* Players */}
+                    {/* ================= PLAYERS ================= */}
 
                     <div className="sidebar-card">
 
@@ -252,57 +269,76 @@ async function handleTokenClick(
 
                             {
 
-                                room.players.map(player => (
+                                room.players.map((player, index) => {
 
-                                    <div
+                                    const playerColor =
+                                        colors[index];
 
-                                        key={player.uid}
+                                    return (
 
-                                        className={
+                                        <div
 
-                                            player.uid === currentPlayer.uid
+                                            key={player.uid}
 
-                                                ? "player-item active-player"
+                                            className={
 
-                                                : "player-item"
+                                                player.uid === currentPlayer.uid
 
-                                        }
+                                                    ? "player-item active-player"
 
-                                    >
+                                                    : "player-item"
 
-                                        <div className="player-avatar">
+                                            }
 
-                                            👤
+                                        >
+
+                                            <div
+
+                                                className={`player-avatar ${playerColor}`}
+
+                                            >
+
+                                                {playerColor
+                                                    .charAt(0)
+                                                    .toUpperCase()}
+
+                                            </div>
+
+                                            <div className="player-details">
+
+                                                <h4>
+
+                                                    {player.name}
+
+                                                </h4>
+
+                                                <p className={`player-color ${playerColor}`}>
+
+                                                    {playerColor.toUpperCase()}
+
+                                                </p>
+
+                                                <span>
+
+                                                    {
+
+                                                        player.uid === currentPlayer.uid
+
+                                                            ? "Playing"
+
+                                                            : "Waiting"
+
+                                                    }
+
+                                                </span>
+
+                                            </div>
 
                                         </div>
 
-                                        <div className="player-details">
+                                    );
 
-                                            <h4>
-
-                                                {player.name}
-
-                                            </h4>
-
-                                            <span>
-
-                                                {
-
-                                                    player.uid === currentPlayer.uid
-
-                                                        ? "Playing"
-
-                                                        : "Waiting"
-
-                                                }
-
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                ))
+                                })
 
                             }
 
@@ -310,7 +346,7 @@ async function handleTokenClick(
 
                     </div>
 
-                    {/* Dice */}
+                    {/* ================= DICE ================= */}
 
                     <div className="sidebar-card">
 
@@ -348,7 +384,7 @@ async function handleTokenClick(
 
                     </div>
 
-                    {/* Button */}
+                    {/* ================= BUTTON ================= */}
 
                     <button
 
