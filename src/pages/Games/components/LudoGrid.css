@@ -8,7 +8,7 @@
 
     max-width:700px;
 
-    aspect-ratio:1;
+    aspect-ratio:1/1;
 
     display:grid;
 
@@ -36,8 +36,6 @@
 
 .cell{
 
-    border:1px solid rgba(0,0,0,.08);
-
     display:flex;
 
     justify-content:center;
@@ -45,6 +43,10 @@
     align-items:center;
 
     position:relative;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    box-sizing:border-box;
 
     transition:.2s;
 
@@ -74,19 +76,19 @@
 
 .red-home{
 
-    background:#ff5c5c;
+    background:#ff5b5b;
 
 }
 
 .green-home{
 
-    background:#37d774;
+    background:#34d67a;
 
 }
 
 .blue-home{
 
-    background:#53a7ff;
+    background:#4ea7ff;
 
 }
 
@@ -120,9 +122,11 @@
 
         0 4px 8px rgba(0,0,0,.28);
 
-    transition:.2s;
+    transition:all .2s ease;
 
     cursor:pointer;
+
+    z-index:2;
 
 }
 
@@ -138,7 +142,7 @@
 
         #ff9b9b,
 
-        #ff3f3f);
+        #ff3b3b);
 
 }
 
@@ -146,7 +150,7 @@
 
     background:radial-gradient(circle at 30% 30%,
 
-        #9bffbb,
+        #9cffbb,
 
         #22c95e);
 
@@ -156,7 +160,7 @@
 
     background:radial-gradient(circle at 30% 30%,
 
-        #9ed3ff,
+        #9ed2ff,
 
         #2d7cff);
 
@@ -166,7 +170,7 @@
 
     background:radial-gradient(circle at 30% 30%,
 
-        #fff4a5,
+        #fff5a5,
 
         #ffc928);
 
@@ -189,8 +193,7 @@
         transform:scale(1);
 
         box-shadow:
-
-        0 0 0 rgba(255,255,255,.5);
+        0 0 0 rgba(255,255,255,.4);
 
     }
 
@@ -199,8 +202,7 @@
         transform:scale(1.12);
 
         box-shadow:
-
-        0 0 16px rgba(255,255,255,.9);
+        0 0 16px rgba(255,255,255,.95);
 
     }
 
@@ -213,12 +215,28 @@
 }
 
 /* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width:1400px){
+
+    .ludo-grid{
+
+        max-width:720px;
+
+    }
+
+}
+
+/* =====================================================
    TABLET
 ===================================================== */
 
-@media(max-width:1024px){
+@media (max-width:1024px){
 
     .ludo-grid{
+
+        width:100%;
 
         max-width:620px;
 
@@ -230,11 +248,11 @@
    MOBILE
 ===================================================== */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
     .ludo-grid{
 
-        width:95vw;
+        width:100%;
 
         max-width:none;
 
@@ -262,11 +280,9 @@
    SMALL MOBILE
 ===================================================== */
 
-@media(max-width:480px){
+@media (max-width:480px){
 
     .ludo-grid{
-
-        width:96vw;
 
         border-radius:12px;
 
@@ -286,11 +302,13 @@
    VERY SMALL DEVICES
 ===================================================== */
 
-@media(max-width:360px){
+@media (max-width:360px){
 
-    .ludo-grid{
+    .token{
 
-        width:98vw;
+        width:62%;
+
+        height:62%;
 
     }
 
