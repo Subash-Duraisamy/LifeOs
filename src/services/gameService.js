@@ -699,3 +699,90 @@ export async function releaseToken(
     );
 
 }
+
+/* ==========================================
+   MOVE TOKEN
+========================================== */
+
+export async function moveToken(
+
+    roomId,
+
+    color,
+
+    tokenId
+
+) {
+
+    const roomRef = doc(
+
+        db,
+
+        "gameRooms",
+
+        roomId
+
+    );
+
+    const snapshot = await getDoc(roomRef);
+
+    if (!snapshot.exists()) return;
+
+    const room = snapshot.data();
+
+    const dice = room.diceValue;
+
+    if (!dice) return;
+
+    const board = { ...room.board };
+
+    const tokens = [...board[color]];
+
+    const token = tokens.find(
+
+        t => t.id === tokenId
+
+    );
+
+    if (!token) return;
+
+    // Still inside home
+    if (token.pos === -1) {
+
+        return;
+
+    }
+
+    token.pos += dice;
+
+    board[color] = tokens;
+
+    let nextPlayer = room.currentPlayer;
+
+    if (dice !== 6) {
+
+        nextPlayer =
+
+            (room.currentPlayer + 1) %
+
+            room.playerIds.length;
+
+    }
+
+    await updateDoc(
+
+        roomRef,
+
+        {
+
+            board,
+
+            diceValue: null,
+
+            currentPlayer: nextPlayer,
+
+        }
+
+    );
+
+}

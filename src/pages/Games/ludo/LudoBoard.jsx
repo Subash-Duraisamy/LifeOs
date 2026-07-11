@@ -7,6 +7,7 @@ import {
     listenGameRoom,
     rollDice,
     releaseToken,
+    moveToken,
 } from "../../../services/gameService";
 
 import LudoGrid from "../components/LudoGrid";
@@ -39,29 +40,53 @@ function LudoBoard() {
     }, [roomId]);
 
 
-    async function handleTokenClick(
+async function handleTokenClick(
 
     color,
 
-    tokenId
+    tokenId,
 
-){
+    token
 
-    try{
+) {
 
-        await releaseToken(
+    try {
 
-            room.roomId,
+        if (
 
-            color,
+            token.pos === -1
 
-            tokenId
+        ) {
 
-        );
+            await releaseToken(
+
+                room.roomId,
+
+                color,
+
+                tokenId
+
+            );
+
+        }
+
+        else {
+
+            await moveToken(
+
+                room.roomId,
+
+                color,
+
+                tokenId
+
+            );
+
+        }
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.log(error);
 

@@ -1,10 +1,12 @@
-/* ==========================================
+/* =====================================================
    LUDO GRID
-========================================== */
+===================================================== */
 
 .ludo-grid{
 
-    width:min(90vw,700px);
+    width:100%;
+
+    max-width:700px;
 
     aspect-ratio:1;
 
@@ -14,13 +16,13 @@
 
     grid-template-rows:repeat(15,1fr);
 
-    border:4px solid #2b2b2b;
-
     background:#ffffff;
 
-    border-radius:14px;
+    border-radius:16px;
 
     overflow:hidden;
+
+    box-sizing:border-box;
 
     box-shadow:0 10px 25px rgba(0,0,0,.25);
 
@@ -28,9 +30,9 @@
 
 }
 
-/* ==========================================
+/* =====================================================
    CELL
-========================================== */
+===================================================== */
 
 .cell{
 
@@ -42,19 +44,21 @@
 
     align-items:center;
 
+    position:relative;
+
     transition:.2s;
 
 }
 
 .cell:hover{
 
-    filter:brightness(.95);
+    filter:brightness(.97);
 
 }
 
-/* ==========================================
-   EMPTY
-========================================== */
+/* =====================================================
+   BOARD COLORS
+===================================================== */
 
 .empty{
 
@@ -62,49 +66,29 @@
 
 }
 
-/* ==========================================
-   PATH
-========================================== */
-
 .path{
 
-    background:#f1f1f1;
+    background:#f2f2f2;
 
 }
-
-/* ==========================================
-   RED HOME
-========================================== */
 
 .red-home{
 
-    background:#ff5b5b;
+    background:#ff5c5c;
 
 }
-
-/* ==========================================
-   GREEN HOME
-========================================== */
 
 .green-home{
 
-    background:#34d67a;
+    background:#37d774;
 
 }
-
-/* ==========================================
-   BLUE HOME
-========================================== */
 
 .blue-home{
 
-    background:#4ea7ff;
+    background:#53a7ff;
 
 }
-
-/* ==========================================
-   YELLOW HOME
-========================================== */
 
 .yellow-home{
 
@@ -112,31 +96,147 @@
 
 }
 
-/* ==========================================
-   TABLET
-========================================== */
+/* =====================================================
+   TOKEN
+===================================================== */
 
-@media (max-width:1024px){
+.token{
 
-    .ludo-grid{
+    width:68%;
 
-        width:min(92vw,620px);
+    height:68%;
+
+    border-radius:50%;
+
+    border:3px solid rgba(255,255,255,.95);
+
+    box-sizing:border-box;
+
+    box-shadow:
+
+        inset 0 2px 5px rgba(255,255,255,.55),
+
+        inset 0 -4px 8px rgba(0,0,0,.22),
+
+        0 4px 8px rgba(0,0,0,.28);
+
+    transition:.2s;
+
+    cursor:pointer;
+
+}
+
+.token:hover{
+
+    transform:scale(1.08);
+
+}
+
+.token.red{
+
+    background:radial-gradient(circle at 30% 30%,
+
+        #ff9b9b,
+
+        #ff3f3f);
+
+}
+
+.token.green{
+
+    background:radial-gradient(circle at 30% 30%,
+
+        #9bffbb,
+
+        #22c95e);
+
+}
+
+.token.blue{
+
+    background:radial-gradient(circle at 30% 30%,
+
+        #9ed3ff,
+
+        #2d7cff);
+
+}
+
+.token.yellow{
+
+    background:radial-gradient(circle at 30% 30%,
+
+        #fff4a5,
+
+        #ffc928);
+
+}
+
+/* =====================================================
+   CLICKABLE TOKEN
+===================================================== */
+
+.token.clickable{
+
+    animation:tokenPulse .9s infinite;
+
+}
+
+@keyframes tokenPulse{
+
+    0%{
+
+        transform:scale(1);
+
+        box-shadow:
+
+        0 0 0 rgba(255,255,255,.5);
+
+    }
+
+    50%{
+
+        transform:scale(1.12);
+
+        box-shadow:
+
+        0 0 16px rgba(255,255,255,.9);
+
+    }
+
+    100%{
+
+        transform:scale(1);
 
     }
 
 }
 
-/* ==========================================
-   MOBILE
-========================================== */
+/* =====================================================
+   TABLET
+===================================================== */
 
-@media (max-width:768px){
+@media(max-width:1024px){
+
+    .ludo-grid{
+
+        max-width:620px;
+
+    }
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:768px){
 
     .ludo-grid{
 
         width:95vw;
 
-        border-width:3px;
+        max-width:none;
 
     }
 
@@ -146,29 +246,47 @@
 
     }
 
-}
+    .token{
 
-/* ==========================================
-   SMALL MOBILE
-========================================== */
+        width:70%;
 
-@media (max-width:480px){
+        height:70%;
 
-    .ludo-grid{
-
-        width:96vw;
-
-        border-radius:10px;
+        border-width:2px;
 
     }
 
 }
 
-/* ==========================================
-   VERY SMALL DEVICES
-========================================== */
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
 
-@media (max-width:360px){
+@media(max-width:480px){
+
+    .ludo-grid{
+
+        width:96vw;
+
+        border-radius:12px;
+
+    }
+
+    .token{
+
+        width:66%;
+
+        height:66%;
+
+    }
+
+}
+
+/* =====================================================
+   VERY SMALL DEVICES
+===================================================== */
+
+@media(max-width:360px){
 
     .ludo-grid{
 
@@ -176,38 +294,4 @@
 
     }
 
-}
-
-.token{
-    width:72%;
-    height:72%;
-    border-radius:50%;
-    border:3px solid rgba(255,255,255,.95);
-
-    box-shadow:
-        inset 0 3px 6px rgba(255,255,255,.6),
-        inset 0 -4px 8px rgba(0,0,0,.25),
-        0 5px 10px rgba(0,0,0,.35);
-
-    transition:.2s;
-}
-
-.token:hover{
-    transform:scale(1.08);
-}
-
-.token.red{
-    background:radial-gradient(circle at 30% 30%, #ff9d9d, #ff3b3b);
-}
-
-.token.green{
-    background:radial-gradient(circle at 30% 30%, #8cffb5, #20c95d);
-}
-
-.token.blue{
-    background:radial-gradient(circle at 30% 30%, #9fd0ff, #2d7dff);
-}
-
-.token.yellow{
-    background:radial-gradient(circle at 30% 30%, #fff5a5, #ffc928);
 }

@@ -56,13 +56,15 @@ function LudoToken({
 
         if (onTokenClick) {
 
-            onTokenClick(
+           onTokenClick(
 
-                colorName,
+    colorName,
 
-                token.id
+    token.id,
 
-            );
+    token
+
+);
 
         }
 
