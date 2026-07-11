@@ -30,9 +30,9 @@ export async function searchUsers(search) {
 
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((doc) => ({
-    uid: doc.id,
-    ...doc.data(),
+  return snapshot.docs.map((document) => ({
+    uid: document.id,
+    ...document.data(),
   }));
 
 }
@@ -41,24 +41,67 @@ export async function searchUsers(search) {
    SEND FRIEND REQUEST
 ====================================== */
 
-export async function sendFriendRequest(fromUser, toUser) {
+/* ======================================
+   SEND FRIEND REQUEST
+====================================== */
+
+export async function sendFriendRequest(
+  fromUser,
+  toUser
+) {
 
   if (fromUser.uid === toUser.uid) {
     throw new Error("You cannot add yourself.");
   }
 
-  const duplicateQuery = query(
+  // Pending request from me...
+  // -----------------------------
+  // Already friends?
+  // -----------------------------
+
+
+
+  // -----------------------------
+  // Pending request from me
+  // -----------------------------
+
+  const sentQuery = query(
     collection(db, "friendRequests"),
     where("fromUid", "==", fromUser.uid),
     where("toUid", "==", toUser.uid),
     where("status", "==", "pending")
   );
 
-  const duplicateSnapshot = await getDocs(duplicateQuery);
+  const sentSnapshot =
+    await getDocs(sentQuery);
 
-  if (!duplicateSnapshot.empty) {
+  if (!sentSnapshot.empty) {
     throw new Error("Friend request already sent.");
   }
+
+  // -----------------------------
+  // Pending request from them
+  // -----------------------------
+
+  const receivedQuery = query(
+    collection(db, "friendRequests"),
+    where("fromUid", "==", toUser.uid),
+    where("toUid", "==", fromUser.uid),
+    where("status", "==", "pending")
+  );
+
+  const receivedSnapshot =
+    await getDocs(receivedQuery);
+
+  if (!receivedSnapshot.empty) {
+    throw new Error(
+      "This user has already sent you a friend request."
+    );
+  }
+
+  // -----------------------------
+  // Create Request
+  // -----------------------------
 
   await addDoc(
     collection(db, "friendRequests"),
@@ -116,13 +159,18 @@ export async function checkFriend(
 
   const q = query(
     collection(db, "friends"),
-    where("uid", "==", currentUid),
-    where("friendUid", "==", targetUid)
+    where("users", "array-contains", currentUid)
   );
 
   const snapshot = await getDocs(q);
 
-  return !snapshot.empty;
+  return snapshot.docs.some((document) => {
+
+    const users = document.data().users;
+
+    return users.includes(targetUid);
+
+  });
 
 }
 
@@ -147,36 +195,39 @@ export async function acceptFriendRequest(
     collection(db, "friends"),
     {
 
-      uid: currentUser.uid,
+      users: [
+        currentUser.uid,
+        request.fromUid,
+      ],
 
-      friendUid: request.fromUid,
+      user1: {
 
-      friendName: request.fromName,
+        uid: currentUser.uid,
 
-      friendUsername: request.fromUsername,
+        fullName: currentUser.fullName,
 
-      friendPhoto: request.fromPhoto,
+        username: currentUser.username,
 
-      createdAt: serverTimestamp(),
+        photoURL:
+          currentUser.photoURL || "",
 
-    }
-  );
+      },
 
-  await addDoc(
-    collection(db, "friends"),
-    {
+      user2: {
 
-      uid: request.fromUid,
+        uid: request.fromUid,
 
-      friendUid: currentUser.uid,
+        fullName: request.fromName,
 
-      friendName: currentUser.fullName,
+        username: request.fromUsername,
 
-      friendUsername: currentUser.username,
+        photoURL:
+          request.fromPhoto || "",
 
-      friendPhoto: currentUser.photoURL,
+      },
 
-      createdAt: serverTimestamp(),
+      createdAt:
+        serverTimestamp(),
 
     }
   );
@@ -205,11 +256,36 @@ export async function rejectFriendRequest(
 ====================================== */
 
 export async function removeFriend(
-  friendDocumentId
+  currentUid,
+  friendUid
 ) {
 
-  await deleteDoc(
-    doc(db, "friends", friendDocumentId)
+  const q = query(
+    collection(db, "friends"),
+    where("users", "array-contains", currentUid)
   );
+
+  const snapshot = await getDocs(q);
+
+  for (const document of snapshot.docs) {
+
+    const users =
+      document.data().users;
+
+    if (users.includes(friendUid)) {
+
+      await deleteDoc(
+        doc(
+          db,
+          "friends",
+          document.id
+        )
+      );
+
+      break;
+
+    }
+
+  }
 
 }

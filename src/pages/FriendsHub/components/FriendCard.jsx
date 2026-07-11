@@ -5,13 +5,15 @@ import {
   query,
   where,
   onSnapshot,
-  doc,
-  deleteDoc,
 } from "firebase/firestore";
 
 import { db } from "../../../firebase/firebase";
 
 import { useAuth } from "../../../hooks/useAuth";
+
+import {
+  removeFriend,
+} from "../../../services/friendService";
 
 function FriendCard() {
 
@@ -23,39 +25,71 @@ function FriendCard() {
 
     const q = query(
       collection(db, "friends"),
-      where("uid", "==", user.uid)
+      where("users", "array-contains", user.uid)
     );
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
 
-      setFriends(
+        const list = snapshot.docs.map((document) => {
 
-        snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
+          const data = document.data();
 
-      );
+          const friend =
+            data.user1.uid === user.uid
+              ? data.user2
+              : data.user1;
 
-    });
+          return {
 
-    return () => unsubscribe();
+            id: document.id,
+
+            friendUid: friend.uid,
+
+            friendName: friend.fullName,
+
+            friendUsername: friend.username,
+
+            friendPhoto: friend.photoURL,
+
+          };
+
+        });
+
+        setFriends(list);
+
+      }
+    );
+
+    return unsubscribe;
 
   }, [user.uid]);
 
-  async function removeFriend(friend) {
+  async function removeFriendHandler(friend) {
 
-    if (
-      !window.confirm(
-        `Remove ${friend.friendName} from friends?`
-      )
-    ) {
-      return;
-    }
-
-    await deleteDoc(
-      doc(db, "friends", friend.id)
+    const ok = window.confirm(
+      `Remove ${friend.friendName} from friends?`
     );
+
+    if (!ok) return;
+
+    try {
+
+      await removeFriend(
+        user.uid,
+        friend.friendUid
+      );
+
+      alert("Friend removed successfully.");
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Failed to remove friend.");
+
+    }
 
   }
 
@@ -99,7 +133,7 @@ function FriendCard() {
 
               borderRadius: "12px",
 
-              marginBottom: "16px"
+              marginBottom: "16px",
 
             }}
 
@@ -113,7 +147,7 @@ function FriendCard() {
 
                 alignItems: "center",
 
-                gap: "16px"
+                gap: "16px",
 
               }}
 
@@ -134,7 +168,7 @@ function FriendCard() {
 
                 style={{
 
-                  borderRadius: "50%"
+                  borderRadius: "50%",
 
                 }}
 
@@ -142,32 +176,20 @@ function FriendCard() {
 
               <div>
 
-                <h3>
+                <h3>{friend.friendName}</h3>
 
-                  {friend.friendName}
-
-                </h3>
-
-                <p>
-
-                  @{friend.friendUsername}
-
-                </p>
+                <p>@{friend.friendUsername}</p>
 
               </div>
 
             </div>
 
             <button
-
               onClick={() =>
-                removeFriend(friend)
+                removeFriendHandler(friend)
               }
-
             >
-
               Remove
-
             </button>
 
           </div>

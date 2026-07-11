@@ -5,14 +5,16 @@ import {
   onSnapshot,
   query,
   where,
-  doc,
-  updateDoc,
-  addDoc,
-  serverTimestamp,
 } from "firebase/firestore";
 
 import { db } from "../../../firebase/firebase";
+
 import { useAuth } from "../../../hooks/useAuth";
+
+import {
+  acceptFriendRequest,
+  rejectFriendRequest,
+} from "../../../services/friendService";
 
 function RequestCard() {
 
@@ -28,73 +30,61 @@ function RequestCard() {
       where("status", "==", "pending")
     );
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
 
-      setRequests(
-        snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-      );
+        setRequests(
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+        );
 
-    });
+      }
+    );
 
-    return () => unsubscribe();
+    return unsubscribe;
 
   }, [user.uid]);
 
-  async function acceptRequest(request) {
+  async function handleAccept(request) {
 
-    // update request status
-    await updateDoc(
-      doc(db, "friendRequests", request.id),
-      {
-        status: "accepted"
-      }
-    );
+    try {
 
-    // Friend for current user
-    await addDoc(
-      collection(db, "friends"),
-      {
-        uid: user.uid,
+      await acceptFriendRequest(
+        request.id,
+        request,
+        user
+      );
 
-        friendUid: request.fromUid,
-        friendName: request.fromName,
-        friendUsername: request.fromUsername,
-        friendPhoto: request.fromPhoto,
+      alert("Friend added successfully.");
 
-        createdAt: serverTimestamp(),
-      }
-    );
+    } catch (error) {
 
-    // Friend for sender
-    await addDoc(
-      collection(db, "friends"),
-      {
-        uid: request.fromUid,
+      console.error(error);
 
-        friendUid: user.uid,
-        friendName: user.fullName,
-        friendUsername: user.username,
-        friendPhoto: user.photoURL,
+      alert("Failed to accept request.");
 
-        createdAt: serverTimestamp(),
-      }
-    );
-
-    alert("Friend added successfully.");
+    }
 
   }
 
-  async function rejectRequest(request) {
+  async function handleReject(request) {
 
-    await updateDoc(
-      doc(db, "friendRequests", request.id),
-      {
-        status: "rejected"
-      }
-    );
+    try {
+
+      await rejectFriendRequest(
+        request.id
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Failed to reject request.");
+
+    }
 
   }
 
@@ -115,38 +105,62 @@ function RequestCard() {
         requests.map(request => (
 
           <div
+
             key={request.id}
+
             style={{
+
               display: "flex",
+
               justifyContent: "space-between",
+
               alignItems: "center",
+
               border: "1px solid #ddd",
+
               padding: 20,
+
               borderRadius: 12,
-              marginBottom: 15
+
+              marginBottom: 15,
+
             }}
+
           >
 
             <div
+
               style={{
+
                 display: "flex",
+
                 alignItems: "center",
-                gap: 15
+
+                gap: 15,
+
               }}
+
             >
 
               <img
+
                 src={
                   request.fromPhoto ||
-                  "https://ui-avatars.com/api/?name=" +
-                    request.fromName
+                  `https://ui-avatars.com/api/?name=${request.fromName}`
                 }
+
                 width="60"
+
                 height="60"
+
                 alt=""
+
                 style={{
-                  borderRadius: "50%"
+
+                  borderRadius: "50%",
+
                 }}
+
               />
 
               <div>
@@ -163,7 +177,7 @@ function RequestCard() {
 
               <button
                 onClick={() =>
-                  acceptRequest(request)
+                  handleAccept(request)
                 }
               >
                 Accept
@@ -173,7 +187,7 @@ function RequestCard() {
 
               <button
                 onClick={() =>
-                  rejectRequest(request)
+                  handleReject(request)
                 }
               >
                 Reject

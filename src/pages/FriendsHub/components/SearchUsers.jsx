@@ -5,6 +5,8 @@ import { useAuth } from "../../../hooks/useAuth";
 import {
   searchUsers,
   sendFriendRequest,
+  checkFriend,
+  checkFriendRequest,
 } from "../../../services/friendService";
 
 function SearchUsers() {
@@ -17,35 +19,82 @@ function SearchUsers() {
 
   useEffect(() => {
 
-    async function load() {
+    async function loadUsers() {
 
-      if (!search.trim()) {
+      const text = search.trim();
 
+      if (!text) {
         setUsers([]);
-
         return;
+      }
+
+      const results = await searchUsers(text);
+
+      const filtered = [];
+
+      for (const friend of results) {
+
+        // Don't show yourself
+        if (friend.uid === user.uid) {
+          continue;
+        }
+
+        // Already friends?
+        const isFriend = await checkFriend(
+          user.uid,
+          friend.uid
+        );
+
+        if (isFriend) {
+          continue;
+        }
+
+        // Pending request?
+        const pending = await checkFriendRequest(
+          user.uid,
+          friend.uid
+        );
+
+        if (pending) {
+          continue;
+        }
+
+        filtered.push(friend);
 
       }
 
-      const data =
-        await searchUsers(search);
-
-      setUsers(data);
+      setUsers(filtered);
 
     }
 
-    load();
+    loadUsers();
 
-  }, [search]);
+  }, [search, user.uid]);
 
   async function handleAddFriend(friend) {
 
-    await sendFriendRequest(
-      user,
-      friend
-    );
+    try {
 
-    alert("Friend request sent.");
+      await sendFriendRequest(
+        user,
+        friend
+      );
+
+      alert("Friend request sent.");
+
+      setUsers((prev) =>
+        prev.filter(
+          (item) => item.uid !== friend.uid
+        )
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(error.message);
+
+    }
 
   }
 
@@ -59,106 +108,101 @@ function SearchUsers() {
 
         value={search}
 
-        onChange={(e)=>
+        onChange={(e) =>
           setSearch(e.target.value)
         }
 
       />
 
-      <br/>
-
-      <br/>
+      <br />
+      <br />
 
       {
 
-        users
+        users.length === 0 && search && (
 
-          .filter(
-            item=>item.uid!==user.uid
-          )
+          <p>No users found.</p>
 
-          .map(friend=>(
+        )
 
-            <div
+      }
 
-              key={friend.uid}
+      {
+
+        users.map(friend => (
+
+          <div
+
+            key={friend.uid}
+
+            style={{
+
+              display: "flex",
+
+              alignItems: "center",
+
+              gap: 20,
+
+              marginBottom: 20,
+
+              border: "1px solid #ddd",
+
+              padding: 15,
+
+              borderRadius: 12,
+
+            }}
+
+          >
+
+            <img
+
+              src={
+                friend.photoURL ||
+                `https://ui-avatars.com/api/?name=${friend.fullName}`
+              }
+
+              width="60"
+
+              height="60"
+
+              alt=""
 
               style={{
 
-                display:"flex",
-
-                alignItems:"center",
-
-                gap:20,
-
-                marginBottom:20,
-
-                border:"1px solid #ddd",
-
-                padding:15,
-
-                borderRadius:12
+                borderRadius: "50%",
 
               }}
 
+            />
+
+            <div
+              style={{
+                flex: 1,
+              }}
             >
 
-              <img
+              <h3>{friend.fullName}</h3>
 
-                src={
-                  friend.photoURL ||
-                  "https://ui-avatars.com/api/?name="+friend.fullName
-                }
-
-                width="60"
-
-                height="60"
-
-                alt=""
-
-                style={{
-
-                  borderRadius:"50%"
-
-                }}
-
-              />
-
-              <div
-                style={{
-                  flex:1
-                }}
-              >
-
-                <h3>
-
-                  {friend.fullName}
-
-                </h3>
-
-                <p>
-
-                  @{friend.username}
-
-                </p>
-
-              </div>
-
-              <button
-
-                onClick={()=>
-                  handleAddFriend(friend)
-                }
-
-              >
-
-                Add Friend
-
-              </button>
+              <p>@{friend.username}</p>
 
             </div>
 
-          ))
+            <button
+
+              onClick={() =>
+                handleAddFriend(friend)
+              }
+
+            >
+
+              Add Friend
+
+            </button>
+
+          </div>
+
+        ))
 
       }
 
