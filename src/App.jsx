@@ -2,9 +2,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import FriendsHub from "./pages/FriendsHub/FriendsHub";
 import Games from "./pages/Games/Games";
 import { useAuth } from "./hooks/useAuth";
-import Ludo from "./pages/Games/ludo/Ludo";
-import LudoRoom from "./pages/Games/ludo/LudoRoom";
-import LudoBoard from "./pages/Games/ludo/LudoBoard";
+import LudoHome from "./pages/Games/ludo/LudoHome";
+import CreateRoom from "./pages/Games/ludo/CreateRoom";
+
 import MainLayout from "./layouts/MainLayout";
 
 import Login from "./pages/Login/Login";
@@ -26,10 +26,12 @@ import Goals from "./pages/Goals/Goals";
 import Calendar from "./pages/Calendar/Calendar";
 import AI from "./pages/AI/AI";
 import Settings from "./pages/Settings/Settings";
-
+import LudoBoard from "./pages/Games/ludo/LudoBoard";
 import MySpace from "./pages/MySpace/MySpace";
 import Vault from "./pages/Vault/Vault";
 import MyLibrary from "./pages/MyLibrary/MyLibrary";
+import LudoRoom from "./pages/Games/ludo/LudoRoom";
+import JoinRoom from "./pages/Games/ludo/JoinRoom";
 
 function App() {
 
@@ -160,24 +162,34 @@ function App() {
   element={<FriendsHub />}
 />
 <Route
+    path="games/ludo"
+    element={<LudoHome />}
+/>
+<Route
+    path="games/ludo/create"
+    element={<CreateRoom />}
+/>
+<Route
+    path="games/ludo/game/:roomId"
+    element={<LudoBoard />}
+/>
+<Route
   path="games"
   element={<Games />}
 />
 
 <Route
-    path="games/ludo"
-    element={<Ludo />}
-/>
-
-<Route
-    path="games/ludo/:roomId"
+    path="games/ludo/room/:roomId"
     element={<LudoRoom />}
 />
-
 <Route
-    path="/games/ludo/play/:roomId"
-    element={<LudoBoard />}
+    path="games/ludo/join"
+    element={<JoinRoom />}
 />
+
+
+
+
         <Route
           path="notes"
           element={<Notes />}

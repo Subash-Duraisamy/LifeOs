@@ -1,0 +1,159 @@
+.create-room-page{
+
+    min-height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+.room-card{
+
+    width:100%;
+
+    max-width:600px;
+
+    background:#182746;
+
+    border-radius:22px;
+
+    padding:35px;
+
+}
+
+.room-card h1{
+
+    margin-top:20px;
+
+    margin-bottom:10px;
+
+}
+
+.room-card p{
+
+    color:#b5c3d8;
+
+    margin-bottom:30px;
+
+}
+
+.back-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.player-options{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:35px;
+
+}
+
+.player-option{
+
+    background:#233962;
+
+    border:2px solid transparent;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    cursor:pointer;
+
+    text-align:center;
+
+    transition:.25s;
+
+}
+
+.player-option svg{
+
+    color:#4d9dff;
+
+    margin-bottom:15px;
+
+}
+
+.player-option span{
+
+    display:block;
+
+    font-weight:600;
+
+}
+
+.player-option:hover{
+
+    background:#2d4675;
+
+}
+
+.selected{
+
+    border-color:#4d9dff;
+
+}
+
+.create-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#4d9dff;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.create-btn:hover{
+
+    background:#3b86f6;
+
+}
+
+@media(max-width:700px){
+
+    .player-options{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

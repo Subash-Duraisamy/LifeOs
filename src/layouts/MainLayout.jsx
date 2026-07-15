@@ -5,6 +5,8 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Topbar from "../components/Topbar/Topbar";
 import ProfileModal from "../components/ProfileModal/ProfileModal";
 
+import InviteNotification from "../pages/Games/ludo/components/InviteNotification";
+
 import { useAuth } from "../hooks/useAuth";
 
 import {
@@ -58,7 +60,9 @@ function MainLayout() {
 
       setProfileOpen(false);
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
       console.error(error);
 
@@ -81,35 +85,55 @@ function MainLayout() {
   }
 
   return (
+
     <>
 
-      {menuOpen && (
+      {
+
+        menuOpen &&
+
         <div
+
           className="overlay"
-          onClick={() => setMenuOpen(false)}
+
+          onClick={() =>
+            setMenuOpen(false)
+          }
+
         />
-      )}
+
+      }
 
       <div className="layout">
 
         <Sidebar
+
           menuOpen={menuOpen}
+
           setMenuOpen={setMenuOpen}
+
         />
 
         <main className="main">
 
           <Topbar
+
             setMenuOpen={setMenuOpen}
+
             pageTitle="Dashboard"
+
             user={user}
+
             onProfileClick={() =>
               setProfileOpen(true)
             }
+
           />
 
           <section className="content">
+
             <Outlet />
+
           </section>
 
         </main>
@@ -117,16 +141,29 @@ function MainLayout() {
       </div>
 
       <ProfileModal
+
         open={profileOpen}
+
         user={user}
+
         onClose={() =>
           setProfileOpen(false)
         }
+
         onSave={handleSaveProfile}
+
         onDelete={handleDeleteAccount}
+
       />
 
+      {/* ==========================
+          LUDO INVITATION POPUP
+      ========================== */}
+
+      <InviteNotification />
+
     </>
+
   );
 
 }

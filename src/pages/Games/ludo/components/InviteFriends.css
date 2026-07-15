@@ -1,0 +1,65 @@
+.invite-card{
+
+    margin-top:25px;
+
+    background:#1b2d52;
+
+    border-radius:18px;
+
+    padding:25px;
+
+}
+
+.invite-card h2{
+
+    margin-bottom:20px;
+
+}
+
+.invite-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px;
+
+    background:#253d69;
+
+    border-radius:12px;
+
+    margin-bottom:12px;
+
+}
+
+.invite-row button{
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+    border:none;
+
+    background:#4d9dff;
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.empty{
+
+    text-align:center;
+
+    color:#b4c4dc;
+
+}

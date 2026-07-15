@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 
 import {
-    listenGameRoom,
-    rollDice,
-    releaseToken,
-    moveToken,
-} from "../../../services/gameService";
+    ArrowLeft,
+    Dice6,
+    Users,
+    MessageCircle,
+    Settings,
+    LogOut,
+    Crown,
+} from "lucide-react";
 
-import { getPlayerColor } from "../ludo/data/playerColors";
-
-import LudoGrid from "../components/LudoGrid";
+import { listenRoom, leaveRoom } from "../../../services/ludoService";
 
 import "./LudoBoard.css";
 
@@ -20,98 +20,32 @@ function LudoBoard() {
 
     const { roomId } = useParams();
 
+    const navigate = useNavigate();
     const { user } = useAuth();
 
     const [room, setRoom] = useState(null);
 
-    /* ===========================
-       LISTEN GAME ROOM
-    =========================== */
-
     useEffect(() => {
 
-        if (!roomId) return;
+        const unsubscribe = listenRoom(
 
-        const unsubscribe = listenGameRoom(
             roomId,
+
             setRoom
+
         );
 
-        return () => unsubscribe();
+        return unsubscribe;
 
     }, [roomId]);
-
-    /* ===========================
-       TOKEN CLICK
-    =========================== */
-
-    async function handleTokenClick(
-        color,
-        tokenId,
-        token
-    ) {
-
-        try {
-
-            if (token.pos === -1) {
-
-                await releaseToken(
-                    room.roomId,
-                    color,
-                    tokenId
-                );
-
-            } else {
-
-                await moveToken(
-                    room.roomId,
-                    color,
-                    tokenId
-                );
-
-            }
-
-        }
-
-        catch (error) {
-
-            console.log(error);
-
-        }
-
-    }
-
-    /* ===========================
-       ROLL DICE
-    =========================== */
-
-    async function handleRollDice() {
-
-        try {
-
-            await rollDice(room.roomId);
-
-        }
-
-        catch (error) {
-
-            console.log(error);
-
-        }
-
-    }
-
-    /* ===========================
-       LOADING
-    =========================== */
 
     if (!room) {
 
         return (
 
-            <div className="ludo-board-loading">
+            <div className="ludo-board-page">
 
-                <h2>Loading Game...</h2>
+                Loading Game...
 
             </div>
 
@@ -119,296 +53,266 @@ function LudoBoard() {
 
     }
 
-    /* ===========================
-       PLAYER INFO
-    =========================== */
+    async function handleLeaveGame(){
 
-    const myColor = getPlayerColor(
-        room,
-        user.uid
-    );
+    try{
 
-    const currentPlayer =
-        room.players[
-            room.currentPlayer ?? 0
-        ];
+        await leaveRoom(
 
-    const isMyTurn =
-        room.playerIds[
-            room.currentPlayer
-        ] === user.uid;
+            room.id,
 
-    const colors = [
-        "red",
-        "green",
-        "yellow",
-        "blue",
-    ];
+            user
 
-    /* ===========================
-       UI
-    =========================== */
+        );
+
+        navigate("/games/ludo");
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
+
+}
+
+    function getColor(color){
+
+    switch(color){
+
+        case "red":
+            return "🔴 Red";
+
+        case "green":
+            return "🟢 Green";
+
+        case "yellow":
+            return "🟡 Yellow";
+
+        case "blue":
+            return "🔵 Blue";
+
+        default:
+            return "⚪";
+
+    }
+
+}
 
     return (
 
         <div className="ludo-board-page">
 
-            {/* ================= HEADER ================= */}
+            {/* ================= TOP BAR ================= */}
 
-            <div className="game-header">
+            <div className="board-topbar">
 
-                <div>
+                <button
+                    className="icon-btn"
+                    onClick={() =>
+                        navigate("/games/ludo")
+                    }
+                >
 
-                    <h1>🎲 Ludo Match</h1>
+                    <ArrowLeft size={20}/>
 
-                    <p className="room-id">
-
-                        Room : {room.roomId}
-
-                    </p>
-
-                </div>
-
-                <div className="status-box">
-
-                    <span>
-
-                        Status
-
-                    </span>
-
-                    <h3>
-
-                        {room.status}
-
-                    </h3>
-
-                </div>
-
-            </div>
-
-            {/* ================= TURN CARD ================= */}
-
-            <div className="turn-card">
+                </button>
 
                 <div>
-
-                    <small>
-
-                        Current Turn
-
-                    </small>
 
                     <h2>
 
-                        {currentPlayer?.name}
+                        🎲 Ludo Match
 
                     </h2>
 
-                    <p className={`my-color ${myColor}`}>
+                    <span>
 
-                        Your Color : {myColor?.toUpperCase()}
+                        Room :
 
-                    </p>
+                        {" "}
 
-                </div>
-
-                {
-
-                    isMyTurn &&
-
-                    <span className="your-turn">
-
-                        YOUR TURN
+                        {room.roomCode}
 
                     </span>
 
-                }
+                </div>
 
             </div>
 
             {/* ================= MAIN ================= */}
 
-            <div className="ludo-layout">
+            <div className="board-layout">
 
-                {/* ================= BOARD ================= */}
+                {/* LEFT */}
 
-                <div className="board-wrapper">
+                <div className="board-left">
 
-                    <LudoGrid
+                    <div className="side-card">
 
-                        board={room.board}
+                        <h3>
 
-                        room={room}
+                            Players
 
-                        currentUid={user.uid}
-
-                        myColor={myColor}
-
-                        onTokenClick={handleTokenClick}
-
-                    />
-
-                </div>
-
-                {/* ================= SIDEBAR ================= */}
-
-                <aside className="game-sidebar">
-
-                    {/* ================= PLAYERS ================= */}
-
-                    <div className="sidebar-card">
-
-                        <h2>
-
-                            👥 Players
-
-                        </h2>
-
-                        <div className="players-list">
-
-                            {
-
-                                room.players.map((player, index) => {
-
-                                    const playerColor =
-                                        colors[index];
-
-                                    return (
-
-                                        <div
-
-                                            key={player.uid}
-
-                                            className={
-
-                                                player.uid === currentPlayer.uid
-
-                                                    ? "player-item active-player"
-
-                                                    : "player-item"
-
-                                            }
-
-                                        >
-
-                                            <div
-
-                                                className={`player-avatar ${playerColor}`}
-
-                                            >
-
-                                                {playerColor
-                                                    .charAt(0)
-                                                    .toUpperCase()}
-
-                                            </div>
-
-                                            <div className="player-details">
-
-                                                <h4>
-
-                                                    {player.name}
-
-                                                </h4>
-
-                                                <p className={`player-color ${playerColor}`}>
-
-                                                    {playerColor.toUpperCase()}
-
-                                                </p>
-
-                                                <span>
-
-                                                    {
-
-                                                        player.uid === currentPlayer.uid
-
-                                                            ? "Playing"
-
-                                                            : "Waiting"
-
-                                                    }
-
-                                                </span>
-
-                                            </div>
-
-                                        </div>
-
-                                    );
-
-                                })
-
-                            }
-
-                        </div>
-
-                    </div>
-
-                    {/* ================= DICE ================= */}
-
-                    <div className="sidebar-card">
-
-                        <h2>
-
-                            🎲 Dice
-
-                        </h2>
-
-                        <div className="dice-box">
-
-                            {
-
-                                room.diceValue ??
-
-                                "-"
-
-                            }
-
-                        </div>
-
-                        <p className="dice-text">
-
-                            {
-
-                                room.diceValue
-
-                                    ? `Last Roll : ${room.diceValue}`
-
-                                    : "Roll the dice"
-
-                            }
-
-                        </p>
-
-                    </div>
-
-                    {/* ================= BUTTON ================= */}
-
-                    <button
-
-                        className="roll-btn"
-
-                        disabled={!isMyTurn}
-
-                        onClick={handleRollDice}
-
-                    >
+                        </h3>
 
                         {
 
-                            isMyTurn
+                            room.players.map(player=>(
 
-                                ? "🎲 Roll Dice"
+                                <div
+                                    key={player.uid}
+                                    className="player-item"
+                                >
 
-                                : "Waiting for Turn"
+                                    <div>
+
+                                        <strong>
+
+                                            {player.fullName}
+
+                                        </strong>
+
+                                        {
+
+                                            player.uid===room.hostUid &&
+
+                                            <Crown
+                                                size={14}
+                                            />
+
+                                        }
+
+                                    </div>
+
+                                    <span>
+
+                                       <span>
+
+    {
+
+        getColor(player.color)
+
+    }
+
+</span>
+
+                                    </span>
+
+                                </div>
+
+                            ))
 
                         }
 
-                    </button>
+                    </div>
 
-                </aside>
+                </div>
+
+                {/* CENTER */}
+
+                <div className="board-center">
+
+                    <div className="ludo-placeholder">
+
+                        LUDO BOARD
+
+                    </div>
+
+                </div>
+
+                {/* RIGHT */}
+
+                <div className="board-right">
+
+                    <div className="side-card">
+
+                        <h3>
+
+                            Turn
+
+                        </h3>
+
+                        <h1>
+
+                            🔴
+
+                        </h1>
+
+                    </div>
+
+                    <div className="side-card">
+
+                        <Dice6 size={60}/>
+
+                        <h2>
+
+                            6
+
+                        </h2>
+
+                        <button>
+
+                            Roll Dice
+
+                        </button>
+
+                    </div>
+
+                    <div className="side-card">
+
+                        <h3>
+
+                            Timer
+
+                        </h3>
+
+                        <h1>
+
+                            30
+
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {/* ================= BOTTOM ================= */}
+
+            <div className="board-bottom">
+
+                <button>
+
+                    <MessageCircle size={18}/>
+
+                    Chat
+
+                </button>
+
+                <button>
+
+                    <Settings size={18}/>
+
+                    Settings
+
+                </button>
+
+                <button
+
+    onClick={handleLeaveGame}
+
+>
+
+    <LogOut size={18}/>
+
+    Leave Game
+
+</button>
 
             </div>
 

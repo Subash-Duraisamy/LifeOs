@@ -1,224 +1,230 @@
-/* ===========================
-   PAGE
-=========================== */
+.ludo-room{
 
-.room-page{
-    min-height:100%;
-    padding:40px;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    background:var(--background);
+    padding:30px;
+
+    color:white;
+
 }
 
-.room-card{
-    width:100%;
-    max-width:900px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:40px;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+.room-header{
+
+    margin-bottom:30px;
+
 }
 
-/* ===========================
-   HEADER
-=========================== */
+.room-header p{
 
-.room-card h1{
-    font-size:42px;
-    margin-bottom:8px;
+    color:#b5c3d7;
+
 }
 
-.room-card h2{
-    font-size:18px;
-    color:var(--text-secondary);
-    margin-bottom:8px;
-    font-weight:600;
-}
+.room-code-card{
 
-.room-card>p{
-    font-size:28px;
-    font-weight:700;
-    letter-spacing:3px;
-    color:var(--primary);
-    margin-bottom:35px;
-    word-break:break-all;
-}
+    background:#1b2c4f;
 
-/* ===========================
-   PLAYER LIST
-=========================== */
+    padding:25px;
 
-.players{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-    margin-bottom:35px;
-}
-
-.player{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(255,255,255,.03);
-    border:1px solid rgba(255,255,255,.08);
-    padding:18px 22px;
     border-radius:18px;
-    transition:.25s;
+
+    margin-bottom:25px;
+
 }
 
-.player:hover{
-    transform:translateY(-2px);
-    border-color:var(--primary);
+.room-code{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:15px;
+
 }
 
-.player span:first-child{
-    font-size:18px;
-    font-weight:600;
+.room-code span{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    letter-spacing:5px;
+
 }
 
-.player span:last-child{
-    font-size:15px;
-    font-weight:600;
+.room-code button{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#4d9dff;
+
+    color:white;
+
+    cursor:pointer;
+
 }
 
-/* ===========================
-   BUTTONS
-=========================== */
+.players-card{
+
+    background:#1b2c4f;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+}
+
+.players-card h2{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+.player-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px;
+
+    background:#253b67;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+}
+
+.ready{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#42d77d;
+
+}
+
+.not-ready{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#ff6c6c;
+
+}
 
 .room-buttons{
+
     display:flex;
-    flex-wrap:wrap;
-    gap:18px;
+
+    gap:20px;
+
 }
 
 .room-buttons button{
+
     flex:1;
-    min-width:180px;
+
+    padding:15px;
+
     border:none;
-    border-radius:16px;
-    padding:16px;
+
+    border-radius:14px;
+
     cursor:pointer;
-    font-size:17px;
-    font-weight:700;
-    transition:.25s;
+
+    font-size:16px;
+
+    font-weight:600;
+
 }
-
-/* Ready */
-
-.room-buttons button:first-child{
-    background:#2ecc71;
-    color:white;
-}
-
-.room-buttons button:first-child:hover{
-    background:#27ae60;
-    transform:translateY(-2px);
-}
-
-/* Cancel */
 
 .cancel-btn{
-    background:#ff4d4f;
+
+    background:#ff4d4d;
+
     color:white;
-}
 
-.cancel-btn:hover{
-    background:#d9363e;
-    transform:translateY(-2px);
 }
-
-/* Start */
 
 .start-btn{
-    background:#4da3ff;
+
+    background:#4d9dff;
+
     color:white;
-}
-
-.start-btn:hover{
-    background:#2b7cff;
-    transform:translateY(-2px);
-}
-
-/* ===========================
-   READY BADGES
-=========================== */
-
-.player span:last-child{
-    padding:7px 14px;
-    border-radius:999px;
-    background:rgba(255,255,255,.06);
-}
-
-/* ===========================
-   MOBILE
-=========================== */
-
-@media(max-width:768px){
-
-.room-page{
-    padding:18px;
-}
-
-.room-card{
-    padding:25px;
-}
-
-.room-card h1{
-    font-size:30px;
-}
-
-.room-card>p{
-    font-size:22px;
-}
-
-.player{
-    flex-direction:column;
-    gap:12px;
-    text-align:center;
-}
-
-.room-buttons{
-    flex-direction:column;
-}
-
-.room-buttons button{
-    width:100%;
-}
 
 }
 
-@media(max-width:500px){
+@media(max-width:700px){
 
-.room-card{
-    padding:18px;
+    .player-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+    .room-buttons{
+
+        flex-direction:column;
+
+    }
+
 }
 
-.room-card h1{
-    font-size:26px;
-}
 
-.room-card h2{
-    font-size:16px;
-}
+.ready-btn{
 
-.room-card>p{
-    font-size:18px;
-    letter-spacing:1px;
-}
+    padding:12px 28px;
 
-.player span:first-child{
-    font-size:16px;
-}
+    border:none;
 
-.player span:last-child{
-    font-size:14px;
-}
+    border-radius:12px;
 
-.room-buttons button{
+    background:#18b566;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:700;
+
     font-size:15px;
-    padding:14px;
+
+    transition:.25s;
+
 }
+
+.ready-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#14a65d;
 
 }

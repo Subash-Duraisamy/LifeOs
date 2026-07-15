@@ -1,13 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  Dice6,
-  Crown,
-  Swords,
-  Puzzle,
-  Users,
-  Gamepad2,
-  Bell,
-} from "lucide-react";
+import { Dice6, Crown, Gamepad2 } from "lucide-react";
 
 import "./Games.css";
 
@@ -19,26 +11,14 @@ function Games() {
     {
       title: "Ludo",
       description: "Play online with your friends.",
-      icon: <Dice6 size={36} />,
+      icon: <Dice6 size={42} />,
       available: true,
       path: "/games/ludo",
     },
     {
       title: "Chess",
       description: "Coming Soon",
-      icon: <Crown size={36} />,
-      available: false,
-    },
-    {
-      title: "Snake",
-      description: "Coming Soon",
-      icon: <Swords size={36} />,
-      available: false,
-    },
-    {
-      title: "Tic Tac Toe",
-      description: "Coming Soon",
-      icon: <Puzzle size={36} />,
+      icon: <Crown size={42} />,
       available: false,
     },
   ];
@@ -47,133 +27,52 @@ function Games() {
 
     <div className="games-page">
 
-      <div className="games-banner">
+      <div className="games-header">
 
-        <Gamepad2 size={55} />
+        <Gamepad2 size={58} />
 
         <div>
 
           <h1>Games Hub</h1>
 
           <p>
-            Play online with your friends anytime.
+            Challenge your friends and enjoy multiplayer games.
           </p>
 
         </div>
 
       </div>
 
-      <div className="games-dashboard">
+      <div className="games-grid">
 
-        <div className="left-panel">
+        {games.map((game, index) => (
 
-          <section className="games-section">
+          <div
+            key={index}
+            className={`game-card ${
+              !game.available ? "disabled" : ""
+            }`}
+            onClick={() =>
+              game.available &&
+              navigate(game.path)
+            }
+          >
 
-            <h2>Continue Playing</h2>
-
-            <div
-              className="continue-card"
-              onClick={() => navigate("/games/ludo")}
-            >
-
-              <Dice6 size={40} />
-
-              <div>
-
-                <h3>Ludo</h3>
-
-                <p>Resume or start a new match.</p>
-
-              </div>
-
+            <div className="game-icon">
+              {game.icon}
             </div>
 
-          </section>
+            <h2>{game.title}</h2>
 
-          <section className="games-section">
+            <p>{game.description}</p>
 
-            <h2>Available Games</h2>
+            <button disabled={!game.available}>
+              {game.available ? "Play Now" : "Coming Soon"}
+            </button>
 
-            <div className="games-grid">
+          </div>
 
-              {games.map((game, index) => (
-
-                <div
-                  key={index}
-                  className={`game-card ${
-                    !game.available
-                      ? "disabled"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    game.available &&
-                    navigate(game.path)
-                  }
-                >
-
-                  {game.icon}
-
-                  <h3>{game.title}</h3>
-
-                  <p>{game.description}</p>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </section>
-
-        </div>
-
-        <div className="right-panel">
-
-          <section className="side-card">
-
-            <h3>
-
-              <Users size={20} />
-
-              Friends Online
-
-            </h3>
-
-            <div className="friend">
-
-              🟢 Rahul
-
-            </div>
-
-            <div className="friend">
-
-              🟢 Arun
-
-            </div>
-
-            <div className="friend">
-
-              ⚪ John
-
-            </div>
-
-          </section>
-
-          <section className="side-card">
-
-            <h3>
-
-              <Bell size={20} />
-
-              Invitations
-
-            </h3>
-
-            <p>No invitations.</p>
-
-          </section>
-
-        </div>
+        ))}
 
       </div>
 

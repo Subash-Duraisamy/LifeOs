@@ -1,0 +1,110 @@
+.ludo-home{
+
+    padding:30px;
+    color:white;
+
+}
+
+.ludo-banner{
+
+    background:#182746;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    margin-bottom:30px;
+
+}
+
+.ludo-banner h1{
+
+    margin-bottom:8px;
+
+}
+
+.ludo-banner p{
+
+    color:#b7c6db;
+
+}
+
+.ludo-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+}
+
+.ludo-card{
+
+    background:#22365d;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:center;
+
+}
+
+.ludo-card:hover{
+
+    transform:translateY(-5px);
+
+    background:#2b4678;
+
+}
+
+.ludo-card svg{
+
+    color:#4d9dff;
+
+    margin-bottom:18px;
+
+}
+
+.ludo-card h2{
+
+    margin-bottom:10px;
+
+}
+
+.ludo-card p{
+
+    color:#b8c7dd;
+
+}
+
+.disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+.disabled:hover{
+
+    transform:none;
+
+    background:#22365d;
+
+}
+
+@media(max-width:768px){
+
+    .ludo-home{
+
+        padding:18px;
+
+    }
+
+}
