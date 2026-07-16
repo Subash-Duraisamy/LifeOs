@@ -48,14 +48,33 @@ function LudoBoard() {
 
     }, [roomId]);
 
-    if (!room) {
-        if (room.status === "finished") {
+   // =====================
+// Loading
+// =====================
+
+if (!room) {
+
+    return (
+
+        <div className="ludo-board-page">
+
+            Loading Game...
+
+        </div>
+
+    );
+
+}
+
+// =====================
+// Winner Screen
+// =====================
+
+if (room.status === "finished") {
 
     const winner = room.players.find(
 
-        player =>
-
-            player.uid === room.winner
+        player => player.uid === room.winner
 
     );
 
@@ -63,25 +82,13 @@ function LudoBoard() {
 
         <div className="ludo-board-page">
 
-            <h1>
+            <h1>🏆 Winner</h1>
 
-                🏆 Winner
-
-            </h1>
-
-            <h2>
-
-                {winner?.fullName}
-
-            </h2>
+            <h2>{winner?.fullName}</h2>
 
             <button
 
-                onClick={() =>
-
-                    navigate("/games/ludo")
-
-                }
+                onClick={() => navigate("/games/ludo")}
 
             >
 
@@ -94,18 +101,6 @@ function LudoBoard() {
     );
 
 }
-
-        return (
-
-            <div className="ludo-board-page">
-
-                Loading Game...
-
-            </div>
-
-        );
-
-    }
 
     async function handleLeaveGame(){
 
