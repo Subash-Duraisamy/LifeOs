@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
+import LudoGrid from "./components/LudoGrid";
+
 
 import {
     ArrowLeft,
@@ -11,8 +13,15 @@ import {
     LogOut,
     Crown,
 } from "lucide-react";
+import {
 
-import { listenRoom, leaveRoom } from "../../../services/ludoService";
+    listenRoom,
+
+    leaveRoom,
+
+    rollDice,
+
+} from "../../../services/ludoService";
 
 import "./LudoBoard.css";
 
@@ -70,6 +79,31 @@ function LudoBoard() {
     }
 
     catch(error){
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
+
+}
+async function handleRollDice() {
+
+    console.log(room);
+
+    try {
+
+        await rollDice(
+
+            room.id,
+
+            user.uid
+
+        );
+
+    }
+
+    catch (error) {
 
         console.log(error);
 
@@ -214,19 +248,23 @@ function LudoBoard() {
 
                 {/* CENTER */}
 
-                <div className="board-center">
+                
 
-                    <div className="ludo-placeholder">
+<div className="board-center">
 
-                        LUDO BOARD
+  <LudoGrid
 
-                    </div>
+    room={room}
 
-                </div>
+    currentUser={user}
 
-                {/* RIGHT */}
+/>
 
-                <div className="board-right">
+</div>
+
+{/* RIGHT */}
+
+<div className="board-right">
 
                     <div className="side-card">
 
@@ -236,11 +274,33 @@ function LudoBoard() {
 
                         </h3>
 
-                        <h1>
+<h1>
 
-                            🔴
+    {
 
-                        </h1>
+        room.currentTurn
+
+            ?
+
+            getColor(
+
+                room.players.find(
+
+                    player =>
+
+                        player.uid === room.currentTurn
+
+                )?.color
+
+            )
+
+            :
+
+            "-"
+
+    }
+
+</h1>
 
                     </div>
 
@@ -248,17 +308,29 @@ function LudoBoard() {
 
                         <Dice6 size={60}/>
 
-                        <h2>
+<h2>
 
-                            6
+    {room.diceValue ?? 0}
 
-                        </h2>
+</h2>
 
-                        <button>
+<button
 
-                            Roll Dice
+    onClick={handleRollDice}
 
-                        </button>
+    disabled={
+
+        room.currentTurn !== user.uid ||
+
+        room.diceRolled
+
+    }
+
+>
+
+    Roll Dice
+
+</button>
 
                     </div>
 

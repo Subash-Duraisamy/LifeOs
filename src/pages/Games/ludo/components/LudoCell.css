@@ -1,0 +1,97 @@
+/* ==========================================
+   CELL
+========================================== */
+
+.ludo-cell{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:1px solid #3f4d72;
+
+    box-sizing:border-box;
+
+    position:relative;
+
+}
+
+/* ==========================================
+   EMPTY
+========================================== */
+
+.ludo-cell.empty{
+
+    background:#172238;
+
+}
+
+/* ==========================================
+   NORMAL PATH
+========================================== */
+
+.ludo-cell.path{
+
+    background:#ffffff;
+
+}
+
+/* ==========================================
+   CENTER
+========================================== */
+
+.ludo-cell.center{
+
+    background:#ffffff;
+
+}
+
+/* ==========================================
+   HOMES
+========================================== */
+
+.ludo-cell.red{
+
+    background:#ff5d5d;
+
+}
+
+.ludo-cell.green{
+
+    background:#45d96f;
+
+}
+
+.ludo-cell.yellow{
+
+    background:#ffd94d;
+
+}
+
+.ludo-cell.blue{
+
+    background:#5b9cff;
+
+}
+
+/* ==========================================
+   SAFE STAR
+========================================== */
+
+.ludo-cell.safe::after{
+
+    content:"★";
+
+    color:#444;
+
+    font-size:18px;
+
+    position:absolute;
+
+}

@@ -11,8 +11,66 @@ import {
   setDoc,
   
 } from "firebase/firestore";
+import { createInitialTokens } from "../pages/Games/ludo/data/GameState";
 
 import { db } from "../firebase/firebase";
+
+
+/* =====================================
+   START GAME
+===================================== */
+
+export async function startGame(roomId) {
+
+    const roomRef = doc(
+
+        db,
+
+        "ludoRooms",
+
+        roomId
+
+    );
+
+    const snapshot = await getDoc(roomRef);
+
+    if (!snapshot.exists()) {
+
+        throw new Error("Room not found.");
+
+    }
+
+    const room = snapshot.data();
+
+    const tokens = createInitialTokens(
+
+        room.players
+
+    );
+
+    await updateDoc(
+
+        roomRef,
+
+        {
+
+            status: "playing",
+
+            currentTurn: room.players[0].uid,
+
+            diceValue: 0,
+
+            winner: null,
+
+            tokens,
+
+            startedAt: serverTimestamp(),
+
+        }
+
+    );
+
+}
 
 /* ======================================
    FRIENDSHIP DOCUMENT ID

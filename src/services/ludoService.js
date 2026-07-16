@@ -1,6 +1,14 @@
 
 
 import { db } from "../firebase/firebase";
+import { releaseToken } from "../pages/Games/ludo/components/GameLogic";
+import {
+
+    moveToken,
+
+    canMoveToken,
+
+} from "../pages/Games/ludo/components/GameLogic";
 
 import {
     collection,
@@ -19,13 +27,367 @@ import {
     
 
     
+
 } from "firebase/firestore";
+import { createInitialTokens } from "../pages/Games/ludo/data/GameState";
 
 
 
 
 
 
+/* =====================================
+   NEXT TURN
+===================================== */
+
+function getNextTurn(room) {
+
+    console.log("Players :", room.players);
+
+    console.log("Current :", room.currentTurn);
+
+    const currentIndex = room.players.findIndex(
+
+        player => player.uid === room.currentTurn
+
+    );
+
+    console.log("Current Index :", currentIndex);
+
+    let nextIndex = currentIndex + 1;
+
+    if(nextIndex >= room.players.length){
+
+        nextIndex = 0;
+
+    }
+
+    console.log("Next Index :", nextIndex);
+
+    console.log("Next UID :", room.players[nextIndex].uid);
+
+    return room.players[nextIndex].uid;
+
+}
+
+/* =====================================
+   ROLL DICE
+===================================== */
+
+export async function rollDice(roomId, uid) {
+
+    const roomRef = doc(db, "ludoRooms", roomId);
+
+    const snapshot = await getDoc(roomRef);
+
+    if (!snapshot.exists()) {
+        throw new Error("Room not found.");
+    }
+
+    const room = snapshot.data();
+
+    if (room.currentTurn !== uid) {
+        throw new Error("Not your turn.");
+    }
+
+    const diceValue = Math.floor(Math.random() * 6) + 1;
+
+    const myTokens = room.tokens[uid] || [];
+
+    const canMove = myTokens.some(token =>
+        canMoveToken(token, diceValue)
+    );
+
+    // No possible move
+    if (!canMove) {
+
+        // Roll was 6
+        if (diceValue === 6) {
+
+            await updateDoc(roomRef, {
+
+                diceValue: 6,
+                diceRolled: true,
+
+            });
+
+        }
+
+        // Roll 1-5 and no move
+        else {
+
+            await updateDoc(roomRef, {
+
+                diceValue,
+                diceRolled: false,
+                currentTurn: getNextTurn(room),
+
+            });
+
+        }
+
+        return;
+    }
+
+    // Player has a move
+    await updateDoc(roomRef, {
+
+        diceValue,
+        diceRolled: true,
+
+    });
+
+}
+
+
+/* =====================================
+   RELEASE TOKEN
+===================================== */
+
+export async function releaseMyToken(
+
+    roomId,
+
+    uid,
+
+    tokenId
+
+) {
+
+    const roomRef = doc(
+
+        db,
+
+        "ludoRooms",
+
+        roomId
+
+    );
+
+    const snapshot = await getDoc(roomRef);
+
+    if (!snapshot.exists()) {
+
+        throw new Error("Room not found.");
+
+    }
+
+    const room = snapshot.data();
+
+    if (room.currentTurn !== uid) {
+
+        throw new Error("Not your turn.");
+
+    }
+
+    if (!room.diceRolled) {
+
+        throw new Error("Roll dice first.");
+
+    }
+
+    if (room.diceValue !== 6) {
+
+        throw new Error("Need 6 to release.");
+
+    }
+
+    const player = room.players.find(
+
+        p => p.uid === uid
+
+    );
+
+    const tokens = {
+
+        ...room.tokens,
+
+    };
+
+    const myTokens = [...tokens[uid]];
+
+    const index = myTokens.findIndex(
+
+        token => token.id === tokenId
+
+    );
+
+    if (index === -1) {
+
+        throw new Error("Token not found.");
+
+    }
+
+    if (!myTokens[index].home) {
+
+        throw new Error("Already outside.");
+
+    }
+
+    myTokens[index] = releaseToken(
+
+        myTokens[index],
+
+        player.color
+
+    );
+
+    tokens[uid] = myTokens;
+
+await updateDoc(roomRef,{
+
+    tokens,
+
+    diceRolled:false,
+
+    diceValue:0,
+
+    // same player gets another roll
+    currentTurn: uid,
+
+});
+
+}
+
+/* =====================================
+   MOVE TOKEN
+===================================== */
+
+export async function moveMyToken(
+
+    roomId,
+
+    uid,
+
+    tokenId
+
+) {
+
+    const roomRef = doc(
+
+        db,
+
+        "ludoRooms",
+
+        roomId
+
+    );
+
+    const snapshot = await getDoc(
+
+        roomRef
+
+    );
+
+    if (!snapshot.exists()) {
+
+        throw new Error("Room not found.");
+
+    }
+
+    const room = snapshot.data();
+
+    if (room.currentTurn !== uid) {
+
+        throw new Error("Not your turn.");
+
+    }
+
+    if (!room.diceRolled) {
+
+        throw new Error("Roll dice first.");
+
+    }
+
+    const player = room.players.find(
+
+        player =>
+
+            player.uid === uid
+
+    );
+
+    const tokens = {
+
+        ...room.tokens,
+
+    };
+
+    const myTokens = [
+
+        ...tokens[uid]
+
+    ];
+
+    const index = myTokens.findIndex(
+
+        token =>
+
+            token.id === tokenId
+
+    );
+
+    if (index === -1) {
+
+        throw new Error("Token not found.");
+
+    }
+
+    if (
+
+        !canMoveToken(
+
+            myTokens[index],
+
+            room.diceValue
+
+        )
+
+    ) {
+
+        throw new Error(
+
+            "Cannot move token."
+
+        );
+
+    }
+
+    myTokens[index] = moveToken(
+
+        myTokens[index],
+
+        room.diceValue,
+
+        player.color
+
+    );
+
+    tokens[uid] = myTokens;
+
+const updates = {
+
+    tokens,
+
+    diceRolled: false,
+
+    diceValue: 0,
+
+};
+
+if (room.diceValue === 6) {
+
+    updates.currentTurn = uid;
+
+} else {
+
+    updates.currentTurn = getNextTurn(room);
+
+}
+
+await updateDoc(roomRef, updates);
+
+}
 /* =====================================
    GET MY ACTIVE ROOM
 ===================================== */
@@ -89,6 +451,11 @@ export async function startGame(roomId) {
 
     const room =
         snapshot.data();
+        const tokens = createInitialTokens(
+
+    room.players
+
+);
 
     // -----------------------------
     // Minimum Players
@@ -127,14 +494,29 @@ export async function startGame(roomId) {
     // Start Game
     // -----------------------------
 
-    await updateDoc(roomRef, {
+   await updateDoc(
+
+    roomRef,
+
+    {
 
         status: "playing",
 
+        currentTurn: room.players[0].uid,
+
+        diceValue: 0,
+
+        diceRolled: false,
+
+        winner: null,
+
+        tokens,
+
         startedAt: serverTimestamp(),
 
-    });
+    }
 
+);
 }
 
 
