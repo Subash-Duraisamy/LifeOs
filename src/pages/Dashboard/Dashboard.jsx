@@ -68,7 +68,7 @@ function Dashboard() {
     const hour = new Date().getHours();
 
     if (hour >= 5 && hour < 12)
-      return "Good Morning ☀️";
+      return "Happiee Morninggg ☀️";
 
     if (hour >= 12 && hour < 17)
       return "Good Afternoon 🌤️";
@@ -76,7 +76,7 @@ function Dashboard() {
     if (hour >= 17 && hour < 21)
       return "Good Evening 🌇";
 
-    return "Good Night 🌙";
+    return "Good Night and sweet dreams 🌙";
 
   }
 
