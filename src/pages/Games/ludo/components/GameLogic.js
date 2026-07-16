@@ -284,6 +284,27 @@ export function moveToken(
 
     const newSteps = token.steps + diceValue;
 
+console.log("=================================");
+console.log("COLOR:", color);
+console.log("TOKEN ID:", token.id);
+console.log("CURRENT STEPS:", token.steps);
+console.log("DICE:", diceValue);
+console.log("NEW STEPS:", newSteps);
+
+const currentBoardIndex =
+    (getStartIndex(color) + token.steps) % PATH.length;
+
+const nextBoardIndex =
+    (getStartIndex(color) + newSteps) % PATH.length;
+
+console.log("CURRENT BOARD INDEX:", currentBoardIndex);
+console.log("CURRENT CELL:", PATH[currentBoardIndex]);
+
+console.log("NEXT BOARD INDEX:", nextBoardIndex);
+console.log("NEXT CELL:", PATH[nextBoardIndex]);
+
+console.log("HOME CONDITION:", newSteps >= 52 && newSteps <= 57);
+
     // -----------------------
     // Cannot cross finish
     // -----------------------
@@ -363,11 +384,15 @@ if (newSteps === 58) {
     // Main path
     // -----------------------
 
-    const boardIndex =
-        (
-            getStartIndex(color) +
-            newSteps
-        ) % PATH.length;
+console.log("Color:", color);
+console.log("Current Steps:", token.steps);
+console.log("New Steps:", newSteps);
+
+const boardIndex =
+    (getStartIndex(color) + newSteps) % PATH.length;
+
+console.log("Board Index:", boardIndex);
+console.log("Board Cell:", PATH[boardIndex]);
 
     const cell = PATH[boardIndex];
 
