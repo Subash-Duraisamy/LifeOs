@@ -1,22 +1,24 @@
 /* ==========================================================
-   PAGE
+   TASKS PAGE
 ========================================================== */
 
 .tasks-page{
 
     width:100%;
-    max-width:1200px;
 
-    margin:auto;
+    max-width:100%;
 
-    padding:28px;
+    margin:0;
+
+    padding:24px;
+
+    box-sizing:border-box;
 
     display:flex;
+
     flex-direction:column;
 
     gap:22px;
-
-    box-sizing:border-box;
 
 }
 
@@ -26,15 +28,15 @@
 
 .tasks-header{
 
+    width:100%;
+
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
 
-    gap:18px;
-
-    flex-wrap:wrap;
+    gap:20px;
 
 }
 
@@ -47,6 +49,8 @@
     font-weight:800;
 
     color:#fff;
+
+    line-height:1.1;
 
 }
 
@@ -78,6 +82,8 @@
 
     white-space:nowrap;
 
+    flex-shrink:0;
+
 }
 
 .create-task-btn:hover{
@@ -92,13 +98,15 @@
 
 .tasks-toolbar{
 
-    display:flex;
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:1fr 140px 140px;
 
     gap:14px;
 
     align-items:center;
-
-    flex-wrap:wrap;
 
 }
 
@@ -108,9 +116,7 @@
 
 .tasks-toolbar input{
 
-    flex:1;
-
-    min-width:260px;
+    width:100%;
 
     height:46px;
 
@@ -128,11 +134,13 @@
 
     font-size:14px;
 
+    box-sizing:border-box;
+
 }
 
 .tasks-toolbar input::placeholder{
 
-    color:#9ca8c7;
+    color:#8d99b8;
 
 }
 
@@ -142,7 +150,7 @@
 
 .tasks-toolbar select{
 
-    min-width:120px;
+    width:100%;
 
     height:46px;
 
@@ -162,6 +170,8 @@
 
     cursor:pointer;
 
+    box-sizing:border-box;
+
 }
 
 /* ==========================================================
@@ -170,18 +180,18 @@
 
 .task-list{
 
+    width:100%;
+
     display:flex;
 
     flex-direction:column;
 
     gap:16px;
 
-    width:100%;
-
 }
 
 /* ==========================================================
-   EMPTY
+   EMPTY STATE
 ========================================================== */
 
 .empty-state{
@@ -190,37 +200,37 @@
 
     flex-direction:column;
 
-    align-items:center;
-
     justify-content:center;
 
-    gap:16px;
+    align-items:center;
 
     text-align:center;
 
     padding:70px 20px;
 
+    gap:16px;
+
 }
 
 .empty-state h2{
+
+    margin:0;
 
     color:#fff;
 
     font-size:34px;
 
-    margin:0;
-
 }
 
 .empty-state p{
 
-    color:#9aa8c4;
-
-    font-size:16px;
-
     margin:0;
 
-    max-width:450px;
+    color:#9ca8c7;
+
+    max-width:500px;
+
+    line-height:1.6;
 
 }
 
@@ -232,7 +242,7 @@
 
     .tasks-page{
 
-        padding:24px;
+        padding:22px;
 
     }
 
@@ -246,9 +256,15 @@
 
     .tasks-page{
 
-        padding:20px;
+        padding:18px;
 
         gap:18px;
+
+    }
+
+    .tasks-header{
+
+        gap:16px;
 
     }
 
@@ -260,13 +276,9 @@
 
     .tasks-toolbar{
 
+        grid-template-columns:1fr 130px 130px;
+
         gap:10px;
-
-    }
-
-    .tasks-toolbar input{
-
-        min-width:220px;
 
     }
 
@@ -292,15 +304,15 @@
 
         align-items:stretch;
 
-        gap:12px;
+        gap:14px;
 
     }
 
     .tasks-header h1{
 
-        font-size:30px;
-
         text-align:center;
+
+        font-size:30px;
 
     }
 
@@ -308,7 +320,9 @@
 
         width:100%;
 
-        padding:13px;
+        height:48px;
+
+        padding:0;
 
         font-size:15px;
 
@@ -316,31 +330,21 @@
 
     .tasks-toolbar{
 
+        display:flex;
+
         flex-direction:column;
 
         gap:10px;
 
     }
 
-    .tasks-toolbar input{
-
-        width:100%;
-
-        min-width:100%;
-
-        height:44px;
-
-        font-size:14px;
-
-    }
+    .tasks-toolbar input,
 
     .tasks-toolbar select{
 
         width:100%;
 
-        min-width:100%;
-
-        height:44px;
+        height:46px;
 
         font-size:14px;
 
@@ -348,7 +352,7 @@
 
     .empty-state{
 
-        padding:50px 10px;
+        padding:50px 15px;
 
     }
 
@@ -376,6 +380,14 @@
 
         padding:10px;
 
+        gap:14px;
+
+    }
+
+    .tasks-header{
+
+        gap:12px;
+
     }
 
     .tasks-header h1{
@@ -386,25 +398,43 @@
 
     .create-task-btn{
 
-        padding:11px;
+        height:44px;
 
         font-size:14px;
 
-    }
-
-    .tasks-toolbar input{
-
-        height:40px;
-
-        font-size:13px;
+        border-radius:10px;
 
     }
+
+    .tasks-toolbar{
+
+        gap:8px;
+
+    }
+
+    .tasks-toolbar input,
 
     .tasks-toolbar select{
 
-        height:40px;
+        height:42px;
 
         font-size:13px;
+
+        border-radius:10px;
+
+        padding:0 14px;
+
+    }
+
+    .task-list{
+
+        gap:12px;
+
+    }
+
+    .empty-state{
+
+        padding:40px 10px;
 
     }
 
