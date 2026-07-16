@@ -11,6 +11,50 @@ import {
     BLUE_HOME_PATH,
 
 } from "./PathData";
+import { SAFE_CELLS } from "./SafeCells";
+
+
+
+
+
+
+/* ==========================================
+   IS BLOCK
+========================================== */
+
+export function isBlock(
+
+    tokens,
+
+    row,
+
+    col,
+
+    color
+
+) {
+
+    return (
+
+        tokens.filter(
+
+            token =>
+
+                !token.home &&
+
+                !token.finished &&
+
+                token.color === color &&
+
+                token.row === row &&
+
+                token.col === col
+
+        ).length >= 2
+
+    );
+
+}
 
 /* ==========================================
    START INDEX
@@ -57,6 +101,23 @@ export function getPathIndex(position) {
 
 }
 
+/* ==========================================
+   SAFE CELL
+========================================== */
+
+export function isSafeCell(token) {
+
+    const index = getPathIndex({
+
+        row: token.row,
+
+        col: token.col,
+
+    });
+
+    return SAFE_CELLS.includes(index);
+
+}
 /* ==========================================
    GET PATH CELL
 ========================================== */
@@ -359,5 +420,83 @@ export function isWinner(
             token.finished
 
     );
+
+}
+
+/* ==========================================
+   RESET TOKEN TO HOME
+========================================== */
+
+export function sendTokenHome(token) {
+
+    const homePositions = {
+
+        red: [
+
+            { row:1,col:1 },
+
+            { row:1,col:4 },
+
+            { row:4,col:1 },
+
+            { row:4,col:4 },
+
+        ],
+
+        green: [
+
+            { row:1,col:10 },
+
+            { row:1,col:13 },
+
+            { row:4,col:10 },
+
+            { row:4,col:13 },
+
+        ],
+
+        yellow: [
+
+            { row:10,col:10 },
+
+            { row:10,col:13 },
+
+            { row:13,col:10 },
+
+            { row:13,col:13 },
+
+        ],
+
+        blue: [
+
+            { row:10,col:1 },
+
+            { row:10,col:4 },
+
+            { row:13,col:1 },
+
+            { row:13,col:4 },
+
+        ],
+
+    };
+
+    const home = homePositions[token.color][token.index];
+
+    return {
+
+        ...token,
+
+        home: true,
+
+        finished: false,
+
+        steps: 0,
+
+        row: home.row,
+
+        col: home.col,
+
+    };
 
 }

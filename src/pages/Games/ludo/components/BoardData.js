@@ -1,10 +1,6 @@
 export const BOARD_SIZE = 15;
 
 /* ==========================================
-   BOARD
-========================================== */
-
-/* ==========================================
    CREATE BOARD
 ========================================== */
 
@@ -39,23 +35,60 @@ export function createBoard() {
     return board;
 
 }
-/* ==========================================
-   CELL TYPE
-========================================== */
 
 /* ==========================================
    CELL TYPE
 ========================================== */
 
-function getCellType(row,col){
+function getCellType(row, col) {
 
-    if(isCenter(row,col))
+    if (isCenter(row, col))
         return "center";
 
-    if(isSafe(row,col))
+    if (isSafe(row, col))
         return "safe";
 
-    if(isPath(row,col))
+    // RED HOME STRETCH
+
+    if (
+        row === 7 &&
+        col >= 1 &&
+        col <= 6
+    ) {
+        return "red-home";
+    }
+
+    // GREEN HOME STRETCH
+
+    if (
+        col === 7 &&
+        row >= 1 &&
+        row <= 6
+    ) {
+        return "green-home";
+    }
+
+    // YELLOW HOME STRETCH
+
+    if (
+        row === 7 &&
+        col >= 8 &&
+        col <= 13
+    ) {
+        return "yellow-home";
+    }
+
+    // BLUE HOME STRETCH
+
+    if (
+        col === 7 &&
+        row >= 8 &&
+        row <= 13
+    ) {
+        return "blue-home";
+    }
+
+    if (isPath(row, col))
         return "path";
 
     return "empty";
@@ -66,26 +99,26 @@ function getCellType(row,col){
    CELL COLOR
 ========================================== */
 
-function getCellColor(row,col){
+function getCellColor(row, col) {
 
     // RED HOME
 
-    if(row<=5 && col<=5)
+    if (row <= 5 && col <= 5)
         return "red";
 
     // GREEN HOME
 
-    if(row<=5 && col>=9)
+    if (row <= 5 && col >= 9)
         return "green";
 
     // YELLOW HOME
 
-    if(row>=9 && col>=9)
+    if (row >= 9 && col >= 9)
         return "yellow";
 
     // BLUE HOME
 
-    if(row>=9 && col<=5)
+    if (row >= 9 && col <= 5)
         return "blue";
 
     return "";
@@ -98,23 +131,13 @@ function getCellColor(row,col){
 
 export const SAFE_CELLS = [
 
-    // Red
-
     { row: 6, col: 1 },
-
-    // Green
 
     { row: 1, col: 8 },
 
-    // Yellow
-
     { row: 8, col: 13 },
 
-    // Blue
-
     { row: 13, col: 6 },
-
-    // Middle Safe Cells
 
     { row: 2, col: 6 },
 
@@ -130,48 +153,48 @@ export const SAFE_CELLS = [
    CENTER
 ========================================== */
 
-function isCenter(row,col){
+function isCenter(row, col) {
 
-    return row===7 && col===7;
+    return row === 7 && col === 7;
 
 }
 
-
 /* ==========================================
-   PATH
+   MAIN PATH
 ========================================== */
 
-function isPath(row,col){
+function isPath(row, col) {
 
-    if(col>=6 && col<=8)
+    if (col >= 6 && col <= 8)
         return true;
 
-    if(row>=6 && row<=8)
+    if (row >= 6 && row <= 8)
         return true;
 
     return false;
 
 }
+
 /* ==========================================
-   SAFE CELL
+   SAFE
 ========================================== */
 
-function isSafe(row,col){
+function isSafe(row, col) {
 
     return SAFE_CELLS.some(
 
-        cell=>
+        cell =>
 
-            cell.row===row &&
+            cell.row === row &&
 
-            cell.col===col
+            cell.col === col
 
     );
 
 }
 
 /* ==========================================
-   RED HOME TOKENS
+   TOKEN HOME POSITIONS
 ========================================== */
 
 export const RED_HOME = [
@@ -186,10 +209,6 @@ export const RED_HOME = [
 
 ];
 
-/* ==========================================
-   GREEN HOME TOKENS
-========================================== */
-
 export const GREEN_HOME = [
 
     { row: 1, col: 10 },
@@ -202,10 +221,6 @@ export const GREEN_HOME = [
 
 ];
 
-/* ==========================================
-   YELLOW HOME TOKENS
-========================================== */
-
 export const YELLOW_HOME = [
 
     { row: 10, col: 10 },
@@ -217,10 +232,6 @@ export const YELLOW_HOME = [
     { row: 13, col: 13 },
 
 ];
-
-/* ==========================================
-   BLUE HOME TOKENS
-========================================== */
 
 export const BLUE_HOME = [
 

@@ -8,6 +8,12 @@ import {
 
     canMoveToken,
 
+    sendTokenHome,
+
+    getPathIndex,
+
+    isBlock,
+
 } from "../pages/Games/ludo/components/GameLogic";
 
 import {
@@ -353,17 +359,174 @@ export async function moveMyToken(
 
     }
 
-    myTokens[index] = moveToken(
+// Move token
 
-        myTokens[index],
+myTokens[index] = moveToken(
 
-        room.diceValue,
+    myTokens[index],
 
-        player.color
+    room.diceValue,
+
+    player.color
+
+);
+
+tokens[uid] = myTokens;
+
+// --------------------------------
+// Check Capture
+// --------------------------------
+
+// --------------------------------
+// Check Capture (Ignore Safe Cells)
+// --------------------------------
+
+let killed = false;
+
+const movedToken = myTokens[index];
+const allTokens = Object.values(tokens).flat();
+
+const blocked = allTokens.some(
+
+    token =>
+
+        token.color !== movedToken.color &&
+
+        !token.home &&
+
+        !token.finished &&
+
+        token.row === movedToken.row &&
+
+        token.col === movedToken.col &&
+
+        isBlock(
+
+            allTokens,
+
+            token.row,
+
+            token.col,
+
+            token.color
+
+        )
+
+);
+
+if (blocked) {
+
+    throw new Error(
+
+        "Enemy block. Cannot move there."
 
     );
 
-    tokens[uid] = myTokens;
+}
+
+// Find moved token path index
+
+const movedIndex = getPathIndex({
+
+    row: movedToken.row,
+
+    col: movedToken.col,
+
+});
+
+// Safe cells cannot kill
+
+const safeIndexes = [
+
+    0,
+
+    8,
+
+    13,
+
+    21,
+
+    26,
+
+    34,
+
+    39,
+
+    47,
+
+];
+
+if (!safeIndexes.includes(movedIndex)) {
+
+    for (const otherUid of Object.keys(tokens)) {
+
+        if (otherUid === uid) continue;
+
+        const enemyTokens = [...tokens[otherUid]];
+
+        let changed = false;
+
+        for (let i = 0; i < enemyTokens.length; i++) {
+
+            const enemy = enemyTokens[i];
+
+            if (
+
+                enemy.home ||
+
+                enemy.finished
+
+            ) {
+
+                continue;
+
+            }
+
+const allTokens = Object.values(tokens).flat();
+
+if (
+
+    enemy.row === movedToken.row &&
+
+    enemy.col === movedToken.col &&
+
+    !isBlock(
+
+        allTokens,
+
+        enemy.row,
+
+        enemy.col,
+
+        enemy.color
+
+    )
+
+) {
+
+    enemyTokens[i] = sendTokenHome(enemy);
+
+    killed = true;
+
+    changed = true;
+
+}
+
+        }
+
+        if (changed) {
+
+            tokens[otherUid] = enemyTokens;
+
+        }
+
+    }
+
+}
+
+// --------------------------------
+// Update Turn
+// --------------------------------
 
 const updates = {
 
@@ -375,17 +538,49 @@ const updates = {
 
 };
 
-if (room.diceValue === 6) {
+// ----------------------
+// Check Winner
+// ----------------------
+
+const myFinished = tokens[uid].every(
+
+    token => token.finished
+
+);
+
+if (myFinished) {
+
+    updates.status = "finished";
+
+    updates.winner = uid;
+
+}
+
+else if (
+
+    room.diceValue === 6 ||
+
+    killed
+
+) {
 
     updates.currentTurn = uid;
 
-} else {
+}
+
+else {
 
     updates.currentTurn = getNextTurn(room);
 
 }
 
-await updateDoc(roomRef, updates);
+await updateDoc(
+
+    roomRef,
+
+    updates
+
+);
 
 }
 /* =====================================

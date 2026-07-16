@@ -37,59 +37,37 @@ function LudoGrid({
 
         try {
 
-            if (
+            if (uid !== currentUser.uid) return;
 
-                uid !== currentUser.uid
+            if (room.currentTurn !== currentUser.uid) return;
 
-            ) {
+            if (token.home) {
 
-                return;
+                await releaseMyToken(
 
-            }
+                    room.id,
 
-            if (
+                    currentUser.uid,
 
-                room.currentTurn !==
+                    token.id
 
-                currentUser.uid
-
-            ) {
-
-                return;
+                );
 
             }
 
-if (
+            else {
 
-    token.home
+                await moveMyToken(
 
-) {
+                    room.id,
 
-    await releaseMyToken(
+                    currentUser.uid,
 
-        room.id,
+                    token.id
 
-        currentUser.uid,
+                );
 
-        token.id
-
-    );
-
-}
-
-else {
-
-    await moveMyToken(
-
-        room.id,
-
-        currentUser.uid,
-
-        token.id
-
-    );
-
-}
+            }
 
         }
 
@@ -133,87 +111,125 @@ else {
 
                                     {
 
-                                        Object.entries(
+                                        (() => {
 
-                                            room.tokens
+                                            const tokensInCell = [];
 
-                                        ).map(
+                                            Object.entries(room.tokens).forEach(
 
-                                            ([uid, tokens]) =>
+                                                ([uid, tokens]) => {
 
-                                                tokens.map(
-
-                                                    token => {
+                                                    tokens.forEach(token => {
 
                                                         if (
 
-                                                            token.row !== cell.row ||
+                                                            token.row === cell.row &&
 
-                                                            token.col !== cell.col
+                                                            token.col === cell.col
 
                                                         ) {
 
-                                                            return null;
+                                                            const player =
+
+                                                                room.players.find(
+
+                                                                    p =>
+
+                                                                        p.uid === uid
+
+                                                                );
+
+                                                            tokensInCell.push({
+
+                                                                uid,
+
+                                                                token,
+
+                                                                player,
+
+                                                            });
 
                                                         }
 
-                                                        const player =
+                                                    });
 
-                                                            room.players.find(
+                                                }
 
-                                                                item =>
+                                            );
 
-                                                                    item.uid === uid
+                                            return tokensInCell.map(
 
-                                                            );
+                                                (
 
-                                                        return (
+                                                    {
 
-                                                            <LudoToken
+                                                        uid,
 
-                                                                key={
+                                                        token,
 
-                                                                    uid +
+                                                        player,
 
-                                                                    "-" +
+                                                    },
 
-                                                                    token.id
+                                                    index
 
-                                                                }
+                                                ) => (
 
-                                                                color={
+               <LudoToken
 
-                                                                    player.color
+    key={
 
-                                                                }
+        uid +
 
-                                                                selected={
+        "-" +
 
-                                                                    room.currentTurn === uid
+        token.id
 
-                                                                }
+    }
 
-                                                                onClick={() =>
+    color={
 
-                                                                    handleTokenClick(
+        player.color
 
-                                                                        uid,
+    }
 
-                                                                        token
+    selected={
 
-                                                                    )
+        room.currentTurn === uid
 
-                                                                }
+    }
 
-                                                            />
+    stackIndex={
 
-                                                        );
+        index
 
-                                                    }
+    }
+
+    stackCount={
+
+        tokensInCell.length
+
+    }
+
+    onClick={() =>
+
+        handleTokenClick(
+
+            uid,
+
+            token
+
+        )
+
+    }
+
+/>
 
                                                 )
 
-                                        )
+                                            );
+
+                                        })()
 
                                     }
 

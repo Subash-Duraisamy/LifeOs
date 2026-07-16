@@ -5,20 +5,17 @@
 .ludo-cell{
 
     width:42px;
-
     height:42px;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
-    border:1px solid #3f4d72;
+    position:relative;
 
     box-sizing:border-box;
 
-    position:relative;
+    border:1px solid #3f4d72;
 
 }
 
@@ -33,7 +30,7 @@
 }
 
 /* ==========================================
-   NORMAL PATH
+   MAIN PATH
 ========================================== */
 
 .ludo-cell.path{
@@ -48,12 +45,22 @@
 
 .ludo-cell.center{
 
-    background:#ffffff;
+    background:conic-gradient(
+
+        #ff5b5b 0deg 90deg,
+
+        #49d96b 90deg 180deg,
+
+        #ffd84a 180deg 270deg,
+
+        #5a98ff 270deg 360deg
+
+    );
 
 }
 
 /* ==========================================
-   HOMES
+   PLAYER HOMES
 ========================================== */
 
 .ludo-cell.red{
@@ -81,6 +88,34 @@
 }
 
 /* ==========================================
+   HOME STRETCH (FINAL PATH)
+========================================== */
+
+.ludo-cell.red-home{
+
+    background:#ff7a7a;
+
+}
+
+.ludo-cell.green-home{
+
+    background:#69e98b;
+
+}
+
+.ludo-cell.yellow-home{
+
+    background:#ffe36a;
+
+}
+
+.ludo-cell.blue-home{
+
+    background:#7cb2ff;
+
+}
+
+/* ==========================================
    SAFE STAR
 ========================================== */
 
@@ -88,10 +123,20 @@
 
     content:"★";
 
-    color:#444;
+    color:#555;
 
     font-size:18px;
 
     position:absolute;
+
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.ludo-cell:hover{
+
+    filter:brightness(.98);
 
 }
