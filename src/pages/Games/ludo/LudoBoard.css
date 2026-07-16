@@ -1,137 +1,413 @@
-/* ==========================================
+/* ==========================================================
    BUTTONS
-========================================== */
+========================================================== */
 
 button{
     border:none;
     outline:none;
     cursor:pointer;
-    transition:0.25s ease;
+    transition:.2s ease;
     font-family:inherit;
 }
 
-/* Roll Dice Button */
+/* ==========================================================
+   DESKTOP ROLL BUTTON
+========================================================== */
 
 .side-card button{
 
     width:100%;
+    padding:7px 9px;
+    margin-top:5px;
 
-    padding:14px;
-
-    margin-top:12px;
-
-    border-radius:10px;
+    border-radius:6px;
 
     background:#2563eb;
-
     color:#fff;
 
-    font-size:16px;
+    font-size:11px;
+    font-weight:600;
 
-    font-weight:700;
-
-    letter-spacing:.5px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:4px;
 
 }
 
 .side-card button:hover{
-
     background:#1d4ed8;
-
-    transform:translateY(-2px);
-
-}
-
-.side-card button:active{
-
-    transform:scale(.97);
-
 }
 
 .side-card button:disabled{
 
     background:#475569;
-
     color:#cbd5e1;
-
-    cursor:not-allowed;
-
-    transform:none;
-
-    opacity:.7;
+    opacity:.75;
 
 }
 
-/* Bottom Buttons */
+/* ==========================================================
+   PLAYERS CARD
+========================================================== */
+
+.side-card{
+
+    padding:10px;
+
+}
+
+.side-card h3{
+
+    font-size:14px;
+    margin-bottom:8px;
+
+}
+
+/* Player */
+
+.player-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:5px 0;
+
+}
+
+.player-item strong{
+
+    font-size:12px;
+    font-weight:700;
+
+}
+
+.player-item span{
+
+    font-size:11px;
+
+}
+
+.player-item svg{
+
+    width:12px;
+    height:12px;
+
+}
+
+/* ==========================================================
+   TURN CARD
+========================================================== */
+
+.side-card h1{
+
+    font-size:18px;
+    margin:5px 0;
+
+}
+
+.side-card h2{
+
+    font-size:16px;
+    margin:4px 0;
+
+}
+
+/* ==========================================================
+   BOTTOM BUTTONS
+========================================================== */
 
 .board-bottom{
 
     display:flex;
-
     justify-content:center;
-
-    gap:15px;
-
-    margin-top:20px;
-
+    align-items:center;
     flex-wrap:wrap;
+
+    gap:7px;
+    margin-top:10px;
 
 }
 
 .board-bottom button{
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
+    gap:5px;
 
-    gap:8px;
+    min-width:110px;
 
-    min-width:170px;
+    padding:7px 10px;
 
-    padding:13px 18px;
-
-    border-radius:10px;
+    border-radius:7px;
 
     background:#1e293b;
-
     color:#fff;
 
-    font-size:15px;
-
+    font-size:11px;
     font-weight:600;
 
     border:1px solid #334155;
 
 }
 
-.board-bottom button:hover{
+.board-bottom button svg{
 
-    background:#334155;
-
-    transform:translateY(-2px);
-
-}
-
-.board-bottom button:active{
-
-    transform:scale(.97);
+    width:14px;
+    height:14px;
 
 }
-
-/* Leave Button */
 
 .board-bottom button:last-child{
 
     background:#dc2626;
-
     border-color:#dc2626;
 
 }
 
-.board-bottom button:last-child:hover{
+/* ==========================================================
+   MOBILE DICE BAR
+========================================================== */
 
-    background:#b91c1c;
+.mobile-dice-bar{
+
+    display:none;
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .side-card{
+
+        padding:8px;
+
+    }
+
+    .side-card h3{
+
+        font-size:13px;
+
+    }
+
+    .player-item strong{
+
+        font-size:11px;
+
+    }
+
+    .player-item span{
+
+        font-size:10px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .board-right{
+
+        display:none;
+
+    }
+
+    .mobile-dice-bar{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:4px;
+
+        padding:6px;
+
+        margin-bottom:8px;
+
+        border-radius:8px;
+
+        background:#16233d;
+
+        border:1px solid #2e3d60;
+
+    }
+
+    .mobile-turn{
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+    }
+
+    .mobile-turn span{
+
+        font-size:9px;
+        color:#9fb3d7;
+
+    }
+
+    .mobile-turn h2{
+
+        font-size:12px;
+        margin:0;
+
+    }
+
+    .mobile-dice{
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:4px;
+
+    }
+
+    .mobile-dice svg{
+
+        width:14px;
+        height:14px;
+
+    }
+
+    .mobile-dice h2{
+
+        font-size:14px;
+        margin:0;
+
+    }
+
+    .mobile-dice-bar button{
+
+        padding:5px;
+
+        font-size:10px;
+
+        border-radius:6px;
+
+        background:#2563eb;
+        color:#fff;
+
+    }
+
+    /* Players */
+
+    .side-card{
+
+        padding:6px;
+
+    }
+
+    .side-card h3{
+
+        font-size:12px;
+        margin-bottom:5px;
+
+    }
+
+    .player-item{
+
+        padding:3px 0;
+
+    }
+
+    .player-item strong{
+
+        font-size:10px;
+
+    }
+
+    .player-item span{
+
+        font-size:9px;
+
+    }
+
+    .player-item svg{
+
+        width:10px;
+        height:10px;
+
+    }
+
+    .side-card h1{
+
+        font-size:15px;
+
+    }
+
+    .side-card h2{
+
+        font-size:13px;
+
+    }
+
+    /* Bottom */
+
+    .board-bottom{
+
+        flex-direction:column;
+        gap:5px;
+
+    }
+
+    .board-bottom button{
+
+        width:100%;
+
+        min-width:100%;
+
+        padding:7px;
+
+        font-size:10px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .player-item strong{
+
+        font-size:9px;
+
+    }
+
+    .player-item span{
+
+        font-size:8px;
+
+    }
+
+    .side-card h3{
+
+        font-size:11px;
+
+    }
+
+    .mobile-turn h2{
+
+        font-size:11px;
+
+    }
+
+    .mobile-dice h2{
+
+        font-size:13px;
+
+    }
 
 }

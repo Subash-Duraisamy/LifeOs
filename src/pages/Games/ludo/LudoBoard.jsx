@@ -217,6 +217,72 @@ async function handleRollDice() {
 
             </div>
 
+            {/* ================= MOBILE DICE BAR ================= */}
+
+<div className="mobile-dice-bar">
+
+    <div className="mobile-turn">
+
+        <span>Turn</span>
+
+        <h2>
+
+            {
+
+                room.currentTurn
+
+                    ?
+
+                    getColor(
+
+                        room.players.find(
+
+                            player =>
+
+                                player.uid === room.currentTurn
+
+                        )?.color
+
+                    )
+
+                    :
+
+                    "-"
+
+            }
+
+        </h2>
+
+    </div>
+
+    <div className="mobile-dice">
+
+        <Dice6 size={34}/>
+
+        <h2>{room.diceValue ?? 0}</h2>
+
+    </div>
+
+    <button
+
+        onClick={handleRollDice}
+
+        disabled={
+
+            room.currentTurn !== user.uid ||
+
+            room.diceRolled
+
+        }
+
+    >
+
+        Roll Dice
+
+    </button>
+
+</div>
+
             {/* ================= MAIN ================= */}
 
             <div className="board-layout">
