@@ -129,25 +129,23 @@ function LudoGrid({
 
                                                         ) {
 
-                                                            const player =
+                                                           const player = room.players.find(
+    p => p.uid === uid
+);
 
-                                                                room.players.find(
+// Player has left the room.
+// Ignore orphan tokens.
+if (!player) return;
 
-                                                                    p =>
+tokensInCell.push({
 
-                                                                        p.uid === uid
+    uid,
 
-                                                                );
+    token,
 
-                                                            tokensInCell.push({
+    player,
 
-                                                                uid,
-
-                                                                token,
-
-                                                                player,
-
-                                                            });
+});
 
                                                         }
 
@@ -187,11 +185,11 @@ function LudoGrid({
 
     }
 
-    color={
+color={
 
-        player.color
+    player?.color || token.color
 
-    }
+}
 
     selected={
 
