@@ -140,3 +140,56 @@
     filter:brightness(.98);
 
 }
+/* ==========================================
+   CENTER 3x3 AREA
+========================================== */
+
+/* Top Left */
+.ludo-cell.center-red{
+    background:#e64949;
+}
+
+/* Top Center */
+.ludo-cell.center-green{
+    background:#48cb64;
+}
+
+/* Top Right */
+.ludo-cell.center-green-light{
+    background:#4ec67c;
+}
+
+/* Middle Left */
+.ludo-cell.center-red-light{
+    background:#e75a5a;
+}
+
+/* Center */
+.ludo-cell.center{
+    background:conic-gradient(
+        #ff5b5b 0deg 90deg,
+        #49d96b 90deg 180deg,
+        #ffd84a 180deg 270deg,
+        #5a98ff 270deg 360deg
+    );
+}
+
+/* Middle Right */
+.ludo-cell.center-yellow-light{
+    background:#ffd013;
+}
+
+/* Bottom Left */
+.ludo-cell.center-blue-light{
+    background:#549bff;
+}
+
+/* Bottom Center */
+.ludo-cell.center-blue{
+    background:#236bce;
+}
+
+/* Bottom Right */
+.ludo-cell.center-yellow{
+    background:#e7cd73;
+}

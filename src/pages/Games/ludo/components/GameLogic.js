@@ -83,28 +83,7 @@ export function getStartIndex(color) {
 }
 
 
-export function getHomeEntry(color) {
 
-    switch (color) {
-
-        case "red":
-            return 50;
-
-        case "green":
-            return 11;
-
-        case "yellow":
-            return 24;
-
-        case "blue":
-            return 37;
-
-        default:
-            return 50;
-
-    }
-
-}
 
 /* ==========================================
    FIND PATH INDEX
@@ -277,7 +256,7 @@ export function canMoveToken(
     const nextSteps = token.steps + diceValue;
 
     // Maximum steps to reach center
-    return nextSteps <= 57;
+    return nextSteps <= 58;
 
 }
 
@@ -285,27 +264,20 @@ export function canMoveToken(
    MOVE TOKEN
 ========================================== */
 export function moveToken(
-
     token,
-
     diceValue,
-
     color
-
 ) {
 
     // -----------------------
-    // Release
+    // Token still in home
     // -----------------------
 
     if (token.home) {
 
         return releaseToken(
-
             token,
-
             color
-
         );
 
     }
@@ -313,66 +285,89 @@ export function moveToken(
     const newSteps = token.steps + diceValue;
 
     // -----------------------
-    // Exact Finish
+    // Cannot cross finish
     // -----------------------
 
-if (newSteps === 57) {
+ if (newSteps > 58) {
+
+    return token;
+
+}
+
+    // -----------------------
+    // Reached center
+    // -----------------------
+
+ 
+
+    // -----------------------
+    // Home stretch
+    // -----------------------
+
+// ==========================
+// Home Stretch
+// ==========================
+
+if (newSteps >= 52 && newSteps <= 57) {
+
+    const homeIndex = newSteps - 52;
+
+    const homeCell = getHomeCell(
+
+        color,
+
+        homeIndex
+
+    );
 
     return {
 
         ...token,
 
-        row: 7,
+        row: homeCell.row,
 
-        col: 7,
+        col: homeCell.col,
 
-        steps: 57,
-
-        finished: true,
+        steps: newSteps,
 
     };
 
 }
 
+
+
+// FINSIH PART 
+// ###########
+
+// ==========================
+// Reached Center
+// ==========================
+
+if (newSteps === 58) {
+
+    return {
+
+        ...token,
+
+        row:7,
+        col:7,
+
+        steps:58,
+
+        finished:true,
+
+    };
+
+}
     // -----------------------
-    // Home Stretch
+    // Main path
     // -----------------------
-
-    if (newSteps >= 52) {
-
-        const homeCell = getHomeCell(
-
-            color,
-
-            newSteps - 52
-
-        );
-
-        return {
-
-            ...token,
-
-            row: homeCell.row,
-
-            col: homeCell.col,
-
-            steps: newSteps,
-
-        };
-
-    }
-
-    // -----------------------
-    // Normal Path
-    // -----------------------
-
-    const startIndex = getStartIndex(color);
 
     const boardIndex =
-
-        (startIndex + newSteps) %
-
-        PATH.length;
+        (
+            getStartIndex(color) +
+            newSteps
+        ) % PATH.length;
 
     const cell = PATH[boardIndex];
 

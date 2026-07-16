@@ -62,6 +62,7 @@ export const PATH = [
     { row: 8, col: 0 },
 
     { row: 7, col: 0 },
+    { row: 6, col: 0 },
 
 ];
 
@@ -144,3 +145,4 @@ export const BLUE_HOME_PATH = [
     { row: 8, col: 7 },
 
 ];
+console.log("PATH LENGTH =", PATH.length);

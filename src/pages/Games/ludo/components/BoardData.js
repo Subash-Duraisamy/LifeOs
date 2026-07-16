@@ -39,62 +39,90 @@ export function createBoard() {
 /* ==========================================
    CELL TYPE
 ========================================== */
-
 function getCellType(row, col) {
 
-    if (isCenter(row, col))
+    /* ==========================================
+       CENTER 3x3 AREA
+    ========================================== */
+
+    // Top Row
+    if (row === 6 && col === 6)
+        return "center-red";
+
+    if (row === 6 && col === 7)
+        return "center-green";
+
+    if (row === 6 && col === 8)
+        return "center-green-light";
+
+    // Middle Row
+    if (row === 7 && col === 6)
+        return "center-red-light";
+
+    if (row === 7 && col === 7)
         return "center";
+
+    if (row === 7 && col === 8)
+        return "center-yellow-light";
+
+    // Bottom Row
+    if (row === 8 && col === 6)
+        return "center-blue-light";
+
+    if (row === 8 && col === 7)
+        return "center-blue";
+
+    if (row === 8 && col === 8)
+        return "center-yellow";
+
+    /* ==========================================
+       SAFE CELLS
+    ========================================== */
 
     if (isSafe(row, col))
         return "safe";
 
-    // RED HOME STRETCH
+    /* ==========================================
+       HOME ENTRY CELLS
+    ========================================== */
 
-    if (
-        row === 7 &&
-        col >= 1 &&
-        col <= 6
-    ) {
+    if (row === 7 && col === 6)
+        return "path red-entry";
+
+    if (row === 6 && col === 7)
+        return "path green-entry";
+
+    if (row === 7 && col === 8)
+        return "path yellow-entry";
+
+    if (row === 8 && col === 7)
+        return "path blue-entry";
+
+    /* ==========================================
+       HOME STRETCH
+    ========================================== */
+
+    if (row === 7 && col >= 1 && col <= 6)
         return "red-home";
-    }
 
-    // GREEN HOME STRETCH
-
-    if (
-        col === 7 &&
-        row >= 1 &&
-        row <= 6
-    ) {
+    if (col === 7 && row >= 1 && row <= 6)
         return "green-home";
-    }
 
-    // YELLOW HOME STRETCH
-
-    if (
-        row === 7 &&
-        col >= 8 &&
-        col <= 13
-    ) {
+    if (row === 7 && col >= 8 && col <= 13)
         return "yellow-home";
-    }
 
-    // BLUE HOME STRETCH
-
-    if (
-        col === 7 &&
-        row >= 8 &&
-        row <= 13
-    ) {
+    if (col === 7 && row >= 8 && row <= 13)
         return "blue-home";
-    }
+
+    /* ==========================================
+       MAIN PATH
+    ========================================== */
 
     if (isPath(row, col))
         return "path";
 
     return "empty";
-
 }
-
 /* ==========================================
    CELL COLOR
 ========================================== */

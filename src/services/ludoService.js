@@ -268,6 +268,7 @@ export async function moveMyToken(
     tokenId
 
 ) {
+        console.count("moveMyToken()");
 
     const roomRef = doc(
 
@@ -362,27 +363,24 @@ console.log("DICE =", room.diceValue);
     }
 
 // Move token
-
-console.log("BEFORE MOVE");
-console.log("Steps :", myTokens[index].steps);
-console.log("Dice  :", room.diceValue);
-console.log("Token :", myTokens[index]);
+console.log("================================");
+console.log("MOVE CALLED");
+console.log("Dice :", room.diceValue);
+console.log("Steps Before :", myTokens[index].steps);
+console.log("Token :", myTokens[index].id);
 
 const updatedToken = moveToken(
-
     myTokens[index],
-
     room.diceValue,
-
     player.color
-
 );
 
+console.log("Steps After :", updatedToken.steps);
+console.log("================================");
 // Token reached center
 if (updatedToken.finished) {
 
-    updatedToken.row = 7;
-    updatedToken.col = 7;
+    console.log("Finished");
 
 }
 
@@ -563,20 +561,33 @@ const updates = {
 // Check Winner
 // ----------------------
 
+// ----------------------
+// Ranking
+// ----------------------
+
+const finishedPlayers = room.finishedPlayers || [];
+
 const myFinished = tokens[uid].every(
-
     token => token.finished
-
 );
 
-if (myFinished) {
+if (myFinished && !finishedPlayers.includes(uid)) {
 
-    updates.status = "finished";
-
-    updates.winner = uid;
+    finishedPlayers.push(uid);
 
 }
 
+updates.finishedPlayers = finishedPlayers;
+
+// Game ends only when every player has finished
+
+if (finishedPlayers.length === room.players.length) {
+
+    updates.status = "finished";
+
+    updates.winner = finishedPlayers[0];
+
+}
 else if (
 
     room.diceValue === 6 ||
@@ -724,7 +735,8 @@ export async function startGame(roomId) {
 
         diceRolled: false,
 
-        winner: null,
+       winner: null,
+finishedPlayers: [],
 
         tokens,
 
