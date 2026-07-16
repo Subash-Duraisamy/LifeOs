@@ -1,6 +1,12 @@
+/* ==========================================================
+   PAGE
+========================================================== */
+
 .tasks-page{
 
-    max-width:1100px;
+    width:100%;
+    max-width:1200px;
+
     margin:auto;
 
     padding:28px;
@@ -8,44 +14,69 @@
     display:flex;
     flex-direction:column;
 
-    gap:20px;
+    gap:22px;
+
+    box-sizing:border-box;
 
 }
+
+/* ==========================================================
+   HEADER
+========================================================== */
 
 .tasks-header{
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
 
 }
 
 .tasks-header h1{
 
+    margin:0;
+
     font-size:42px;
-    color:white;
+
+    font-weight:800;
+
+    color:#fff;
 
 }
+
+/* ==========================================================
+   CREATE BUTTON
+========================================================== */
 
 .create-task-btn{
 
     border:none;
 
-    background:#4f7cff;
-
-    color:white;
-
-    padding:10px 18px;
-
-    border-radius:10px;
-
-    font-size:15px;
-
-    font-weight:600;
+    outline:none;
 
     cursor:pointer;
 
-    transition:.2s;
+    background:#4f7cff;
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    white-space:nowrap;
 
 }
 
@@ -55,11 +86,15 @@
 
 }
 
+/* ==========================================================
+   TOOLBAR
+========================================================== */
+
 .tasks-toolbar{
 
     display:flex;
 
-    gap:12px;
+    gap:14px;
 
     align-items:center;
 
@@ -67,11 +102,17 @@
 
 }
 
+/* ==========================================================
+   SEARCH
+========================================================== */
+
 .tasks-toolbar input{
 
-    width:280px;
+    flex:1;
 
-    height:42px;
+    min-width:260px;
+
+    height:46px;
 
     border:none;
 
@@ -79,11 +120,11 @@
 
     background:#1d2436;
 
-    color:white;
+    color:#fff;
 
-    border-radius:10px;
+    border-radius:12px;
 
-    padding:0 15px;
+    padding:0 16px;
 
     font-size:14px;
 
@@ -91,23 +132,29 @@
 
 .tasks-toolbar input::placeholder{
 
-    color:#8f97b0;
+    color:#9ca8c7;
 
 }
 
+/* ==========================================================
+   SELECT
+========================================================== */
+
 .tasks-toolbar select{
 
-    height:42px;
+    min-width:120px;
+
+    height:46px;
 
     border:none;
 
     outline:none;
 
+    border-radius:12px;
+
     background:#1d2436;
 
-    color:white;
-
-    border-radius:10px;
+    color:#fff;
 
     padding:0 14px;
 
@@ -117,12 +164,260 @@
 
 }
 
+/* ==========================================================
+   TASK LIST
+========================================================== */
+
 .task-list{
 
     display:flex;
 
     flex-direction:column;
 
-    gap:12px;
+    gap:16px;
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   EMPTY
+========================================================== */
+
+.empty-state{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:16px;
+
+    text-align:center;
+
+    padding:70px 20px;
+
+}
+
+.empty-state h2{
+
+    color:#fff;
+
+    font-size:34px;
+
+    margin:0;
+
+}
+
+.empty-state p{
+
+    color:#9aa8c4;
+
+    font-size:16px;
+
+    margin:0;
+
+    max-width:450px;
+
+}
+
+/* ==========================================================
+   LARGE LAPTOP
+========================================================== */
+
+@media(max-width:1200px){
+
+    .tasks-page{
+
+        padding:24px;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media(max-width:992px){
+
+    .tasks-page{
+
+        padding:20px;
+
+        gap:18px;
+
+    }
+
+    .tasks-header h1{
+
+        font-size:34px;
+
+    }
+
+    .tasks-toolbar{
+
+        gap:10px;
+
+    }
+
+    .tasks-toolbar input{
+
+        min-width:220px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .tasks-page{
+
+        padding:14px;
+
+        gap:16px;
+
+    }
+
+    .tasks-header{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:12px;
+
+    }
+
+    .tasks-header h1{
+
+        font-size:30px;
+
+        text-align:center;
+
+    }
+
+    .create-task-btn{
+
+        width:100%;
+
+        padding:13px;
+
+        font-size:15px;
+
+    }
+
+    .tasks-toolbar{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+    .tasks-toolbar input{
+
+        width:100%;
+
+        min-width:100%;
+
+        height:44px;
+
+        font-size:14px;
+
+    }
+
+    .tasks-toolbar select{
+
+        width:100%;
+
+        min-width:100%;
+
+        height:44px;
+
+        font-size:14px;
+
+    }
+
+    .empty-state{
+
+        padding:50px 10px;
+
+    }
+
+    .empty-state h2{
+
+        font-size:28px;
+
+    }
+
+    .empty-state p{
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:480px){
+
+    .tasks-page{
+
+        padding:10px;
+
+    }
+
+    .tasks-header h1{
+
+        font-size:26px;
+
+    }
+
+    .create-task-btn{
+
+        padding:11px;
+
+        font-size:14px;
+
+    }
+
+    .tasks-toolbar input{
+
+        height:40px;
+
+        font-size:13px;
+
+    }
+
+    .tasks-toolbar select{
+
+        height:40px;
+
+        font-size:13px;
+
+    }
+
+    .empty-state h2{
+
+        font-size:24px;
+
+    }
+
+    .empty-state p{
+
+        font-size:13px;
+
+    }
 
 }
