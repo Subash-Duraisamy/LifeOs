@@ -21,7 +21,7 @@ import "./MainLayout.css";
 
 function MainLayout() {
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   const [profileOpen, setProfileOpen] = useState(false);
 
@@ -88,23 +88,23 @@ function MainLayout() {
 
     <>
 
-      {
-
-        menuOpen &&
+      {menuOpen && (
 
         <div
 
           className="overlay"
 
-          onClick={() =>
-            setMenuOpen(false)
-          }
+          onClick={() => setMenuOpen(false)}
 
         />
 
-      }
+      )}
 
-      <div className="layout">
+      <div
+        className={`layout ${
+          menuOpen ? "sidebar-open" : "sidebar-close"
+        }`}
+      >
 
         <Sidebar
 
@@ -117,6 +117,8 @@ function MainLayout() {
         <main className="main">
 
           <Topbar
+
+            menuOpen={menuOpen}
 
             setMenuOpen={setMenuOpen}
 
@@ -155,10 +157,6 @@ function MainLayout() {
         onDelete={handleDeleteAccount}
 
       />
-
-      {/* ==========================
-          LUDO INVITATION POPUP
-      ========================== */}
 
       <InviteNotification />
 

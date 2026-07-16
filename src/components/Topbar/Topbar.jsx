@@ -1,74 +1,127 @@
+import { Menu, X } from "lucide-react";
+
 import "./Topbar.css";
 
 function Topbar({
-  setMenuOpen,
-  pageTitle = "Dashboard",
-  user,
-  onProfileClick,
+
+    menuOpen,
+
+    setMenuOpen,
+
+    pageTitle = "Dashboard",
+
+    user,
+
+    onProfileClick,
+
 }) {
 
-  const profileLetter =
-    user?.displayName?.charAt(0).toUpperCase() ||
-    user?.fullName?.charAt(0).toUpperCase() ||
-    "👤";
+    const profileLetter =
 
-  return (
-    <header className="topbar">
+        user?.displayName?.charAt(0).toUpperCase() ||
 
-      {/* Left */}
+        user?.fullName?.charAt(0).toUpperCase() ||
 
-      <div className="topbar-left">
+        "👤";
 
-        <button
-          className="mobile-menu"
-          onClick={() => setMenuOpen(true)}
-        >
-          ☰
-        </button>
+    function handleToggleMenu() {
 
-        <h2 className="page-title">
-          {pageTitle}
-        </h2>
+        setMenuOpen(!menuOpen);
 
-      </div>
+    }
 
-      {/* Right */}
+    return (
 
-      <div className="topbar-right">
+        <header className="topbar">
 
-        <button
-          className="profile-btn"
-          type="button"
-          title="My Profile"
-          onClick={() => {
-            if (onProfileClick) {
-              onProfileClick();
-            }
-          }}
-        >
+            {/* ================= LEFT ================= */}
 
-          {user?.photoURL ? (
+            <div className="topbar-left">
 
-            <img
-              src={user.photoURL}
-              alt="Profile"
-              className="profile-image"
-            />
+                <button
 
-          ) : (
+                    className="menu-btn"
 
-            <span className="profile-letter">
-              {profileLetter}
-            </span>
+                    onClick={handleToggleMenu}
 
-          )}
+                    aria-label="Toggle Sidebar"
 
-        </button>
+                >
 
-      </div>
+                    {
 
-    </header>
-  );
+                        menuOpen
+
+                            ?
+
+                            <X size={22} />
+
+                            :
+
+                            <Menu size={22} />
+
+                    }
+
+                </button>
+
+                <h2 className="page-title">
+
+                    {pageTitle}
+
+                </h2>
+
+            </div>
+
+            {/* ================= RIGHT ================= */}
+
+            <div className="topbar-right">
+
+                <button
+
+                    className="profile-btn"
+
+                    type="button"
+
+                    title="My Profile"
+
+                    onClick={onProfileClick}
+
+                >
+
+                    {
+
+                        user?.photoURL
+
+                            ?
+
+                            <img
+
+                                src={user.photoURL}
+
+                                alt="Profile"
+
+                                className="profile-image"
+
+                            />
+
+                            :
+
+                            <span className="profile-letter">
+
+                                {profileLetter}
+
+                            </span>
+
+                    }
+
+                </button>
+
+            </div>
+
+        </header>
+
+    );
+
 }
 
 export default Topbar;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Gamepad2 } from "lucide-react";
+
 import {
   LayoutDashboard,
   CheckSquare,
@@ -14,6 +14,7 @@ import {
   LogOut,
   X,
   Users,
+  Gamepad2,
 } from "lucide-react";
 
 import "./Sidebar.css";
@@ -21,14 +22,20 @@ import "./Sidebar.css";
 import { logout } from "../../services/authService";
 import ConfirmModal from "../../Modal/ConfirmModal";
 
-function Sidebar({ menuOpen, setMenuOpen }) {
+function Sidebar({
+
+  menuOpen,
+
+  setMenuOpen,
+
+}) {
 
   const navigate = useNavigate();
 
   const [showLogoutModal, setShowLogoutModal] =
     useState(false);
 
-  const closeMenu = () => {
+  function closeMenu() {
 
     if (window.innerWidth <= 768) {
 
@@ -36,7 +43,7 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
     }
 
-  };
+  }
 
   async function handleLogout() {
 
@@ -63,7 +70,9 @@ function Sidebar({ menuOpen, setMenuOpen }) {
     <>
 
       <aside
-        className={`sidebar ${menuOpen ? "open" : ""}`}
+
+        className={`sidebar ${menuOpen ? "open" : "closed"}`}
+
       >
 
         {/* ================= HEADER ================= */}
@@ -77,8 +86,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </h2>
 
           <button
+
             className="close-btn"
+
             onClick={() => setMenuOpen(false)}
+
           >
 
             <X size={22} />
@@ -92,8 +104,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
         <nav className="sidebar-menu">
 
           <NavLink
+
             to="/dashboard"
+
             onClick={closeMenu}
+
           >
 
             <LayoutDashboard size={20} />
@@ -103,8 +118,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </NavLink>
 
           <NavLink
+
             to="/tasks"
+
             onClick={closeMenu}
+
           >
 
             <CheckSquare size={20} />
@@ -114,8 +132,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </NavLink>
 
           <NavLink
+
             to="/library"
+
             onClick={closeMenu}
+
           >
 
             <Library size={20} />
@@ -124,19 +145,26 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
           </NavLink>
 
-<NavLink
-  to="/finance"
-  onClick={closeMenu}
->
-
-  <Wallet size={20} />
-
-  Finance
-
-</NavLink>
           <NavLink
-            to="/notes"
+
+            to="/finance"
+
             onClick={closeMenu}
+
+          >
+
+            <Wallet size={20} />
+
+            Finance
+
+          </NavLink>
+
+          <NavLink
+
+            to="/notes"
+
+            onClick={closeMenu}
+
           >
 
             <FileText size={20} />
@@ -145,20 +173,12 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
           </NavLink>
 
-          {/* <NavLink
-            to="/journal"
-            onClick={closeMenu}
-          >
-
-            <BookOpen size={20} />
-
-            Journal
-
-          </NavLink> */}
-
           <NavLink
+
             to="/vault"
+
             onClick={closeMenu}
+
           >
 
             <Shield size={20} />
@@ -167,10 +187,12 @@ function Sidebar({ menuOpen, setMenuOpen }) {
 
           </NavLink>
 
-
           <NavLink
+
             to="/expenses"
+
             onClick={closeMenu}
+
           >
 
             <Wallet size={20} />
@@ -180,8 +202,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </NavLink>
 
           <NavLink
+
             to="/calendar"
+
             onClick={closeMenu}
+
           >
 
             <CalendarDays size={20} />
@@ -189,27 +214,41 @@ function Sidebar({ menuOpen, setMenuOpen }) {
             Calendar
 
           </NavLink>
-          <NavLink
-  to="/friends"
-  onClick={closeMenu}
->
-
-  <Users size={20} />
-  Friends Hub
-</NavLink>
-
-        
-        <NavLink
-  to="/games"
-  onClick={closeMenu}
->
-  <Gamepad2 size={20} />
-  Games
-</NavLink>
 
           <NavLink
-            to="/profile"
+
+            to="/friends"
+
             onClick={closeMenu}
+
+          >
+
+            <Users size={20} />
+
+            Friends Hub
+
+          </NavLink>
+
+          <NavLink
+
+            to="/games"
+
+            onClick={closeMenu}
+
+          >
+
+            <Gamepad2 size={20} />
+
+            Games
+
+          </NavLink>
+
+          <NavLink
+
+            to="/profile"
+
+            onClick={closeMenu}
+
           >
 
             <User size={20} />
@@ -219,8 +258,11 @@ function Sidebar({ menuOpen, setMenuOpen }) {
           </NavLink>
 
           <NavLink
+
             to="/settings"
+
             onClick={closeMenu}
+
           >
 
             <Settings size={20} />
@@ -236,10 +278,15 @@ function Sidebar({ menuOpen, setMenuOpen }) {
         <div className="sidebar-footer">
 
           <button
+
             className="logout-btn"
+
             onClick={() =>
+
               setShowLogoutModal(true)
+
             }
+
           >
 
             <LogOut size={20} />
@@ -255,15 +302,25 @@ function Sidebar({ menuOpen, setMenuOpen }) {
       {/* ================= LOGOUT MODAL ================= */}
 
       <ConfirmModal
+
         open={showLogoutModal}
+
         title="Logout from LifeOS?"
+
         message="Your data is safely synced. You can sign back in anytime."
+
         confirmText="Logout"
+
         cancelText="Cancel"
+
         onCancel={() =>
+
           setShowLogoutModal(false)
+
         }
+
         onConfirm={handleLogout}
+
       />
 
     </>
