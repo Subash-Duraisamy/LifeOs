@@ -59,7 +59,6 @@ export function isBlock(
 /* ==========================================
    START INDEX
 ========================================== */
-
 export function getStartIndex(color) {
 
     switch (color) {
@@ -78,6 +77,30 @@ export function getStartIndex(color) {
 
         default:
             return 0;
+
+    }
+
+}
+
+
+export function getHomeEntry(color) {
+
+    switch (color) {
+
+        case "red":
+            return 50;
+
+        case "green":
+            return 11;
+
+        case "yellow":
+            return 24;
+
+        case "blue":
+            return 37;
+
+        default:
+            return 50;
 
     }
 
@@ -230,16 +253,14 @@ export function releaseToken(
 /* ==========================================
    CAN MOVE TOKEN
 ========================================== */
+/* ==========================================
+   CAN MOVE TOKEN
+========================================== */
 
 export function canMoveToken(
-
     token,
-
     diceValue
-
 ) {
-
-    // Already Finished
 
     if (token.finished) {
 
@@ -247,34 +268,22 @@ export function canMoveToken(
 
     }
 
-    // Inside Home
-
     if (token.home) {
 
         return diceValue === 6;
 
     }
 
-    // Cannot exceed finish
+    const nextSteps = token.steps + diceValue;
 
-    if (
-
-        token.steps + diceValue > 57
-
-    ) {
-
-        return false;
-
-    }
-
-    return true;
+    // Maximum steps to reach center
+    return nextSteps <= 57;
 
 }
 
 /* ==========================================
    MOVE TOKEN
 ========================================== */
-
 export function moveToken(
 
     token,
@@ -301,55 +310,51 @@ export function moveToken(
 
     }
 
-    // -----------------------
-    // Calculate Steps
-    // -----------------------
-
-    const newSteps =
-
-        token.steps + diceValue;
+    const newSteps = token.steps + diceValue;
 
     // -----------------------
-    // Finish
+    // Exact Finish
     // -----------------------
 
-    if (newSteps === 57) {
+if (newSteps === 57) {
+
+    return {
+
+        ...token,
+
+        row: 7,
+
+        col: 7,
+
+        steps: 57,
+
+        finished: true,
+
+    };
+
+}
+
+    // -----------------------
+    // Home Stretch
+    // -----------------------
+
+    if (newSteps >= 52) {
+
+        const homeCell = getHomeCell(
+
+            color,
+
+            newSteps - 52
+
+        );
 
         return {
 
             ...token,
 
-            steps: 57,
+            row: homeCell.row,
 
-            finished: true,
-
-        };
-
-    }
-
-    // -----------------------
-    // Main Path
-    // -----------------------
-
-   if (newSteps <= 51) {
-
-        const cell =
-
-            getPathCell(
-
-                getStartIndex(color) +
-
-                newSteps
-
-            );
-
-        return {
-
-            ...token,
-
-            row: cell.row,
-
-            col: cell.col,
+            col: homeCell.col,
 
             steps: newSteps,
 
@@ -358,30 +363,26 @@ export function moveToken(
     }
 
     // -----------------------
-    // Home Path
+    // Normal Path
     // -----------------------
 
-    const homeIndex =
+    const startIndex = getStartIndex(color);
 
-        newSteps - 52;
+    const boardIndex =
 
-    const homeCell =
+        (startIndex + newSteps) %
 
-        getHomeCell(
+        PATH.length;
 
-            color,
-
-            homeIndex
-
-        );
+    const cell = PATH[boardIndex];
 
     return {
 
         ...token,
 
-        row: homeCell.row,
+        row: cell.row,
 
-        col: homeCell.col,
+        col: cell.col,
 
         steps: newSteps,
 

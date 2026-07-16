@@ -338,7 +338,9 @@ export async function moveMyToken(
         throw new Error("Token not found.");
 
     }
-
+console.log("TOKEN =", myTokens[index]);
+console.log("STEPS =", myTokens[index].steps);
+console.log("DICE =", room.diceValue);
     if (
 
         !canMoveToken(
@@ -361,7 +363,12 @@ export async function moveMyToken(
 
 // Move token
 
-myTokens[index] = moveToken(
+console.log("BEFORE MOVE");
+console.log("Steps :", myTokens[index].steps);
+console.log("Dice  :", room.diceValue);
+console.log("Token :", myTokens[index]);
+
+const updatedToken = moveToken(
 
     myTokens[index],
 
@@ -370,6 +377,20 @@ myTokens[index] = moveToken(
     player.color
 
 );
+
+// Token reached center
+if (updatedToken.finished) {
+
+    updatedToken.row = 7;
+    updatedToken.col = 7;
+
+}
+
+console.log("AFTER MOVE");
+console.log("Steps :", updatedToken.steps);
+console.log("Token :", updatedToken);
+
+myTokens[index] = updatedToken;
 
 tokens[uid] = myTokens;
 
