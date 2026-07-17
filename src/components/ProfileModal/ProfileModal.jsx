@@ -173,14 +173,14 @@ function ProfileModal({
         <div className="profile-actions">
 
           <button
-            className="save-btn"
+            className="profile-save-fab"
             onClick={handleSave}
           >
             💾 Save Changes
           </button>
 
           <button
-            className="delete-btn"
+            className="profile-delete-fab"
             onClick={onDelete}
           >
             🗑 Delete Account

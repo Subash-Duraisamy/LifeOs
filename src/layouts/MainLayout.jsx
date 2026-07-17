@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Topbar from "../components/Topbar/Topbar";
 import ProfileModal from "../components/ProfileModal/ProfileModal";
+import Swal from "sweetalert2";
 
 import InviteNotification from "../pages/Games/ludo/components/InviteNotification";
 

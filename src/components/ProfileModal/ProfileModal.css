@@ -35,6 +35,9 @@ opacity:1;
 
 }
 
+
+
+
 .profile-modal{
 
 width:100%;
@@ -354,5 +357,119 @@ width:6px;
 background:#4b5563;
 
 border-radius:10px;
+
+}
+
+
+
+
+/* _______________________
+ */
+ .profile-save-fab{
+
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    background:linear-gradient(
+        135deg,
+        #059669,
+        #10b981,
+        #34d399
+    );
+
+    background-size:300% 300%;
+
+    animation:
+        profileGradient 6s ease infinite,
+        saveGlow 3s ease-in-out infinite;
+
+    box-shadow:
+        0 12px 30px rgba(16,185,129,.35);
+
+    transition:.35s;
+
+}
+
+.profile-save-fab:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    box-shadow:
+        0 18px 42px rgba(16,185,129,.55);
+
+}
+.profile-delete-fab{
+
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    background:linear-gradient(
+        135deg,
+        #991b1b,
+        #dc2626,
+        #fb7185
+    );
+
+    background-size:300% 300%;
+
+    animation:
+        profileGradient 6s ease infinite,
+        deleteGlow 3s ease-in-out infinite;
+
+    box-shadow:
+        0 12px 30px rgba(239,68,68,.35);
+
+    transition:.35s;
+
+}
+
+.profile-delete-fab:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    box-shadow:
+        0 18px 42px rgba(239,68,68,.55);
 
 }

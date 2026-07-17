@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import { useAuth } from "../../hooks/useAuth";
 import {
@@ -46,26 +47,39 @@ function Tasks() {
     loadTasks();
   }, [user]);
 
-  async function handleDelete(id) {
-    const ok = window.confirm(
-      "Are you sure you want to delete this task?"
+async function handleDelete(id) {
+
+  try {
+
+    await deleteTask(id);
+
+    setTasks((prev) =>
+      prev.filter((task) => task.id !== id)
     );
 
-    if (!ok) return;
+  } catch (error) {
 
-    try {
-      await deleteTask(id);
+    console.error(error);
 
-      setTasks((prev) =>
-        prev.filter((task) => task.id !== id)
-      );
+    Swal.fire({
 
-      alert("Task deleted successfully.");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to delete task.");
-    }
+      icon: "error",
+
+      title: "Delete Failed",
+
+      text: "Unable to delete the task.",
+
+      background: "#171d2e",
+
+      color: "#ffffff",
+
+      confirmButtonColor: "#4f7cff",
+
+    });
+
   }
+
+}
 
   function handleEdit(task) {
     navigate(`/tasks/edit/${task.id}`);
@@ -173,7 +187,7 @@ function Tasks() {
         <h1>Tasks</h1>
 
         <button
-          className="create-task-btn"
+          className="task-create-fab"
           onClick={() =>
             navigate("/tasks/create")
           }
@@ -239,7 +253,7 @@ function Tasks() {
           </p>
 
           <button
-            className="create-task-btn"
+            className="task-create-fab"
             onClick={() =>
               navigate("/tasks/create")
             }

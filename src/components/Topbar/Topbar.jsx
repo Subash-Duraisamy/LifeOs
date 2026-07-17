@@ -8,8 +8,6 @@ function Topbar({
 
     setMenuOpen,
 
-    pageTitle = "Dashboard",
-
     user,
 
     onProfileClick,
@@ -63,12 +61,6 @@ function Topbar({
                     }
 
                 </button>
-
-                <h2 className="page-title">
-
-                    {pageTitle}
-
-                </h2>
 
             </div>
 

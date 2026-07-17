@@ -2,6 +2,10 @@
    SIDEBAR
 ========================================================== */
 
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
 .sidebar{
 
     width:280px;
@@ -18,9 +22,17 @@
 
     flex-direction:column;
 
-    position:relative;
+    position:sticky;
 
-    overflow:hidden;
+    top:0;
+
+    left:0;
+
+    align-self:flex-start;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
 
     transition:
         width .30s ease,
@@ -28,6 +40,30 @@
         opacity .25s ease;
 
     flex-shrink:0;
+
+    z-index:100;
+
+}
+
+/* Hide scrollbar */
+
+.sidebar::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:20px;
+
+}
+
+.sidebar::-webkit-scrollbar-track{
+
+    background:transparent;
 
 }
 
@@ -64,18 +100,25 @@
 /* ==========================================================
    HEADER
 ========================================================== */
+/* ==========================================================
+   HEADER
+========================================================== */
 
 .sidebar-header{
 
-    display:flex;
+    height:var(--header-height);
 
-    justify-content:space-between;
+    display:flex;
 
     align-items:center;
 
-    padding:22px;
+    padding:0 24px;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    box-sizing:border-box;
+
+    flex-shrink:0;
 
 }
 

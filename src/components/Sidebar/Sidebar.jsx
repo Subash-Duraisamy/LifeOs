@@ -12,9 +12,10 @@ import {
   User,
   Settings,
   LogOut,
-  X,
+  // X,
   Users,
   Gamepad2,
+  // Menu,
 } from "lucide-react";
 
 import "./Sidebar.css";
@@ -65,6 +66,7 @@ function Sidebar({
 
   }
 
+
   return (
 
     <>
@@ -77,27 +79,19 @@ function Sidebar({
 
         {/* ================= HEADER ================= */}
 
-        <div className="sidebar-header">
+       {/* ================= HEADER ================= */}
 
-          <h2 className="logo">
+<div className="sidebar-header">
 
-            LifeOS
+  
 
-          </h2>
+    <h2 className="logo">
 
-          <button
+        LifeOS
 
-            className="close-btn"
+    </h2>
 
-            onClick={() => setMenuOpen(false)}
-
-          >
-
-            <X size={22} />
-
-          </button>
-
-        </div>
+</div>
 
         {/* ================= MENU ================= */}
 
