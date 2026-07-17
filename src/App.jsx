@@ -4,6 +4,7 @@ import Games from "./pages/Games/Games";
 import { useAuth } from "./hooks/useAuth";
 import LudoHome from "./pages/Games/ludo/LudoHome";
 import CreateRoom from "./pages/Games/ludo/CreateRoom";
+import Loader from "./components/Loader/Loader";
 
 import MainLayout from "./layouts/MainLayout";
 
@@ -37,28 +38,11 @@ function App() {
 
   const { user, loading } = useAuth();
 
-  if (loading) {
+if (loading) {
 
-    return (
+    return <Loader />;
 
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          fontSize: "24px",
-          fontWeight: "600",
-        }}
-      >
-
-        Loading...
-
-      </div>
-
-    );
-
-  }
+}
 
   return (
 
