@@ -9,7 +9,7 @@ import {
 
 import "./PersonalTab.css";
 
-function PersonalTab() {
+function PersonalTab({openSuccess,}) {
 
   const { user } = useAuth();
 
@@ -97,7 +97,10 @@ function PersonalTab() {
 
       });
 
-      alert("Profile updated successfully.");
+      openSuccess(
+  "Saved Successfully",
+  "Your personal information has been updated successfully."
+);
 
       setIsEditing(false);
 

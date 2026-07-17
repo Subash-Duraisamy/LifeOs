@@ -14,6 +14,8 @@ function ProfileModal({
   const [photoURL, setPhotoURL] = useState("");
   const [bio, setBio] = useState("");
 
+  const [showSaveConfirm, setShowSaveConfirm] = useState(false);
+
   useEffect(() => {
 
     if (open && user) {
@@ -45,6 +47,8 @@ function ProfileModal({
       bio,
 
     });
+
+    setShowSaveConfirm(false);
 
   }
 
@@ -174,7 +178,9 @@ function ProfileModal({
 
           <button
             className="profile-save-fab"
-            onClick={handleSave}
+            onClick={() =>
+              setShowSaveConfirm(true)
+            }
           >
             💾 Save Changes
           </button>
@@ -189,6 +195,76 @@ function ProfileModal({
         </div>
 
       </div>
+
+      {/* ===============================
+          SAVE CONFIRMATION MODAL
+      =============================== */}
+
+      {showSaveConfirm && (
+
+        <div
+          className="confirm-overlay"
+          onClick={() =>
+            setShowSaveConfirm(false)
+          }
+        >
+
+          <div
+            className="confirm-modal"
+            onClick={(e) =>
+              e.stopPropagation()
+            }
+          >
+
+            <div className="confirm-icon">
+
+              💾
+
+            </div>
+
+            <h2>
+
+              Save Profile?
+
+            </h2>
+
+            <p>
+
+              Are you sure you want to save your profile changes?
+
+            </p>
+
+            <span>
+
+              Your updated information will appear across LifeOS.
+
+            </span>
+
+            <div className="confirm-actions">
+
+              <button
+                className="confirm-cancel"
+                onClick={() =>
+                  setShowSaveConfirm(false)
+                }
+              >
+                Cancel
+              </button>
+
+              <button
+                className="confirm-save"
+                onClick={handleSave}
+              >
+                💾 Save
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
 

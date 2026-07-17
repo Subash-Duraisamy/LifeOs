@@ -9,7 +9,7 @@ import {
 
 import "./SizesTab.css";
 
-function SizesTab() {
+function SizesTab({ openSuccess }) {
 
   const { user } = useAuth();
 
@@ -193,7 +193,14 @@ function SizesTab() {
 
       setIsEditing(false);
 
-      alert("Sizes updated successfully.");
+      openSuccess(
+
+      "Sizes Updated",
+
+      "Your body measurements and clothing sizes have been updated successfully."
+
+    );
+
 
     }
 
