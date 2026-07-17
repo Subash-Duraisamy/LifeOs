@@ -323,15 +323,15 @@ async function moveDown(item) {
 
       <div className="library-hero">
 
-        <div className="library-icon">
+        {/* <div className="library-icon">
 
           📚
 
-        </div>
+        </div> */}
 
         <div>
 
-          <h1>My Library</h1>
+          {/* <h1>My Library</h1> */}
 
           <p>
 

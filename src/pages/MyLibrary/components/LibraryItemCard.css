@@ -1,328 +1,282 @@
-.library-item-card {
+/* ==========================================================
+   LIBRARY ITEM CARD
+========================================================== */
 
-    display: flex;
-    gap: 28px;
-    align-items: center;
+.library-item-card{
 
-    background: #ffffff;
+    display:flex;
 
-    border: 1px solid #e2e8f0;
+    align-items:center;
 
-    border-radius: 22px;
+    gap:28px;
 
-    padding: 24px;
+    margin-top:24px;
 
-    margin-top: 22px;
+    padding:26px;
 
-    transition: all .3s ease;
+    border-radius:24px;
 
-    overflow: hidden;
+    background:#1e293b;
 
-}
+    border:1px solid rgba(255,255,255,.06);
 
-.library-item-card:hover {
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.28);
 
-    transform: translateY(-4px);
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
 
-    box-shadow: 0 18px 35px rgba(15,23,42,.12);
-
-}
-
-/* ================= IMAGE ================= */
-
-.library-item-image {
-
-    width: 140px;
-
-    height: 200px;
-
-    object-fit: cover;
-
-    border-radius: 18px;
-
-    background: #f1f5f9;
-
-    border: 1px solid #e2e8f0;
-
-    flex-shrink: 0;
+    overflow:hidden;
 
 }
 
-/* ================= INFO ================= */
+.library-item-card:hover{
 
-.library-item-info {
+    transform:translateY(-6px);
 
-    flex: 1;
+    border-color:#3b82f6;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
+    box-shadow:
+        0 20px 45px rgba(37,99,235,.18);
 
 }
 
-.library-item-info h3 {
+/* ==========================================================
+   BOOK COVER
+========================================================== */
 
-    font-size: 30px;
+.library-item-image{
 
-    font-weight: 800;
+    width:145px;
 
-    color: #0f172a;
+    height:205px;
 
-    margin-bottom: 14px;
+    object-fit:cover;
 
-    line-height: 1.3;
+    border-radius:18px;
+
+    background:#111827;
+
+    border:2px solid rgba(255,255,255,.08);
+
+    flex-shrink:0;
+
+    transition:.35s;
 
 }
 
-/* ================= BADGE ================= */
+.library-item-card:hover .library-item-image{
 
-.current-badge {
+    transform:scale(1.03);
 
-    display: inline-flex;
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.45);
 
-    align-items: center;
+}
 
-    width: fit-content;
+/* ==========================================================
+   INFO
+========================================================== */
 
-    background: linear-gradient(
+.library-item-info{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.library-item-info h3{
+
+    color:#ffffff;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    line-height:1.35;
+
+    margin-bottom:16px;
+
+}
+
+/* ==========================================================
+   CURRENT BADGE
+========================================================== */
+
+.current-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:fit-content;
+
+    padding:8px 18px;
+
+    margin-bottom:22px;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    color:#fff;
+
+    background:linear-gradient(
         135deg,
         #22c55e,
         #16a34a
     );
 
-    color: white;
-
-    padding: 7px 18px;
-
-    border-radius: 999px;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    margin-bottom: 22px;
+    box-shadow:
+        0 8px 18px rgba(34,197,94,.35);
 
 }
 
-/* ================= BUTTONS ================= */
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
 
-.library-buttons {
+.library-buttons{
 
-    display: flex;
+    display:flex;
 
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 
-    gap: 14px;
-
-}
-
-.library-buttons button {
-
-    border: none;
-
-    border-radius: 12px;
-
-    padding: 12px 18px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    color: white;
-
-    transition: .25s;
+    gap:14px;
 
 }
 
-.library-buttons button:hover {
+.library-buttons button{
 
-    transform: translateY(-2px);
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    min-width:165px;
+
+    padding:13px 20px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:all .25s ease;
 
 }
 
-/* Edit */
+.library-buttons button:hover{
 
-.edit-btn {
+    transform:translateY(-3px);
 
-    background: linear-gradient(
+}
+
+/* ==========================================================
+   UPDATE BUTTON
+========================================================== */
+
+.edit-btn{
+
+    background:linear-gradient(
         135deg,
         #3b82f6,
         #2563eb
     );
 
+    box-shadow:
+        0 8px 18px rgba(59,130,246,.28);
+
 }
 
-/* Finished */
+.edit-btn:hover{
 
-.complete-btn {
+    box-shadow:
+        0 12px 28px rgba(59,130,246,.45);
 
-    background: linear-gradient(
+}
+
+/* ==========================================================
+   COMPLETE BUTTON
+========================================================== */
+
+.complete-btn{
+
+    background:linear-gradient(
         135deg,
         #22c55e,
         #16a34a
     );
 
+    box-shadow:
+        0 8px 18px rgba(34,197,94,.28);
+
 }
 
-/* Delete */
+.complete-btn:hover{
 
-.delete-btn {
+    box-shadow:
+        0 12px 28px rgba(34,197,94,.45);
 
-    background: linear-gradient(
+}
+
+/* ==========================================================
+   REMOVE BUTTON
+========================================================== */
+
+.delete-btn{
+
+    background:linear-gradient(
         135deg,
         #ef4444,
         #dc2626
     );
 
-}
-
-/* ================= MOVE BUTTONS ================= */
-
-.move-buttons {
-
-    display: flex;
-
-    gap: 12px;
-
-    margin-top: 24px;
+    box-shadow:
+        0 8px 18px rgba(239,68,68,.28);
 
 }
 
-.move-buttons button {
+.delete-btn:hover{
 
-    width: 46px;
-
-    height: 46px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    background: #f1f5f9;
-
-    color: #334155;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    transition: .25s;
+    box-shadow:
+        0 12px 28px rgba(239,68,68,.45);
 
 }
-
-.move-buttons button:hover {
-
-    background: #3b82f6;
-
-    color: white;
-
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width:900px){
-
-.library-item-card{
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-    text-align: center;
-
-}
-
-.library-item-image{
-
-    width: 180px;
-
-    height: 250px;
-
-    margin: auto;
-
-}
-
-.library-item-info{
-
-    align-items: center;
-
-}
-
-.library-item-info h3{
-
-    font-size: 24px;
-
-}
-
-.current-badge{
-
-    margin-bottom:20px;
-
-}
-
-.library-buttons{
-
-    width:100%;
-
-    justify-content:center;
-
-}
-
-.library-buttons button{
-
-    flex:1;
-
-    min-width:140px;
-
-}
+/* ==========================================================
+   MOVE BUTTONS
+========================================================== */
 
 .move-buttons{
 
-    justify-content:center;
+    display:flex;
 
-}
+    gap:14px;
 
-}
-
-/* ================= SMALL MOBILE ================= */
-
-@media (max-width:600px){
-
-.library-item-image{
-
-    width:140px;
-
-    height:200px;
-
-}
-
-.library-item-info h3{
-
-    font-size:22px;
-
-}
-
-.library-buttons{
-
-    flex-direction:column;
-
-}
-
-.library-buttons button{
-
-    width:100%;
-
-}
-
-.move-buttons{
-
-    width:100%;
+    margin-top:24px;
 
 }
 
@@ -330,6 +284,243 @@
 
     flex:1;
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    min-width:150px;
+
+    padding:13px 20px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:#111827;
+
+    color:#e2e8f0;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:all .25s ease;
+
+    border:1px solid rgba(255,255,255,.08);
+
 }
+
+.move-buttons button:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border-color:#3b82f6;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37,99,235,.35);
+
+}
+
+.move-buttons button:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media(max-width:900px){
+
+    .library-item-card{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
+
+        padding:24px;
+
+    }
+
+    .library-item-image{
+
+        width:180px;
+
+        height:255px;
+
+        margin-bottom:18px;
+
+    }
+
+    .library-item-info{
+
+        width:100%;
+
+        align-items:center;
+
+    }
+
+    .library-item-info h3{
+
+        font-size:25px;
+
+    }
+
+    .current-badge{
+
+        margin-bottom:18px;
+
+    }
+
+    .library-buttons{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .library-buttons button{
+
+        flex:1;
+
+        min-width:170px;
+
+    }
+
+    .move-buttons{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:600px){
+
+    .library-item-card{
+
+        padding:20px;
+
+        gap:20px;
+
+    }
+
+    .library-item-image{
+
+        width:150px;
+
+        height:215px;
+
+    }
+
+    .library-item-info h3{
+
+        font-size:22px;
+
+    }
+
+    .library-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .library-buttons button{
+
+        width:100%;
+
+        min-width:unset;
+
+        padding:14px;
+
+    }
+
+    .move-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .move-buttons button{
+
+        width:100%;
+
+        min-width:unset;
+
+        padding:14px;
+
+    }
+
+}
+
+/* ==========================================================
+   EXTRA SMALL MOBILE
+========================================================== */
+
+@media(max-width:400px){
+
+    .library-item-card{
+
+        padding:16px;
+
+        border-radius:18px;
+
+    }
+
+    .library-item-image{
+
+        width:130px;
+
+        height:190px;
+
+    }
+
+    .library-item-info h3{
+
+        font-size:20px;
+
+    }
+
+    .library-buttons button,
+
+    .move-buttons button{
+
+        font-size:14px;
+
+        padding:12px;
+
+    }
+
+    .current-badge{
+
+        font-size:13px;
+
+        padding:7px 16px;
+
+    }
 
 }
