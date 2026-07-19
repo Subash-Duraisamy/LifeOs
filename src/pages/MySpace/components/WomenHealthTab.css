@@ -1,0 +1,107 @@
+/* ==========================================================
+   WOMEN HEALTH TAB
+========================================================== */
+
+.women-health {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    width: 100%;
+
+    animation: fadeIn .3s ease;
+
+}
+
+/* ==========================================================
+   LOADING
+========================================================== */
+
+.women-loading{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:300px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:var(--text-secondary);
+
+}
+
+/* ==========================================================
+   SECTION SPACING
+========================================================== */
+
+.women-health > *{
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1024px){
+
+    .women-health{
+
+        gap:20px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .women-health{
+
+        gap:18px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .women-health{
+
+        gap:16px;
+
+    }
+
+}
+
+/* ==========================================================
+   ANIMATION
+========================================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

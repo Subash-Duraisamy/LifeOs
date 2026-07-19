@@ -1,51 +1,223 @@
+/* ==========================================================
+   FRIENDS PAGE
+========================================================== */
+
 .friends-page{
 
-display:flex;
+    width:100%;
 
-flex-direction:column;
+    display:flex;
 
-gap:24px;
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.friends-title{
+
+    font-size:38px;
+
+    font-weight:700;
+
+    color:#ffffff;
 
 }
 
-.friends-page h1{
-
-font-size:36px;
-
-font-weight:700;
-
-}
+/* ==========================================================
+   TABS
+========================================================== */
 
 .friends-tabs{
 
-display:flex;
+    display:flex;
 
-gap:14px;
+    gap:16px;
+
+    flex-wrap:wrap;
 
 }
 
+/* ==========================================================
+   BUTTON
+========================================================== */
+
 .friends-tabs button{
 
-padding:12px 24px;
+    display:flex;
 
-border:none;
+    align-items:center;
 
-border-radius:12px;
+    justify-content:center;
 
-cursor:pointer;
+    gap:10px;
 
-background:#e9ecef;
+    min-width:170px;
 
-font-weight:600;
+    padding:16px 24px;
 
-transition:.25s;
+    border:none;
+
+    border-radius:16px;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.friends-tabs button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 16px 32px rgba(0,0,0,.15);
 
 }
 
 .friends-tabs button.active{
 
-background:#2563eb;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
 
-color:white;
+    color:#ffffff;
+
+}
+
+.friends-tabs button span{
+
+    white-space:nowrap;
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.friends-content{
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .friends-title{
+
+        font-size:32px;
+
+    }
+
+    .friends-tabs{
+
+        gap:12px;
+
+    }
+
+    .friends-tabs button{
+
+        flex:1;
+
+        min-width:140px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .friends-page{
+
+        gap:20px;
+
+    }
+
+    .friends-title{
+
+        font-size:28px;
+
+        text-align:center;
+
+    }
+
+    .friends-tabs{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:12px;
+
+    }
+
+    .friends-tabs button{
+
+        min-width:0;
+
+        width:100%;
+
+        padding:16px 10px;
+
+        font-size:15px;
+
+        flex-direction:column;
+
+        gap:6px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .friends-title{
+
+        font-size:24px;
+
+    }
+
+    .friends-tabs{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .friends-tabs button{
+
+        flex-direction:row;
+
+        justify-content:center;
+
+        font-size:15px;
+
+    }
 
 }

@@ -1,0 +1,380 @@
+/* ==========================================================
+   FRIEND LIST
+========================================================== */
+
+.friends-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================================
+   EMPTY
+========================================================== */
+
+.no-friends{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:60px;
+
+    text-align:center;
+
+    color:#666;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================================
+   FRIEND CARD
+========================================================== */
+
+.friend-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:20px 26px;
+
+    border:1px solid #ececec;
+
+    transition:.30s;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.06);
+
+}
+
+.friend-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 22px 50px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================================
+   LEFT
+========================================================== */
+
+.friend-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
+
+.friend-avatar{
+
+    width:74px;
+
+    height:74px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #5b5df8;
+
+    box-shadow:0 0 18px rgba(91,93,248,.35);
+
+}
+
+/* ==========================================================
+   NAME
+========================================================== */
+
+.friend-name{
+
+    margin:0;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#1d2433;
+
+}
+
+.friend-username{
+
+    margin-top:6px;
+
+    font-size:18px;
+
+    color:#7b8091;
+
+}
+
+/* ==========================================================
+   RIGHT
+========================================================== */
+
+.friend-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+/* ==========================================================
+   ALL ICON BUTTONS
+========================================================== */
+
+.friend-right button{
+
+    width:54px;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    color:white;
+
+    transition:.25s;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}
+
+.friend-right button svg{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+.friend-right button:hover{
+
+    transform:translateY(-3px) scale(1.06);
+
+}
+
+/* ==========================================================
+   VOICE CALL
+========================================================== */
+
+.voice-btn{
+
+    background:linear-gradient(
+        135deg,
+        #19d26f,
+        #0d9b54
+    );
+
+}
+
+.voice-btn:hover{
+
+    box-shadow:
+        0 0 20px rgba(16,185,129,.55);
+
+}
+
+/* ==========================================================
+   VIDEO CALL
+========================================================== */
+
+.video-btn{
+
+    background:linear-gradient(
+        135deg,
+        #4f8dff,
+        #2758ff
+    );
+
+}
+
+.video-btn:hover{
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,.55);
+
+}
+
+/* ==========================================================
+   SCREEN SHARE
+========================================================== */
+
+.screen-btn{
+
+    background:linear-gradient(
+        135deg,
+        #ab5dff,
+        #7b3eff
+    );
+
+}
+
+.screen-btn:hover{
+
+    box-shadow:
+        0 0 20px rgba(168,85,247,.55);
+
+}
+
+/* ==========================================================
+   CHAT
+========================================================== */
+
+.chat-btn{
+
+    background:linear-gradient(
+        135deg,
+        #ffbd45,
+        #ff8f00
+    );
+
+}
+
+.chat-btn:hover{
+
+    box-shadow:
+        0 0 20px rgba(245,158,11,.55);
+
+}
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.profile-btn{
+
+    background:linear-gradient(
+        135deg,
+        #0ea5e9,
+        #2563eb
+    );
+
+}
+
+.profile-btn:hover{
+
+    box-shadow:
+        0 0 20px rgba(37,99,235,.55);
+
+}
+
+/* ==========================================================
+   MORE OPTIONS
+========================================================== */
+
+.more-btn{
+
+    background:linear-gradient(
+        135deg,
+        #707070,
+        #454545
+    );
+
+}
+
+.more-btn:hover{
+
+    box-shadow:
+        0 0 18px rgba(80,80,80,.55);
+
+}
+
+/* ==========================================================
+   REMOVE
+========================================================== */
+
+.remove-btn{
+
+    width:auto !important;
+
+    padding:0 24px;
+
+    background:linear-gradient(
+        135deg,
+        #ff6363,
+        #ef4444
+    );
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+}
+
+.remove-btn:hover{
+
+    box-shadow:
+        0 0 20px rgba(239,68,68,.55);
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:900px){
+
+.friend-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+}
+
+.friend-right{
+
+    width:100%;
+
+    flex-wrap:wrap;
+
+}
+
+.friend-right button{
+
+    flex:1;
+
+}
+
+.remove-btn{
+
+    flex:2;
+
+}
+
+}

@@ -15,266 +15,257 @@ import {
   removeFriend,
 } from "../../../services/friendService";
 
+import FriendActions from "./FriendActions";
+
+import "./FriendCard.css";
+
 function FriendCard() {
 
   const { user } = useAuth();
 
   const [friends, setFriends] = useState([]);
+
   useEffect(() => {
 
-  if (!user) return;
+    if (!user) return;
 
-  const friendsQuery = query(
+    const friendsQuery = query(
 
-    collection(db, "friends"),
+      collection(db, "friends"),
 
-    where(
-      "users",
-      "array-contains",
-      user.uid
-    )
+      where(
+        "users",
+        "array-contains",
+        user.uid
+      )
 
-  );
+    );
 
-  const unsubscribe = onSnapshot(
+    const unsubscribe = onSnapshot(
 
-    friendsQuery,
+      friendsQuery,
 
-    (snapshot) => {
+      (snapshot) => {
 
-      const friendsList = snapshot.docs.map(
-        (document) => {
+        const friendsList = snapshot.docs.map(
 
-          const data = document.data();
+          (document) => {
 
-          let friend;
+            const data = document.data();
 
-          if (data.user1.uid === user.uid) {
+            let friend;
 
-            friend = data.user2;
+            if (data.user1.uid === user.uid) {
 
-          } else {
+              friend = data.user2;
 
-            friend = data.user1;
+            }
+
+            else {
+
+              friend = data.user1;
+
+            }
+
+            return {
+
+              id: document.id,
+
+              friendUid: friend.uid,
+
+              friendName: friend.fullName,
+
+              friendUsername: friend.username,
+
+              friendPhoto: friend.photoURL || "",
+
+            };
 
           }
 
-          return {
+        );
 
-            id: document.id,
+        setFriends(friendsList);
 
-            friendUid: friend.uid,
+      },
 
-            friendName: friend.fullName,
+      (error) => {
 
-            friendUsername: friend.username,
+        console.error(
+          "Friend Listener Error:",
+          error
+        );
 
-            friendPhoto: friend.photoURL || "",
+      }
 
-          };
+    );
 
-        }
+    return () => unsubscribe();
+
+  }, [user]);
+
+
+
+  async function removeFriendHandler(friend) {
+
+    const confirmRemove = window.confirm(
+
+      `Are you sure you want to remove ${friend.friendName} from your friends?`
+
+    );
+
+    if (!confirmRemove) {
+
+      return;
+
+    }
+
+    try {
+
+      await removeFriend(
+
+        user.uid,
+
+        friend.friendUid
 
       );
 
-      setFriends(friendsList);
+      alert(
 
-    },
+        `${friend.friendName} has been removed successfully.`
 
-    (error) => {
-
-      console.error(
-        "Friend Listener Error:",
-        error
       );
 
     }
 
-  );
+    catch (error) {
 
-  return () => unsubscribe();
+      console.error(
 
-}, [user]);
-async function removeFriendHandler(friend) {
+        "Remove Friend Error:",
 
-  const confirmRemove = window.confirm(
+        error
 
-    `Are you sure you want to remove ${friend.friendName} from your friends?`
+      );
 
-  );
+      alert(
 
-  if (!confirmRemove) {
+        "Unable to remove friend."
 
-    return;
+      );
 
-  }
-
-  try {
-
-    await removeFriend(
-
-      user.uid,
-
-      friend.friendUid
-
-    );
-
-    alert(
-
-      `${friend.friendName} has been removed successfully.`
-
-    );
+    }
 
   }
 
-  catch (error) {
 
-    console.error(
 
-      "Remove Friend Error:",
+  return (
 
-      error
+    <div className="friends-list">
 
-    );
+      {
 
-    alert(
+        friends.length === 0 ? (
 
-      "Unable to remove friend."
+          <div className="no-friends">
 
-    );
+            <h3>
 
-  }
+              No Friends Yet 😔
 
-}
-return (
+            </h3>
 
-  <div>
+          </div>
 
-    {
+        ) : (
 
-      friends.length === 0 ? (
-
-        <div>
-
-          <h3>
-
-            No Friends Yet 😔
-
-          </h3>
-
-        </div>
-
-      ) : (
-
-        friends.map(friend => (
-
-          <div
-
-            key={friend.id}
-
-            style={{
-
-              display: "flex",
-
-              justifyContent: "space-between",
-
-              alignItems: "center",
-
-              padding: "18px",
-
-              border: "1px solid #ddd",
-
-              borderRadius: "12px",
-
-              marginBottom: "16px",
-
-            }}
-
-          >
+          friends.map(friend => (
 
             <div
 
-              style={{
+              key={friend.id}
 
-                display: "flex",
-
-                alignItems: "center",
-
-                gap: "16px",
-
-              }}
+              className="friend-card"
 
             >
 
-              <img
+              <div className="friend-left">
 
-                src={
+                <img
 
-                  friend.friendPhoto ||
+                  className="friend-avatar"
 
-                  `https://ui-avatars.com/api/?name=${friend.friendName}`
+                  src={
 
-                }
+                    friend.friendPhoto ||
 
-                width="60"
+                    `https://ui-avatars.com/api/?name=${friend.friendName}`
 
-                height="60"
+                  }
 
-                alt={friend.friendName}
+                  alt={friend.friendName}
 
-                style={{
+                />
 
-                  borderRadius: "50%",
+                <div>
 
-                  objectFit: "cover",
+                  <h3 className="friend-name">
 
-                }}
+                    {friend.friendName}
 
-              />
+                  </h3>
 
-              <div>
+                  <p className="friend-username">
 
-                <h3>
+                    @{friend.friendUsername}
 
-                  {friend.friendName}
+                  </p>
 
-                </h3>
+                </div>
 
-                <p>
+              </div>
 
-                  @{friend.friendUsername}
 
-                </p>
+
+              <div className="friend-right">
+
+                <FriendActions
+
+                  friend={friend}
+
+                />
+
+                <button
+
+                  className="remove-btn"
+
+                  onClick={() =>
+
+                    removeFriendHandler(friend)
+
+                  }
+
+                >
+
+                  Remove
+
+                </button>
 
               </div>
 
             </div>
 
-            <button
+          ))
 
-              onClick={() =>
+        )
 
-                removeFriendHandler(friend)
+      }
 
-              }
+    </div>
 
-            >
-
-              Remove
-
-            </button>
-
-          </div>
-
-        ))
-
-      )
-
-    }
-
-  </div>
-
-);
+  );
 
 }
+
 export default FriendCard;

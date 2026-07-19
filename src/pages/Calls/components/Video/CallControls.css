@@ -1,0 +1,173 @@
+/* ==========================================
+   CALL CONTROLS
+========================================== */
+
+.call-controls{
+
+    position:absolute;
+
+    bottom:32px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    padding:16px 22px;
+
+    border-radius:999px;
+
+    background:rgba(22,22,22,.75);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    box-shadow:
+
+        0 12px 40px rgba(0,0,0,.35);
+
+    z-index:100;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.control-btn{
+
+    width:62px;
+
+    height:62px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:26px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.25s;
+
+    background:#2d2d2d;
+
+    color:#fff;
+
+}
+
+.control-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#404040;
+
+}
+
+.control-btn:active{
+
+    transform:scale(.92);
+
+}
+
+/* ==========================================
+   DISABLED
+========================================== */
+
+.control-btn.active{
+
+    background:#ff9800;
+
+}
+
+/* ==========================================
+   SCREEN SHARE
+========================================== */
+
+.control-btn.sharing{
+
+    background:#1976d2;
+
+}
+
+/* ==========================================
+   END CALL
+========================================== */
+
+.end-call{
+
+    background:#e53935;
+
+}
+
+.end-call:hover{
+
+    background:#c62828;
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.call-controls{
+
+    gap:12px;
+
+    padding:14px 18px;
+
+}
+
+.control-btn{
+
+    width:54px;
+
+    height:54px;
+
+    font-size:22px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.call-controls{
+
+    width:calc(100% - 24px);
+
+    justify-content:space-evenly;
+
+    border-radius:22px;
+
+}
+
+.control-btn{
+
+    width:48px;
+
+    height:48px;
+
+    font-size:20px;
+
+}
+
+}

@@ -1,0 +1,136 @@
+.call-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:#111827;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.call-container{
+
+    width:95%;
+
+    max-width:1300px;
+
+    background:#1f2937;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    color:white;
+
+}
+
+.call-container h1{
+
+    margin:0;
+
+    font-size:34px;
+
+}
+
+.call-container p{
+
+    color:#cbd5e1;
+
+    margin-bottom:30px;
+
+}
+
+.call-preview{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.local-video,
+.remote-video{
+
+    height:350px;
+
+    border-radius:18px;
+
+    background:#374151;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+}
+
+.call-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.call-buttons button{
+
+    border:none;
+
+    padding:16px 26px;
+
+    border-radius:14px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+.voice-btn{
+
+    background:#10b981;
+
+}
+
+.video-btn{
+
+    background:#3b82f6;
+
+}
+
+.screen-btn{
+
+    background:#8b5cf6;
+
+}
+
+.chat-btn{
+
+    background:#f59e0b;
+
+}
+
+.remove-btn{
+
+    background:#ef4444;
+
+}

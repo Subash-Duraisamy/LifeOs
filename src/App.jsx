@@ -33,6 +33,7 @@ import Vault from "./pages/Vault/Vault";
 import MyLibrary from "./pages/MyLibrary/MyLibrary";
 import LudoRoom from "./pages/Games/ludo/LudoRoom";
 import JoinRoom from "./pages/Games/ludo/JoinRoom";
+import CallPage from "./pages/Calls/CallPage";
 
 function App() {
 
@@ -136,7 +137,10 @@ if (loading) {
     path="library"
     element={<MyLibrary />}
 />
-
+<Route
+    path="calls/:callId"
+    element={<CallPage />}
+/>
         <Route
           path="journal"
           element={<Journal />}

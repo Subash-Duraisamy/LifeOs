@@ -1,119 +1,203 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./MySpace.css";
 
 import PersonalTab from "./components/PersonalTab";
 import SizesTab from "./components/SizesTab";
 import WardrobeTab from "./components/WardrobeTab";
+import WomensHealthTab from "./components/WomensHealthTab";
+
+import { useAuth } from "../../hooks/useAuth";
+import { getUser } from "../../services/authService";
 
 import SuccessModal from "../../components/ui/SuccessModal";
 
 function MySpace() {
 
-  const [activeTab, setActiveTab] = useState("personal");
+    const { user } = useAuth();
 
-  const [showSuccess, setShowSuccess] = useState(false);
+    const [profile, setProfile] = useState(null);
 
-  const [successTitle, setSuccessTitle] = useState("");
+    const [activeTab, setActiveTab] = useState("personal");
 
-  const [successMessage, setSuccessMessage] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
 
-  function openSuccess(title, message) {
+    const [successTitle, setSuccessTitle] = useState("");
 
-    setSuccessTitle(title);
+    const [successMessage, setSuccessMessage] = useState("");
 
-    setSuccessMessage(message);
+    useEffect(() => {
 
-    setShowSuccess(true);
+        async function loadProfile() {
 
-  }
+            if (!user) return;
 
-  return (
+            try {
 
-    <div className="my-space">
+                const data = await getUser(user.uid);
 
-      <div className="my-space-header">
+                setProfile(data);
 
-        <h1>My Space</h1>
+            }
 
-        <p>
-          Manage your personal information, body measurements and wardrobe.
-        </p>
+            catch (error) {
 
-      </div>
+                console.log(error);
 
-      {/* Top Navigation */}
+            }
 
-      <div className="my-space-tabs">
+        }
 
-        <button
-          className={activeTab === "personal" ? "active" : ""}
-          onClick={() => setActiveTab("personal")}
-        >
-          👤 Personal
-        </button>
+        loadProfile();
 
-        <button
-          className={activeTab === "sizes" ? "active" : ""}
-          onClick={() => setActiveTab("sizes")}
-        >
-          📏 Sizes
-        </button>
+    }, [user]);
 
-        <button
-          className={activeTab === "wardrobe" ? "active" : ""}
-          onClick={() => setActiveTab("wardrobe")}
-        >
-          👕 Wardrobe
-        </button>
+    function openSuccess(title, message) {
 
-      </div>
+        setSuccessTitle(title);
 
-      {/* Content */}
+        setSuccessMessage(message);
 
-      <div className="my-space-content">
+        setShowSuccess(true);
 
-        {activeTab === "personal" && (
+    }
 
-          <PersonalTab
-            openSuccess={openSuccess}
-          />
+    const gender = profile?.gender;
 
-        )}
+    return (
 
-        {activeTab === "sizes" && (
+        <div className="my-space">
 
-          <SizesTab
-            openSuccess={openSuccess}
-          />
+            <div className="my-space-header">
 
-        )}
+                <h1>My Space</h1>
 
-        {activeTab === "wardrobe" && (
+                <p>
 
-          <WardrobeTab
-            openSuccess={openSuccess}
-          />
+                    Manage your personal information, body measurements, wardrobe and health.
 
-        )}
+                </p>
 
-      </div>
+            </div>
 
-      <SuccessModal
+            {/* ===========================
+                TOP NAVIGATION
+            =========================== */}
 
-        open={showSuccess}
+            <div className="my-space-tabs">
 
-        title={successTitle}
+                <button
+                    className={activeTab === "personal" ? "active" : ""}
+                    onClick={() => setActiveTab("personal")}
+                >
+                    👤 Personal
+                </button>
 
-        message={successMessage}
+                <button
+                    className={activeTab === "sizes" ? "active" : ""}
+                    onClick={() => setActiveTab("sizes")}
+                >
+                    📏 Sizes
+                </button>
 
-        onClose={() => setShowSuccess(false)}
+                <button
+                    className={activeTab === "wardrobe" ? "active" : ""}
+                    onClick={() => setActiveTab("wardrobe")}
+                >
+                    👕 Wardrobe
+                </button>
 
-      />
+                {gender === "Female" && (
 
-    </div>
+                    <button
+                        className={activeTab === "womenHealth" ? "active" : ""}
+                        onClick={() => setActiveTab("womenHealth")}
+                    >
+                        🌸 Women's Health
+                    </button>
 
-  );
+                )}
+
+                {gender === "Male" && (
+
+                    <button
+                        className={activeTab === "buddy" ? "active" : ""}
+                        onClick={() => setActiveTab("buddy")}
+                    >
+                        🤝 Buddy
+                    </button>
+
+                )}
+
+            </div>
+
+            {/* ===========================
+                CONTENT
+            =========================== */}
+
+            <div className="my-space-content">
+
+                {activeTab === "personal" && (
+
+                    <PersonalTab
+                        openSuccess={openSuccess}
+                    />
+
+                )}
+
+                {activeTab === "sizes" && (
+
+                    <SizesTab
+                        openSuccess={openSuccess}
+                    />
+
+                )}
+
+                {activeTab === "wardrobe" && (
+
+                    <WardrobeTab
+                        openSuccess={openSuccess}
+                    />
+
+                )}
+
+                {activeTab === "womenHealth" && (
+
+                    <WomensHealthTab
+                        openSuccess={openSuccess}
+                    />
+
+                )}
+
+                {activeTab === "buddy" && (
+
+                    <div className="coming-soon">
+
+                        <h2>🤝 Buddy</h2>
+
+                        <p>Buddy module is coming soon.</p>
+
+                    </div>
+
+                )}
+
+            </div>
+
+            <SuccessModal
+
+                open={showSuccess}
+
+                title={successTitle}
+
+                message={successMessage}
+
+                onClose={() => setShowSuccess(false)}
+
+            />
+
+        </div>
+
+    );
 
 }
 
