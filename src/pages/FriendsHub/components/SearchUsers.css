@@ -1,0 +1,224 @@
+/* ==========================================================
+   SEARCH SECTION
+========================================================== */
+
+.search-users{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    margin-top:10px;
+}
+
+/* ==========================================================
+   SEARCH BOX
+========================================================== */
+
+.search-users input{
+
+    width:100%;
+
+    padding:16px 20px;
+
+    border-radius:16px;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.05);
+
+    color:var(--text);
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+.search-users input::placeholder{
+
+    color:var(--text-secondary);
+
+}
+
+.search-users input:focus{
+
+    border-color:#3b82f6;
+
+    box-shadow:0 0 0 4px rgba(59,130,246,.18);
+
+}
+
+/* ==========================================================
+   USER CARD
+========================================================== */
+
+.user-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px 20px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    transition:.25s;
+
+    backdrop-filter:blur(14px);
+
+}
+
+.user-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:rgba(59,130,246,.35);
+
+    box-shadow:0 16px 36px rgba(0,0,0,.25);
+
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
+
+.user-avatar{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid rgba(59,130,246,.35);
+
+    flex-shrink:0;
+
+}
+
+/* ==========================================================
+   INFO
+========================================================== */
+
+.user-info{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.user-info h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.user-info p{
+
+    margin-top:6px;
+
+    color:var(--text-secondary);
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   ADD BUTTON
+========================================================== */
+
+.add-btn{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    font-size:15px;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #2563eb
+    );
+
+    transition:.25s;
+
+    white-space:nowrap;
+
+    box-shadow:0 12px 24px rgba(37,99,235,.35);
+
+}
+
+.add-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 18px 34px rgba(37,99,235,.45);
+
+}
+
+.add-btn:active{
+
+    transform:scale(.96);
+
+}
+
+/* ==========================================================
+   EMPTY
+========================================================== */
+
+.no-users{
+
+    padding:40px;
+
+    text-align:center;
+
+    color:var(--text-secondary);
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .user-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .add-btn{
+
+        width:100%;
+
+    }
+
+}

@@ -1,0 +1,280 @@
+/* ==========================================================
+   FRIEND LIST
+========================================================== */
+
+.friend-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:24px;
+}
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.no-friends{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:60px 20px;
+    text-align:center;
+    color:var(--text-secondary);
+    box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+
+.no-friends h3{
+    margin:0;
+    font-size:22px;
+    font-weight:700;
+}
+
+/* ==========================================================
+   FRIEND CARD
+========================================================== */
+
+.friend-card{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:24px;
+
+    padding:20px 24px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    transition:.28s ease;
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.05);
+
+}
+
+.friend-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:rgba(99,102,241,.35);
+
+    box-shadow:
+        0 18px 42px rgba(99,102,241,.14);
+
+}
+
+/* ==========================================================
+   LEFT
+========================================================== */
+
+.friend-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    min-width:0;
+
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
+
+.friend-avatar{
+
+    width:68px;
+
+    height:68px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid rgba(99,102,241,.15);
+
+    transition:.25s ease;
+
+    flex-shrink:0;
+
+}
+
+.friend-card:hover .friend-avatar{
+
+    transform:scale(1.06);
+
+    border-color:#6366f1;
+
+}
+
+/* ==========================================================
+   INFO
+========================================================== */
+
+.friend-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    min-width:0;
+
+}
+
+.friend-info h3{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.friend-info p{
+
+    margin:0;
+
+    font-size:14px;
+
+    color:var(--text-secondary);
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+/* ==========================================================
+   REMOVE BUTTON
+========================================================== */
+
+.remove-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    transition:.25s ease;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 10px 24px rgba(239,68,68,.25);
+
+}
+
+.remove-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 18px 34px rgba(239,68,68,.35);
+
+}
+
+.remove-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.friend-list::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.friend-list::-webkit-scrollbar-thumb{
+
+    background:#d4d4d8;
+
+    border-radius:999px;
+
+}
+
+.friend-list::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .friend-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+        padding:18px;
+
+    }
+
+    .friend-left{
+
+        width:100%;
+
+    }
+
+    .remove-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}

@@ -5,6 +5,8 @@ import {
   query,
   where,
   onSnapshot,
+  doc,
+  getDoc,
 } from "firebase/firestore";
 
 import { db } from "../../../firebase/firebase";
@@ -40,47 +42,45 @@ function FriendCard() {
 
     friendsQuery,
 
-    (snapshot) => {
+async (snapshot) => {
 
-      const friendsList = snapshot.docs.map(
-        (document) => {
+  const friendsList = await Promise.all(
 
-          const data = document.data();
+    snapshot.docs.map(async (document) => {
 
-          let friend;
+      const data = document.data();
 
-          if (data.user1.uid === user.uid) {
-
-            friend = data.user2;
-
-          } else {
-
-            friend = data.user1;
-
-          }
-
-          return {
-
-            id: document.id,
-
-            friendUid: friend.uid,
-
-            friendName: friend.fullName,
-
-            friendUsername: friend.username,
-
-            friendPhoto: friend.photoURL || "",
-
-          };
-
-        }
-
+      // Get the friend's UID (the one that isn't me)
+      const friendUid = data.users.find(
+        uid => uid !== user.uid
       );
 
-      setFriends(friendsList);
+      // Read the latest profile from users collection
+      const friendSnap = await getDoc(
+        doc(db, "users", friendUid)
+      );
 
-    },
+      if (!friendSnap.exists()) {
+        return null;
+      }
 
+      const friend = friendSnap.data();
+
+      return {
+        id: document.id,
+        friendUid,
+        friendName: friend.fullName,
+        friendUsername: friend.username,
+        friendPhoto: friend.photoURL || "",
+      };
+
+    })
+
+  );
+
+  setFriends(friendsList.filter(Boolean));
+
+},
     (error) => {
 
       console.error(

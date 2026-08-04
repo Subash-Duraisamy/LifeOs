@@ -319,55 +319,17 @@ export async function acceptFriendRequest(
   // Save friendship document
   // =====================================
 
-  await setDoc(
-    doc(
-      db,
-      "friends",
-      friendshipId
-    ),
-    {
+ await setDoc(
+  doc(db, "friends", friendshipId),
+  {
+    users: [
+      currentUser.uid,
+      request.fromUid,
+    ],
 
-      users: [
-        currentUser.uid,
-        request.fromUid,
-      ],
-
-      user1: {
-
-        uid: currentUser.uid,
-
-        fullName:
-          currentUser.fullName,
-
-        username:
-          currentUser.username,
-
-        photoURL:
-          currentUser.photoURL || "",
-
-      },
-
-      user2: {
-
-        uid: request.fromUid,
-
-        fullName:
-          request.fromName,
-
-        username:
-          request.fromUsername,
-
-        photoURL:
-          request.fromPhoto || "",
-
-      },
-
-      createdAt:
-        serverTimestamp(),
-
-    }
-
-  );
+    createdAt: serverTimestamp(),
+  }
+);
 
 }
 /* ======================================
