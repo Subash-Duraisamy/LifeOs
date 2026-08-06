@@ -1,0 +1,261 @@
+.counter-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:26px;
+
+    gap:14px;
+
+    background:#ffffff;
+
+    border:1px solid #dbe4ef;
+
+    border-radius:18px;
+
+    min-height:260px;
+
+    transition:.25s;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+
+}
+
+.counter-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 18px 35px rgba(37,99,235,.15);
+
+    border-color:#2563eb;
+
+}
+
+/* ---------- TITLE ---------- */
+
+.counter-title{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#1d4ed8 !important;
+
+    letter-spacing:.5px;
+
+    text-align:center;
+
+    line-height:1.2;
+
+    text-shadow:0 1px 1px rgba(0,0,0,.05);
+
+}
+
+/* ---------- COUNT ---------- */
+
+.counter-number{
+
+    font-size:72px;
+
+    font-weight:900;
+
+    color:#2563eb !important;
+
+    line-height:1;
+
+}
+
+/* ---------- OWNED ---------- */
+
+.counter-owned{
+
+    margin:0;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#64748b !important;
+
+}
+
+/* ---------- EDIT BUTTON ---------- */
+
+.edit-counter-btn{
+
+    margin-top:8px;
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:#ffffff !important;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.edit-counter-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/* ---------- PLUS / MINUS ---------- */
+
+.counter-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin-top:10px;
+
+}
+
+.counter-actions button{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    transition:.25s;
+
+}
+
+.plus-btn{
+
+    background:#dcfce7;
+
+    color:#16a34a !important;
+
+}
+
+.plus-btn:hover{
+
+    background:#bbf7d0;
+
+    transform:scale(1.1);
+
+}
+
+.minus-btn{
+
+    background:#fee2e2;
+
+    color:#dc2626 !important;
+
+}
+
+.minus-btn:hover{
+
+    background:#fecaca;
+
+    transform:scale(1.1);
+
+}
+
+/* ---------- SAVE / CANCEL ---------- */
+
+.counter-bottom{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    width:100%;
+
+    margin-top:15px;
+
+}
+
+.cancel-btn{
+
+    padding:10px 22px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#ef4444;
+
+    color:#ffffff !important;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.2s;
+
+}
+
+.cancel-btn:hover{
+
+    background:#dc2626;
+
+}
+
+.save-btn{
+
+    padding:10px 22px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#16a34a;
+
+    color:#ffffff !important;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.2s;
+
+}
+
+.save-btn:hover{
+
+    background:#15803d;
+
+}

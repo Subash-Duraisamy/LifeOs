@@ -1,0 +1,448 @@
+.dashboard{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ==========================
+   Welcome Card
+========================== */
+
+.welcome-card{
+
+    background:var(--surface);
+
+    padding:28px;
+
+    border-radius:18px;
+
+    border:1px solid var(--border);
+
+}
+
+.welcome-card h1{
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+}
+
+.welcome-card h2{
+
+    font-size:26px;
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+
+}
+
+.welcome-card p{
+
+    font-size:16px;
+
+}
+
+/* ==========================
+   Dashboard Grid
+========================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:18px;
+
+}
+
+/* ==========================
+   Card
+========================== */
+
+.card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+}
+
+.card h2{
+
+    font-size:24px;
+
+    margin-bottom:16px;
+
+}
+
+/* ==========================
+   Tasks
+========================== */
+
+.task-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.task-chip{
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.task-chip.low{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.task-chip.medium{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+}
+
+.task-chip.high{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+.no-task{
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   Library Widget
+========================== */
+
+.library-widget{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.library-widget img{
+
+    width:100%;
+
+    max-width:160px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.28);
+
+    transition:.3s;
+
+}
+
+.library-widget img:hover{
+
+    transform:scale(1.04);
+
+}
+
+.library-widget h3{
+
+    margin-top:14px;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    line-height:1.4;
+
+}
+/* ======================================================
+   FRIENDS ACTIVITY
+====================================================== */
+
+.friends-dashboard{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+    margin-top:20px;
+
+}
+
+.friends-dashboard h2{
+
+    font-size:28px;
+
+}
+
+/* ======================================================
+   Friend Card
+====================================================== */
+
+.friend-card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:18px;
+
+}
+
+/* ======================================================
+   Header
+====================================================== */
+
+.friend-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:16px;
+
+}
+
+.friend-header img{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.friend-header h3{
+
+    font-size:18px;
+
+    margin:0;
+
+}
+
+.friend-header p{
+
+    font-size:13px;
+
+    color:#94a3b8;
+
+    margin-top:3px;
+
+}
+
+/* ======================================================
+   Horizontal Layout
+====================================================== */
+
+.friend-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 140px 140px 140px;
+
+    gap:12px;
+
+    align-items:start;
+
+}
+
+/* ======================================================
+   Small Cards
+====================================================== */
+
+.friend-section{
+
+    background:#1f2937;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:10px;
+
+    min-height:150px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.friend-section h4{
+
+    width:100%;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+/* ======================================================
+   Tasks
+====================================================== */
+
+.friend-section .task-list{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.friend-section .task-chip{
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:11px;
+
+    padding:5px 8px;
+
+}
+
+/* ======================================================
+   Images
+====================================================== */
+
+.friend-media{
+
+    width:70px;
+
+    height:95px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    margin-bottom:8px;
+
+}
+
+.friend-section p{
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    line-height:1.2;
+
+}
+
+/* ======================================================
+   Tablet
+====================================================== */
+
+@media(max-width:1100px){
+
+.friend-content{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+/* ======================================================
+   Mobile
+====================================================== */
+
+@media(max-width:768px){
+
+.friend-header{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.friend-content{
+
+    grid-template-columns:1fr;
+
+}
+
+.friend-media{
+
+    width:90px;
+
+    height:120px;
+
+}
+
+}

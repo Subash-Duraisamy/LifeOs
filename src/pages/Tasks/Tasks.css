@@ -1,0 +1,714 @@
+/* ==========================================================
+   TASKS PAGE
+========================================================== */
+
+.tasks-page{
+
+    width:100%;
+
+    max-width:100%;
+
+    margin:0;
+
+    padding:24px;
+
+    box-sizing:border-box;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.tasks-header{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.tasks-header h1{
+
+    margin:0;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    line-height:1.1;
+
+}
+
+/* ==========================================================
+   CREATE BUTTON
+========================================================== */
+
+/* ==========================================================
+   CREATE BUTTON
+========================================================== */
+
+.create-task-btn{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    background:#6b8cff;
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    white-space:nowrap;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 8px 18px rgba(107,140,255,.18);
+
+}
+
+.create-task-btn:hover{
+
+    background:#7b98ff;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 22px rgba(107,140,255,.28);
+
+}
+
+.create-task-btn:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ==========================================================
+   TOOLBAR
+========================================================== */
+
+.tasks-toolbar{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:1fr 140px 140px;
+
+    gap:14px;
+
+    align-items:center;
+
+}
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.tasks-toolbar input{
+
+    width:100%;
+
+    height:46px;
+
+    border:none;
+
+    outline:none;
+
+    background:#1d2436;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    padding:0 16px;
+
+    font-size:14px;
+
+    box-sizing:border-box;
+
+}
+
+.tasks-toolbar input::placeholder{
+
+    color:#8d99b8;
+
+}
+
+/* ==========================================================
+   SELECT
+========================================================== */
+
+.tasks-toolbar select{
+
+    width:100%;
+
+    height:46px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:12px;
+
+    background:#1d2436;
+
+    color:#fff;
+
+    padding:0 14px;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    box-sizing:border-box;
+
+}
+
+/* ==========================================================
+   TASK LIST
+========================================================== */
+
+.task-list{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.empty-state{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    gap:16px;
+
+}
+
+.empty-state h2{
+
+    margin:0;
+
+    color:#fff;
+
+    font-size:34px;
+
+}
+
+.empty-state p{
+
+    margin:0;
+
+    color:#9ca8c7;
+
+    max-width:500px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   LARGE LAPTOP
+========================================================== */
+
+@media(max-width:1200px){
+
+    .tasks-page{
+
+        padding:22px;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media(max-width:992px){
+
+    .tasks-page{
+
+        padding:18px;
+
+        gap:18px;
+
+    }
+
+    .tasks-header{
+
+        gap:16px;
+
+    }
+
+    .tasks-header h1{
+
+        font-size:34px;
+
+    }
+
+    .tasks-toolbar{
+
+        grid-template-columns:1fr 130px 130px;
+
+        gap:10px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .tasks-page{
+
+        padding:14px;
+
+        gap:16px;
+
+    }
+
+    .tasks-header{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:14px;
+
+    }
+
+    .tasks-header h1{
+
+        text-align:center;
+
+        font-size:30px;
+
+    }
+
+    .create-task-btn{
+
+        width:100%;
+
+        height:48px;
+
+        padding:0;
+
+        font-size:15px;
+
+    }
+
+    .tasks-toolbar{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+    .tasks-toolbar input,
+
+    .tasks-toolbar select{
+
+        width:100%;
+
+        height:46px;
+
+        font-size:14px;
+
+    }
+
+    .empty-state{
+
+        padding:50px 15px;
+
+    }
+
+    .empty-state h2{
+
+        font-size:28px;
+
+    }
+
+    .empty-state p{
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:480px){
+
+    .tasks-page{
+
+        padding:10px;
+
+        gap:14px;
+
+    }
+
+    .tasks-header{
+
+        gap:12px;
+
+    }
+
+    .tasks-header h1{
+
+        font-size:26px;
+
+    }
+
+    .create-task-btn{
+
+        height:44px;
+
+        font-size:14px;
+
+        border-radius:10px;
+
+    }
+
+    .tasks-toolbar{
+
+        gap:8px;
+
+    }
+
+    .tasks-toolbar input,
+
+    .tasks-toolbar select{
+
+        height:42px;
+
+        font-size:13px;
+
+        border-radius:10px;
+
+        padding:0 14px;
+
+    }
+
+    .task-list{
+
+        gap:12px;
+
+    }
+
+    .empty-state{
+
+        padding:40px 10px;
+
+    }
+
+    .empty-state h2{
+
+        font-size:24px;
+
+    }
+
+    .empty-state p{
+
+        font-size:13px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   FUTURISTIC CREATE BUTTON
+========================================================== */
+
+.task-create-fab{
+
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
+
+    padding:14px 32px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #2563eb,
+            #7c3aed
+        );
+
+    background-size:300% 300%;
+
+    animation:
+        gradientMove 6s ease infinite,
+        pulseGlow 3s infinite;
+
+    box-shadow:
+        0 10px 28px rgba(79,124,255,.35),
+        inset 0 1px 1px rgba(255,255,255,.15);
+
+    transition:
+        transform .35s,
+        box-shadow .35s;
+
+}
+
+/* =======================================
+   Animated Gradient
+======================================= */
+
+@keyframes gradientMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+/* =======================================
+   Neon Glow
+======================================= */
+
+@keyframes pulseGlow{
+
+    0%{
+
+        box-shadow:
+            0 0 12px rgba(79,124,255,.35),
+            0 0 24px rgba(124,58,237,.20);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 22px rgba(79,124,255,.60),
+            0 0 40px rgba(124,58,237,.35);
+
+    }
+
+    100%{
+
+        box-shadow:
+            0 0 12px rgba(79,124,255,.35),
+            0 0 24px rgba(124,58,237,.20);
+
+    }
+
+}
+
+/* =======================================
+   Gloss Sweep
+======================================= */
+
+.task-create-fab::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+
+    left:-50%;
+
+    width:60%;
+
+    height:320%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent
+        );
+
+    transform:rotate(25deg);
+
+    transition:.8s;
+
+}
+
+.task-create-fab:hover::before{
+
+    left:140%;
+
+}
+
+/* =======================================
+   Neon Border
+======================================= */
+
+.task-create-fab::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:18px;
+
+    padding:2px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #8b5cf6,
+            #22d3ee,
+            #60a5fa
+        );
+
+    background-size:300%;
+
+    animation:borderMove 5s linear infinite;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+            mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+@keyframes borderMove{
+
+    0%{
+        background-position:0%;
+    }
+
+    100%{
+        background-position:300%;
+    }
+
+}
+
+/* =======================================
+   Hover
+======================================= */
+
+.task-create-fab:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.05);
+
+    box-shadow:
+        0 18px 45px rgba(79,124,255,.45),
+        0 0 35px rgba(124,58,237,.35);
+
+}
+
+/* =======================================
+   Click
+======================================= */
+
+.task-create-fab:active{
+
+    transform:
+        scale(.95);
+
+}
+
+/* =======================================
+   Optional Icon Animation
+======================================= */
+
+.task-create-fab svg{
+
+    transition:.35s;
+
+}
+
+.task-create-fab:hover svg{
+
+    transform:
+        rotate(90deg)
+        scale(1.2);
+
+}

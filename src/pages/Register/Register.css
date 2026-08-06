@@ -1,0 +1,359 @@
+/* ===========================
+   REGISTER PAGE
+=========================== */
+
+.login-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 50px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #131d31,
+        #0b1222
+    );
+
+}
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 620px;
+
+    background: #1f293b;
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    border-radius: 28px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.login-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.login-header h1{
+
+    color:white;
+
+    font-size:48px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.login-header p{
+
+    color:#94a3b8;
+
+    font-size:20px;
+
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.login-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.form-group label{
+
+    color:#b8c2d9;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#172132;
+
+    color:white;
+
+    font-size:16px;
+
+    transition:.25s;
+
+}
+
+.form-group input:focus{
+
+    outline:none;
+
+    box-shadow:0 0 0 3px rgba(124,92,255,.25);
+
+}
+
+.form-group input::placeholder{
+
+    color:#7986a4;
+
+}
+
+/* ===========================
+   PASSWORD
+=========================== */
+
+.password-input{
+
+    position:relative;
+
+}
+
+.password-input input{
+
+    padding-right:60px;
+
+}
+
+.show-password{
+
+    position:absolute;
+
+    right:16px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.login-btn{
+
+    margin-top:10px;
+
+    width:100%;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #7c5cff,
+        #5f44ff
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 30px rgba(124,92,255,.35);
+
+}
+
+/* ===========================
+   BOTTOM
+=========================== */
+
+.bottom-text{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    color:#9ba7c2;
+
+    font-size:15px;
+
+}
+
+.bottom-text a{
+
+    margin-left:8px;
+
+    color:#7c5cff;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+.bottom-text a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================
+   LAPTOP
+=========================== */
+
+@media (max-width:1200px){
+
+.login-card{
+
+    max-width:560px;
+
+}
+
+.login-header h1{
+
+    font-size:42px;
+
+}
+
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width:768px){
+
+.login-page{
+
+    padding:25px 15px;
+
+    align-items:flex-start;
+
+}
+
+.login-card{
+
+    max-width:100%;
+
+    border-radius:20px;
+
+    padding:28px;
+
+}
+
+.login-header h1{
+
+    font-size:34px;
+
+}
+
+.login-header p{
+
+    font-size:17px;
+
+}
+
+.form-group input{
+
+    font-size:16px;
+
+    padding:15px;
+
+}
+
+.login-btn{
+
+    padding:15px;
+
+}
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:480px){
+
+.login-card{
+
+    padding:22px;
+
+}
+
+.login-header h1{
+
+    font-size:30px;
+
+}
+
+.login-header p{
+
+    font-size:15px;
+
+}
+
+.form-group input{
+
+    padding:14px;
+
+}
+
+}

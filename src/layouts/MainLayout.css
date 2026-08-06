@@ -1,0 +1,74 @@
+/* ===========================
+   Main Layout
+=========================== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg);
+}
+
+/* ===========================
+   Main Section
+=========================== */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ===========================
+   Page Content
+=========================== */
+
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ===========================
+   Overlay (Mobile Only)
+=========================== */
+
+.overlay {
+  display: none;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 992px) {
+  .content {
+    padding: 24px;
+  }
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+  .layout {
+    position: relative;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+  }
+}

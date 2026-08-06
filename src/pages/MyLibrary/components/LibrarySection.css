@@ -1,0 +1,132 @@
+.library-modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:1000;
+}
+
+.library-modal{
+
+    width:500px;
+
+    max-width:95%;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    animation:pop .25s ease;
+}
+
+@keyframes pop{
+
+from{
+
+transform:scale(.9);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+.library-modal h2{
+
+margin-bottom:25px;
+
+font-size:28px;
+}
+
+.library-modal label{
+
+display:block;
+
+margin-bottom:18px;
+
+font-weight:600;
+}
+
+.library-modal input[type=text]{
+
+width:100%;
+
+padding:12px;
+
+margin-top:8px;
+
+border:1px solid #d1d5db;
+
+border-radius:10px;
+
+font-size:15px;
+}
+
+.checkbox{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+margin-top:20px;
+}
+
+.modal-buttons{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:15px;
+
+margin-top:30px;
+}
+
+.cancel-btn{
+
+background:#e5e7eb;
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:10px;
+
+cursor:pointer;
+}
+
+.save-btn{
+
+background:#2563eb;
+
+color:white;
+
+border:none;
+
+padding:12px 22px;
+
+border-radius:10px;
+
+cursor:pointer;
+}

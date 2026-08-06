@@ -1,0 +1,383 @@
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.vault-toolbar{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+    padding:18px 22px;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    box-shadow:0 4px 16px rgba(15,23,42,.04);
+
+}
+
+/* =========================================================
+   LEFT
+========================================================= */
+
+.toolbar-left{
+
+    flex:1;
+
+    min-width:260px;
+
+}
+
+.toolbar-search{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 14px;
+
+    height:48px;
+
+    background:#f8fafc;
+
+    border:1px solid #dbe4ef;
+
+    border-radius:12px;
+
+    transition:.2s;
+
+}
+
+.toolbar-search:focus-within{
+
+    border-color:#2563eb;
+
+    background:#ffffff;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+
+}
+
+.toolbar-search span{
+
+    font-size:18px;
+
+    color:#64748b;
+
+}
+
+.toolbar-search input{
+
+    flex:1;
+
+    border:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+    color:#0f172a;
+
+}
+
+.toolbar-search input:focus{
+
+    outline:none;
+
+}
+
+.toolbar-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* =========================================================
+   RIGHT
+========================================================= */
+
+.toolbar-right{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+}
+
+/* =========================================================
+   SELECTS
+========================================================= */
+
+.toolbar-right select{
+
+    height:44px;
+
+    padding:0 14px;
+
+    border:1px solid #dbe4ef;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    color:#334155;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.toolbar-right select:hover{
+
+    border-color:#cbd5e1;
+
+}
+
+.toolbar-right select:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
+
+}
+
+/* =========================================================
+   FAVORITES BUTTON
+========================================================= */
+
+.favorite-filter{
+
+    height:44px;
+
+    padding:0 18px;
+
+    border:1px solid #dbe4ef;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    color:#475569;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.favorite-filter:hover{
+
+    background:#f8fafc;
+
+}
+
+.favorite-filter.active{
+
+    background:#fef3c7;
+
+    border-color:#facc15;
+
+    color:#92400e;
+
+}
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-credential-btn{
+
+    height:46px;
+
+    padding:0 22px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.add-credential-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-1px);
+
+    box-shadow:0 10px 22px rgba(37,99,235,.22);
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.toolbar-footer{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:4px;
+
+}
+
+.toolbar-footer span{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    font-weight:600;
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .vault-toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .toolbar-left{
+
+        width:100%;
+
+    }
+
+    .toolbar-right{
+
+        width:100%;
+
+        justify-content:flex-start;
+
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .vault-toolbar{
+
+        padding:16px;
+
+        gap:16px;
+
+    }
+
+    .toolbar-search{
+
+        width:100%;
+
+    }
+
+    .toolbar-right{
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:10px;
+
+        width:100%;
+
+    }
+
+    .toolbar-right select,
+
+    .favorite-filter,
+
+    .add-credential-btn{
+
+        width:100%;
+
+    }
+
+    .add-credential-btn{
+
+        grid-column:1 / -1;
+
+    }
+
+    .toolbar-footer{
+
+        justify-content:center;
+
+    }
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:450px){
+
+    .toolbar-right{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .toolbar-search{
+
+        height:46px;
+
+    }
+
+}
