@@ -1,115 +1,137 @@
+/* =====================================================
+   PAGE
+===================================================== */
+
 .calendar-page{
-    padding:35px;
-    color:white;
-}
-
-.calendar-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:35px;
-}
-
-.streak-summary{
-    display:flex;
-    gap:20px;
-}
-
-.summary-card{
-    background:#1d2433;
-    padding:20px;
-    border-radius:15px;
-    min-width:180px;
-}
-
-.summary-card span{
-    font-size:28px;
-    font-weight:bold;
-}
-
-.calendar-content{
-    display:grid;
-    grid-template-columns:2fr 360px;
-    gap:30px;
-}
-
-.calendar-section{
-    background:#1d2433;
-    border-radius:18px;
-    padding:25px;
-}
-
-.calendar-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.calendar-header button{
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-.calendar-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:10px;
-}
-
-.day-name{
-    text-align:center;
-    font-weight:bold;
-    padding-bottom:10px;
-}
-
-.saturday{
-    color:#5ca8ff;
-}
-
-.sunday{
-    color:#ff5c5c;
-}
-
-.calendar-cell{
-    height:80px;
-    background:#2a3447;
-    border-radius:12px;
-    padding:8px;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.calendar-cell:hover{
-    background:#3a4760;
-}
-
-.task-panel{
-    background:#1d2433;
-    border-radius:18px;
-    padding:25px;
-}
-
-.add-btn,
-.submit-btn{
     width:100%;
-    padding:12px;
-    margin-top:15px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+    min-height:100vh;
+    padding:30px;
+    background:#0f172a;
+    box-sizing:border-box;
 }
 
-.task-list{
-    margin:25px 0;
+.calendar-page__container{
+    width:100%;
+    max-width:1700px;
+    margin:0 auto;
+}
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.calendar-page__summary-section{
+    width:100%;
+    margin-bottom:30px;
+}
+
+/* =====================================================
+   BODY
+===================================================== */
+
+.calendar-page__body{
     display:flex;
-    flex-direction:column;
-    gap:15px;
+    gap:30px;
+    align-items:flex-start;
 }
 
-.break-free{
+/* =====================================================
+   LEFT
+===================================================== */
+
+.calendar-page__grid-wrapper{
+    flex:0 0 520px;
+
+    background:#182235;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+    min-height:760px;
+}
+
+/* =====================================================
+   RIGHT
+===================================================== */
+
+.calendar-page__sidebar-wrapper{
+    flex:1;
+
+    background:#182235;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+    min-height:760px;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:1200px){
+
+.calendar-page__body{
+
+    flex-direction:column;
+
+}
+
+.calendar-page__grid-wrapper{
+
+    width:100%;
+
+    flex:none;
+
+}
+
+.calendar-page__sidebar-wrapper{
+
+    width:100%;
+
+    flex:none;
+
+}
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:768px){
+
+.calendar-page{
+
+    padding:15px;
+
+}
+
+.calendar-page__summary-section{
+
     margin-bottom:20px;
+
+}
+
+.calendar-page__body{
+
+    gap:20px;
+
+}
+
+.calendar-page__grid-wrapper,
+.calendar-page__sidebar-wrapper{
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
 }

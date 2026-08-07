@@ -1,0 +1,405 @@
+/* ==========================================
+   CALENDAR SIDEBAR
+========================================== */
+
+.calendar-sidebar {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 28px;
+  box-sizing: border-box;
+
+  background: #1c2638;
+  border-radius: 28px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.calendar-sidebar__header {
+  margin-bottom: 25px;
+}
+
+.calendar-sidebar__date {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* ==========================================
+   INPUT
+========================================== */
+
+.calendar-sidebar__input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calendar-sidebar__task-input {
+  width: 100%;
+  height: 56px;
+
+  border: none;
+  outline: none;
+
+  padding: 0 18px;
+
+  border-radius: 16px;
+
+  background: #2a3650;
+
+  color: white;
+
+  font-size: 1rem;
+}
+
+.calendar-sidebar__task-input::placeholder {
+  color: #9aa7c2;
+}
+
+.calendar-sidebar__task-add-btn {
+  width: 100%;
+  height: 58px;
+
+  border: none;
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+
+  background: linear-gradient(
+      135deg,
+      #4f8cff,
+      #2f6df6
+  );
+
+  transition: .25s;
+}
+
+.calendar-sidebar__task-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(79,140,255,.35);
+}
+
+/* ==========================================
+   TASK LIST
+========================================== */
+
+.calendar-sidebar__task-list {
+  margin-top: 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  flex: 1;
+
+  overflow-y: auto;
+}
+
+.calendar-sidebar__task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 18px;
+
+  background: #24324a;
+
+  border-radius: 14px;
+}
+
+.calendar-sidebar__task-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  cursor: pointer;
+}
+
+.calendar-sidebar__task-checkbox {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #22c55e;
+
+  cursor: pointer;
+}
+
+.calendar-sidebar__task-title {
+  color: white;
+  font-size: 1rem;
+}
+
+.calendar-sidebar__task-delete-btn {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #ff4d4f;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.calendar-sidebar__task-delete-btn:hover {
+  background: #e63946;
+}
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+.calendar-sidebar__progress {
+  margin-top: 28px;
+}
+
+.calendar-sidebar__progress-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.calendar-sidebar__progress-text {
+  color: #9fb0ca;
+
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.calendar-sidebar__progress-bar {
+  width: 100%;
+  height: 12px;
+
+  border-radius: 100px;
+
+  overflow: hidden;
+
+  background: #2a3650;
+}
+
+.calendar-sidebar__progress-fill {
+  height: 100%;
+
+  background: linear-gradient(
+      90deg,
+      #22c55e,
+      #16a34a
+  );
+
+  border-radius: inherit;
+
+  transition: .3s;
+}
+
+/* ==========================================
+   BREAK FREE
+========================================== */
+
+.calendar-sidebar__breakfree {
+  margin-top: 28px;
+}
+
+.calendar-sidebar__breakfree-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.calendar-sidebar__breakfree-checkbox {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #4f8cff;
+
+  cursor: pointer;
+}
+
+/* ==========================================
+   SUBMIT BUTTON
+========================================== */
+
+.calendar-sidebar__submit-btn {
+  margin-top: 32px;
+
+  width: 100%;
+  height: 60px;
+
+  border: none;
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  background: linear-gradient(
+      135deg,
+      #16a34a,
+      #22c55e
+  );
+
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+
+  transition: .25s;
+}
+
+.calendar-sidebar__submit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 25px rgba(34,197,94,.35);
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+.calendar-sidebar__task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.calendar-sidebar__task-list::-webkit-scrollbar-thumb {
+  background: #3c4d6b;
+  border-radius: 20px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+  .calendar-sidebar {
+    padding: 22px;
+  }
+
+  .calendar-sidebar__date {
+    font-size: 1.6rem;
+  }
+
+  .calendar-sidebar__task-add-btn,
+  .calendar-sidebar__submit-btn {
+    height: 54px;
+  }
+
+}
+.calendar-sidebar__task-title--completed{
+
+    text-decoration: line-through;
+
+    opacity: .6;
+
+}
+.calendar-sidebar__progress{
+
+    margin-top:25px;
+
+}
+
+.calendar-sidebar__progress-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.calendar-sidebar__progress-text{
+
+    margin-top:6px;
+
+    color:#9ca3af;
+
+    font-size:14px;
+
+}
+
+.calendar-sidebar__progress-bar{
+
+    width:100%;
+
+    height:10px;
+
+    margin-top:12px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:#252525;
+
+}
+
+.calendar-sidebar__progress-fill{
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #3b82f6
+    );
+
+    transition:width .35s ease;
+
+}
+.calendar-sidebar__breakfree{
+
+    margin-top:25px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:#171717;
+
+}
+
+.calendar-sidebar__breakfree-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.calendar-sidebar__breakfree-checkbox{
+
+    width:18px;
+
+    height:18px;
+
+    cursor:pointer;
+
+}

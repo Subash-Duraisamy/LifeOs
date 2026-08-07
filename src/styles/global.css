@@ -1,123 +1,473 @@
 @import "./variables.css";
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
 
-    --header-height:72px;
+  --header-height:72px;
+
+  --font-main: "Inter","Segoe UI",Roboto,sans-serif;
+
+  --radius-xs:12px;
+  --radius-sm:18px;
+  --radius-md:24px;
+  --radius-lg:32px;
+
+  --transition:.35s cubic-bezier(.4,0,.2,1);
 
 }
 
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
 @media (max-width:992px){
 
-    :root{
+:root{
 
-        --header-height:66px;
+--header-height:66px;
 
-    }
+}
 
 }
 
 @media (max-width:768px){
 
-    :root{
+:root{
 
-        --header-height:60px;
+--header-height:60px;
 
-    }
+}
 
 }
 
 @media (max-width:480px){
 
-    :root{
+:root{
 
-        --header-height:56px;
-
-    }
+--header-height:56px;
 
 }
 
-/* Reset */
+}
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *,
 *::before,
 *::after{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
 }
 
 html{
-    scroll-behavior:smooth;
+
+scroll-behavior:smooth;
+font-size:16px;
+
 }
 
 body{
-    font-family:Inter,"Segoe UI",Roboto,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
+
+font-family:var(--font-main);
+
+background:var(--bg);
+
+color:var(--text);
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+-webkit-font-smoothing:antialiased;
+
+text-rendering:optimizeLegibility;
+
+position:relative;
+
 }
+
+/* =========================================================
+   AURORA BACKGROUND
+========================================================= */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+
+radial-gradient(circle at 15% 20%,
+rgba(142,88,255,.25),
+transparent 35%),
+
+radial-gradient(circle at 90% 10%,
+rgba(79,195,255,.18),
+transparent 35%),
+
+radial-gradient(circle at 80% 90%,
+rgba(255,110,180,.20),
+transparent 35%),
+
+radial-gradient(circle at 25% 80%,
+rgba(92,240,200,.12),
+transparent 35%);
+
+filter:blur(90px);
+
+animation:auroraMove 18s ease-in-out infinite alternate;
+
+pointer-events:none;
+
+z-index:-2;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+rgba(8,12,28,.75),
+
+rgba(6,10,22,.95)
+
+);
+
+z-index:-1;
+
+pointer-events:none;
+
+}
+
+/* =========================================================
+   ROOT
+========================================================= */
 
 #root{
-    width:100%;
-    min-height:100vh;
+
+width:100%;
+
+min-height:100vh;
+
+position:relative;
+
 }
 
-img{
-    max-width:100%;
-    display:block;
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1{
+
+font-size:clamp(2rem,4vw,3rem);
+
+font-weight:800;
+
+color:var(--text);
+
+letter-spacing:-.02em;
+
 }
+
+h2{
+
+font-size:clamp(1.6rem,3vw,2.4rem);
+
+font-weight:700;
+
+color:var(--text);
+
+}
+
+h3{
+
+font-size:clamp(1.25rem,2vw,1.7rem);
+
+font-weight:700;
+
+color:var(--text);
+
+}
+
+p{
+
+color:var(--text-secondary);
+
+line-height:1.7;
+
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+width:min(1440px,92%);
+
+margin-inline:auto;
+
+}
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+img{
+
+display:block;
+
+max-width:100%;
+
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
 
 button,
 input,
 textarea,
 select{
-    font:inherit;
+
+font:inherit;
+
 }
 
 button{
-    border:none;
-    background:none;
-    cursor:pointer;
+
+cursor:pointer;
+
+border:none;
+
+background:none;
+
+transition:var(--transition);
+
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+button:active{
+
+transform:scale(.98);
+
 }
+
+input,
+textarea,
+select{
+
+outline:none;
+
+border:none;
+
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+transition:var(--transition);
+
+}
+
+/* =========================================================
+   LIST
+========================================================= */
 
 ul,
 ol{
-    list-style:none;
+
+list-style:none;
+
 }
 
-h1{
-    font-size:clamp(28px,4vw,42px);
-    font-weight:700;
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
+.glass{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(35px);
+
+-webkit-backdrop-filter:blur(35px);
+
+border:1px solid rgba(255,255,255,.10);
+
+border-radius:28px;
+
+box-shadow:
+
+0 30px 70px rgba(0,0,0,.25),
+
+0 0 60px rgba(106,92,255,.08),
+
+inset 0 1px rgba(255,255,255,.12);
+
 }
 
-h2{
-    font-size:clamp(22px,3vw,32px);
+/* =========================================================
+   GLOW HOVER
+========================================================= */
+
+.glow-hover{
+
+transition:var(--transition);
+
 }
 
-h3{
-    font-size:clamp(18px,2vw,24px);
+.glow-hover:hover{
+
+transform:
+
+translateY(-6px)
+
+scale(1.01);
+
+box-shadow:
+
+0 30px 60px rgba(110,120,255,.25),
+
+0 0 40px rgba(80,220,255,.20);
+
 }
 
-p{
-    color:var(--text-secondary);
-    line-height:1.6;
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection{
+
+background:#7B5CFF;
+
+color:white;
+
 }
 
-.container{
-    width:min(1400px,92%);
-    margin:auto;
-}
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
 ::-webkit-scrollbar{
-    width:6px;
+
+width:10px;
+
+height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:transparent;
+
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#475569;
-    border-radius:20px;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#7C6CFF,
+
+#59D7FF
+
+);
+
+border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#9A84FF,
+
+#77E7FF
+
+);
+
+}
+
+/* =========================================================
+   AURORA ANIMATION
+========================================================= */
+
+@keyframes auroraMove{
+
+0%{
+
+transform:
+translate(0,0)
+scale(1);
+
+}
+
+25%{
+
+transform:
+translate(60px,-40px)
+scale(1.08);
+
+}
+
+50%{
+
+transform:
+translate(-40px,50px)
+scale(.96);
+
+}
+
+75%{
+
+transform:
+translate(50px,20px)
+scale(1.05);
+
+}
+
+100%{
+
+transform:
+translate(-30px,-40px)
+scale(1);
+
+}
+
 }

@@ -1,0 +1,239 @@
+/* ==========================================
+   CALENDAR GRID
+========================================== */
+
+.calendar-grid {
+  width: 100%;
+  height: 100%;
+  background: #1c2638;
+  border-radius: 28px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.calendar-grid__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.calendar-grid__header-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.calendar-grid__header-btn {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 16px;
+  background: #2a3650;
+  color: #ffffff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.calendar-grid__header-btn:hover {
+  background: #3b82f6;
+  transform: scale(1.05);
+}
+
+/* ==========================================
+   WEEK DAYS
+========================================== */
+
+.calendar-grid__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 20px;
+}
+
+.calendar-grid__weekday {
+  text-align: center;
+  color: #b7c5dc;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.calendar-grid__weekday--saturday {
+  color: #60a5fa;
+}
+
+.calendar-grid__weekday--sunday {
+  color: #ff6b6b;
+}
+
+/* ==========================================
+   DAYS
+========================================== */
+
+.calendar-grid__days {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+
+.calendar-grid__day {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 18px;
+  background: #2b3853;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.calendar-grid__day:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+/* ==========================================
+   HEATMAP COLORS
+========================================== */
+
+.calendar-grid__day--heat0 {
+  background: #2b3853;
+}
+
+.calendar-grid__day--heat1 {
+  background: #1f6feb;
+}
+
+.calendar-grid__day--heat2 {
+  background: #238636;
+}
+
+.calendar-grid__day--heat3 {
+  background: #2ea043;
+}
+
+.calendar-grid__day--heat4 {
+  background: #3fb950;
+}
+
+.calendar-grid__day--breakfree {
+  background: #8b5cf6;
+  color: white;
+}
+.calendar-grid__day--selected {
+  outline: 3px solid #22c55e;
+  outline-offset: -3px;
+  box-shadow: 0 0 15px rgba(34,197,94,.45);
+}
+
+/* ==========================================
+   LEGEND
+========================================== */
+
+.calendar-grid__legend {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.calendar-grid__legend-label {
+  color: #b7c5dc;
+  font-size: 0.9rem;
+}
+
+.calendar-grid__legend-colors {
+  display: flex;
+  gap: 8px;
+}
+
+.calendar-grid__legend-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+}
+
+.calendar-grid__legend-box--0 {
+  background: #2b3853;
+}
+
+.calendar-grid__legend-box--1 {
+  background: #1f6feb;
+}
+
+.calendar-grid__legend-box--2 {
+  background: #238636;
+}
+
+.calendar-grid__legend-box--3 {
+  background: #2ea043;
+}
+
+.calendar-grid__legend-box--4 {
+  background: #3fb950;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 992px) {
+
+  .calendar-grid {
+    padding: 22px;
+  }
+
+  .calendar-grid__header-title {
+    font-size: 1.7rem;
+  }
+
+  .calendar-grid__header-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .calendar-grid__days {
+    gap: 10px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .calendar-grid {
+    padding: 18px;
+  }
+
+  .calendar-grid__header-title {
+    font-size: 1.45rem;
+  }
+
+  .calendar-grid__header-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .calendar-grid__weekday {
+    font-size: 0.82rem;
+  }
+
+  .calendar-grid__day {
+    border-radius: 14px;
+    font-size: 0.9rem;
+  }
+
+  .calendar-grid__legend {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+}

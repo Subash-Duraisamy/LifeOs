@@ -1,119 +1,95 @@
 import "./Calendar.css";
 
+import { useCalendar } from "./hooks/useCalendar";
+
+import SummaryCards from "./components/SummaryCards";
+import CalendarGrid from "./components/CalendarGrid";
+import CalendarSidebar from "./components/CalendarSidebar";
+
 export default function Calendar() {
+
+  const {
+
+    selectedDate,
+    setSelectedDate,
+
+    currentMonth,
+    setCurrentMonth,
+
+    records,
+    setRecords,
+
+    tasks,
+    setTasks,
+
+  } = useCalendar();
+
   return (
+
     <div className="calendar-page">
 
-      {/* Header */}
-      <div className="calendar-top">
+      <div className="calendar-page__container">
 
-        <div>
-          <h1>Calendar</h1>
-          <p>Track your daily streaks and productivity.</p>
-        </div>
+        {/* =========================
+            SUMMARY
+        ========================== */}
 
-        <div className="streak-summary">
-          <div className="summary-card">
-            <h3>🔥 Current Streak</h3>
-            <span>0 Days</span>
-          </div>
+        <section className="calendar-page__summary-section">
 
-          <div className="summary-card">
-            <h3>🏆 Longest Streak</h3>
-            <span>0 Days</span>
-          </div>
-        </div>
+          <SummaryCards
+            calendarRecords={records}
+          />
 
-      </div>
+        </section>
 
-      <div className="calendar-content">
+        {/* =========================
+            BODY
+        ========================== */}
 
-        {/* Calendar */}
-        <div className="calendar-section">
+        <section className="calendar-page__body">
 
-          <div className="calendar-header">
+          {/* Calendar */}
 
-            <button>{"<"}</button>
+          <div className="calendar-page__grid-wrapper">
 
-            <h2>August 2026</h2>
+            <CalendarGrid
 
-            <button>{">"}</button>
+              calendarCurrentMonth={currentMonth}
+              setCalendarCurrentMonth={setCurrentMonth}
 
-          </div>
+              calendarSelectedDate={selectedDate}
+              setCalendarSelectedDate={setSelectedDate}
 
-          <div className="calendar-grid">
+              calendarRecords={records}
 
-            {/* Week Days */}
-
-            <div className="day-name">Mon</div>
-            <div className="day-name">Tue</div>
-            <div className="day-name">Wed</div>
-            <div className="day-name">Thu</div>
-            <div className="day-name">Fri</div>
-            <div className="day-name saturday">Sat</div>
-            <div className="day-name sunday">Sun</div>
-
-            {/* Temporary Calendar Cells */}
-
-            {Array.from({ length: 35 }).map((_, index) => (
-              <div
-                key={index}
-                className="calendar-cell"
-              >
-                <span>{index + 1}</span>
-              </div>
-            ))}
+            />
 
           </div>
 
-        </div>
+          {/* Sidebar */}
 
-        {/* Right Side */}
+          <div className="calendar-page__sidebar-wrapper">
 
-        <div className="task-panel">
+            <CalendarSidebar
 
-          <h2>Today's Tasks</h2>
+              selectedDate={selectedDate}
 
-          <button className="add-btn">
-            + Add Task
-          </button>
+              tasks={tasks}
+              setTasks={setTasks}
 
-          <div className="task-list">
+              records={records}
+              setRecords={setRecords}
 
-            <label>
-              <input type="checkbox" />
-              Gym
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              Coding
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              Reading
-            </label>
+            />
 
           </div>
 
-          <div className="break-free">
-
-            <label>
-              <input type="checkbox" />
-              Break Free Today
-            </label>
-
-          </div>
-
-          <button className="submit-btn">
-            Submit
-          </button>
-
-        </div>
+        </section>
 
       </div>
 
     </div>
+
   );
+
 }

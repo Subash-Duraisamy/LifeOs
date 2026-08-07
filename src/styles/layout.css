@@ -1,92 +1,405 @@
 .layout{
-    display:flex;
-    width:100%;
-    min-height:100vh;
-    background:var(--bg);
+
+display:flex;
+
+width:100%;
+
+min-height:100vh;
+
+position:relative;
+
+background:transparent;
+
+overflow:hidden;
+
 }
 
-/* Sidebar */
+/* ==========================================
+   Aurora Background
+========================================== */
+
+.layout::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+
+radial-gradient(circle at 15% 20%,
+rgba(125,92,255,.28),
+transparent 35%),
+
+radial-gradient(circle at 90% 10%,
+rgba(90,210,255,.22),
+transparent 35%),
+
+radial-gradient(circle at 75% 90%,
+rgba(255,110,185,.18),
+transparent 35%),
+
+radial-gradient(circle at 25% 85%,
+rgba(95,255,220,.15),
+transparent 35%);
+
+filter:blur(120px);
+
+animation:aurora 18s ease-in-out infinite alternate;
+
+z-index:-2;
+
+}
+
+.layout::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+rgba(8,10,22,.60),
+
+rgba(6,10,18,.92)
+
+);
+
+z-index:-1;
+
+}
+
+/* ==========================================
+   Sidebar
+========================================== */
 
 .sidebar{
-    width:260px;
-    min-width:260px;
-    background:var(--surface);
-    border-right:1px solid var(--border);
-    padding:24px;
+
+width:270px;
+
+min-width:270px;
+
+margin:18px;
+
+padding:28px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(35px);
+
+-webkit-backdrop-filter:blur(35px);
+
+border:1px solid rgba(255,255,255,.12);
+
+box-shadow:
+
+0 25px 60px rgba(40,60,255,.18),
+
+0 0 60px rgba(110,120,255,.08),
+
+inset 0 1px rgba(255,255,255,.15);
+
+transition:.4s;
+
 }
 
-/* Main */
+.sidebar:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 35px 80px rgba(80,120,255,.22),
+
+0 0 60px rgba(120,220,255,.18);
+
+}
+
+/* ==========================================
+   Main
+========================================== */
 
 .main-content{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    min-width:0;
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+min-width:0;
+
+margin:18px 18px 18px 0;
+
+gap:18px;
+
 }
 
-/* Topbar */
+/* ==========================================
+   Topbar
+========================================== */
 
 .topbar{
-    height:70px;
-    display:flex;
-    align-items:center;
-    padding:0 24px;
-    background:var(--surface);
-    border-bottom:1px solid var(--border);
 
-    flex-shrink:0;
+height:76px;
+
+display:flex;
+
+align-items:center;
+
+padding:0 28px;
+
+border-radius:26px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(35px);
+
+-webkit-backdrop-filter:blur(35px);
+
+border:1px solid rgba(255,255,255,.12);
+
+box-shadow:
+
+0 20px 50px rgba(70,90,255,.18),
+
+inset 0 1px rgba(255,255,255,.15);
+
+flex-shrink:0;
+
 }
 
-/* Page */
+/* ==========================================
+   Page
+========================================== */
 
 .page-content{
-    flex:1;
-    padding:30px;
-    overflow:auto;
+
+flex:1;
+
+overflow:auto;
+
+padding:34px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.06);
+
+backdrop-filter:blur(35px);
+
+-webkit-backdrop-filter:blur(35px);
+
+border:1px solid rgba(255,255,255,.10);
+
+box-shadow:
+
+0 25px 60px rgba(50,70,255,.16),
+
+inset 0 1px rgba(255,255,255,.10);
+
 }
 
-/* ========================= */
-/* Tablet */
-/* ========================= */
+/* ==========================================
+   Glass Shine
+========================================== */
+
+.sidebar::before,
+.topbar::before,
+.page-content::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+border-radius:inherit;
+
+background:
+
+linear-gradient(
+
+120deg,
+
+transparent 20%,
+
+rgba(255,255,255,.12) 45%,
+
+transparent 70%
+
+);
+
+opacity:.35;
+
+pointer-events:none;
+
+}
+
+/* ==========================================
+   Scrollbar
+========================================== */
+
+.page-content::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+.page-content::-webkit-scrollbar-thumb{
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#8B5CF6,
+
+#5EDFFF
+
+);
+
+border-radius:999px;
+
+}
+
+/* ==========================================
+   Tablet
+========================================== */
 
 @media(max-width:992px){
 
 .sidebar{
-    width:220px;
-    min-width:220px;
+
+width:235px;
+
+min-width:235px;
+
+margin:14px;
+
+}
+
+.main-content{
+
+margin:14px 14px 14px 0;
+
 }
 
 .page-content{
-    padding:24px;
-}
+
+padding:24px;
 
 }
 
-/* ========================= */
-/* Mobile */
-/* ========================= */
+}
+
+/* ==========================================
+   Mobile
+========================================== */
 
 @media(max-width:768px){
 
 .layout{
-    flex-direction:column;
+
+flex-direction:column;
+
 }
 
 .sidebar{
-    display:none;
-}
 
-.topbar{
-    width:100%;
+display:none;
+
 }
 
 .main-content{
-    width:100%;
+
+margin:12px;
+
+}
+
+.topbar{
+
+height:68px;
+
+padding:0 18px;
+
+border-radius:22px;
+
 }
 
 .page-content{
-    width:100%;
-    padding:20px;
+
+padding:20px;
+
+border-radius:22px;
+
+}
+
+}
+
+/* ==========================================
+   Aurora Animation
+========================================== */
+
+@keyframes aurora{
+
+0%{
+
+transform:
+
+translate(0,0)
+
+scale(1);
+
+}
+
+25%{
+
+transform:
+
+translate(60px,-40px)
+
+scale(1.08);
+
+}
+
+50%{
+
+transform:
+
+translate(-50px,60px)
+
+scale(.95);
+
+}
+
+75%{
+
+transform:
+
+translate(40px,20px)
+
+scale(1.04);
+
+}
+
+100%{
+
+transform:
+
+translate(-30px,-30px)
+
+scale(1);
+
 }
 
 }

@@ -1,0 +1,280 @@
+/* =====================================================
+   SUMMARY WRAPPER
+===================================================== */
+
+.calendar-summary {
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+
+  width: 100%;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.calendar-summary__card {
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  padding: 28px;
+
+  min-height: 180px;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  background: #1b2436;
+
+  border: 1px solid rgba(255,255,255,.06);
+
+  transition: .3s;
+
+}
+
+
+.calendar-summary__card:hover{
+
+  transform: translateY(-4px);
+
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.calendar-summary__card::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:-40px;
+  right:-40px;
+
+  width:140px;
+  height:140px;
+
+  border-radius:50%;
+
+  opacity:.25;
+
+}
+
+
+.calendar-summary__card::after{
+
+  content:"";
+
+  position:absolute;
+
+  bottom:-55px;
+  left:-55px;
+
+  width:170px;
+  height:170px;
+
+  border-radius:50%;
+
+  opacity:.12;
+
+}
+
+
+/* =====================================================
+   CARD COLORS
+===================================================== */
+
+.calendar-summary__card--current{
+
+  background:linear-gradient(
+      135deg,
+      #dfe9ff,
+      #bdd6ff
+  );
+
+}
+
+
+.calendar-summary__card--current::before{
+
+  background:#ffffff;
+
+}
+
+
+.calendar-summary__card--current::after{
+
+  background:#ffffff;
+
+}
+
+
+
+.calendar-summary__card--longest{
+
+  background:linear-gradient(
+      135deg,
+      #e7ffe1,
+      #cbffd2
+  );
+
+}
+
+
+.calendar-summary__card--longest::before{
+
+  background:#ffffff;
+
+}
+
+
+.calendar-summary__card--longest::after{
+
+  background:#ffffff;
+
+}
+
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.calendar-summary__icon{
+
+  font-size:34px;
+
+  flex-shrink:0;
+
+}
+
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.calendar-summary__content{
+
+  display:flex;
+  flex-direction:column;
+
+}
+
+
+.calendar-summary__label{
+
+  font-size:22px;
+
+  font-weight:700;
+
+  color:#ffffff;
+
+  margin-bottom:18px;
+
+}
+
+
+.calendar-summary__value{
+
+  font-size:64px;
+
+  line-height:1;
+
+  font-weight:800;
+
+  color:#00c853;
+
+}
+
+
+.calendar-summary__unit{
+
+  margin-top:10px;
+
+  font-size:17px;
+
+  font-weight:600;
+
+  color:#53657d;
+
+}
+
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width:900px){
+
+  .calendar-summary{
+
+      grid-template-columns:1fr;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:600px){
+
+  .calendar-summary__card{
+
+      min-height:150px;
+
+      padding:22px;
+
+      border-radius:18px;
+
+      gap:18px;
+
+  }
+
+
+  .calendar-summary__icon{
+
+      font-size:28px;
+
+  }
+
+
+  .calendar-summary__label{
+
+      font-size:18px;
+
+      margin-bottom:12px;
+
+  }
+
+
+  .calendar-summary__value{
+
+      font-size:48px;
+
+  }
+
+
+  .calendar-summary__unit{
+
+      font-size:15px;
+
+  }
+
+}
