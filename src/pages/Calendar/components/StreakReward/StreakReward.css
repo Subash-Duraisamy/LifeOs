@@ -1,0 +1,685 @@
+/* ==========================================================
+   STREAK REWARD POPUP
+========================================================== */
+
+.streak-popup-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999999;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    overflow:hidden;
+
+    background:rgba(8,10,18,.30);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    animation:popupFade .35s ease;
+
+}
+
+/* ==========================================================
+   FADE ANIMATION
+========================================================== */
+
+@keyframes popupFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================================
+   MAIN CONTAINER
+========================================================== */
+
+.streak-popup{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:transparent;
+
+    padding:0;
+
+}
+
+/* ==========================================================
+   GOLDEN GLOW
+========================================================== */
+
+.streak-popup-glow{
+
+    position:absolute;
+
+    top:130px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        circle,
+
+        rgba(255,219,70,.45),
+
+        rgba(255,190,0,.18),
+
+        transparent 70%
+
+    );
+
+    filter:blur(45px);
+
+    z-index:-1;
+
+    animation:goldGlow 3s ease-in-out infinite;
+
+}
+
+/* ==========================================================
+   GLOW
+========================================================== */
+
+@keyframes goldGlow{
+
+    0%{
+
+        transform:
+
+        translateX(-50%)
+
+        scale(.90);
+
+        opacity:.6;
+
+    }
+
+    50%{
+
+        transform:
+
+        translateX(-50%)
+
+        scale(1.15);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+
+        translateX(-50%)
+
+        scale(.90);
+
+        opacity:.6;
+
+    }
+
+}
+
+/* ==========================================================
+   STREAK NUMBER
+========================================================== */
+
+.streak-popup-count{
+
+    font-size:58px;
+
+    font-weight:900;
+
+    color:#FFD84A;
+
+    line-height:1;
+
+    margin-bottom:8px;
+
+    text-shadow:
+
+    0 0 15px rgba(255,214,70,.85),
+
+    0 0 35px rgba(255,214,70,.45);
+
+    animation:numberPop .7s ease;
+
+}
+
+/* ==========================================================
+   NUMBER POP
+========================================================== */
+
+@keyframes numberPop{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+
+        scale(.2);
+
+    }
+
+    70%{
+
+        transform:
+
+        scale(1.15);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+
+        scale(1);
+
+    }
+
+}
+
+/* ==========================================================
+   TROPHY WRAPPER
+========================================================== */
+
+.streak-popup-trophy-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:4px;
+
+    margin-bottom:18px;
+
+}
+
+/* ==========================================================
+   TROPHY
+========================================================== */
+
+.streak-popup-trophy{
+
+    position:relative;
+
+    width:180px;
+
+    max-width:55vw;
+
+    height:auto;
+
+    object-fit:contain;
+
+    z-index:5;
+
+    user-select:none;
+
+    pointer-events:none;
+
+    filter:
+
+        drop-shadow(0 18px 35px rgba(255,197,55,.35))
+
+        drop-shadow(0 0 25px rgba(255,219,75,.45));
+
+    animation:
+
+        trophyAppear .8s ease,
+
+        trophyFloat 3.2s ease-in-out infinite;
+
+}
+
+/* ==========================================================
+   TROPHY APPEAR
+========================================================== */
+
+@keyframes trophyAppear{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+
+            scale(.45)
+
+            rotate(-12deg);
+
+    }
+
+    60%{
+
+        opacity:1;
+
+        transform:
+
+            scale(1.08)
+
+            rotate(3deg);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+
+            scale(1)
+
+            rotate(0deg);
+
+    }
+
+}
+
+/* ==========================================================
+   FLOATING TROPHY
+========================================================== */
+
+@keyframes trophyFloat{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    25%{
+
+        transform:translateY(-8px);
+
+    }
+
+    50%{
+
+        transform:translateY(-14px);
+
+    }
+
+    75%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+/* ==========================================================
+   EXTRA GOLD GLOW
+========================================================== */
+
+.streak-popup-trophy-wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        circle,
+
+        rgba(255,222,95,.55),
+
+        rgba(255,180,0,.18),
+
+        transparent 72%
+
+    );
+
+    filter:blur(35px);
+
+    z-index:0;
+
+    animation:haloGlow 3s ease-in-out infinite;
+
+}
+
+/* ==========================================================
+   HALO GLOW
+========================================================== */
+
+@keyframes haloGlow{
+
+    0%{
+
+        transform:scale(.85);
+
+        opacity:.6;
+
+    }
+
+    50%{
+
+        transform:scale(1.12);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(.85);
+
+        opacity:.6;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLETS
+========================================================== */
+
+@media (max-width:768px){
+
+    .streak-popup-trophy{
+
+        width:160px;
+
+    }
+
+    .streak-popup-trophy-wrapper::before{
+
+        width:150px;
+
+        height:150px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .streak-popup-trophy{
+
+        width:145px;
+
+    }
+
+    .streak-popup-trophy-wrapper::before{
+
+        width:135px;
+
+        height:135px;
+
+    }
+
+}
+/* ==========================================================
+   CONTINUE BUTTON
+========================================================== */
+
+.streak-popup-button{
+
+    position:relative;
+
+    z-index:10;
+
+    margin-top:38px;
+
+    width:100%;
+
+    max-width:280px;
+
+    height:58px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    color:#ffffff;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #7C6CFF 0%,
+
+        #5B8CFF 45%,
+
+        #48C6FF 100%
+
+    );
+
+    box-shadow:
+
+        0 15px 35px rgba(91,140,255,.35),
+
+        0 8px 18px rgba(0,0,0,.35),
+
+        inset 0 1px rgba(255,255,255,.25);
+
+    transition:
+
+        transform .25s ease,
+
+        box-shadow .25s ease,
+
+        filter .25s ease;
+
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   SHINE EFFECT
+========================================================== */
+
+.streak-popup-button::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-140%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.55),
+
+        transparent
+
+    );
+
+    transform:skewX(-25deg);
+
+    transition:left .7s ease;
+
+}
+
+/* ==========================================================
+   BUTTON HOVER
+========================================================== */
+
+.streak-popup-button:hover{
+
+    transform:
+
+        translateY(-4px)
+
+        scale(1.03);
+
+    filter:brightness(1.08);
+
+    box-shadow:
+
+        0 22px 45px rgba(91,140,255,.45),
+
+        0 10px 25px rgba(0,0,0,.45);
+
+}
+
+.streak-popup-button:hover::before{
+
+    left:160%;
+
+}
+
+/* ==========================================================
+   BUTTON CLICK
+========================================================== */
+
+.streak-popup-button:active{
+
+    transform:
+
+        scale(.97);
+
+}
+
+/* ==========================================================
+   BUTTON FOCUS
+========================================================== */
+
+.streak-popup-button:focus-visible{
+
+    box-shadow:
+
+        0 0 0 4px rgba(255,255,255,.15),
+
+        0 0 0 8px rgba(90,130,255,.35);
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:768px){
+
+    .streak-popup-button{
+
+        max-width:260px;
+
+        height:54px;
+
+        font-size:18px;
+
+        margin-top:32px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .streak-popup-button{
+
+        width:92%;
+
+        max-width:260px;
+
+        height:52px;
+
+        font-size:17px;
+
+        margin-top:28px;
+
+    }
+
+}
+
+
+/* ________________________________
+ */
+

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 
 import { useAuth } from "../../../hooks/useAuth";
-
+import './SearchUsers.css'
 import {
   searchUsers,
   sendFriendRequest,
   checkFriend,
   checkFriendRequest,
 } from "../../../services/friendService";
+
+
 
 function SearchUsers() {
 
@@ -145,63 +147,63 @@ useEffect(() => {
     }
 
   }
+return (
 
-  return (
+  <div className="su-container">
 
-    <div>
+    {/* ==========================
+        SEARCH BAR
+    ========================== */}
+
+    <div className="su-search-box">
 
       <input
-
+        className="su-search-input"
         placeholder="Search username..."
-
         value={search}
-
         onChange={(e) =>
           setSearch(e.target.value)
         }
-
       />
 
-      <br />
-      <br />
+    </div>
 
-      {
+    {/* ==========================
+        EMPTY RESULT
+    ========================== */}
 
-        users.length === 0 && search && (
+    {users.length === 0 && search && (
 
-          <p>No users found.</p>
+      <div className="su-empty-state">
 
-        )
+        <h3 className="su-empty-title">
+          No Users Found 😔
+        </h3>
 
-      }
+        <p className="su-empty-text">
+          Try searching with another username.
+        </p>
 
-      {
+      </div>
 
-        users.map(friend => (
+    )}
 
-          <div
+    {/* ==========================
+        USER LIST
+    ========================== */}
 
-            key={friend.uid}
+    <div className="su-users-list">
 
-            style={{
+      {users.map((friend) => (
 
-              display: "flex",
+        <div
+          key={friend.uid}
+          className="su-user-card"
+        >
 
-              alignItems: "center",
+          {/* Left */}
 
-              gap: 20,
-
-              marginBottom: 20,
-
-              border: "1px solid #ddd",
-
-              padding: 15,
-
-              borderRadius: 12,
-
-            }}
-
-          >
+          <div className="su-user-info">
 
             <img
 
@@ -210,53 +212,55 @@ useEffect(() => {
                 `https://ui-avatars.com/api/?name=${friend.fullName}`
               }
 
-              width="60"
+              alt={friend.fullName}
 
-              height="60"
-
-              alt=""
-
-              style={{
-
-                borderRadius: "50%",
-
-              }}
+              className="su-user-avatar"
 
             />
 
-            <div
-              style={{
-                flex: 1,
-              }}
-            >
+            <div className="su-user-details">
 
-              <h3>{friend.fullName}</h3>
+              <h3 className="su-user-name">
 
-              <p>@{friend.username}</p>
+                {friend.fullName}
+
+              </h3>
+
+              <p className="su-user-username">
+
+                @{friend.username}
+
+              </p>
 
             </div>
 
-            <button
-
-              onClick={() =>
-                handleAddFriend(friend)
-              }
-
-            >
-
-              Add Friend
-
-            </button>
-
           </div>
 
-        ))
+          {/* Right */}
 
-      }
+          <button
+
+            className="su-add-btn"
+
+            onClick={() =>
+              handleAddFriend(friend)
+            }
+
+          >
+
+            Add Friend
+
+          </button>
+
+        </div>
+
+      ))}
 
     </div>
 
-  );
+  </div>
+
+);
 
 }
 

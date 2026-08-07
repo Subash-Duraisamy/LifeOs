@@ -3,6 +3,15 @@ import { useEffect, useMemo, useState } from "react";
 import "./CalendarSidebar.css";
 
 import { useAuth } from "../../../hooks/useAuth";
+import {
+    doc,
+    getDoc,
+} from "firebase/firestore";
+import { db } from "../../../firebase/firebase";
+
+
+
+
 
 import {
 
@@ -11,6 +20,8 @@ import {
   saveDayRecord,
 
 } from "../../../services/calendarService";
+
+
 export default function CalendarSidebar({
 
   selectedDate,
@@ -21,7 +32,10 @@ export default function CalendarSidebar({
   records,
   setRecords,
 
-}) {
+  setShowReward,
+  setRewardData,
+
+}){
 
   /* =========================
       LOCAL STATES
@@ -452,45 +466,170 @@ async function toggleBreakFree(isChecked) {
 
 }
 
+function calculateCurrentStreak(allRecords) {
+
+    let streak = 0;
+
+    let pointer = new Date();
+
+    pointer.setHours(0, 0, 0, 0);
+
+    const todayKey =
+        `${pointer.getFullYear()}-${String(pointer.getMonth()+1).padStart(2,"0")}-${String(pointer.getDate()).padStart(2,"0")}`;
+
+    // If today is not submitted,
+    // start from yesterday
+    if (
+        !allRecords[todayKey] ||
+        (
+            !allRecords[todayKey].submitted &&
+            !allRecords[todayKey].breakFree
+        )
+    ) {
+
+        pointer.setDate(pointer.getDate() - 1);
+
+    }
+
+    while (true) {
+
+        const key =
+            `${pointer.getFullYear()}-${String(pointer.getMonth()+1).padStart(2,"0")}-${String(pointer.getDate()).padStart(2,"0")}`;
+
+        const record = allRecords[key];
+
+        if (
+            record &&
+            (
+                record.submitted ||
+                record.breakFree
+            )
+        ) {
+
+            streak++;
+
+            pointer.setDate(pointer.getDate() - 1);
+
+        }
+
+        else {
+
+            break;
+
+        }
+
+    }
+
+    return streak;
+
+}
+
 /* =========================
    SUBMIT DAY
 ========================= */
-
+/* =========================
+   SUBMIT DAY
+========================= */
 async function submitDay() {
 
-  if (!user) return;
+    if (!user) return;
 
-const dayRecord = {
-    date: dateKey,
-    tasks,
-    breakFree,
-    submitted: true,
-    totalTasks,
-    completedTasks,
-    completionPercentage,
-};
+    const dayRecord = {
 
-  await saveDayRecord(
+        date: dateKey,
 
-    user.uid,
+        tasks,
 
-    dateKey,
+        breakFree,
 
-    dayRecord
+        submitted: true,
 
-  );
+        totalTasks,
 
-  setSubmitted(true);
+        completedTasks,
 
-  setRecords((previous) => ({
+        completionPercentage,
 
-    ...previous,
+    };
 
-    [dateKey]: dayRecord,
+    /* =========================
+       Save today's report
+    ========================= */
 
-  }));
+    await saveDayRecord(
+        user.uid,
+        dateKey,
+        dayRecord
+    );
+
+    /* =========================
+       Update local records
+    ========================= */
+
+    const updatedRecords = {
+
+        ...records,
+
+        [dateKey]: dayRecord,
+
+    };
+
+  
+    /* =========================
+       Calculate Latest Streak
+    ========================= */
+
+    const streak = calculateCurrentStreak(
+        updatedRecords
+    );
+console.log(updatedRecords);
+console.log("STREAK =", streak);
+  setRecords(updatedRecords);
+
+    setSubmitted(true);
+
+    /* =========================
+       Get User Profile
+    ========================= */
+
+    const profileRef = doc(
+        db,
+        "users",
+        user.uid
+    );
+
+    const profileSnap = await getDoc(
+        profileRef
+    );
+
+    let fullName =
+        user.displayName ||
+        user.email.split("@")[0];
+
+    if (profileSnap.exists()) {
+
+        fullName =
+            profileSnap.data().fullName;
+
+    }
+
+    /* =========================
+       Show Reward Popup
+    ========================= */
+
+    setRewardData({
+
+        username: fullName,
+
+        streak: streak,
+
+    });
+
+    setShowReward(true);
 
 }
+
+
 /* =========================
    UI
 ========================= */

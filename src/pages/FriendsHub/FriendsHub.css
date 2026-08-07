@@ -1,51 +1,792 @@
+/* ==========================================================
+   FRIENDS PAGE
+========================================================== */
+
 .friends-page{
 
-display:flex;
+    position:relative;
 
-flex-direction:column;
+    display:flex;
 
-gap:24px;
+    flex-direction:column;
+
+    gap:28px;
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding:34px;
+
+    overflow:hidden;
 
 }
+
+/* ==========================================================
+   AURORA BACKGROUND
+========================================================== */
+
+.friends-page::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:480px;
+
+    height:480px;
+
+    top:-220px;
+
+    left:-180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(126,87,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(65px);
+
+    pointer-events:none;
+
+}
+
+.friends-page::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+
+    height:420px;
+
+    right:-180px;
+
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(83,209,255,.16),
+
+            transparent 72%
+
+        );
+
+    filter:blur(65px);
+
+    pointer-events:none;
+
+}
+
+.friends-page>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
 
 .friends-page h1{
 
-font-size:36px;
+    font-size:clamp(2.2rem,3vw,3.2rem);
 
-font-weight:700;
+    font-weight:800;
+
+    color:white;
+
+    letter-spacing:-1px;
+
+    margin:0;
+
+    text-shadow:
+
+        0 3px 20px rgba(255,255,255,.08);
 
 }
+
+/* ==========================================================
+   TAB CONTAINER
+========================================================== */
 
 .friends-tabs{
 
-display:flex;
+    display:flex;
 
-gap:14px;
+    gap:18px;
+
+    flex-wrap:wrap;
 
 }
+
+/* ==========================================================
+   TAB BUTTON
+========================================================== */
 
 .friends-tabs button{
 
-padding:12px 24px;
+    position:relative;
 
-border:none;
+    overflow:hidden;
 
-border-radius:12px;
+    min-width:150px;
 
-cursor:pointer;
+    height:58px;
 
-background:#e9ecef;
+    padding:0 28px;
 
-font-weight:600;
+    border:none;
 
-transition:.25s;
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#dbe8ff;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    border:
+
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 14px 35px rgba(0,0,0,.20);
+
+    transition:.35s;
 
 }
 
-.friends-tabs button.active{
+/* ==========================================================
+   FRIENDS PAGE
+========================================================== */
 
-background:#2563eb;
+.friends-page{
 
-color:white;
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding:34px;
+
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   AURORA BACKGROUND
+========================================================== */
+
+.friends-page::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:480px;
+
+    height:480px;
+
+    top:-220px;
+
+    left:-180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(126,87,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(65px);
+
+    pointer-events:none;
+
+}
+
+.friends-page::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+
+    height:420px;
+
+    right:-180px;
+
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(83,209,255,.16),
+
+            transparent 72%
+
+        );
+
+    filter:blur(65px);
+
+    pointer-events:none;
+
+}
+
+.friends-page>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.friends-page h1{
+
+    font-size:clamp(2.2rem,3vw,3.2rem);
+
+    font-weight:800;
+
+    color:white;
+
+    letter-spacing:-1px;
+
+    margin:0;
+
+    text-shadow:
+
+        0 3px 20px rgba(255,255,255,.08);
+
+}
+
+/* ==========================================================
+   TAB CONTAINER
+========================================================== */
+
+.friends-tabs{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================================
+   TAB BUTTON
+========================================================== */
+
+.friends-tabs button{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-width:150px;
+
+    height:58px;
+
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#dbe8ff;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    border:
+
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 14px 35px rgba(0,0,0,.20);
+
+    transition:.35s;
+
+}
+/* ==========================================================
+   SEARCH GLOW
+========================================================== */
+
+.search-users__search::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+
+    right:-120px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(138,120,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(40px);
+
+}
+
+.search-users__search::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-110px;
+
+    left:-110px;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(92,214,255,.16),
+
+            transparent 72%
+
+        );
+
+    filter:blur(40px);
+
+}
+/* ==========================================================
+   SEARCH INPUT
+========================================================== */
+
+.search-users__search input{
+
+    flex:1;
+
+    height:58px;
+
+    border:none;
+
+    outline:none;
+
+    padding:0 22px;
+
+    border-radius:18px;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:16px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    transition:.35s;
+
+}
+
+.search-users__search input::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+.search-users__search input:focus{
+
+    border-color:
+
+        rgba(118,182,255,.40);
+
+    box-shadow:
+
+        0 0 25px rgba(108,152,255,.20);
+
+}
+
+/* ==========================================================
+   SEARCH BUTTON
+========================================================== */
+
+.search-users__search button{
+
+    height:58px;
+
+    padding:0 30px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #8978ff,
+
+            #68b0ff,
+
+            #5fd7ff
+
+        );
+
+    background-size:250%;
+
+    animation:
+
+        searchAurora 8s linear infinite;
+
+    box-shadow:
+
+        0 18px 40px rgba(108,165,255,.28),
+
+        inset 0 1px rgba(255,255,255,.30);
+
+    transition:.35s;
+
+}
+
+.search-users__search button:hover{
+
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        0 25px 50px rgba(108,165,255,.35);
+
+}
+
+/* ==========================================================
+   USER LIST
+========================================================== */
+
+.search-users__list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================================
+   USER CARD
+========================================================== */
+
+.search-users__card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:22px;
+
+    padding:22px;
+
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 18px 40px rgba(0,0,0,.18);
+
+    transition:.35s;
+
+}
+
+.search-users__card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 24px 50px rgba(108,165,255,.18);
+
+}
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.search-users__profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.search-users__avatar{
+
+    width:68px;
+
+    height:68px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        0 10px 24px rgba(0,0,0,.28);
+
+}
+
+.search-users__name{
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.search-users__username{
+
+    color:rgba(255,255,255,.58);
+
+    font-size:15px;
+
+}
+
+/* ==========================================================
+   ADD FRIEND BUTTON
+========================================================== */
+
+.search-users__add{
+
+    min-width:170px;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #8978ff,
+
+            #63b7ff
+
+        );
+
+    box-shadow:
+
+        0 18px 35px rgba(108,165,255,.25);
+
+    transition:.35s;
+
+}
+
+.search-users__add:hover{
+
+    transform:
+
+        translateY(-3px);
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:900px){
+
+    .search-users__card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .search-users__add{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .search-users__search{
+
+        flex-direction:column;
+
+    }
+
+    .search-users__search input,
+
+    .search-users__search button{
+
+        width:100%;
+
+    }
+
+    .search-users__avatar{
+
+        width:56px;
+
+        height:56px;
+
+    }
 
 }

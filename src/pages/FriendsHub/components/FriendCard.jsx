@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
+import './FriendCard.css'
 
 
 import { db } from "../../../firebase/firebase";
@@ -202,201 +203,83 @@ async function removeFriendHandler(friend) {
   }
 
 
-}
-return (
+}return (
 
+  <>
 
-  <div>
+    {friends.length === 0 ? (
 
+      <div className="fh-empty-state">
 
-    {
+        <h3 className="fh-empty-title">
+          No Friends Yet 😔
+        </h3>
 
+        <p className="fh-empty-text">
+          Start connecting with people to build your friends list.
+        </p>
 
-      friends.length === 0 ? (
+      </div>
 
+    ) : (
 
-        <div>
+      <div className="fh-friends-list">
 
-
-          <h3>
-
-
-            No Friends Yet 😔
-
-
-          </h3>
-
-
-        </div>
-
-
-      ) : (
-
-
-        friends.map(friend => (
-
+        {friends.map((friend) => (
 
           <div
-
-
             key={friend.id}
-
-
-            style={{
-
-
-              display: "flex",
-
-
-              justifyContent: "space-between",
-
-
-              alignItems: "center",
-
-
-              padding: "18px",
-
-
-              border: "1px solid #ddd",
-
-
-              borderRadius: "12px",
-
-
-              marginBottom: "16px",
-
-
-            }}
-
-
+            className="fh-friend-card"
           >
 
+            {/* Left Side */}
 
-            <div
-
-
-              style={{
-
-
-                display: "flex",
-
-
-                alignItems: "center",
-
-
-                gap: "16px",
-
-
-              }}
-
-
-            >
-
+            <div className="fh-friend-info">
 
               <img
-
-
                 src={
-
-
                   friend.friendPhoto ||
-
-
                   `https://ui-avatars.com/api/?name=${friend.friendName}`
-
-
                 }
-
-
-                width="60"
-
-
-                height="60"
-
-
                 alt={friend.friendName}
-
-
-                style={{
-
-
-                  borderRadius: "50%",
-
-
-                  objectFit: "cover",
-
-
-                }}
-
-
+                className="fh-friend-avatar"
               />
 
+              <div className="fh-friend-details">
 
-              <div>
-
-
-                <h3>
-
-
+                <h3 className="fh-friend-name">
                   {friend.friendName}
-
-
                 </h3>
 
-
-                <p>
-
-
+                <p className="fh-friend-username">
                   @{friend.friendUsername}
-
-
                 </p>
-
 
               </div>
 
-
             </div>
 
+            {/* Right Side */}
 
             <button
-
-
-              onClick={() =>
-
-
-                removeFriendHandler(friend)
-
-
-              }
-
-
+              className="fh-remove-btn"
+              onClick={() => removeFriendHandler(friend)}
             >
-
-
-              Remove
-
-
+              Remove Friend
             </button>
-
 
           </div>
 
+        ))}
 
-        ))
+      </div>
 
+    )}
 
-      )
-
-
-    }
-
-
-  </div>
-
+  </>
 
 );
 
-
 }
+
 export default FriendCard;

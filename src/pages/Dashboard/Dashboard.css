@@ -1,108 +1,499 @@
+/* ==========================================================
+   DASHBOARD
+========================================================== */
+
 .dashboard{
 
     display:flex;
-
     flex-direction:column;
 
-    gap:20px;
+    gap:28px;
+
+    animation:dashboardFade .7s ease;
 
 }
 
-/* ==========================
-   Welcome Card
-========================== */
+/* ==========================================================
+   Dashboard Animation
+========================================================== */
+
+@keyframes dashboardFade{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes auroraMove{
+
+    0%{
+
+        transform:
+            translate(-8%,-6%)
+            rotate(0deg);
+
+    }
+
+    50%{
+
+        transform:
+            translate(10%,8%)
+            rotate(180deg);
+
+    }
+
+    100%{
+
+        transform:
+            translate(-8%,-6%)
+            rotate(360deg);
+
+    }
+
+}
+/* ==========================================================
+   WELCOME CARD
+========================================================== */
 
 .welcome-card{
 
-    background:var(--surface);
+    position:relative;
 
-    padding:28px;
+    overflow:hidden;
 
-    border-radius:18px;
+    padding:34px;
 
-    border:1px solid var(--border);
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(25,35,65,.72),
+            rgba(14,20,42,.72)
+        );
+
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
+
+    border:
+
+        1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.30),
+
+        inset 0 1px rgba(255,255,255,.06);
 
 }
+
+/* ==========================================================
+   Aurora Background
+========================================================== */
+
+.welcome-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+
+            circle at top left,
+
+            rgba(126,104,255,.30),
+
+            transparent 45%
+
+        ),
+
+        radial-gradient(
+
+            circle at bottom right,
+
+            rgba(72,226,255,.24),
+
+            transparent 55%
+
+        );
+
+}
+
+/* ==========================================================
+   Glass Shine
+========================================================== */
+
+.welcome-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+
+            120deg,
+
+            transparent 25%,
+
+            rgba(255,255,255,.05),
+
+            transparent 80%
+
+        );
+
+}
+
+/* Content above glow */
+
+.welcome-card>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   Welcome Heading
+========================================================== */
 
 .welcome-card h1{
 
-    font-size:38px;
+    font-size:44px;
 
-    margin-bottom:8px;
+    font-weight:800;
+
+    margin-bottom:10px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #9fd9ff,
+            #85f6ff
+        );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
 
 }
+
+/* ==========================================================
+   Username
+========================================================== */
 
 .welcome-card h2{
 
-    font-size:26px;
+    font-size:28px;
 
-    color:var(--primary);
+    margin-bottom:14px;
 
-    margin-bottom:8px;
+    font-weight:700;
+
+    color:#8FEAFF;
+
+    text-shadow:
+
+        0 0 18px rgba(100,225,255,.30);
 
 }
+
+/* ==========================================================
+   Description
+========================================================== */
 
 .welcome-card p{
 
+    max-width:700px;
+
     font-size:16px;
 
-}
+    line-height:1.8;
 
-/* ==========================
-   Dashboard Grid
-========================== */
+    color:
+
+        rgba(225,235,255,.78);
+
+}
+/* ==========================================================
+   DASHBOARD GRID
+========================================================== */
 
 .dashboard-grid{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
 
-    gap:18px;
+    gap:24px;
+
+    align-items:start;
 
 }
 
-/* ==========================
-   Card
-========================== */
-
+/* ==========================================================
+   CARD
+========================================================== */
 .card{
 
-    background:var(--surface);
+    position:relative;
 
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:20px;
+    overflow:hidden;
 
     display:flex;
-
     flex-direction:column;
 
-    transition:.25s;
+    min-height:240px;
+
+    padding:24px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.02)
+        );
+
+    backdrop-filter:blur(35px) saturate(180%);
+    -webkit-backdrop-filter:blur(35px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.15),
+
+        inset 0 -1px rgba(255,255,255,.04),
+
+        0 12px 35px rgba(0,0,0,.25),
+
+        0 0 50px rgba(108,120,255,.08);
+
+    transition:
+        transform .45s,
+        box-shadow .45s,
+        border-color .45s;
 
 }
+
+/* ==========================================================
+   Aurora Glow
+========================================================== */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-40%;
+
+    background:
+
+        radial-gradient(circle at 20% 20%,
+        rgba(132,108,255,.28),
+        transparent 35%),
+
+        radial-gradient(circle at 80% 10%,
+        rgba(82,240,255,.20),
+        transparent 35%),
+
+        radial-gradient(circle at 50% 90%,
+        rgba(255,120,220,.16),
+        transparent 40%);
+
+    filter:blur(55px);
+
+    animation:
+        auroraMove 16s linear infinite;
+
+}
+/* ==========================================================
+   Glass Reflection
+========================================================== */
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            120deg,
+
+            transparent 20%,
+
+            rgba(255,255,255,.08) 42%,
+
+            transparent 70%
+        );
+
+    opacity:.8;
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   Card Content
+========================================================== */
+
+.card>*{
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+/* ==========================================================
+   Hover
+========================================================== */
 
 .card:hover{
 
-    transform:translateY(-4px);
+    transform:
 
-    box-shadow:0 15px 35px rgba(0,0,0,.18);
+        translateY(-10px)
+        scale(1.02);
+
+    border-color:
+
+        rgba(140,220,255,.28);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.18),
+
+        0 35px 70px rgba(0,0,0,.35),
+
+        0 0 80px rgba(80,220,255,.18),
+
+        0 0 120px rgba(125,110,255,.12);
 
 }
+.card:hover::after{
+
+    animation:
+        glassShine 1.5s ease;
+
+}
+
+@keyframes glassShine{
+
+    from{
+
+        transform:translateX(-120%);
+
+    }
+
+    to{
+
+        transform:translateX(120%);
+
+    }
+
+}
+
+/* ==========================================================
+   Card Title
+========================================================== */
 
 .card h2{
 
+    margin-bottom:20px;
+
     font-size:24px;
 
-    margin-bottom:16px;
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    color:white;
 
 }
 
-/* ==========================
-   Tasks
-========================== */
+/* ==========================================================
+   Small Divider
+========================================================== */
+
+.card h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:70px;
+
+    height:3px;
+
+    margin-top:10px;
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #76a8ff,
+
+            #76f4ff
+
+        );
+
+}
+
+/* ==========================================================
+   Card Paragraph
+========================================================== */
+
+.card p{
+
+    color:
+
+        rgba(220,230,255,.75);
+
+    line-height:1.7;
+
+}
+/* ==========================================================
+   TASK LIST
+========================================================== */
 
 .task-list{
 
@@ -110,57 +501,173 @@
 
     flex-wrap:wrap;
 
-    gap:10px;
+    gap:12px;
+
+    align-items:flex-start;
 
 }
 
+/* ==========================================================
+   TASK CHIP
+========================================================== */
+
 .task-chip{
 
-    padding:8px 14px;
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 18px;
 
     border-radius:999px;
 
     font-size:13px;
 
-    font-weight:600;
+    font-weight:700;
+
+    letter-spacing:.25px;
+
+    backdrop-filter:blur(18px);
+
+    transition:
+
+        transform .30s ease,
+
+        box-shadow .30s ease,
+
+        filter .30s ease;
 
 }
+
+/* Glass shine */
+
+.task-chip::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            120deg,
+
+            transparent,
+
+            rgba(255,255,255,.10),
+
+            transparent
+
+        );
+
+    pointer-events:none;
+
+}
+
+/* Hover */
+
+.task-chip:hover{
+
+    transform:
+
+        translateY(-3px)
+
+        scale(1.06);
+
+}
+
+/* ==========================================================
+   LOW
+========================================================== */
 
 .task-chip.low{
 
-    background:#dcfce7;
+    color:#CFFFE2;
 
-    color:#166534;
+    background:
+
+        rgba(39,196,120,.18);
+
+    border:
+
+        1px solid rgba(65,255,170,.25);
+
+    box-shadow:
+
+        0 0 18px rgba(65,255,170,.12);
 
 }
+
+/* ==========================================================
+   MEDIUM
+========================================================== */
 
 .task-chip.medium{
 
-    background:#fef3c7;
+    color:#FFF3C9;
 
-    color:#92400e;
+    background:
+
+        rgba(255,194,51,.18);
+
+    border:
+
+        1px solid rgba(255,220,90,.25);
+
+    box-shadow:
+
+        0 0 18px rgba(255,210,80,.12);
 
 }
+
+/* ==========================================================
+   HIGH
+========================================================== */
 
 .task-chip.high{
 
-    background:#fee2e2;
+    color:#FFD7D7;
 
-    color:#991b1b;
+    background:
+
+        rgba(255,82,82,.18);
+
+    border:
+
+        1px solid rgba(255,120,120,.25);
+
+    box-shadow:
+
+        0 0 18px rgba(255,80,80,.12);
 
 }
 
+/* ==========================================================
+   NO TASK
+========================================================== */
+
 .no-task{
 
-    color:#94a3b8;
+    color:
+
+        rgba(220,230,255,.60);
 
     font-size:15px;
 
 }
 
-/* ==========================
-   Library Widget
-========================== */
+/* ==========================================================
+   LIBRARY
+========================================================== */
 
 .library-widget{
 
@@ -170,88 +677,211 @@
 
     align-items:center;
 
+    justify-content:center;
+
 }
+
+/* ==========================================================
+   BOOK IMAGE
+========================================================== */
 
 .library-widget img{
 
     width:100%;
 
-    max-width:160px;
+    max-width:180px;
 
-    height:220px;
+    height:245px;
 
     object-fit:cover;
 
-    border-radius:14px;
+    border-radius:22px;
 
-    box-shadow:0 12px 25px rgba(0,0,0,.28);
+    border:
 
-    transition:.3s;
+        1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        0 25px 50px rgba(0,0,0,.35),
+
+        0 0 22px rgba(90,220,255,.08);
+
+    transition:
+
+        transform .45s,
+
+        box-shadow .45s,
+
+        filter .45s;
 
 }
+
+/* Floating hover */
 
 .library-widget img:hover{
 
-    transform:scale(1.04);
+    transform:
+
+        translateY(-10px)
+
+        rotate(-2deg)
+
+        scale(1.04);
+
+    box-shadow:
+
+        0 35px 70px rgba(0,0,0,.40),
+
+        0 0 40px rgba(90,220,255,.18);
 
 }
+
+/* ==========================================================
+   BOOK TITLE
+========================================================== */
 
 .library-widget h3{
 
-    margin-top:14px;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:700;
+    margin-top:20px;
 
     text-align:center;
 
-    line-height:1.4;
+    line-height:1.6;
+
+    font-size:19px;
+
+    font-weight:700;
+
+    color:white;
 
 }
-/* ======================================================
+
+/* ==========================================================
+   SUBTITLE
+========================================================== */
+
+.library-widget p{
+
+    margin-top:8px;
+
+    text-align:center;
+
+    color:
+
+        rgba(220,230,255,.65);
+
+}
+/* ==========================================================
    FRIENDS ACTIVITY
-====================================================== */
+========================================================== */
 
 .friends-dashboard{
 
     display:flex;
-
     flex-direction:column;
 
-    gap:16px;
+    gap:24px;
 
-    margin-top:20px;
+    margin-top:10px;
 
 }
 
 .friends-dashboard h2{
 
-    font-size:28px;
+    font-size:30px;
+
+    font-weight:800;
+
+    color:white;
+
+    letter-spacing:.4px;
 
 }
 
-/* ======================================================
-   Friend Card
-====================================================== */
+/* ==========================================================
+   FRIEND CARD
+========================================================== */
 
 .friend-card{
 
-    background:var(--surface);
+    position:relative;
 
-    border:1px solid var(--border);
+    overflow:hidden;
 
-    border-radius:16px;
+    padding:24px;
 
-    padding:18px;
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(22,30,58,.72),
+            rgba(15,20,42,.68)
+        );
+
+    backdrop-filter:blur(24px);
+
+    border:
+
+        1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        0 18px 40px rgba(0,0,0,.24);
+
+    transition:
+
+        transform .35s,
+        box-shadow .35s;
 
 }
 
-/* ======================================================
-   Header
-====================================================== */
+.friend-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+
+        0 28px 60px rgba(0,0,0,.32),
+
+        0 0 22px rgba(80,220,255,.10);
+
+}
+
+/* Aurora Glow */
+
+.friend-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(120,90,255,.22),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(70,220,255,.18),
+            transparent 55%
+        );
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
 
 .friend-header{
 
@@ -259,73 +889,131 @@
 
     align-items:center;
 
-    gap:14px;
+    gap:18px;
 
-    margin-bottom:16px;
+    margin-bottom:24px;
+
+    position:relative;
+
+    z-index:2;
 
 }
+
+/* ==========================================================
+   PROFILE IMAGE
+========================================================== */
 
 .friend-header img{
 
-    width:50px;
-
-    height:50px;
-
-    border-radius:50%;
+    width:64px;
+    height:64px;
 
     object-fit:cover;
 
+    border-radius:50%;
+
+    border:
+
+        2px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        0 0 20px rgba(90,220,255,.18);
+
+    transition:.35s;
+
 }
+
+.friend-header img:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================================================
+   STATUS DOT
+========================================================== */
+
+.friend-header img{
+
+    position:relative;
+
+}
+
+.friend-header::after{
+
+    content:"";
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#32ff9b;
+
+    position:absolute;
+
+    left:50px;
+    bottom:4px;
+
+    box-shadow:
+
+        0 0 12px #32ff9b;
+
+}
+
+/* ==========================================================
+   NAME
+========================================================== */
 
 .friend-header h3{
 
-    font-size:18px;
+    color:white;
 
-    margin:0;
+    font-size:20px;
+
+    font-weight:700;
 
 }
 
 .friend-header p{
 
+    color:
+
+        rgba(220,230,255,.70);
+
     font-size:13px;
 
-    color:#94a3b8;
-
-    margin-top:3px;
+    margin-top:5px;
 
 }
 
-/* ======================================================
-   Horizontal Layout
-====================================================== */
+/* ==========================================================
+   CONTENT GRID
+========================================================== */
 
 .friend-content{
 
     display:grid;
 
-    grid-template-columns:2fr 140px 140px 140px;
+    grid-template-columns:
 
-    gap:12px;
+        2fr
+        repeat(3,150px);
 
-    align-items:start;
+    gap:18px;
+
+    position:relative;
+
+    z-index:2;
 
 }
 
-/* ======================================================
-   Small Cards
-====================================================== */
+/* ==========================================================
+   SMALL GLASS CARDS
+========================================================== */
 
 .friend-section{
-
-    background:#1f2937;
-
-    border:1px solid var(--border);
-
-    border-radius:12px;
-
-    padding:10px;
-
-    min-height:150px;
 
     display:flex;
 
@@ -333,21 +1021,59 @@
 
     align-items:center;
 
+    min-height:170px;
+
+    padding:14px;
+
+    border-radius:18px;
+
+    background:
+
+        rgba(255,255,255,.04);
+
+    backdrop-filter:blur(18px);
+
+    border:
+
+        1px solid rgba(255,255,255,.06);
+
+    transition:.30s;
+
 }
+
+.friend-section:hover{
+
+    transform:
+
+        translateY(-5px);
+
+    background:
+
+        rgba(255,255,255,.06);
+
+}
+
+/* ==========================================================
+   SECTION TITLE
+========================================================== */
 
 .friend-section h4{
 
     width:100%;
 
+    margin-bottom:14px;
+
+    color:white;
+
     font-size:14px;
 
-    margin-bottom:10px;
+    font-weight:700;
 
 }
 
-/* ======================================================
-   Tasks
-====================================================== */
+/* ==========================================================
+   TASKS
+========================================================== */
 
 .friend-section .task-list{
 
@@ -357,7 +1083,7 @@
 
     flex-direction:column;
 
-    gap:6px;
+    gap:8px;
 
 }
 
@@ -365,84 +1091,390 @@
 
     width:100%;
 
-    text-align:center;
+    justify-content:center;
 
     font-size:11px;
 
-    padding:5px 8px;
+    padding:7px;
 
 }
 
-/* ======================================================
-   Images
-====================================================== */
+/* ==========================================================
+   MEDIA
+========================================================== */
 
 .friend-media{
 
-    width:70px;
-
-    height:95px;
+    width:82px;
+    height:115px;
 
     object-fit:cover;
 
-    border-radius:8px;
+    border-radius:14px;
 
-    margin-bottom:8px;
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.28);
+
+    transition:.35s;
+
+}
+
+.friend-media:hover{
+
+    transform:
+
+        translateY(-5px)
+        scale(1.04);
 
 }
 
 .friend-section p{
 
-    text-align:center;
+    margin-top:10px;
+
+    color:white;
 
     font-size:12px;
 
-    font-weight:600;
-
-    line-height:1.2;
-
-}
-
-/* ======================================================
-   Tablet
-====================================================== */
-
-@media(max-width:1100px){
-
-.friend-content{
-
-    grid-template-columns:1fr 1fr;
-
-}
-
-}
-
-/* ======================================================
-   Mobile
-====================================================== */
-
-@media(max-width:768px){
-
-.friend-header{
-
-    flex-direction:column;
-
     text-align:center;
 
-}
-
-.friend-content{
-
-    grid-template-columns:1fr;
+    line-height:1.5;
 
 }
+/* ==========================================================
+   TABLET
+========================================================== */
 
-.friend-media{
+@media (max-width:1200px){
 
-    width:90px;
+    .dashboard-grid{
 
-    height:120px;
+        grid-template-columns:
+            repeat(auto-fit,minmax(280px,1fr));
+
+        gap:20px;
+
+    }
+
+    .friend-content{
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+    }
 
 }
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .dashboard{
+
+        gap:22px;
+
+    }
+
+    .welcome-card{
+
+        padding:28px;
+
+    }
+
+    .welcome-card h1{
+
+        font-size:38px;
+
+    }
+
+    .welcome-card h2{
+
+        font-size:24px;
+
+    }
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .card{
+
+        min-height:auto;
+
+        padding:22px;
+
+    }
+
+    .friend-card{
+
+        padding:20px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .dashboard{
+
+        gap:18px;
+
+    }
+
+    .welcome-card{
+
+        padding:22px;
+
+        border-radius:22px;
+
+    }
+
+    .welcome-card h1{
+
+        font-size:30px;
+
+    }
+
+    .welcome-card h2{
+
+        font-size:20px;
+
+    }
+
+    .welcome-card p{
+
+        font-size:15px;
+
+    }
+
+    .card{
+
+        border-radius:20px;
+
+        padding:18px;
+
+    }
+
+    .card h2{
+
+        font-size:21px;
+
+    }
+
+    .task-list{
+
+        gap:10px;
+
+    }
+
+    .task-chip{
+
+        font-size:12px;
+
+        padding:9px 14px;
+
+    }
+
+    .library-widget img{
+
+        max-width:150px;
+
+        height:205px;
+
+    }
+
+    .friend-header{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:12px;
+
+    }
+
+    .friend-header::after{
+
+        display:none;
+
+    }
+
+    .friend-content{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .friend-section{
+
+        min-height:auto;
+
+    }
+
+    .friend-media{
+
+        width:90px;
+
+        height:125px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .dashboard{
+
+        gap:16px;
+
+    }
+
+    .welcome-card{
+
+        padding:18px;
+
+    }
+
+    .welcome-card h1{
+
+        font-size:26px;
+
+    }
+
+    .welcome-card h2{
+
+        font-size:18px;
+
+    }
+
+    .card{
+
+        padding:16px;
+
+        border-radius:18px;
+
+    }
+
+    .card h2{
+
+        font-size:18px;
+
+    }
+
+    .task-chip{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .library-widget img{
+
+        width:140px;
+
+        height:190px;
+
+    }
+
+    .friend-card{
+
+        padding:16px;
+
+        border-radius:18px;
+
+    }
+
+}
+
+/* ==========================================================
+   PERFORMANCE
+========================================================== */
+
+.card,
+.friend-card,
+.welcome-card{
+
+    will-change:transform;
+
+}
+
+/* ==========================================================
+   SMOOTH APPEAR
+========================================================== */
+
+.card{
+
+    animation:
+
+        dashboardCard .5s ease both;
+
+}
+
+@keyframes dashboardCard{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+.dashboard ::selection{
+
+    background:
+
+        rgba(120,220,255,.30);
+
+    color:white;
 
 }

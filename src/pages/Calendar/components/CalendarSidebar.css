@@ -1,353 +1,699 @@
-/* ==========================================
-   CALENDAR SIDEBAR
-========================================== */
+/* ==========================================================
+   SIDEBAR LAYOUT
+========================================================== */
 
-.calendar-sidebar {
-  width: 100%;
-  height: 100%;
+.calendar-sidebar{
 
-  display: flex;
-  flex-direction: column;
+    display:flex;
 
-  padding: 28px;
-  box-sizing: border-box;
+    flex-direction:column;
 
-  background: #1c2638;
-  border-radius: 28px;
+    gap:26px;
+
+    padding:34px;
+
+    border-radius:34px;
+
+    min-height:100%;
+
+    box-sizing:border-box;
+
 }
 
-/* ==========================================
+/* every section gets breathing room */
+
+.calendar-sidebar__header,
+
+.calendar-sidebar__input-section,
+
+.calendar-sidebar__task-list,
+
+.calendar-sidebar__progress,
+
+.calendar-sidebar__breakfree{
+
+    position:relative;
+
+    width:100%;
+
+}
+
+/* ==========================================================
    HEADER
-========================================== */
+========================================================== */
 
-.calendar-sidebar__header {
-  margin-bottom: 25px;
+.calendar-sidebar__header{
+
+    margin-bottom:8px;
+
 }
 
-.calendar-sidebar__date {
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 700;
+.calendar-sidebar__date{
+
+    font-size:clamp(2rem,3vw,3.4rem);
+
+    line-height:1.08;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    color:#fff;
+
+    word-break:break-word;
+
 }
 
-/* ==========================================
-   INPUT
-========================================== */
 
-.calendar-sidebar__input-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+/* ==========================================================
+   INPUT SECTION
+========================================================== */
+
+.calendar-sidebar__input-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
 }
 
-.calendar-sidebar__task-input {
-  width: 100%;
-  height: 56px;
-
-  border: none;
-  outline: none;
-
-  padding: 0 18px;
-
-  border-radius: 16px;
-
-  background: #2a3650;
-
-  color: white;
-
-  font-size: 1rem;
-}
-
-.calendar-sidebar__task-input::placeholder {
-  color: #9aa7c2;
-}
-
-.calendar-sidebar__task-add-btn {
-  width: 100%;
-  height: 58px;
-
-  border: none;
-  border-radius: 16px;
-
-  cursor: pointer;
-
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-
-  background: linear-gradient(
-      135deg,
-      #4f8cff,
-      #2f6df6
-  );
-
-  transition: .25s;
-}
-
-.calendar-sidebar__task-add-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(79,140,255,.35);
-}
-
-/* ==========================================
+/* ==========================================================
    TASK LIST
-========================================== */
+========================================================== */
 
-.calendar-sidebar__task-list {
-  margin-top: 28px;
+.calendar-sidebar__task-list{
 
-  display: flex;
-  flex-direction: column;
+    display:flex;
 
-  gap: 14px;
+    flex-direction:column;
 
-  flex: 1;
+    gap:16px;
 
-  overflow-y: auto;
+    min-height:120px;
+
+    max-height:260px;
+
+    overflow-y:auto;
+
+    padding-right:4px;
+
 }
 
-.calendar-sidebar__task-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 14px 18px;
-
-  background: #24324a;
-
-  border-radius: 14px;
-}
-
-.calendar-sidebar__task-label {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  cursor: pointer;
-}
-
-.calendar-sidebar__task-checkbox {
-  width: 18px;
-  height: 18px;
-
-  accent-color: #22c55e;
-
-  cursor: pointer;
-}
-
-.calendar-sidebar__task-title {
-  color: white;
-  font-size: 1rem;
-}
-
-.calendar-sidebar__task-delete-btn {
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 12px;
-
-  background: #ff4d4f;
-
-  color: white;
-
-  cursor: pointer;
-
-  transition: .25s;
-}
-
-.calendar-sidebar__task-delete-btn:hover {
-  background: #e63946;
-}
-
-/* ==========================================
-   PROGRESS
-========================================== */
-
-.calendar-sidebar__progress {
-  margin-top: 28px;
-}
-
-.calendar-sidebar__progress-title {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.calendar-sidebar__progress-text {
-  color: #9fb0ca;
-
-  margin-top: 6px;
-  margin-bottom: 14px;
-}
-
-.calendar-sidebar__progress-bar {
-  width: 100%;
-  height: 12px;
-
-  border-radius: 100px;
-
-  overflow: hidden;
-
-  background: #2a3650;
-}
-
-.calendar-sidebar__progress-fill {
-  height: 100%;
-
-  background: linear-gradient(
-      90deg,
-      #22c55e,
-      #16a34a
-  );
-
-  border-radius: inherit;
-
-  transition: .3s;
-}
-
-/* ==========================================
-   BREAK FREE
-========================================== */
-
-.calendar-sidebar__breakfree {
-  margin-top: 28px;
-}
-
-.calendar-sidebar__breakfree-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  color: white;
-
-  cursor: pointer;
-}
-
-.calendar-sidebar__breakfree-checkbox {
-  width: 18px;
-  height: 18px;
-
-  accent-color: #4f8cff;
-
-  cursor: pointer;
-}
-
-/* ==========================================
-   SUBMIT BUTTON
-========================================== */
-
-.calendar-sidebar__submit-btn {
-  margin-top: 32px;
-
-  width: 100%;
-  height: 60px;
-
-  border: none;
-  border-radius: 16px;
-
-  cursor: pointer;
-
-  background: linear-gradient(
-      135deg,
-      #16a34a,
-      #22c55e
-  );
-
-  color: white;
-  font-size: 1rem;
-  font-weight: 700;
-
-  transition: .25s;
-}
-
-.calendar-sidebar__submit-btn:hover {
-  transform: translateY(-2px);
-
-  box-shadow: 0 12px 25px rgba(34,197,94,.35);
-}
-
-/* ==========================================
+/* ==========================================================
    SCROLLBAR
-========================================== */
+========================================================== */
 
-.calendar-sidebar__task-list::-webkit-scrollbar {
-  width: 6px;
-}
+.calendar-sidebar__task-list::-webkit-scrollbar{
 
-.calendar-sidebar__task-list::-webkit-scrollbar-thumb {
-  background: #3c4d6b;
-  border-radius: 20px;
-}
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 768px) {
-
-  .calendar-sidebar {
-    padding: 22px;
-  }
-
-  .calendar-sidebar__date {
-    font-size: 1.6rem;
-  }
-
-  .calendar-sidebar__task-add-btn,
-  .calendar-sidebar__submit-btn {
-    height: 54px;
-  }
-
-}
-.calendar-sidebar__task-title--completed{
-
-    text-decoration: line-through;
-
-    opacity: .6;
-
-}
-.calendar-sidebar__progress{
-
-    margin-top:25px;
+    width:6px;
 
 }
 
-.calendar-sidebar__progress-title{
+.calendar-sidebar__task-list::-webkit-scrollbar-thumb{
 
-    font-size:20px;
+    border-radius:20px;
+
+    background:
+
+        rgba(255,255,255,.15);
+
+}
+
+
+/* ==========================================================
+   NO TASK
+========================================================== */
+
+.calendar-sidebar__no-task{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100px;
+
+    border-radius:20px;
+
+    color:rgba(255,255,255,.55);
+
+    font-size:15px;
+
+    border:1px dashed rgba(255,255,255,.08);
+
+    background:
+
+        rgba(255,255,255,.03);
+
+}
+
+
+/* ==========================================================
+   BREAK FREE MESSAGE
+========================================================== */
+
+.calendar-sidebar__breakfree-message{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100px;
+
+    border-radius:20px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(142,111,255,.16),
+
+            rgba(92,214,255,.10)
+
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ==========================================================
+   SUBMIT
+========================================================== */
+
+.calendar-sidebar__submit-btn{
+
+    margin-top:auto;
+
+}
+
+/* ==========================================================
+   AURORA SIDEBAR
+========================================================== */
+
+.calendar-sidebar{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:26px;
+
+    width:100%;
+
+    height:100%;
+
+    padding:34px;
+
+    overflow:hidden;
+
+    border-radius:34px;
+
+    box-sizing:border-box;
+
+    background:
+        linear-gradient(
+            140deg,
+            rgba(118,92,255,.18),
+            rgba(70,122,255,.10),
+            rgba(81,215,255,.08)
+        );
+
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.10),
+        inset 0 -1px rgba(255,255,255,.03),
+        0 30px 80px rgba(0,0,0,.35);
+
+}
+
+
+.calendar-sidebar::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:380px;
+    height:380px;
+
+    left:-180px;
+    top:-150px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(129,140,248,.28),
+
+            transparent 70%
+
+        );
+
+    pointer-events:none;
+
+}
+
+.calendar-sidebar::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+    height:320px;
+
+    right:-140px;
+    bottom:-140px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(96,165,250,.18),
+
+            transparent 72%
+
+        );
+
+    pointer-events:none;
+
+}
+
+.calendar-sidebar>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.calendar-sidebar__header{
+
+    margin-bottom:6px;
+
+}
+
+.calendar-sidebar__date{
+
+    color:white;
+
+    font-size:clamp(2rem,3vw,3.4rem);
+
+    font-weight:800;
+
+    line-height:1.05;
+
+    letter-spacing:-1px;
+
+    text-shadow:
+
+        0 3px 18px rgba(255,255,255,.08);
+
+}
+
+
+.calendar-sidebar__input-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.calendar-sidebar__task-input{
+
+    height:60px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:20px;
+
+    padding:0 22px;
+
+    font-size:16px;
+
+    color:white;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(16px);
+
+    transition:.35s;
+
+}
+
+.calendar-sidebar__task-input:focus{
+
+    background:
+
+        rgba(255,255,255,.11);
+
+    border-color:
+
+        rgba(126,182,255,.45);
+
+    box-shadow:
+
+        0 0 0 4px rgba(95,148,255,.12),
+
+        0 15px 35px rgba(0,0,0,.18);
+
+}
+
+.calendar-sidebar__task-input::placeholder{
+
+    color:
+
+        rgba(255,255,255,.45);
+
+}
+
+.calendar-sidebar__task-add-btn{
+
+    height:60px;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:20px;
+
+    font-size:18px;
 
     font-weight:700;
 
     color:white;
 
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(136,112,255,.92),
+
+            rgba(95,170,255,.90)
+
+        );
+
+    box-shadow:
+
+        0 18px 40px rgba(111,140,255,.28),
+
+        inset 0 1px rgba(255,255,255,.35);
+
+    transition:.35s;
+
 }
+
+.calendar-sidebar__task-add-btn:hover{
+
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        0 24px 50px rgba(96,165,250,.32);
+
+}
+
+
+/* ==========================================================
+   TASK LIST
+========================================================== */
+
+.calendar-sidebar__task-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    max-height:260px;
+
+    overflow-y:auto;
+
+    padding-right:6px;
+
+}
+
+.calendar-sidebar__task-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:18px;
+
+    padding:18px 20px;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.09),
+
+            rgba(255,255,255,.04)
+
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    transition:.35s;
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 15px 30px rgba(0,0,0,.18);
+
+}
+
+.calendar-sidebar__task-item:hover{
+
+    transform:translateY(-3px);
+
+    border-color:rgba(129,170,255,.28);
+
+    box-shadow:
+
+        0 22px 45px rgba(86,126,255,.18),
+
+        inset 0 1px rgba(255,255,255,.10);
+
+}
+
+.calendar-sidebar__task-label{
+
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    cursor:pointer;
+
+}
+
+.calendar-sidebar__task-checkbox{
+
+    width:22px;
+
+    height:22px;
+
+    cursor:pointer;
+
+    accent-color:#74b9ff;
+
+    transform:scale(1.05);
+
+}
+
+
+.calendar-sidebar__task-title{
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    letter-spacing:.2px;
+
+    transition:.3s;
+
+}
+
+.calendar-sidebar__task-title--completed{
+
+    opacity:.45;
+
+    text-decoration:line-through;
+
+}
+
+
+.calendar-sidebar__task-delete-btn:active{
+
+    transform:scale(.95);
+
+}
+
+.calendar-sidebar__task-list::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.calendar-sidebar__task-list::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.calendar-sidebar__task-list::-webkit-scrollbar-thumb{
+
+    background:
+
+        rgba(255,255,255,.18);
+
+    border-radius:20px;
+
+}
+
+
+
+/* ==========================================================
+   PROGRESS CARD
+========================================================== */
+
+.calendar-sidebar__progress{
+
+    margin-top:8px;
+
+    padding:24px;
+
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 18px 40px rgba(0,0,0,.20);
+
+}
+
+.calendar-sidebar__progress-title{
+
+    color:white;
+
+    font-size:38px;
+
+    font-weight:800;
+
+    line-height:1;
+
+    letter-spacing:-1px;
+
+}
+
 
 .calendar-sidebar__progress-text{
 
-    margin-top:6px;
+    margin-top:12px;
 
-    color:#9ca3af;
+    color:rgba(255,255,255,.65);
 
-    font-size:14px;
+    font-size:16px;
+
+    font-weight:500;
 
 }
 
 .calendar-sidebar__progress-bar{
 
+    margin-top:18px;
+
     width:100%;
 
-    height:10px;
-
-    margin-top:12px;
-
-    border-radius:999px;
+    height:14px;
 
     overflow:hidden;
 
-    background:#252525;
+    border-radius:999px;
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.05);
 
 }
+
 
 .calendar-sidebar__progress-fill{
 
@@ -355,24 +701,66 @@
 
     border-radius:999px;
 
-    background:linear-gradient(
-        90deg,
-        #22c55e,
-        #3b82f6
-    );
+    background:
 
-    transition:width .35s ease;
+        linear-gradient(
+
+            90deg,
+
+            #5ef38c 0%,
+
+            #50d890 30%,
+
+            #6fc7ff 70%,
+
+            #5b8dff 100%
+
+        );
+
+    box-shadow:
+
+        0 0 20px rgba(96,212,255,.35);
+
+    transition:
+
+        width .45s ease;
 
 }
+
+
+/* ==========================================================
+   BREAK FREE
+========================================================== */
+
 .calendar-sidebar__breakfree{
 
-    margin-top:25px;
+    display:flex;
 
-    padding:16px;
+    align-items:center;
 
-    border-radius:14px;
+    padding:22px;
 
-    background:#171717;
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(162,113,255,.12),
+
+            rgba(92,214,255,.05)
+
+        );
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08);
 
 }
 
@@ -382,24 +770,167 @@
 
     align-items:center;
 
-    gap:12px;
+    gap:14px;
 
-    color:white;
+    width:100%;
 
     cursor:pointer;
 
-    font-size:15px;
+    color:white;
 
-    font-weight:500;
+    font-size:17px;
+
+    font-weight:600;
 
 }
 
 .calendar-sidebar__breakfree-checkbox{
 
-    width:18px;
+    width:22px;
 
-    height:18px;
+    height:22px;
 
     cursor:pointer;
+
+    accent-color:#7a8cff;
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================================================
+   SUBMIT
+========================================================== */
+
+.calendar-sidebar__submit-btn{
+
+    margin-top:auto;
+
+    width:100%;
+
+    height:62px;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:22px;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #8877ff,
+
+            #5baeff
+
+        );
+
+    box-shadow:
+
+        0 22px 45px rgba(108,122,255,.30),
+
+        inset 0 1px rgba(255,255,255,.35);
+
+    transition:.35s;
+
+}
+
+.calendar-sidebar__submit-btn:hover{
+
+    transform:
+
+        translateY(-4px);
+
+    box-shadow:
+
+        0 28px 55px rgba(92,170,255,.40);
+
+}
+
+.calendar-sidebar__submit-btn:active{
+
+    transform:scale(.97);
+
+}
+
+.calendar-sidebar__progress::before,
+
+.calendar-sidebar__breakfree::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-80px;
+
+    right:-60px;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            rgba(126,182,255,.12),
+
+            transparent 70%
+
+        );
+
+    pointer-events:none;
+
+}
+
+
+/* ==========================================================
+   LARGE DESKTOP
+========================================================== */
+
+@media (min-width:1700px){
+
+    .calendar-sidebar{
+
+        padding:42px;
+
+        gap:32px;
+
+    }
+
+    .calendar-sidebar__date{
+
+        font-size:58px;
+
+    }
+
+    .calendar-sidebar__task-input,
+
+    .calendar-sidebar__task-add-btn,
+
+    .calendar-sidebar__submit-btn{
+
+        height:66px;
+
+    }
+
+    .calendar-sidebar__task-item{
+
+        padding:22px 24px;
+
+    }
 
 }

@@ -1,0 +1,991 @@
+/* ==========================================================
+   SEARCH USERS CONTAINER
+========================================================== */
+
+.su-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+    width:100%;
+
+    animation:suFade .5s ease;
+
+}
+
+/* ==========================================================
+   SEARCH BOX
+========================================================== */
+
+.su-search-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:22px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 18px 45px rgba(0,0,0,.22);
+
+}
+
+/* ==========================================================
+   AURORA GLOW
+========================================================== */
+
+.su-search-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-130px;
+
+    right:-130px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(138,120,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+.su-search-box::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120px;
+
+    bottom:-120px;
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(92,214,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+/* ==========================================================
+   SEARCH INPUT
+========================================================== */
+
+.su-search-input{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    height:60px;
+
+    padding:0 22px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-size:16px;
+
+    background:
+
+        rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    transition:.35s;
+
+}
+
+.su-search-input::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+.su-search-input:focus{
+
+    border-color:
+
+        rgba(109,176,255,.45);
+
+    background:
+
+        rgba(255,255,255,.09);
+
+    box-shadow:
+
+        0 0 0 4px rgba(98,177,255,.10),
+
+        0 0 28px rgba(98,177,255,.20);
+
+}
+
+/* ==========================================================
+   USER LIST
+========================================================== */
+
+.su-users-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   USER CARD
+========================================================== */
+
+.su-user-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    padding:24px 28px;
+
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(26px);
+
+    -webkit-backdrop-filter:blur(26px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 20px 45px rgba(0,0,0,.22);
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s,
+
+        border-color .35s;
+
+}
+
+/* ==========================================================
+   CARD HOVER
+========================================================== */
+
+.su-user-card:hover{
+
+    transform:
+
+        translateY(-6px);
+
+    border-color:
+
+        rgba(255,255,255,.16);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 30px 60px rgba(100,160,255,.22);
+
+}
+
+/* ==========================================================
+   CARD GLOW
+========================================================== */
+
+.su-user-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    top:-120px;
+
+    right:-120px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(130,110,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(50px);
+
+}
+
+.su-user-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    left:-100px;
+
+    bottom:-100px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(92,214,255,.16),
+
+            transparent 72%
+
+        );
+
+    filter:blur(50px);
+
+}
+
+/* ==========================================================
+   USER INFO
+========================================================== */
+
+.su-user-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex:1;
+
+    z-index:2;
+
+}
+
+.su-user-details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
+
+.su-user-avatar{
+
+    width:74px;
+
+    height:74px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        0 12px 30px rgba(0,0,0,.28);
+
+    transition:.35s;
+
+}
+
+.su-user-card:hover .su-user-avatar{
+
+    transform:scale(1.08);
+
+    box-shadow:
+
+        0 18px 36px rgba(95,180,255,.30);
+
+}
+
+
+/* ==========================================================
+   NAME
+========================================================== */
+
+.su-user-name{
+
+    margin:0;
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.su-user-username{
+
+    margin:0;
+
+    color:rgba(255,255,255,.58);
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+
+/* ==========================================================
+   ADD BUTTON
+========================================================== */
+
+.su-add-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-width:170px;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #8978ff,
+
+            #63b5ff,
+
+            #5fdcff
+
+        );
+
+    background-size:250%;
+
+    animation:
+
+        suAurora 8s linear infinite;
+
+    box-shadow:
+
+        0 18px 36px rgba(105,165,255,.30),
+
+        inset 0 1px rgba(255,255,255,.30);
+
+    transition:.35s;
+
+}
+
+.su-add-btn:hover{
+
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        0 24px 50px rgba(105,165,255,.38);
+
+}
+
+.su-add-btn:active{
+
+    transform:scale(.96);
+
+}
+
+.su-add-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:40%;
+
+    height:100%;
+
+    transform:skewX(-25deg);
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,.35),
+
+            transparent
+
+        );
+
+    transition:1s;
+
+}
+
+.su-add-btn:hover::before{
+
+    left:150%;
+
+}
+
+
+/* ==========================================================
+   BUTTON ANIMATION
+========================================================== */
+
+@keyframes suAurora{
+
+    0%{
+
+        background-position:0% 50%;
+
+    }
+
+    50%{
+
+        background-position:100% 50%;
+
+    }
+
+    100%{
+
+        background-position:0% 50%;
+
+    }
+
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.su-empty-state{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:80px 30px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px dashed rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 20px 45px rgba(0,0,0,.18);
+
+}
+
+.su-empty-title{
+
+    margin:0;
+
+    color:white;
+
+    font-size:32px;
+
+    font-weight:800;
+
+}
+
+.su-empty-text{
+
+    margin-top:14px;
+
+    color:rgba(255,255,255,.58);
+
+    font-size:16px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   CARD FADE ANIMATION
+========================================================== */
+
+@keyframes suFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(22px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateY(0);
+
+    }
+
+}
+
+.su-user-card{
+
+    animation:
+
+        suFade .45s ease;
+
+}
+
+/* ==========================================================
+   GLASS SHINE
+========================================================== */
+
+.su-user-card .shine{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+
+            120deg,
+
+            transparent 25%,
+
+            rgba(255,255,255,.10) 50%,
+
+            transparent 75%
+
+        );
+
+    transform:translateX(-140%);
+
+    transition:1s;
+
+}
+
+.su-user-card:hover .shine{
+
+    transform:translateX(140%);
+
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.su-users-list{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+
+        rgba(120,170,255,.35)
+
+        transparent;
+
+}
+
+.su-users-list::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.su-users-list::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.su-users-list::-webkit-scrollbar-thumb{
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #8a7cff,
+
+            #63d6ff
+
+        );
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media(max-width:900px){
+
+    .su-search-box{
+
+        padding:18px;
+
+    }
+
+    .su-user-card{
+
+        padding:20px;
+
+        gap:18px;
+
+    }
+
+    .su-user-avatar{
+
+        width:66px;
+
+        height:66px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .su-user-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .su-user-info{
+
+        width:100%;
+
+    }
+
+    .su-add-btn{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+    .su-search-input{
+
+        height:56px;
+
+        font-size:15px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:480px){
+
+    .su-search-box{
+
+        padding:14px;
+
+        border-radius:22px;
+
+    }
+
+    .su-search-input{
+
+        height:52px;
+
+        padding:0 18px;
+
+        font-size:14px;
+
+        border-radius:14px;
+
+    }
+
+    .su-user-card{
+
+        padding:18px;
+
+        border-radius:22px;
+
+    }
+
+    .su-user-avatar{
+
+        width:56px;
+
+        height:56px;
+
+    }
+
+    .su-user-name{
+
+        font-size:18px;
+
+    }
+
+    .su-user-username{
+
+        font-size:13px;
+
+    }
+
+    .su-add-btn{
+
+        height:48px;
+
+        font-size:14px;
+
+        border-radius:14px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL DEVICES
+========================================================== */
+
+@media(max-width:360px){
+
+    .su-search-input{
+
+        height:48px;
+
+        font-size:13px;
+
+    }
+
+    .su-user-avatar{
+
+        width:50px;
+
+        height:50px;
+
+    }
+
+    .su-user-name{
+
+        font-size:16px;
+
+    }
+
+    .su-add-btn{
+
+        height:46px;
+
+        font-size:13px;
+
+    }
+
+}
+
+/* ==========================================================
+   GLOBAL POLISH
+========================================================== */
+
+.su-container *{
+
+    box-sizing:border-box;
+
+}
+
+.su-user-card,
+.su-search-box,
+.su-add-btn{
+
+    transition:
+
+        background .35s,
+
+        border-color .35s,
+
+        box-shadow .35s,
+
+        transform .35s;
+
+}
+
+.su-container *::selection{
+
+    background:
+
+        rgba(108,170,255,.35);
+
+    color:white;
+
+}
+
+.su-container{
+
+    -webkit-tap-highlight-color:transparent;
+
+}

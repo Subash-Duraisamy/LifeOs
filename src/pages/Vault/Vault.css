@@ -1,8 +1,13 @@
-/* ==================================================
-   PAGE
-================================================== */
+/* ==========================================================
+   VAULT PAGE
+   AURORA GLASS
+========================================================== */
 
 .vault-page{
+
+    position:relative;
+
+    overflow:hidden;
 
     width:100%;
 
@@ -10,16 +15,83 @@
 
     margin:auto;
 
-    padding:32px;
+    padding:36px;
+
+    min-height:100vh;
 
 }
 
+/* ==========================================================
+   AURORA BACKGROUND
+========================================================== */
 
-/* ==================================================
+.vault-page::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+
+            circle at 8% 10%,
+
+            rgba(150,95,255,.20),
+
+            transparent 34%
+
+        ),
+
+        radial-gradient(
+
+            circle at 95% 5%,
+
+            rgba(92,214,255,.16),
+
+            transparent 34%
+
+        ),
+
+        radial-gradient(
+
+            circle at 80% 90%,
+
+            rgba(255,120,210,.08),
+
+            transparent 42%
+
+        );
+
+    filter:blur(90px);
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   KEEP CONTENT ABOVE
+========================================================== */
+
+.vault-page>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
    HEADER
-================================================== */
+========================================================== */
 
 .vault-header{
+
+    position:relative;
+
+    overflow:hidden;
 
     display:flex;
 
@@ -27,166 +99,465 @@
 
     align-items:flex-start;
 
-    gap:20px;
+    gap:28px;
 
-    margin-bottom:34px;
+    padding:34px;
+
+    margin-bottom:36px;
+
+    border-radius:30px;
+
+    background:
+
+        rgba(255,255,255,.07);
+
+    backdrop-filter:blur(36px);
+
+    -webkit-backdrop-filter:blur(36px);
+
+    border:
+
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.12),
+
+        0 20px 60px rgba(0,0,0,.30);
 
 }
+
+/* ==========================================================
+   HEADER GLOW
+========================================================== */
+
+.vault-header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:360px;
+
+    height:360px;
+
+    top:-180px;
+
+    left:-160px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(150,95,255,.20),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+.vault-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    right:-150px;
+
+    bottom:-150px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(92,214,255,.16),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+/* ==========================================================
+   HEADER CONTENT
+========================================================== */
+
+.vault-header>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
 
 .vault-header h1{
 
     margin:0;
 
-    font-size:42px;
+    font-size:52px;
 
     font-weight:800;
 
-    color:#f8fafc;
-
     letter-spacing:-1px;
 
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #FFFFFF,
+
+            #EEE8FF,
+
+            #D8F4FF
+
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
 }
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
 
 .vault-header p{
 
-    margin-top:10px;
+    margin-top:14px;
+
+    max-width:560px;
 
     font-size:17px;
 
-    color:#94a3b8;
+    line-height:1.8;
 
-    max-width:520px;
+    color:
 
-    line-height:1.6;
+        rgba(255,255,255,.70);
 
 }
-
-
-/* ==================================================
+/* ==========================================================
    LOCK BADGE
-================================================== */
+========================================================== */
 
 .vault-lock-btn{
 
-    border:none;
+    position:relative;
 
-    background:#1e293b;
-
-    color:#f8fafc;
-
-    border:1px solid #334155;
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    cursor:default;
-
-}
-
-
-/* ==================================================
-   CREATE / UNLOCK CARD
-================================================== */
-
-.vault-welcome{
-
-    width:100%;
-
-    max-width:520px;
-
-    margin:70px auto;
-
-    background:#ffffff;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:22px;
-
-    padding:42px;
-
-    text-align:center;
-
-    box-shadow:0 12px 40px rgba(15,23,42,.08);
-
-}
-
-.vault-icon{
-
-    width:74px;
-
-    height:74px;
-
-    margin:auto;
-
-    border-radius:18px;
+    overflow:hidden;
 
     display:flex;
 
     align-items:center;
 
-    justify-content:center;
+    gap:10px;
 
-    font-size:34px;
+    padding:12px 22px;
 
-    background:#eff6ff;
+    border-radius:999px;
 
-    color:#2563eb;
+    border:
 
-    margin-bottom:24px;
+        1px solid rgba(255,255,255,.12);
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 12px 28px rgba(0,0,0,.22);
 
 }
+
+/* ==========================================================
+   WELCOME CARD
+========================================================== */
+
+.vault-welcome{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+
+    max-width:560px;
+
+    margin:80px auto;
+
+    padding:46px;
+
+    text-align:center;
+
+    border-radius:34px;
+
+    background:
+
+        rgba(255,255,255,.07);
+
+    backdrop-filter:blur(40px);
+
+    -webkit-backdrop-filter:blur(40px);
+
+    border:
+
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.12),
+
+        0 25px 70px rgba(0,0,0,.32);
+
+}
+
+/* ==========================================================
+   AURORA GLOW
+========================================================== */
+
+.vault-welcome::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    top:-160px;
+
+    left:-120px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(150,95,255,.20),
+
+            transparent 72%
+
+        );
+
+    filter:blur(50px);
+
+}
+
+.vault-welcome::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    right:-120px;
+
+    bottom:-150px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(92,214,255,.16),
+
+            transparent 72%
+
+        );
+
+    filter:blur(50px);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.vault-welcome>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   VAULT ICON
+========================================================== */
+
+.vault-icon{
+
+    width:84px;
+
+    height:84px;
+
+    margin:auto;
+
+    margin-bottom:28px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:24px;
+
+    font-size:38px;
+
+    color:white;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(24px);
+
+    border:
+
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 16px 35px rgba(0,0,0,.26);
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
 
 .vault-welcome h2{
 
     margin:0;
 
-    font-size:30px;
+    font-size:34px;
 
-    color:#111827;
+    font-weight:800;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #FFFFFF,
+
+            #EEE8FF,
+
+            #D8F5FF
+
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
 
 }
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
 
 .vault-welcome p{
 
-    margin-top:14px;
+    margin-top:16px;
 
-    color:#64748b;
+    font-size:16px;
 
-    font-size:15px;
+    line-height:1.8;
 
-    line-height:1.7;
+    color:
+
+        rgba(255,255,255,.68);
 
 }
-
-
-/* ==================================================
-   INPUTS
-================================================== */
+/* ==========================================================
+   GLASS INPUT
+========================================================== */
 
 .vault-input{
 
     width:100%;
 
-    margin-top:18px;
+    margin-top:20px;
 
-    padding:14px 16px;
+    padding:16px 20px;
 
-    border-radius:12px;
+    border-radius:18px;
 
-    border:1px solid #dbe4ef;
+    border:
 
-    background:#f8fafc;
+        1px solid rgba(255,255,255,.12);
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    color:white;
 
     font-size:15px;
 
-    transition:.2s;
+    transition:.35s;
 
     box-sizing:border-box;
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08);
+
+}
+
+.vault-input::placeholder{
+
+    color:
+
+        rgba(255,255,255,.45);
 
 }
 
@@ -194,32 +565,43 @@
 
     outline:none;
 
-    background:white;
+    background:
 
-    border-color:#2563eb;
+        rgba(255,255,255,.09);
 
-    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+    border-color:
+
+        rgba(170,140,255,.40);
+
+    box-shadow:
+
+        0 0 0 4px rgba(150,100,255,.16),
+
+        inset 0 1px rgba(255,255,255,.12);
 
 }
 
-
-/* ==================================================
-   BUTTON
-================================================== */
+/* ==========================================================
+   UNLOCK BUTTON
+========================================================== */
 
 .unlock-btn{
 
+    position:relative;
+
+    overflow:hidden;
+
     width:100%;
 
-    margin-top:22px;
+    margin-top:24px;
 
-    padding:14px;
+    padding:16px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:18px;
 
-    background:#2563eb;
+    cursor:pointer;
 
     color:white;
 
@@ -227,22 +609,81 @@
 
     font-weight:700;
 
-    cursor:pointer;
+    background:
 
-    transition:.2s;
+        linear-gradient(
+
+            135deg,
+
+            rgba(155,96,255,.92),
+
+            rgba(92,214,255,.82)
+
+        );
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 18px 40px rgba(140,96,255,.30);
+
+}
+
+.unlock-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,.35),
+
+            transparent
+
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.8s;
+
+}
+
+.unlock-btn:hover::before{
+
+    left:160%;
 
 }
 
 .unlock-btn:hover{
 
-    background:#1d4ed8;
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        0 25px 55px rgba(140,96,255,.42);
 
 }
 
-
-/* ==================================================
+/* ==========================================================
    TOOLBAR
-================================================== */
+========================================================== */
 
 .vault-toolbar{
 
@@ -252,29 +693,51 @@
 
     align-items:center;
 
-    gap:16px;
+    gap:18px;
 
-    margin-bottom:28px;
+    margin-bottom:30px;
 
     flex-wrap:wrap;
 
 }
 
+/* ==========================================================
+   SEARCH
+========================================================== */
+
 .search-input{
 
     flex:1;
 
-    min-width:250px;
+    min-width:260px;
 
-    padding:13px 16px;
+    padding:15px 20px;
 
-    border-radius:12px;
+    border-radius:18px;
 
-    border:1px solid #dbe4ef;
+    border:
 
-    background:#ffffff;
+        1px solid rgba(255,255,255,.12);
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    backdrop-filter:blur(20px);
+
+    color:white;
 
     font-size:15px;
+
+    transition:.35s;
+
+}
+
+.search-input::placeholder{
+
+    color:
+
+        rgba(255,255,255,.45);
 
 }
 
@@ -282,69 +745,348 @@
 
     outline:none;
 
-    border-color:#2563eb;
+    border-color:
 
-    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+        rgba(170,140,255,.40);
+
+    box-shadow:
+
+        0 0 0 4px rgba(150,95,255,.16);
 
 }
 
+/* ==========================================================
+   ADD BUTTON
+========================================================== */
+
 .add-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:15px 26px;
 
     border:none;
 
-    padding:13px 22px;
-
-    border-radius:12px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-weight:700;
+    border-radius:18px;
 
     cursor:pointer;
 
-    transition:.2s;
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(24px);
+
+    border:
+
+        1px solid rgba(255,255,255,.12);
+
+    transition:.35s;
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.12),
+
+        0 15px 35px rgba(0,0,0,.22);
+
+}
+
+.add-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,.35),
+
+            transparent
+
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.8s;
+
+}
+
+.add-btn:hover::before{
+
+    left:160%;
 
 }
 
 .add-btn:hover{
 
-    background:#1d4ed8;
+    transform:
+
+        translateY(-4px);
+
+    background:
+
+        rgba(255,255,255,.12);
 
 }
-
-
-/* ==================================================
-   GRID
-================================================== */
+/* ==========================================================
+   CREDENTIAL GRID
+========================================================== */
 
 .credentials-grid{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+    grid-template-columns:
 
-    gap:20px;
+        repeat(auto-fill,minmax(360px,1fr));
+
+    gap:24px;
 
 }
 
+/* ==========================================================
+   CREDENTIAL CARD
+========================================================== */
 
-/* ==================================================
+.credential-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    border-radius:28px;
+
+    background:
+
+        rgba(255,255,255,.07);
+
+    backdrop-filter:blur(36px);
+
+    -webkit-backdrop-filter:blur(36px);
+
+    border:
+
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.12),
+
+        0 20px 55px rgba(0,0,0,.28);
+
+    transition:.35s ease;
+
+}
+
+/* ==========================================================
+   PURPLE GLOW
+========================================================== */
+
+.credential-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    top:-120px;
+
+    right:-120px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(150,95,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(45px);
+
+}
+
+/* ==========================================================
+   CYAN GLOW
+========================================================== */
+
+.credential-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    left:-120px;
+
+    bottom:-120px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(92,214,255,.14),
+
+            transparent 72%
+
+        );
+
+    filter:blur(45px);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.credential-card>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.credential-card:hover{
+
+    transform:
+
+        translateY(-8px);
+
+    border-color:
+
+        rgba(255,255,255,.18);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.16),
+
+        0 32px 70px rgba(0,0,0,.34);
+
+}
+
+/* ==========================================================
+   CARD TITLE
+========================================================== */
+
+.credential-card h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #FFFFFF,
+
+            #EEE8FF,
+
+            #D8F4FF
+
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+/* ==========================================================
+   CARD TEXT
+========================================================== */
+
+.credential-card p{
+
+    margin-top:14px;
+
+    color:
+
+        rgba(255,255,255,.68);
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+/* ==========================================================
    EMPTY STATE
-================================================== */
+========================================================== */
 
 .empty-state{
 
-    background:#ffffff;
+    position:relative;
 
-    border:1px dashed #cbd5e1;
-
-    border-radius:18px;
-
-    padding:70px 30px;
+    overflow:hidden;
 
     text-align:center;
+
+    padding:70px 32px;
+
+    border-radius:30px;
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    backdrop-filter:blur(36px);
+
+    -webkit-backdrop-filter:blur(36px);
+
+    border:
+
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 18px 50px rgba(0,0,0,.25);
 
 }
 
@@ -352,26 +1094,47 @@
 
     margin:0;
 
-    color:#0f172a;
+    font-size:32px;
 
-    font-size:28px;
+    font-weight:800;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #FFFFFF,
+
+            #EEE8FF,
+
+            #D8F4FF
+
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
 
 }
 
 .empty-state p{
 
-    margin-top:14px;
+    margin-top:16px;
 
-    color:#64748b;
+    color:
 
-    font-size:15px;
+        rgba(255,255,255,.68);
+
+    font-size:16px;
+
+    line-height:1.8;
 
 }
 
-
-/* ==================================================
+/* ==========================================================
    TABLET
-================================================== */
+========================================================== */
 
 @media(max-width:900px){
 
@@ -389,52 +1152,25 @@
 
     }
 
+    .credentials-grid{
+
+        grid-template-columns:
+
+            repeat(2,1fr);
+
+    }
+
 }
 
-
-/* ==================================================
+/* ==========================================================
    MOBILE
-================================================== */
+========================================================== */
 
-@media(max-width:600px){
+@media(max-width:768px){
 
     .vault-page{
 
         padding:18px;
-
-    }
-
-    .vault-header h1{
-
-        font-size:32px;
-
-    }
-
-    .vault-header p{
-
-        font-size:15px;
-
-    }
-
-    .vault-toolbar{
-
-        flex-direction:column;
-
-        align-items:stretch;
-
-    }
-
-    .search-input{
-
-        width:100%;
-
-        min-width:100%;
-
-    }
-
-    .add-btn{
-
-        width:100%;
 
     }
 
@@ -444,48 +1180,63 @@
 
     }
 
-    .vault-welcome{
+    .credential-card{
 
-        margin:30px auto;
-
-        padding:28px 22px;
+        padding:22px;
 
     }
 
-    .vault-welcome h2{
+    .vault-header h1{
 
-        font-size:24px;
+        font-size:38px;
 
     }
 
-    .vault-icon{
+    .vault-header p{
 
-        width:64px;
-
-        height:64px;
-
-        font-size:28px;
+        font-size:15px;
 
     }
 
 }
 
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
 
-/* ==================================================
-   SMALL PHONE
-================================================== */
+@media(max-width:480px){
 
-@media(max-width:380px){
+    .vault-header{
 
-    .vault-header h1{
+        padding:24px;
 
-        font-size:28px;
+        border-radius:24px;
 
     }
 
-    .vault-input{
+    .vault-header h1{
 
-        font-size:14px;
+        font-size:30px;
+
+    }
+
+    .credential-card{
+
+        padding:18px;
+
+        border-radius:22px;
+
+    }
+
+    .empty-state{
+
+        padding:50px 22px;
+
+    }
+
+    .empty-state h2{
+
+        font-size:26px;
 
     }
 

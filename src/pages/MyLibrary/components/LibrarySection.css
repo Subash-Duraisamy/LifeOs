@@ -1,10 +1,12 @@
+/* ==========================================================
+   AURORA GLASS OVERLAY
+========================================================== */
+
 .library-modal-overlay{
 
     position:fixed;
 
     inset:0;
-
-    background:rgba(0,0,0,.55);
 
     display:flex;
 
@@ -12,121 +14,702 @@
 
     align-items:center;
 
-    z-index:1000;
+    padding:24px;
+
+    z-index:9999;
+
+    background:
+
+        rgba(6,8,20,.72);
+
+    backdrop-filter:blur(26px);
+
+    -webkit-backdrop-filter:blur(26px);
+
 }
+
+/* ==========================================================
+   AURORA GLASS MODAL
+========================================================== */
 
 .library-modal{
 
-    width:500px;
+    position:relative;
+
+    overflow:hidden;
+
+    width:520px;
 
     max-width:95%;
 
-    background:white;
+    padding:36px;
 
-    border-radius:20px;
+    border-radius:32px;
 
-    padding:30px;
+    background:
 
-    animation:pop .25s ease;
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(42px);
+
+    -webkit-backdrop-filter:blur(42px);
+
+    border:
+
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.14),
+
+        0 30px 70px rgba(0,0,0,.35);
+
+    animation:
+
+        auroraPopup .35s ease;
+
 }
 
-@keyframes pop{
+/* ==========================================================
+   Purple Glow
+========================================================== */
 
-from{
+.library-modal::before{
 
-transform:scale(.9);
+    content:"";
 
-opacity:0;
+    position:absolute;
+
+    width:340px;
+
+    height:340px;
+
+    top:-170px;
+
+    left:-120px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(152,100,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+    pointer-events:none;
 
 }
 
-to{
+/* ==========================================================
+   Cyan Glow
+========================================================== */
 
-transform:scale(1);
+.library-modal::after{
 
-opacity:1;
+    content:"";
+
+    position:absolute;
+
+    width:340px;
+
+    height:340px;
+
+    right:-140px;
+
+    bottom:-180px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(86,218,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+    pointer-events:none;
 
 }
 
+/* ==========================================================
+   Keep Content Above Glow
+========================================================== */
+
+.library-modal>*{
+
+    position:relative;
+
+    z-index:2;
+
 }
+
+/* ==========================================================
+   Popup Animation
+========================================================== */
+
+@keyframes auroraPopup{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(35px)
+
+            scale(.94);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateY(0)
+
+            scale(1);
+
+    }
+
+}
+
+/* ==========================================================
+   HEADING
+========================================================== */
 
 .library-modal h2{
 
-margin-bottom:25px;
+    margin:0 0 30px;
 
-font-size:28px;
+    font-size:36px;
+
+    font-weight:800;
+
+    letter-spacing:.4px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #FFFFFF,
+
+            #EEE7FF,
+
+            #D9F4FF
+
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
 }
+
+/* ==========================================================
+   LABELS
+========================================================== */
 
 .library-modal label{
 
-display:block;
+    display:flex;
 
-margin-bottom:18px;
+    flex-direction:column;
 
-font-weight:600;
+    gap:12px;
+
+    margin-bottom:24px;
+
+    color:
+
+        rgba(255,255,255,.82);
+
+    font-size:15px;
+
+    font-weight:700;
+
 }
 
-.library-modal input[type=text]{
+/* ==========================================================
+   GLASS INPUTS
+========================================================== */
 
-width:100%;
+.library-modal input[type="text"]{
 
-padding:12px;
+    width:100%;
 
-margin-top:8px;
+    box-sizing:border-box;
 
-border:1px solid #d1d5db;
+    padding:16px 20px;
 
-border-radius:10px;
+    margin-top:2px;
 
-font-size:15px;
+    border-radius:18px;
+
+    border:
+
+        1px solid rgba(255,255,255,.12);
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    color:white;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.35s ease;
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08);
+
 }
+
+/* ==========================================================
+   INPUT FOCUS
+========================================================== */
+
+.library-modal input[type="text"]:focus{
+
+    border-color:
+
+        rgba(170,140,255,.45);
+
+    background:
+
+        rgba(255,255,255,.09);
+
+    box-shadow:
+
+        0 0 0 4px rgba(150,110,255,.16),
+
+        inset 0 1px rgba(255,255,255,.12);
+
+}
+
+/* ==========================================================
+   PLACEHOLDER
+========================================================== */
+
+.library-modal input::placeholder{
+
+    color:
+
+        rgba(255,255,255,.45);
+
+}
+
+/* ==========================================================
+   AURORA CHECKBOX
+========================================================== */
 
 .checkbox{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:10px;
+    gap:14px;
 
-margin-top:20px;
+    margin-top:22px;
+
+    color:rgba(255,255,255,.82);
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
 }
+
+.checkbox input{
+
+    width:22px;
+
+    height:22px;
+
+    cursor:pointer;
+
+    accent-color:#A855F7;
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================================
+   BUTTON CONTAINER
+========================================================== */
 
 .modal-buttons{
 
-display:flex;
+    display:flex;
 
-justify-content:flex-end;
+    justify-content:flex-end;
 
-gap:15px;
+    gap:18px;
 
-margin-top:30px;
+    margin-top:34px;
+
 }
+
+/* ==========================================================
+   COMMON BUTTON
+========================================================== */
+
+.modal-buttons button{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:15px 30px;
+
+    border-radius:18px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    transition:.35s ease;
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+}
+
+/* ==========================================================
+   SHINE EFFECT
+========================================================== */
+
+.modal-buttons button::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,.35),
+
+            transparent
+
+        );
+
+    transform:skewX(-22deg);
+
+    transition:.8s;
+
+}
+
+.modal-buttons button:hover::before{
+
+    left:160%;
+
+}
+
+.modal-buttons button:hover{
+
+    transform:
+
+        translateY(-3px)
+
+        scale(1.02);
+
+}
+
+.modal-buttons button:active{
+
+    transform:scale(.96);
+
+}
+
+/* ==========================================================
+   CANCEL BUTTON
+========================================================== */
 
 .cancel-btn{
 
-background:#e5e7eb;
+    background:
 
-border:none;
+        rgba(255,255,255,.08);
 
-padding:12px 20px;
+    color:white;
 
-border-radius:10px;
+    box-shadow:
 
-cursor:pointer;
+        inset 0 1px rgba(255,255,255,.12),
+
+        0 12px 30px rgba(0,0,0,.20);
+
 }
+
+.cancel-btn:hover{
+
+    background:
+
+        rgba(255,255,255,.12);
+
+}
+
+/* ==========================================================
+   SAVE BUTTON
+========================================================== */
 
 .save-btn{
 
-background:#2563eb;
+    background:
 
-color:white;
+        linear-gradient(
 
-border:none;
+            135deg,
 
-padding:12px 22px;
+            rgba(155,92,255,.92),
 
-border-radius:10px;
+            rgba(92,214,255,.82)
 
-cursor:pointer;
+        );
+
+    box-shadow:
+
+        0 18px 40px rgba(140,92,255,.32);
+
+}
+
+.save-btn:hover{
+
+    box-shadow:
+
+        0 24px 55px rgba(140,92,255,.45);
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:900px){
+
+    .library-modal{
+
+        max-width:560px;
+
+        padding:30px;
+
+        border-radius:28px;
+
+    }
+
+    .library-modal h2{
+
+        font-size:30px;
+
+    }
+
+    .library-modal input[type="text"]{
+
+        padding:15px 18px;
+
+        font-size:15px;
+
+    }
+
+    .modal-buttons{
+
+        gap:14px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .library-modal-overlay{
+
+        padding:16px;
+
+    }
+
+    .library-modal{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:24px;
+
+        border-radius:24px;
+
+    }
+
+    .library-modal h2{
+
+        font-size:26px;
+
+        text-align:center;
+
+    }
+
+    .library-modal label{
+
+        font-size:14px;
+
+        gap:10px;
+
+    }
+
+    .library-modal input[type="text"]{
+
+        padding:14px 16px;
+
+        font-size:15px;
+
+    }
+
+    .checkbox{
+
+        font-size:14px;
+
+        gap:12px;
+
+    }
+
+    .modal-buttons{
+
+        flex-direction:column;
+
+        gap:14px;
+
+    }
+
+    .modal-buttons button{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .library-modal-overlay{
+
+        padding:12px;
+
+    }
+
+    .library-modal{
+
+        padding:20px;
+
+        border-radius:22px;
+
+    }
+
+    .library-modal h2{
+
+        font-size:22px;
+
+    }
+
+    .library-modal label{
+
+        margin-bottom:18px;
+
+    }
+
+    .library-modal input[type="text"]{
+
+        padding:13px 15px;
+
+        font-size:14px;
+
+        border-radius:14px;
+
+    }
+
+    .checkbox{
+
+        font-size:13px;
+
+    }
+
+    .checkbox input{
+
+        width:20px;
+
+        height:20px;
+
+    }
+
+    .modal-buttons{
+
+        margin-top:24px;
+
+    }
+
+    .modal-buttons button{
+
+        padding:14px;
+
+        font-size:14px;
+
+        border-radius:16px;
+
+    }
+
 }

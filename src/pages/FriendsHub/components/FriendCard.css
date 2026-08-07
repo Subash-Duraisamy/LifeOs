@@ -1,0 +1,393 @@
+/* ==========================================================
+   FRIEND LIST
+========================================================== */
+
+.fh-friends-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   FRIEND CARD
+========================================================== */
+
+.fh-friend-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    padding:24px 28px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.03)
+        );
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.08),
+        0 18px 40px rgba(0,0,0,.22);
+
+    transition:.35s ease;
+
+}
+
+/* ==========================================================
+   AURORA GLOW
+========================================================== */
+
+.fh-friend-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    top:-120px;
+
+    right:-120px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(135,115,255,.20),
+            transparent 72%
+        );
+
+    filter:blur(50px);
+
+}
+
+.fh-friend-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+
+    height:200px;
+
+    left:-90px;
+
+    bottom:-90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(90,210,255,.18),
+            transparent 72%
+        );
+
+    filter:blur(45px);
+
+}
+
+.fh-friend-card:hover{
+
+    transform:
+
+        translateY(-6px);
+
+    border-color:
+
+        rgba(255,255,255,.16);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 28px 55px rgba(106,170,255,.20);
+
+}
+
+.fh-friend-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex:1;
+
+    z-index:2;
+
+}
+
+.fh-friend-details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.fh-friend-avatar{
+
+    width:74px;
+
+    height:74px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        0 12px 28px rgba(0,0,0,.30);
+
+}
+
+.fh-friend-name{
+
+    margin:0;
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.fh-friend-username{
+
+    margin:0;
+
+    color:rgba(255,255,255,.55);
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.fh-remove-btn{
+
+    z-index:2;
+
+    min-width:160px;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #ff8aa0,
+
+            #ff5579,
+
+            #d91f52
+
+        );
+
+    box-shadow:
+
+        0 18px 36px rgba(255,70,110,.28),
+
+        inset 0 1px rgba(255,255,255,.25);
+
+    transition:.35s;
+
+}
+
+.fh-remove-btn:hover{
+
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        0 24px 46px rgba(255,70,110,.38);
+
+}
+
+.fh-remove-btn:active{
+
+    transform:scale(.96);
+
+}
+
+.fh-empty-state{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:80px 30px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(28px);
+
+    border:1px dashed rgba(255,255,255,.10);
+
+}
+
+.fh-empty-title{
+
+    margin:0;
+
+    font-size:32px;
+
+    color:white;
+
+}
+
+.fh-empty-text{
+
+    margin-top:12px;
+
+    color:rgba(255,255,255,.60);
+
+    font-size:16px;
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media(max-width:900px){
+
+    .fh-friend-card{
+
+        padding:22px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .fh-friend-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:22px;
+
+    }
+
+    .fh-remove-btn{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:480px){
+
+    .fh-friend-avatar{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .fh-friend-name{
+
+        font-size:19px;
+
+    }
+
+    .fh-friend-username{
+
+        font-size:14px;
+
+    }
+
+    .fh-remove-btn{
+
+        height:50px;
+
+        font-size:14px;
+
+    }
+
+}

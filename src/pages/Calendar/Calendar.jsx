@@ -1,12 +1,13 @@
+import { useState } from "react";
 import "./Calendar.css";
-
 import { useCalendar } from "./hooks/useCalendar";
-
+import StreakReward from "./components/StreakReward/StreakReward";
 import SummaryCards from "./components/SummaryCards";
 import CalendarGrid from "./components/CalendarGrid";
 import CalendarSidebar from "./components/CalendarSidebar";
 
 export default function Calendar() {
+  
 
   const {
 
@@ -23,6 +24,12 @@ export default function Calendar() {
     setTasks,
 
   } = useCalendar();
+  const [showReward, setShowReward] = useState(false);
+
+const [rewardData, setRewardData] = useState({
+    username: "",
+    streak: 0,
+});
 
   return (
 
@@ -70,23 +77,37 @@ export default function Calendar() {
 
           <div className="calendar-page__sidebar-wrapper">
 
-            <CalendarSidebar
+           <CalendarSidebar
 
-              selectedDate={selectedDate}
+    selectedDate={selectedDate}
 
-              tasks={tasks}
-              setTasks={setTasks}
+    tasks={tasks}
+    setTasks={setTasks}
 
-              records={records}
-              setRecords={setRecords}
+    records={records}
+    setRecords={setRecords}
 
-            />
+    setShowReward={setShowReward}
+    setRewardData={setRewardData}
+
+/>
 
           </div>
 
         </section>
 
       </div>
+      <StreakReward
+
+    open={showReward}
+
+    username={rewardData.username}
+
+    streak={rewardData.streak}
+
+    onClose={() => setShowReward(false)}
+
+/>
 
     </div>
 

@@ -80,8 +80,20 @@ function Dashboard() {
 
   }
 
-  const today =
-    new Date().toISOString().split("T")[0];
+ const now = new Date();
+
+const today =
+`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+    console.log("Today:", today);
+console.log("Tasks:", tasks);
+
+tasks.forEach(task => {
+    console.log({
+        title: task.title,
+        startDate: task.startDate,
+        equals: task.startDate === today
+    });
+});
 
   const todaysTasks = tasks.filter(
     task => task.startDate === today

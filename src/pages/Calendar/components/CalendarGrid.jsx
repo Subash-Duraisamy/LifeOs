@@ -11,7 +11,7 @@ export default function CalendarGrid({
   calendarRecords,
 
 }) {
-console.log("Calendar Records:", calendarRecords); 
+
   const weekDays = [
     "Mon",
     "Tue",
@@ -313,7 +313,7 @@ function getHeatmapClass(day) {
 
         <span className="calendar-grid__day-icon">
 
-          ✅
+          
 
         </span>
 

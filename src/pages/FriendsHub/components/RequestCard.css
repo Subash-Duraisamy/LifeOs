@@ -1,0 +1,1013 @@
+/* ==========================================================
+   REQUEST CONTAINER
+========================================================== */
+
+.fr-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+    width:100%;
+
+    animation:frFade .45s ease;
+
+}
+
+/* ==========================================================
+   REQUEST LIST
+========================================================== */
+
+.fr-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================================
+   REQUEST CARD
+========================================================== */
+
+.fr-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:26px;
+
+    padding:26px 30px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 18px 45px rgba(0,0,0,.22);
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s,
+
+        border-color .35s;
+
+}
+
+.fr-card:hover{
+
+    transform:
+
+        translateY(-6px);
+
+    border-color:
+
+        rgba(255,255,255,.16);
+
+    box-shadow:
+
+        0 30px 60px rgba(95,170,255,.20);
+
+}
+
+/* ==========================================================
+   AURORA BLOBS
+========================================================== */
+
+.fr-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    top:-120px;
+
+    right:-120px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(135,110,255,.20),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+.fr-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    left:-110px;
+
+    bottom:-110px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(90,214,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+/* ==========================================================
+   REQUEST CONTAINER
+========================================================== */
+
+.fr-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+    width:100%;
+
+    animation:frFade .45s ease;
+
+}
+
+/* ==========================================================
+   REQUEST LIST
+========================================================== */
+
+.fr-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================================
+   REQUEST CARD
+========================================================== */
+
+.fr-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:26px;
+
+    padding:26px 30px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 18px 45px rgba(0,0,0,.22);
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s,
+
+        border-color .35s;
+
+}
+
+.fr-card:hover{
+
+    transform:
+
+        translateY(-6px);
+
+    border-color:
+
+        rgba(255,255,255,.16);
+
+    box-shadow:
+
+        0 30px 60px rgba(95,170,255,.20);
+
+}
+
+/* ==========================================================
+   USER INFO
+========================================================== */
+
+.fr-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex:1;
+
+    min-width:0;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
+
+.fr-avatar{
+
+    width:78px;
+
+    height:78px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+    border:3px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.25),
+        0 0 20px rgba(130,120,255,.25);
+
+    background:#29344b;
+
+}
+
+/* ==========================================================
+   DETAILS
+========================================================== */
+
+.fr-details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+    min-width:0;
+
+}
+
+.fr-name{
+
+    margin:0;
+
+    color:#ffffff;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.fr-username{
+
+    margin:0;
+
+    color:rgba(255,255,255,.65);
+
+    font-size:15px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+/* ==========================================================
+   AURORA BLOBS
+========================================================== */
+
+.fr-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    top:-120px;
+
+    right:-120px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(135,110,255,.20),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+.fr-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    left:-110px;
+
+    bottom:-110px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(90,214,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(55px);
+
+}
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.fr-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   ACCEPT BUTTON
+========================================================== */
+
+.fr-accept-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-width:145px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #58e49b,
+
+            #2dcf74,
+
+            #18b567
+
+        );
+
+    box-shadow:
+
+        0 18px 35px rgba(46,204,113,.28),
+
+        inset 0 1px rgba(255,255,255,.25);
+
+    transition:.35s;
+
+}
+
+.fr-accept-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 25px 50px rgba(46,204,113,.38);
+
+}
+
+/* ==========================================================
+   REJECT BUTTON
+========================================================== */
+
+.fr-reject-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-width:145px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #ff97ab,
+
+            #ff5877,
+
+            #e11d48
+
+        );
+
+    box-shadow:
+
+        0 18px 35px rgba(255,90,120,.28),
+
+        inset 0 1px rgba(255,255,255,.25);
+
+    transition:.35s;
+
+}
+
+.fr-reject-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 25px 50px rgba(255,90,120,.38);
+
+}
+
+/* ==========================================================
+   BUTTON SHINE
+========================================================== */
+
+.fr-accept-btn::before,
+.fr-reject-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:40%;
+
+    height:100%;
+
+    transform:skewX(-25deg);
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,.40),
+
+            transparent
+
+        );
+
+    transition:1s;
+
+}
+
+.fr-accept-btn:hover::before,
+.fr-reject-btn:hover::before{
+
+    left:150%;
+
+}
+
+.fr-accept-btn:active,
+.fr-reject-btn:active{
+
+    transform:scale(.96);
+
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.fr-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    gap:18px;
+
+    padding:90px 35px;
+
+    border-radius:32px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(255,255,255,.08),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 20px 50px rgba(0,0,0,.20);
+
+}
+
+.fr-empty::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    right:-120px;
+
+    top:-120px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            rgba(136,118,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(60px);
+
+}
+
+.fr-empty::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    left:-100px;
+
+    bottom:-100px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            rgba(88,214,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(60px);
+
+}
+
+/* ==========================================================
+   EMPTY CONTENT
+========================================================== */
+
+.fr-empty-icon{
+
+    font-size:64px;
+
+    z-index:2;
+
+}
+
+.fr-empty-title{
+
+    margin:0;
+
+    color:white;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    z-index:2;
+
+}
+
+.fr-empty-text{
+
+    margin:0;
+
+    color:rgba(255,255,255,.60);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.fr-list{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+
+        rgba(120,170,255,.35)
+
+        transparent;
+
+}
+
+.fr-list::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.fr-list::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.fr-list::-webkit-scrollbar-thumb{
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #8a7cff,
+
+            #5fdcff
+
+        );
+
+}
+
+/* ==========================================================
+   FADE ANIMATION
+========================================================== */
+
+@keyframes frFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(24px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateY(0);
+
+    }
+
+}
+
+.fr-card{
+
+    animation:
+
+        frFade .45s ease;
+
+}
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+.fr-container *{
+
+    box-sizing:border-box;
+
+}
+
+.fr-container{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+.fr-container *::selection{
+
+    background:
+
+        rgba(110,180,255,.30);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media(max-width:992px){
+
+    .fr-card{
+
+        padding:22px;
+
+        gap:20px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .fr-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .fr-user{
+
+        width:100%;
+
+    }
+
+    .fr-actions{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .fr-accept-btn,
+
+    .fr-reject-btn{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:480px){
+
+    .fr-card{
+
+        padding:18px;
+
+        border-radius:22px;
+
+    }
+
+    .fr-avatar{
+
+        width:58px;
+
+        height:58px;
+
+    }
+
+    .fr-name{
+
+        font-size:19px;
+
+    }
+
+    .fr-username{
+
+        font-size:14px;
+
+    }
+
+    .fr-accept-btn,
+
+    .fr-reject-btn{
+
+        height:48px;
+
+        font-size:14px;
+
+        border-radius:14px;
+
+    }
+
+    .fr-empty{
+
+        padding:60px 20px;
+
+    }
+
+    .fr-empty-title{
+
+        font-size:24px;
+
+    }
+
+    .fr-empty-text{
+
+        font-size:14px;
+
+    }
+
+}

@@ -7,6 +7,7 @@ import {
   where,
 } from "firebase/firestore";
 
+import './RequestCard.css'
 import { db } from "../../../firebase/firebase";
 
 import { useAuth } from "../../../hooks/useAuth";
@@ -87,60 +88,44 @@ function RequestCard() {
     }
 
   }
+return (
 
-  return (
+  <div className="fr-container">
 
-    <div>
+    {requests.length === 0 ? (
 
-      {
+      <div className="fr-empty">
 
-        requests.length === 0 &&
+        <div className="fr-empty-icon">
+          📭
+        </div>
 
-        <p>No friend requests.</p>
+        <h2 className="fr-empty-title">
+          No Friend Requests
+        </h2>
 
-      }
+        <p className="fr-empty-text">
+          New friend requests will appear here.
+        </p>
 
-      {
+      </div>
 
-        requests.map(request => (
+    ) : (
+
+      <div className="fr-list">
+
+        {requests.map((request) => (
 
           <div
-
             key={request.id}
-
-            style={{
-
-              display: "flex",
-
-              justifyContent: "space-between",
-
-              alignItems: "center",
-
-              border: "1px solid #ddd",
-
-              padding: 20,
-
-              borderRadius: 12,
-
-              marginBottom: 15,
-
-            }}
-
+            className="fr-card"
           >
 
-            <div
+            {/* =====================
+                LEFT
+            ====================== */}
 
-              style={{
-
-                display: "flex",
-
-                alignItems: "center",
-
-                gap: 15,
-
-              }}
-
-            >
+            <div className="fr-user">
 
               <img
 
@@ -149,61 +134,77 @@ function RequestCard() {
                   `https://ui-avatars.com/api/?name=${request.fromName}`
                 }
 
-                width="60"
+                alt={request.fromName}
 
-                height="60"
-
-                alt=""
-
-                style={{
-
-                  borderRadius: "50%",
-
-                }}
+                className="fr-avatar"
 
               />
 
-              <div>
+              <div className="fr-details">
 
-                <h3>{request.fromName}</h3>
+                <h3 className="fr-name">
 
-                <p>@{request.fromUsername}</p>
+                  {request.fromName}
+
+                </h3>
+
+                <p className="fr-username">
+
+                  @{request.fromUsername}
+
+                </p>
 
               </div>
 
             </div>
 
-            <div>
+            {/* =====================
+                RIGHT
+            ====================== */}
+
+            <div className="fr-actions">
 
               <button
+
+                className="fr-accept-btn"
+
                 onClick={() =>
                   handleAccept(request)
                 }
+
               >
-                Accept
+
+                ✓ Accept
+
               </button>
 
-              {" "}
-
               <button
+
+                className="fr-reject-btn"
+
                 onClick={() =>
                   handleReject(request)
                 }
+
               >
-                Reject
+
+                ✕ Reject
+
               </button>
 
             </div>
 
           </div>
 
-        ))
+        ))}
 
-      }
+      </div>
 
-    </div>
+    )}
 
-  );
+  </div>
+
+);
 
 }
 

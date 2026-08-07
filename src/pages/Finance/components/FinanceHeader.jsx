@@ -8,7 +8,7 @@ function FinanceHeader() {
 
       <div>
 
-        <h1>💰 Finance</h1>
+        <h1>Finance</h1>
 
         <p>
           Track your income, expenses and savings in one place.

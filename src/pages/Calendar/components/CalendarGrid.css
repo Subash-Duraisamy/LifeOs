@@ -1,239 +1,1417 @@
-/* ==========================================
+/* ==========================================================
    CALENDAR GRID
-========================================== */
+   LIFEOS AURORA GLASS
+========================================================== */
 
-.calendar-grid {
-  width: 100%;
-  height: 100%;
-  background: #1c2638;
-  border-radius: 28px;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+.calendar-grid{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+
+    min-height:760px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:32px;
+
+    border-radius:34px;
+
+    box-sizing:border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(34,43,73,.72),
+            rgba(23,29,51,.78)
+        );
+
+    backdrop-filter:blur(42px);
+
+    -webkit-backdrop-filter:blur(42px);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.12),
+
+        inset 0 -1px rgba(255,255,255,.03),
+
+        0 30px 70px rgba(0,0,0,.38);
+
 }
 
-/* ==========================================
+/* ==========================================================
+   PURPLE AURORA
+========================================================== */
+
+.calendar-grid::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+
+    height:420px;
+
+    left:-220px;
+
+    top:-200px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(171,106,255,.30),
+
+            transparent 72%
+
+        );
+
+    filter:blur(70px);
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   CYAN AURORA
+========================================================== */
+
+.calendar-grid::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:340px;
+
+    height:340px;
+
+    right:-160px;
+
+    bottom:-170px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(82,221,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(70px);
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.calendar-grid>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
    HEADER
-========================================== */
+========================================================== */
 
-.calendar-grid__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
+.calendar-grid__header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-bottom:34px;
+
 }
 
-.calendar-grid__header-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
+/* ==========================================================
+   MONTH TITLE
+========================================================== */
+
+.calendar-grid__header-title{
+
+    font-size:2.2rem;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #ffffff,
+
+            #f3ebff,
+
+            #d6f4ff
+
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
 }
 
-.calendar-grid__header-btn {
-  width: 52px;
-  height: 52px;
-  border: none;
-  border-radius: 16px;
-  background: #2a3650;
-  color: #ffffff;
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: 0.25s;
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.calendar-grid__header-actions{
+
+    display:flex;
+
+    gap:14px;
+
 }
 
-.calendar-grid__header-btn:hover {
-  background: #3b82f6;
-  transform: scale(1.05);
+/* ==========================================================
+   GLASS BUTTON
+========================================================== */
+
+.calendar-grid__header-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:56px;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:1.25rem;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 14px 35px rgba(0,0,0,.22);
+
+    transition:.35s;
+
 }
 
-/* ==========================================
-   WEEK DAYS
-========================================== */
+/* ==========================================================
+   BUTTON SHINE
+========================================================== */
 
-.calendar-grid__weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 20px;
+.calendar-grid__header-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:55%;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(255,255,255,.35),
+
+            transparent
+
+        );
+
+    transform:skewX(-22deg);
+
+    transition:.8s;
+
 }
 
-.calendar-grid__weekday {
-  text-align: center;
-  color: #b7c5dc;
-  font-weight: 600;
-  font-size: 0.95rem;
+.calendar-grid__header-btn:hover::before{
+
+    left:160%;
+
 }
 
-.calendar-grid__weekday--saturday {
-  color: #60a5fa;
+/* ==========================================================
+   BUTTON HOVER
+========================================================== */
+
+.calendar-grid__header-btn:hover{
+
+    transform:
+
+        translateY(-4px);
+
+    background:
+
+        rgba(255,255,255,.13);
+
+    border-color:
+
+        rgba(255,255,255,.18);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.15),
+
+        0 20px 42px rgba(0,0,0,.30);
+
 }
 
-.calendar-grid__weekday--sunday {
-  color: #ff6b6b;
+/* ==========================================================
+   WEEK HEADER
+========================================================== */
+
+.calendar-grid__weekdays{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:14px;
+
+    margin-bottom:24px;
+
 }
 
-/* ==========================================
-   DAYS
-========================================== */
+.calendar-grid__weekday{
 
-.calendar-grid__days {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 14px;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:48px;
+
+    border-radius:16px;
+
+    background:
+
+        rgba(255,255,255,.05);
+
+    backdrop-filter:blur(16px);
+
+    -webkit-backdrop-filter:blur(16px);
+
+    border:
+
+        1px solid rgba(255,255,255,.06);
+
+    color:
+
+        rgba(255,255,255,.72);
+
+    font-size:.90rem;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    transition:.35s;
+
 }
 
-.calendar-grid__day {
-  aspect-ratio: 1;
-  border: none;
-  border-radius: 18px;
-  background: #2b3853;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s;
+.calendar-grid__weekday:hover{
+
+    background:
+
+        rgba(255,255,255,.08);
+
 }
 
-.calendar-grid__day:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.12);
-}
-/* ==========================================
-   HEATMAP COLORS
-========================================== */
+/* ==========================================================
+   SATURDAY
+========================================================== */
 
-.calendar-grid__day--heat0 {
-  background: #2b3853;
+.calendar-grid__weekday--saturday{
+
+    color:#9DD7FF;
+
 }
 
-.calendar-grid__day--heat1 {
-  background: #1f6feb;
+/* ==========================================================
+   SUNDAY
+========================================================== */
+
+.calendar-grid__weekday--sunday{
+
+    color:#FF9CC9;
+
 }
 
-.calendar-grid__day--heat2 {
-  background: #238636;
+/* ==========================================================
+   DAYS GRID
+========================================================== */
+
+.calendar-grid__days{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:14px;
+
 }
 
-.calendar-grid__day--heat3 {
-  background: #2ea043;
+/* ==========================================================
+   DAY CELL
+========================================================== */
+
+.calendar-grid__day{
+
+    position:relative;
+
+    overflow:hidden;
+
+    aspect-ratio:1;
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    background:
+
+        rgba(255,255,255,.055);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:
+
+        1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.06),
+
+        0 10px 22px rgba(0,0,0,.20);
+
+    transition:
+
+        transform .35s,
+
+        border-color .35s,
+
+        box-shadow .35s,
+
+        background .35s;
+
 }
 
-.calendar-grid__day--heat4 {
-  background: #3fb950;
+/* ==========================================================
+   PURPLE GLOW
+========================================================== */
+
+.calendar-grid__day::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    top:-45px;
+
+    right:-45px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(171,106,255,.22),
+
+            transparent 72%
+
+        );
+
+    filter:blur(20px);
+
+    pointer-events:none;
+
 }
 
-.calendar-grid__day--breakfree {
-  background: #8b5cf6;
-  color: white;
-}
-.calendar-grid__day--selected {
-  outline: 3px solid #22c55e;
-  outline-offset: -3px;
-  box-shadow: 0 0 15px rgba(34,197,94,.45);
-}
+/* ==========================================================
+   CYAN GLOW
+========================================================== */
 
-/* ==========================================
-   LEGEND
-========================================== */
+.calendar-grid__day::after{
 
-.calendar-grid__legend {
-  margin-top: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-}
+    content:"";
 
-.calendar-grid__legend-label {
-  color: #b7c5dc;
-  font-size: 0.9rem;
-}
+    position:absolute;
 
-.calendar-grid__legend-colors {
-  display: flex;
-  gap: 8px;
-}
+    width:70px;
 
-.calendar-grid__legend-box {
-  width: 18px;
-  height: 18px;
-  border-radius: 6px;
-}
+    height:70px;
 
-.calendar-grid__legend-box--0 {
-  background: #2b3853;
+    left:-35px;
+
+    bottom:-35px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(90,219,255,.18),
+
+            transparent 72%
+
+        );
+
+    filter:blur(20px);
+
+    pointer-events:none;
+
 }
 
-.calendar-grid__legend-box--1 {
-  background: #1f6feb;
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.calendar-grid__day>*{
+
+    position:relative;
+
+    z-index:2;
+
 }
 
-.calendar-grid__legend-box--2 {
-  background: #238636;
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.calendar-grid__day:hover{
+
+    transform:
+
+        translateY(-5px);
+
+    background:
+
+        rgba(255,255,255,.10);
+
+    border-color:
+
+        rgba(255,255,255,.18);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.14),
+
+        0 18px 34px rgba(0,0,0,.28);
+
 }
 
-.calendar-grid__legend-box--3 {
-  background: #2ea043;
+/* ==========================================================
+   ACTIVE
+========================================================== */
+
+.calendar-grid__day:active{
+
+    transform:scale(.95);
+
 }
 
-.calendar-grid__legend-box--4 {
-  background: #3fb950;
+
+/* ==========================================================
+   EMPTY DAY
+========================================================== */
+
+.calendar-grid__day--heat0{
+
+    background:
+
+        rgba(255,255,255,.045);
+
+    border:
+
+        1px solid rgba(255,255,255,.08);
+
+    color:
+
+        rgba(255,255,255,.82);
+
 }
 
-/* ==========================================
+/* ==========================================================
+   LEVEL 1
+========================================================== */
+
+.calendar-grid__day--heat1{
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(102,126,234,.35),
+
+            rgba(118,75,162,.25)
+
+        );
+
+    border:
+
+        1px solid rgba(132,161,255,.28);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   LEVEL 2
+========================================================== */
+
+.calendar-grid__day--heat2{
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(160,95,255,.34),
+
+            rgba(110,132,255,.22)
+
+        );
+
+    border:
+
+        1px solid rgba(188,145,255,.30);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   LEVEL 3
+========================================================== */
+
+.calendar-grid__day--heat3{
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(214,117,255,.34),
+
+            rgba(142,118,255,.28)
+
+        );
+
+    border:
+
+        1px solid rgba(225,165,255,.35);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   LEVEL 4
+========================================================== */
+
+.calendar-grid__day--heat4{
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(110,219,255,.28),
+
+            rgba(161,105,255,.36)
+
+        );
+
+    border:
+
+        1px solid rgba(165,245,255,.34);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   BREAK FREE DAY
+========================================================== */
+
+.calendar-grid__day--breakfree{
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(185,92,255,.55),
+
+            rgba(255,122,196,.38)
+
+        );
+
+    border:
+
+        1px solid rgba(255,255,255,.18);
+
+    color:white;
+
+    box-shadow:
+
+        0 0 28px rgba(188,95,255,.40);
+
+}
+
+/* ==========================================================
+   TODAY
+========================================================== */
+
+/* ==========================================================
+   TODAY
+========================================================== */
+
+.calendar-grid__day--today{
+
+    position:relative;
+
+    border:2px solid rgba(115,225,255,.95) !important;
+
+    box-shadow:
+        0 0 0 2px rgba(115,225,255,.20),
+        0 0 18px rgba(115,225,255,.45),
+        inset 0 0 12px rgba(115,225,255,.18);
+
+}
+.calendar-grid__day--today.calendar-grid__day--selected{
+
+    border:2px solid yellow !important;
+
+    box-shadow:
+        0 0 0 3px rgba(125,232,255,.30),
+        0 0 28px rgba(171,106,255,.45),
+        0 0 45px rgba(125,232,255,.35);
+
+}
+
+/* ==========================================================
+   SELECTED
+========================================================== */
+
+.calendar-grid__day--selected{
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(168,96,255,.55),
+
+            rgba(101,208,255,.35)
+
+        );
+
+    border:
+
+        2px solid rgba(255,255,255,.22);
+
+    box-shadow:
+
+        0 0 35px rgba(168,96,255,.42),
+
+        inset 0 1px rgba(255,255,255,.22);
+
+}
+
+/* ==========================================================
+   OTHER MONTH
+========================================================== */
+
+.calendar-grid__day--disabled{
+
+    opacity:.32;
+
+    filter:grayscale(.25);
+
+}
+.calendar-grid__day:hover{
+
+    transform:
+
+        translateY(-6px) scale(1.03);
+
+    border-color:
+
+        rgba(255,255,255,.22);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.18),
+
+        0 20px 38px rgba(0,0,0,.28);
+
+}
+
+/* ==========================================================
+   LEGEND CONTAINER
+========================================================== */
+
+.calendar-grid__legend{
+
+    margin-top:32px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:18px 22px;
+
+    border-radius:22px;
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    border:
+
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 18px 35px rgba(0,0,0,.22);
+
+}
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.calendar-grid__legend-label{
+
+    color:
+
+        rgba(255,255,255,.72);
+
+    font-size:.92rem;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+}
+
+/* ==========================================================
+   COLORS
+========================================================== */
+
+.calendar-grid__legend-colors{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+/* ==========================================================
+   LEGEND CONTAINER
+========================================================== */
+
+.calendar-grid__legend{
+
+    margin-top:32px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:18px 22px;
+
+    border-radius:22px;
+
+    background:
+
+        rgba(255,255,255,.06);
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    border:
+
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        0 18px 35px rgba(0,0,0,.22);
+
+}
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.calendar-grid__legend-label{
+
+    color:
+
+        rgba(255,255,255,.72);
+
+    font-size:.92rem;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+}
+
+/* ==========================================================
+   COLORS
+========================================================== */
+
+.calendar-grid__legend-colors{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+/* ==========================================================
+   GRID SHINE
+========================================================== */
+
+.calendar-grid::after{
+
+    animation:
+
+        glassGlow 10s ease-in-out infinite alternate;
+
+}
+
+@keyframes glassGlow{
+
+    from{
+
+        opacity:.35;
+
+        filter:blur(70px);
+
+    }
+
+    to{
+
+        opacity:.75;
+
+        filter:blur(95px);
+
+    }
+
+}
+
+/* ==========================================================
+   PANEL HOVER
+========================================================== */
+
+.calendar-grid:hover{
+
+    transform:
+
+        translateY(-4px);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.14),
+
+        0 40px 80px rgba(0,0,0,.38);
+
+}
+
+/* ==========================================================
+   SMOOTH TRANSITIONS
+========================================================== */
+
+.calendar-grid,
+
+.calendar-grid__header,
+
+.calendar-grid__day,
+
+.calendar-grid__weekday,
+
+.calendar-grid__legend,
+
+.calendar-grid__legend-box,
+
+.calendar-grid__header-btn{
+
+    transition:
+
+        all .35s ease;
+
+}
+.calendar-grid__legend-box{
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:7px;
+
+    flex-shrink:0;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.25),
+        0 6px 14px rgba(0,0,0,.18);
+
+}
+
+/* 0% */
+
+.calendar-grid__legend-box--0{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.04)
+        );
+
+}
+
+/* 1-25% */
+
+.calendar-grid__legend-box--1{
+
+    background:
+        linear-gradient(
+            145deg,
+            #78d2ff,
+            #2d7cff
+        );
+
+}
+
+/* 26-50% */
+
+.calendar-grid__legend-box--2{
+
+    background:
+        linear-gradient(
+            145deg,
+            #d38cff,
+            #7f5cff
+        );
+
+}
+
+/* 51-75% */
+
+.calendar-grid__legend-box--3{
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff9aa8,
+            #ff3355
+        );
+
+}
+
+/* 76-100% */
+
+.calendar-grid__legend-box--4{
+
+    background:
+        linear-gradient(
+            145deg,
+            #9ef7ff,
+            #9b82ff
+        );
+
+}
+
+/* ==========================================================
+   CUSTOM SCROLLBAR
+========================================================== */
+
+.calendar-grid::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.calendar-grid::-webkit-scrollbar-thumb{
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+
+            #B16DFF,
+
+            #6DEBFF
+
+        );
+
+}
+
+.calendar-grid::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+/* ==========================================================
    RESPONSIVE
-========================================== */
+========================================================== */
 
-@media (max-width: 992px) {
+@media(max-width:1200px){
 
-  .calendar-grid {
-    padding: 22px;
-  }
+    .calendar-grid{
 
-  .calendar-grid__header-title {
-    font-size: 1.7rem;
-  }
+        padding:24px;
 
-  .calendar-grid__header-btn {
-    width: 46px;
-    height: 46px;
-  }
-
-  .calendar-grid__days {
-    gap: 10px;
-  }
+    }
 
 }
 
-@media (max-width: 768px) {
+@media(max-width:992px){
 
-  .calendar-grid {
-    padding: 18px;
-  }
+    .calendar-grid{
 
-  .calendar-grid__header-title {
-    font-size: 1.45rem;
-  }
+        border-radius:26px;
 
-  .calendar-grid__header-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-  }
+        padding:22px;
 
-  .calendar-grid__weekday {
-    font-size: 0.82rem;
-  }
+    }
 
-  .calendar-grid__day {
-    border-radius: 14px;
-    font-size: 0.9rem;
-  }
+    .calendar-grid__header{
 
-  .calendar-grid__legend {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+        margin-bottom:24px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .calendar-grid{
+
+        padding:18px;
+
+        border-radius:22px;
+
+    }
+
+    .calendar-grid__days{
+
+        gap:8px;
+
+    }
+
+    .calendar-grid__weekday{
+
+        height:40px;
+
+        font-size:.78rem;
+
+    }
+
+    .calendar-grid__day{
+
+        border-radius:14px;
+
+        font-size:.85rem;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .calendar-grid{
+
+        padding:14px;
+
+        border-radius:18px;
+
+    }
+
+    .calendar-grid__header-title{
+
+        font-size:1.4rem;
+
+    }
+
+    .calendar-grid__header-btn{
+
+        width:40px;
+
+        height:40px;
+
+        border-radius:12px;
+
+        font-size:1rem;
+
+    }
+
+    .calendar-grid__weekdays{
+
+        gap:6px;
+
+    }
+
+    .calendar-grid__days{
+
+        gap:6px;
+
+    }
+
+    .calendar-grid__day{
+
+        border-radius:12px;
+
+        font-size:.75rem;
+
+    }
+
+}
+
+
+/* ==========================================================
+   0% - FROSTED GLASS
+========================================================== */
+
+.calendar-grid__day--heat0{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.03)
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.10);
+
+}
+
+/* ==========================================================
+   1% - 25%
+   GLOSSY BLUE
+========================================================== */
+
+.calendar-grid__day--heat1{
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(120,210,255,.95) 0%,
+            rgba(58,145,255,.88) 45%,
+            rgba(26,82,220,.95) 100%
+        );
+
+    border:1px solid rgba(170,230,255,.55);
+
+    box-shadow:
+
+        inset 0 2px 6px rgba(255,255,255,.35),
+
+        inset 0 -8px 16px rgba(0,45,140,.28),
+
+        0 0 18px rgba(75,170,255,.35);
+
+}
+
+/* ==========================================================
+   26% - 50%
+   GLOSSY PURPLE
+========================================================== */
+
+.calendar-grid__day--heat2{
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(224,170,255,.95),
+            rgba(173,110,255,.92),
+            rgba(108,65,255,.95)
+        );
+
+    border:1px solid rgba(236,200,255,.45);
+
+    box-shadow:
+
+        inset 0 2px 6px rgba(255,255,255,.32),
+
+        inset 0 -8px 16px rgba(70,30,150,.28),
+
+        0 0 18px rgba(165,110,255,.30);
+
+}
+
+/* ==========================================================
+   51% - 75%
+   GLOSSY RUBY RED
+========================================================== */
+
+.calendar-grid__day--heat3{
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(255,170,180,.98),
+            rgba(255,82,108,.95),
+            rgba(180,0,45,.98)
+        );
+
+    border:1px solid rgba(255,210,220,.48);
+
+    box-shadow:
+
+        inset 0 2px 6px rgba(255,255,255,.35),
+
+        inset 0 -8px 18px rgba(120,0,25,.35),
+
+        0 0 22px rgba(255,82,108,.42);
+
+}
+
+/* ==========================================================
+   76% - 100%
+   CRYSTAL AURORA
+========================================================== */
+
+.calendar-grid__day--heat4{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(175,245,255,.98),
+            rgba(150,120,255,.92),
+            rgba(255,255,255,.55)
+        );
+
+    border:1px solid rgba(255,255,255,.40);
+
+    box-shadow:
+
+        inset 0 3px 8px rgba(255,255,255,.40),
+
+        inset 0 -10px 18px rgba(90,120,255,.25),
+
+        0 0 25px rgba(115,220,255,.30),
+
+        0 0 22px rgba(180,120,255,.25);
 
 }
