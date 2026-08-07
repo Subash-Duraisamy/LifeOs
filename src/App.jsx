@@ -4,6 +4,7 @@ import FriendsHub from "./pages/FriendsHub/FriendsHub";
 import { useAuth } from "./hooks/useAuth";
 
 import MainLayout from "./layouts/MainLayout";
+import Loader from "./components/Loader/Loader";
 
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -33,28 +34,9 @@ function App() {
 
   const { user, loading } = useAuth();
 
-  if (loading) {
-
-    return (
-
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          fontSize: "24px",
-          fontWeight: "600",
-        }}
-      >
-
-        Loading...
-
-      </div>
-
-    );
-
-  }
+if (loading) {
+  return <Loader />;
+}
 
   return (
 

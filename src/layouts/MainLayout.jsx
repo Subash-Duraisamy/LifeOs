@@ -99,14 +99,12 @@ function MainLayout() {
 
         <main className="main">
 
-          <Topbar
-            setMenuOpen={setMenuOpen}
-            pageTitle="Dashboard"
-            user={user}
-            onProfileClick={() =>
-              setProfileOpen(true)
-            }
-          />
+         <Topbar
+    menuOpen={menuOpen}
+    setMenuOpen={setMenuOpen}
+    user={user}
+    onProfileClick={() => setProfileOpen(true)}
+/>
 
           <section className="content">
             <Outlet />

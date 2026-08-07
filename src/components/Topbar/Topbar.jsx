@@ -22,11 +22,9 @@ function Topbar({
 
         "👤";
 
-    function handleToggleMenu() {
-
-        setMenuOpen(!menuOpen);
-
-    }
+function handleToggleMenu() {
+    setMenuOpen(prev => !prev);
+}
 
     return (
 
