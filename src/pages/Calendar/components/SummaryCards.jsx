@@ -1,153 +1,95 @@
-import { useMemo } from "react";
 import "./SummaryCards.css";
 
 export default function SummaryCards({
-  calendarRecords = {},
+
+    streakData,
+
 }) {
 
-  const { currentStreak, longestStreak } = useMemo(() => {
+    const currentStreak =
+        streakData?.currentStreak ?? 0;
 
-    const DAY = 24 * 60 * 60 * 1000;
+    const longestStreak =
+        streakData?.longestStreak ?? 0;
 
-    const records = Object.values(calendarRecords)
-      .filter(r => r.submitted || r.breakFree)
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
+    return (
 
-    if (records.length === 0) {
-      return {
-        currentStreak: 0,
-        longestStreak: 0,
-      };
-    }
+        <div className="calendar-summary">
 
-    /* ===========================
-       LONGEST STREAK
-    =========================== */
+            {/* =========================
+                CURRENT STREAK
+            ========================== */}
 
-    let longest = 1;
-    let streak = 1;
+            <div className="calendar-summary__card calendar-summary__card--current">
 
-    for (let i = 1; i < records.length; i++) {
+                <div className="calendar-summary__icon">
 
-      const prev = new Date(records[i - 1].date);
-      const curr = new Date(records[i].date);
+                    🔥
 
-      prev.setHours(0,0,0,0);
-      curr.setHours(0,0,0,0);
+                </div>
 
-      const diff = (curr - prev) / DAY;
+                <div className="calendar-summary__content">
 
-      if (diff === 1) {
-        streak++;
-      } else if (diff === 0) {
-        continue;
-      } else {
-        streak = 1;
-      }
+                    <p className="calendar-summary__label">
 
-      longest = Math.max(longest, streak);
-    }
+                        Current Streak
 
-    /* ===========================
-       CURRENT STREAK
-    =========================== */
+                    </p>
 
-    let current = 0;
+                    <h1 className="calendar-summary__value">
 
-    let pointer = new Date();
-    pointer.setHours(0,0,0,0);
+                        {currentStreak}
 
-    // if today isn't submitted,
-    // start from yesterday
-    const todayKey =
-      `${pointer.getFullYear()}-${String(pointer.getMonth()+1).padStart(2,"0")}-${String(pointer.getDate()).padStart(2,"0")}`;
+                    </h1>
 
-    if (
-      !calendarRecords[todayKey] ||
-      (!calendarRecords[todayKey].submitted &&
-       !calendarRecords[todayKey].breakFree)
-    ) {
-      pointer.setDate(pointer.getDate() - 1);
-    }
+                    <span className="calendar-summary__unit">
 
-    while (true) {
+                        Days
 
-      const key =
-        `${pointer.getFullYear()}-${String(pointer.getMonth()+1).padStart(2,"0")}-${String(pointer.getDate()).padStart(2,"0")}`;
+                    </span>
 
-      const record = calendarRecords[key];
+                </div>
 
-      if (record && (record.submitted || record.breakFree)) {
+            </div>
 
-        current++;
+            {/* =========================
+                LONGEST STREAK
+            ========================== */}
 
-        pointer.setDate(pointer.getDate() - 1);
+            <div className="calendar-summary__card calendar-summary__card--longest">
 
-      } else {
-        break;
-      }
-    }
+                <div className="calendar-summary__icon">
 
-    return {
-      currentStreak: current,
-      longestStreak: longest,
-    };
+                    🏆
 
-  }, [calendarRecords]);
+                </div>
 
-  return (
+                <div className="calendar-summary__content">
 
-    <div className="calendar-summary">
+                    <p className="calendar-summary__label">
 
-      <div className="calendar-summary__card calendar-summary__card--current">
+                        Longest Streak
 
-        <div className="calendar-summary__icon">
-          🔥
-        </div>
+                    </p>
 
-        <div className="calendar-summary__content">
+                    <h1 className="calendar-summary__value">
 
-          <p className="calendar-summary__label">
-            Current Streak
-          </p>
+                        {longestStreak}
 
-          <h1 className="calendar-summary__value">
-            {currentStreak}
-          </h1>
+                    </h1>
 
-          <span className="calendar-summary__unit">
-            Days
-          </span>
+                    <span className="calendar-summary__unit">
+
+                        Days
+
+                    </span>
+
+                </div>
+
+            </div>
 
         </div>
 
-      </div>
+    );
 
-      <div className="calendar-summary__card calendar-summary__card--longest">
-
-        <div className="calendar-summary__icon">
-          🏆
-        </div>
-
-        <div className="calendar-summary__content">
-
-          <p className="calendar-summary__label">
-            Longest Streak
-          </p>
-
-          <h1 className="calendar-summary__value">
-            {longestStreak}
-          </h1>
-
-          <span className="calendar-summary__unit">
-            Days
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  );
 }

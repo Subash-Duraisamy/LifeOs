@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { loadCalendarRecords } from "../../../services/calendarService";
+import { loadUserStreak } from "../../../services/streak";
 
 export function useCalendar() {
 
@@ -13,6 +14,10 @@ export function useCalendar() {
   const [records, setRecords] = useState({});
 
   const [tasks, setTasks] = useState([]);
+  const [streakData, setStreakData] = useState({
+    currentStreak: 0,
+    longestStreak: 0,
+});
 
   useEffect(() => {
 
@@ -23,6 +28,11 @@ export function useCalendar() {
       const data = await loadCalendarRecords(user.uid);
 
       setRecords(data);
+      const streak = await loadUserStreak(user.uid);
+
+if (streak) {
+    setStreakData(streak);
+}
 
     }
 
@@ -30,8 +40,7 @@ export function useCalendar() {
 
   }, [user]);
 
-  return {
-
+return {
     selectedDate,
     setSelectedDate,
 
@@ -44,6 +53,8 @@ export function useCalendar() {
     tasks,
     setTasks,
 
-  };
+    streakData,
+    setStreakData,
+};
 
 }

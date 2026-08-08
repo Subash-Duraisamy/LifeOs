@@ -9,21 +9,24 @@ import CalendarSidebar from "./components/CalendarSidebar";
 export default function Calendar() {
   
 
-  const {
+const {
 
-    selectedDate,
-    setSelectedDate,
+  selectedDate,
+  setSelectedDate,
 
-    currentMonth,
-    setCurrentMonth,
+  currentMonth,
+  setCurrentMonth,
 
-    records,
-    setRecords,
+  records,
+  setRecords,
 
-    tasks,
-    setTasks,
+  tasks,
+  setTasks,
 
-  } = useCalendar();
+  streakData,
+  setStreakData,
+
+} = useCalendar();
   const [showReward, setShowReward] = useState(false);
 
 const [rewardData, setRewardData] = useState({
@@ -43,9 +46,9 @@ const [rewardData, setRewardData] = useState({
 
         <section className="calendar-page__summary-section">
 
-          <SummaryCards
-            calendarRecords={records}
-          />
+     <SummaryCards
+    streakData={streakData}
+/>
 
         </section>
 
@@ -77,18 +80,20 @@ const [rewardData, setRewardData] = useState({
 
           <div className="calendar-page__sidebar-wrapper">
 
-           <CalendarSidebar
+<CalendarSidebar
 
-    selectedDate={selectedDate}
+selectedDate={selectedDate}
 
-    tasks={tasks}
-    setTasks={setTasks}
+tasks={tasks}
+setTasks={setTasks}
 
-    records={records}
-    setRecords={setRecords}
+records={records}
+setRecords={setRecords}
 
-    setShowReward={setShowReward}
-    setRewardData={setRewardData}
+setStreakData={setStreakData}
+
+setShowReward={setShowReward}
+setRewardData={setRewardData}
 
 />
 

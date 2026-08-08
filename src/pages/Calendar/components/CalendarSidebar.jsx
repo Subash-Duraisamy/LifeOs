@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 
-
+import { calculateAndSaveStreak } from "../../../services/streak";
 
 
 
@@ -31,6 +31,8 @@ export default function CalendarSidebar({
 
   records,
   setRecords,
+
+  setStreakData,
 
   setShowReward,
   setRewardData,
@@ -466,63 +468,6 @@ async function toggleBreakFree(isChecked) {
 
 }
 
-function calculateCurrentStreak(allRecords) {
-
-    let streak = 0;
-
-    let pointer = new Date();
-
-    pointer.setHours(0, 0, 0, 0);
-
-    const todayKey =
-        `${pointer.getFullYear()}-${String(pointer.getMonth()+1).padStart(2,"0")}-${String(pointer.getDate()).padStart(2,"0")}`;
-
-    // If today is not submitted,
-    // start from yesterday
-    if (
-        !allRecords[todayKey] ||
-        (
-            !allRecords[todayKey].submitted &&
-            !allRecords[todayKey].breakFree
-        )
-    ) {
-
-        pointer.setDate(pointer.getDate() - 1);
-
-    }
-
-    while (true) {
-
-        const key =
-            `${pointer.getFullYear()}-${String(pointer.getMonth()+1).padStart(2,"0")}-${String(pointer.getDate()).padStart(2,"0")}`;
-
-        const record = allRecords[key];
-
-        if (
-            record &&
-            (
-                record.submitted ||
-                record.breakFree
-            )
-        ) {
-
-            streak++;
-
-            pointer.setDate(pointer.getDate() - 1);
-
-        }
-
-        else {
-
-            break;
-
-        }
-
-    }
-
-    return streak;
-
-}
 
 /* =========================
    SUBMIT DAY
@@ -578,12 +523,16 @@ async function submitDay() {
     /* =========================
        Calculate Latest Streak
     ========================= */
+/* =========================
+   Calculate & Save Streak
+========================= */
 
-    const streak = calculateCurrentStreak(
-        updatedRecords
-    );
-console.log(updatedRecords);
-console.log("STREAK =", streak);
+const streakData = await calculateAndSaveStreak(
+    user.uid
+);
+
+setStreakData(streakData);
+console.log(streakData);
   setRecords(updatedRecords);
 
     setSubmitted(true);
@@ -617,18 +566,20 @@ console.log("STREAK =", streak);
        Show Reward Popup
     ========================= */
 
+if (streakData.currentStreak > 0) {
+
     setRewardData({
 
         username: fullName,
 
-        streak: streak,
+        streak: streakData.currentStreak,
 
     });
 
     setShowReward(true);
 
 }
-
+}
 
 /* =========================
    UI
