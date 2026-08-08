@@ -859,19 +859,11 @@ return (
 
         <div className="calendar-sidebar__submitted-badge">
 
-          ✅ Day Submitted
+          Day Submitted
 
         </div>
 
-        <button
-
-          className="calendar-sidebar__view-report-btn"
-
-        >
-
-          👁 View Report
-
-        </button>
+    
 
         <button
 

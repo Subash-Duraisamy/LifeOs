@@ -2,6 +2,27 @@
    SIDEBAR
    Aurora Glass Theme
 ========================================================== */
+.sidebar-menu a.active{
+
+    color:#ffffff !important;
+
+}
+
+.sidebar-menu a.active span{
+
+    color:#ffffff !important;
+
+    opacity:1 !important;
+
+}
+
+.sidebar-menu a.active svg{
+
+    color:#ffffff !important;
+
+    opacity:1 !important;
+
+}
 
 .sidebar{
 
@@ -404,8 +425,12 @@
 
     position:relative;
 
+    isolation:isolate;
+
     display:flex;
+
     align-items:center;
+
     gap:16px;
 
     min-height:56px;
@@ -414,22 +439,13 @@
 
     border-radius:18px;
 
-    text-decoration:none;
-
-    color:rgba(225,235,255,.72);
-
-    font-size:15px;
-    font-weight:600;
-
     overflow:hidden;
 
-    transition:
-        transform .28s ease,
-        background .28s ease,
-        color .28s ease,
-        box-shadow .28s ease;
-
 }
+
+/* ==========================================================
+   Aurora Glass
+========================================================== */
 
 /* ==========================================================
    Aurora Glass
@@ -440,19 +456,19 @@
     content:"";
 
     position:absolute;
+
     inset:0;
+
+    z-index:1;
 
     border-radius:inherit;
 
-    background:
+    background:rgba(255,255,255,.04);
 
-        rgba(255,255,255,.04);
-
-    border:
-
-        1px solid rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.05);
 
     backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 
     opacity:0;
 
@@ -516,17 +532,23 @@
    ICON
 ========================================================== */
 
+/* ==========================================================
+   ICON
+========================================================== */
+
 .sidebar-menu a svg{
 
+    position:relative;
+
+    z-index:5;
+
     width:22px;
+
     height:22px;
 
     flex-shrink:0;
 
-    z-index:2;
-
     transition:
-
         transform .3s,
         filter .3s;
 
@@ -548,43 +570,171 @@
    TEXT
 ========================================================== */
 
+/* ==========================================================
+TEXT
+========================================================== */
+
+/* ==========================================================
+   TEXT
+========================================================== */
+
 .sidebar-menu a span{
 
     position:relative;
 
-    z-index:2;
+    z-index:5;
+
+    color:inherit;
 
 }
 
+.sidebar-menu a:hover span,
+.sidebar-menu a.active span{
+
+    color:#ffffff;
+
+}
+/* ==========================================================
+   ACTIVE ITEM
+========================================================== */
 /* ==========================================================
    ACTIVE ITEM
 ========================================================== */
 
 .sidebar-menu a.active{
 
-    color:white;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    gap:16px;
+
+    color:#ffffff !important;
 
     transform:translateX(8px);
 
     background:
-
         linear-gradient(
             135deg,
             rgba(115,110,255,.30),
             rgba(60,215,255,.20)
         );
 
-    border:
-
-        1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-
-        0 10px 28px rgba(70,180,255,.16),
-        inset 0 1px rgba(255,255,255,.08);
+        0 10px 28px rgba(70,180,255,.18),
+        inset 0 1px rgba(255,255,255,.10);
 
 }
 
+/* ==========================================================
+   FORCE ACTIVE TEXT
+========================================================== */
+
+.sidebar-menu a.active,
+.sidebar-menu a.active:link,
+.sidebar-menu a.active:visited,
+.sidebar-menu a.active:hover{
+
+    color:#ffffff !important;
+
+}
+
+/* ==========================================================
+   FORCE ALL CHILDREN
+========================================================== */
+
+.sidebar-menu a.active *{
+
+    color:#ffffff !important;
+
+    opacity:1 !important;
+
+    filter:none !important;
+
+}
+
+/* ==========================================================
+   ACTIVE TEXT
+========================================================== */
+
+.sidebar-menu a.active span{
+
+    color:#ffffff !important;
+
+    opacity:1 !important;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.45);
+
+}
+
+/* ==========================================================
+   ACTIVE ICON
+========================================================== */
+
+.sidebar-menu a.active svg{
+
+    color:#ffffff !important;
+
+    fill:currentColor;
+
+    stroke:currentColor;
+
+    opacity:1 !important;
+
+    filter:
+        drop-shadow(0 0 8px rgba(105,220,255,.45));
+
+}
+
+/* ==========================================================
+   ACTIVE GLOW
+========================================================== */
+
+.sidebar-menu a.active::before{
+
+    opacity:1;
+
+}
+
+/* ==========================================================
+   LEFT INDICATOR
+========================================================== */
+
+.sidebar-menu a.active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:10px;
+
+    width:4px;
+
+    height:65%;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #69f3ff,
+            #7a7cff
+        );
+
+    box-shadow:
+        0 0 16px #69f3ff;
+
+}
 /* ==========================================================
    Active Glow
 ========================================================== */

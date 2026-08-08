@@ -14,7 +14,7 @@ function FriendsHub() {
 
     <div className="friends-page">
 
-      <h1>👥 Friends Hub</h1>
+      <h1>Friends Hub</h1>
 
       <div className="friends-tabs">
 

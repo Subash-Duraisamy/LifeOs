@@ -934,3 +934,702 @@
     }
 
 }
+
+
+/* ==========================================================
+   SUBMITTED SECTION
+========================================================== */
+
+.calendar-sidebar__submitted-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-top:14px;
+
+}
+
+/* ==========================================================
+   DAY SUBMITTED
+========================================================== */
+
+.calendar-sidebar__submitted-badge{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:72px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(80,220,120,.18),
+            rgba(70,170,255,.12)
+        );
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(26px);
+    -webkit-backdrop-filter:blur(26px);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.08),
+
+        0 18px 40px rgba(0,0,0,.22);
+
+}
+
+/* ==========================================
+   Green Glow
+========================================== */
+
+.calendar-sidebar__submitted-badge::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    left:-70px;
+
+    top:-50px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            rgba(74,222,128,.25),
+
+            transparent 70%
+
+        );
+
+    animation:submittedGlow 5s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   Shimmer
+========================================== */
+
+.calendar-sidebar__submitted-badge::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            110deg,
+
+            transparent 20%,
+
+            rgba(255,255,255,.08) 45%,
+
+            transparent 70%
+
+        );
+
+    transform:translateX(-150%);
+
+    animation:submittedShine 4s linear infinite;
+
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.calendar-sidebar__submitted-content{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.calendar-sidebar__submitted-content i{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    font-size:20px;
+
+    color:#ffffff;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #4ade80,
+
+            #16a34a
+
+        );
+
+    box-shadow:
+
+        0 0 18px rgba(74,222,128,.45),
+
+        inset 0 1px rgba(255,255,255,.20);
+
+    animation:iconPulse 2s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.calendar-sidebar__submitted-content span{
+
+    font-size:20px;
+
+    font-weight:800;
+
+    color:#ffffff;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+
+        0 0 15px rgba(255,255,255,.20);
+
+    animation:textFloat 2.5s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.calendar-sidebar__submitted-badge:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 25px 50px rgba(74,222,128,.20);
+
+}
+
+/* ==========================================
+   ICON ANIMATION
+========================================== */
+
+@keyframes iconPulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.12);
+
+    }
+
+}
+
+/* ==========================================
+   TEXT FLOAT
+========================================== */
+
+@keyframes textFloat{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-2px);
+
+    }
+
+}
+
+/* ==========================================
+   GLOW
+========================================== */
+
+@keyframes submittedGlow{
+
+    0%{
+
+        transform:translate(0,0);
+
+    }
+
+    50%{
+
+        transform:translate(45px,20px);
+
+    }
+
+    100%{
+
+        transform:translate(0,0);
+
+    }
+
+}
+
+/* ==========================================
+   SHIMMER
+========================================== */
+
+@keyframes submittedShine{
+
+    from{
+
+        transform:translateX(-150%);
+
+    }
+
+    to{
+
+        transform:translateX(150%);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .calendar-sidebar__submitted-badge{
+
+        min-height:66px;
+
+    }
+
+    .calendar-sidebar__submitted-content span{
+
+        font-size:18px;
+
+    }
+
+    .calendar-sidebar__submitted-content i{
+
+        width:38px;
+
+        height:38px;
+
+        font-size:18px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .calendar-sidebar__submitted-badge{
+
+        min-height:60px;
+
+        border-radius:18px;
+
+    }
+
+    .calendar-sidebar__submitted-content{
+
+        gap:10px;
+
+    }
+
+    .calendar-sidebar__submitted-content span{
+
+        font-size:16px;
+
+    }
+
+    .calendar-sidebar__submitted-content i{
+
+        width:34px;
+
+        height:34px;
+
+        font-size:16px;
+
+        border-radius:10px;
+
+    }
+
+}
+
+/* ==========================================================
+   EDIT REPORT BUTTON
+========================================================== */
+
+.calendar-sidebar__edit-report-btn{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:64px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    overflow:hidden;
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    border-radius:22px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    color:#ffffff;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(168,85,247,.22),
+            rgba(236,72,153,.18),
+            rgba(99,102,241,.18)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+
+    box-shadow:
+
+        inset 0 1px rgba(255,255,255,.10),
+
+        inset 0 -1px rgba(255,255,255,.03),
+
+        0 18px 40px rgba(120,80,255,.22);
+
+    transition:
+        transform .35s,
+        box-shadow .35s,
+        background .35s;
+
+}
+
+/* ==========================================
+   LEFT GLOW
+========================================== */
+
+.calendar-sidebar__edit-report-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    left:-70px;
+
+    top:-60px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            rgba(255,120,220,.25),
+
+            transparent 70%
+
+        );
+
+    animation:editGlow 6s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   SHIMMER
+========================================== */
+
+.calendar-sidebar__edit-report-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            110deg,
+
+            transparent 20%,
+
+            rgba(255,255,255,.12) 45%,
+
+            transparent 70%
+
+        );
+
+    transform:translateX(-160%);
+
+    animation:editShine 4s linear infinite;
+
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.calendar-sidebar__edit-report-btn i{
+
+    position:relative;
+
+    z-index:2;
+
+    width:36px;
+
+    height:36px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:
+
+        rgba(255,255,255,.12);
+
+    color:#fff;
+
+    font-size:18px;
+
+    transition:.35s;
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.calendar-sidebar__edit-report-btn span{
+
+    position:relative;
+
+    z-index:2;
+
+    animation:editTextFloat 2.5s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.calendar-sidebar__edit-report-btn:hover{
+
+    transform:translateY(-4px);
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(185,100,255,.32),
+
+            rgba(255,95,185,.26),
+
+            rgba(120,130,255,.22)
+
+        );
+
+    box-shadow:
+
+        0 28px 55px rgba(180,100,255,.35);
+
+}
+
+.calendar-sidebar__edit-report-btn:hover i{
+
+    transform:rotate(-10deg) scale(1.12);
+
+}
+
+/* ==========================================
+   CLICK
+========================================== */
+
+.calendar-sidebar__edit-report-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================
+   GLOW
+========================================== */
+
+@keyframes editGlow{
+
+    0%{
+
+        transform:translate(0,0);
+
+    }
+
+    50%{
+
+        transform:translate(55px,25px);
+
+    }
+
+    100%{
+
+        transform:translate(0,0);
+
+    }
+
+}
+
+/* ==========================================
+   SHIMMER
+========================================== */
+
+@keyframes editShine{
+
+    from{
+
+        transform:translateX(-170%);
+
+    }
+
+    to{
+
+        transform:translateX(170%);
+
+    }
+
+}
+
+/* ==========================================
+   FLOAT
+========================================== */
+
+@keyframes editTextFloat{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-2px);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .calendar-sidebar__edit-report-btn{
+
+        min-height:58px;
+
+        font-size:16px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .calendar-sidebar__edit-report-btn{
+
+        min-height:54px;
+
+        border-radius:18px;
+
+        font-size:15px;
+
+    }
+
+}

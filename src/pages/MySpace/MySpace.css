@@ -45,7 +45,7 @@
 
 .my-space-header h1::before{
 
-    content:"👤";
+    /* content:"👤"; */
 
     display:flex;
 
