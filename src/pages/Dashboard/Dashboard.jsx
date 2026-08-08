@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import noImage from "./noimage.png";
 import { useAuth } from "../../hooks/useAuth";
 
 import { getUser } from "../../services/authService";
@@ -478,15 +478,15 @@ tasks.forEach(task => {
 
           <>
 
-            <img
-
-              src={friend.currentBook.image}
-
-              alt={friend.currentBook.title}
-
-              className="friend-media"
-
-            />
+<img
+  src={friend.currentBook.image}
+  alt={friend.currentBook.title}
+  className="friend-media"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = noImage;
+  }}
+/>
 
             <p>
 
@@ -527,14 +527,14 @@ tasks.forEach(task => {
           <>
 
             <img
-
-              src={friend.currentMovie.image}
-
-              alt={friend.currentMovie.title}
-
-              className="friend-media"
-
-            />
+  src={friend.currentMovie.image}
+  alt={friend.currentMovie.title}
+  className="friend-media"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = noImage;
+  }}
+/>
 
             <p>
 
@@ -575,14 +575,14 @@ tasks.forEach(task => {
           <>
 
             <img
-
-              src={friend.currentCourse.image}
-
-              alt={friend.currentCourse.title}
-
-              className="friend-media"
-
-            />
+  src={friend.currentCourse.image}
+  alt={friend.currentCourse.title}
+  className="friend-media"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = noImage;
+  }}
+/>
 
             <p>
 

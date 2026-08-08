@@ -4,6 +4,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { getUser } from "./authService";
 
 import { db } from "../firebase/firebase";
 
@@ -21,11 +22,9 @@ export async function getFriendsDashboard(uid) {
     where("users", "array-contains", uid)
   );
 
-  const friendshipSnapshot =
-    await getDocs(friendshipQuery);
+  const friendshipSnapshot = await getDocs(friendshipQuery);
 
-  const today =
-    new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().split("T")[0];
 
   const friends = [];
 
@@ -33,30 +32,58 @@ export async function getFriendsDashboard(uid) {
 
     const data = friendship.data();
 
-    const friend =
-      data.user1.uid === uid
-        ? data.user2
-        : data.user1;
+    console.log("================================");
+    console.log("Document ID:", friendship.id);
+    console.log(data);
+
+    // Skip invalid friendship documents
+    if (!data.user1 || !data.user2) {
+
+      console.error(
+        "INVALID FRIEND DOCUMENT:",
+        friendship.id
+      );
+
+      continue;
+
+    }
+
+    let friend;
+
+    if (data.user1.uid === uid) {
+
+      friend = data.user2;
+
+    } else if (data.user2.uid === uid) {
+
+      friend = data.user1;
+
+    } else {
+
+      console.log(
+        "Current user not found in friendship:",
+        friendship.id
+      );
+
+      continue;
+
+    }
 
     // -----------------------------
     // Today's Tasks
     // -----------------------------
 
-    const allTasks =
-      await getTasks(friend.uid);
+    const allTasks = await getTasks(friend.uid);
 
-    const todaysTasks =
-      allTasks.filter(
-        task =>
-          task.startDate === today
-      );
+    const todaysTasks = allTasks.filter(
+      task => task.startDate === today
+    );
 
     // -----------------------------
     // Library
     // -----------------------------
 
-    const library =
-      await getLibrary(friend.uid);
+    const library = await getLibrary(friend.uid);
 
     const currentBook =
       library.find(
@@ -79,25 +106,31 @@ export async function getFriendsDashboard(uid) {
           item.current
       ) || null;
 
-    friends.push({
+// Get latest profile from users collection
+const latestProfile = await getUser(friend.uid);
 
-      uid: friend.uid,
+friends.push({
+  uid: friend.uid,
 
-      fullName: friend.fullName,
+  fullName:
+    latestProfile?.fullName || friend.fullName,
 
-      username: friend.username,
+  username:
+    latestProfile?.username || friend.username,
 
-      photoURL: friend.photoURL || "",
+  photoURL:
+    latestProfile?.photoURL ||
+    friend.photoURL ||
+    "",
 
-      todaysTasks,
+  todaysTasks,
 
-      currentBook,
+  currentBook,
 
-      currentMovie,
+  currentMovie,
 
-      currentCourse,
-
-    });
+  currentCourse,
+});
 
   }
 
